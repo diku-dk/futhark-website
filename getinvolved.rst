@@ -30,6 +30,10 @@ getting involved:
   that already have implementations in other languages, as this makes
   comparisons possible.
 
+- **Improve this website!** The Futhark website is `also on Github`_
+  and probably has room for improvement.
+
 .. _`on Github`: https://github.com/HIPERFIT/futhark
 .. _`bug tracker`: https://github.com/HIPERFIT/futhark/issues
 .. _`benchmarks`: https://github.com/HIPERFIT/futhark-benchmarks
+.. _`also on Github`: https://github.com/HIPERFIT/futhark-website
