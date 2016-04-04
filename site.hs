@@ -48,7 +48,7 @@ main = hakyll $ do
                 >>= loadAndApplyTemplate "templates/default.html" archiveCtx
                 >>= relativizeUrls
 
-    match "templates/*" $ compile templateBodyCompiler
+    match "templates/*" $ compile templateCompiler
 
 contentContext :: Compiler (Context String)
 contentContext = do
