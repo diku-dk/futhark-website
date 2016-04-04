@@ -67,7 +67,7 @@ getMenu = do
 menuContents :: [(String, FilePath)]
 menuContents = [("Futhark", "index.html"),
                 ("Docs", "docs.html"),
-                ("Performance", "performance.html"),
+                ("Gotta Go Fast!", "performance.html"),
                 ("Get Involved", "getinvolved.html"),
                 ("Blog", "blog.html")]
 
