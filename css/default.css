@@ -3,6 +3,7 @@ body {
     font: 1.2em/1.62em sans-serif;
     margin: 0px auto 0px auto;
     width: 800px;
+    text-align: justify;
 }
 
 div#header {
