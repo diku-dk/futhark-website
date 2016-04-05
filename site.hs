@@ -11,11 +11,19 @@ main = hakyll $ do
         route idRoute
         compile copyFileCompiler
 
+    match "static/*" $ do
+        route idRoute
+        compile copyFileCompiler
+
     match "css/*" $ do
         route idRoute
         compile compressCssCompiler
 
-    match (fromList ["performance.rst", "docs.rst", "getinvolved.rst", "index.rst"]) $ do
+    match (fromList ["performance.rst",
+                     "docs.rst",
+                     "getinvolved.rst",
+                     "index.rst",
+                     "examples.rst"]) $ do
         route $ setExtension "html"
         compile $ do
           menu <- contentContext
@@ -66,6 +74,7 @@ getMenu = do
 
 menuContents :: [(String, FilePath)]
 menuContents = [("Futhark", "index.html"),
+                ("Examples", "examples.html"),
                 ("Docs", "docs.html"),
                 ("Gotta Go Fast!", "performance.html"),
                 ("Get Involved", "getinvolved.html"),
