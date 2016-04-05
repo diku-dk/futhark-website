@@ -46,4 +46,4 @@ also visit us `on Github`_.
 .. _PyOpenCL: https://mathema.tician.de/software/pyopencl/
 .. _associative: https://en.wikipedia.org/wiki/Associative_property
 .. _commutative: https://en.wikipedia.org/wiki/Commutative_property
-.. _github: https://github.com/HIPERFIT/futhark
+.. _`on Github`: https://github.com/HIPERFIT/futhark
