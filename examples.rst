@@ -73,7 +73,7 @@ using a combination of ``map`` and ``reduce``::
     , max(mcsy, mcsx+tsy)
     , tsx + tsy }
 
-  fun {int,int,int,int} mapOp (int x) =
+  fun {int,int,int,int} mapOp(int x) =
     { max(x,0), max(x,0), max(x,0), x }
 
   fun int main([int] xs) =
