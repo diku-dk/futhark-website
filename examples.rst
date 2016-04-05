@@ -93,7 +93,7 @@ problems (such as *MSS* above) cannot be solved efficiently with just
 commutative reductions.
 
 On a GTX 780 Ti GPU, Futhark can compute the MSS of ten million
-integers in 1.4ms.
+integers in 1.2ms.
 
 .. _`contribute`: /getinvolved.html
 .. _`introduction` /
