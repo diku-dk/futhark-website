@@ -36,10 +36,10 @@ program will expect to be given its arguments on standard input::
   $ echo 2000000000 | ./fact
 
 This may produce a bunch of diagnostics on standard error, but will
-also cause the result (``0i32`` - a 32-bit zero) to be written on
-standard output.  We can use built-in instrumentation to determine how
-long the computation took, not counting GPU context initialisation and
-the like::
+also write the result on standard output (``0i32`` - a 32-bit zero).
+We can use built-in instrumentation to determine how long the
+computation took, not counting GPU context initialisation and the
+like::
 
   $ echo 2000000000 | ./fact -t runtime.txt
 
