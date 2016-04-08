@@ -13,7 +13,7 @@ factorial program::
 
   fun int main(int n) = reduce(*, 1, map(1+, iota(n)))
 
-The function call ``fact(n)`` creates an array of the integers
+The function call ``main(n)`` creates an array of the integers
 ``0..n-1``, adds one to each element of the array, then computes the
 product of all elements in the array.  The Futhark compiler employs
 *loop fusion* to remove the need for any of these temporary arrays to
