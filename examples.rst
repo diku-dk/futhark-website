@@ -11,9 +11,11 @@ improvements, you can always `contribute`_!
 As Futhark is a functional language, we will start with the obligatory
 factorial program::
 
-  fun int main(int n) = reduce(*, 1, map(1+, iota(n)))
+  fun int fact(int n) = reduce(*, 1, map(1+, iota(n)))
 
-The function call ``main(n)`` creates an array of the integers
+  fun int main(int n) = fact(n)
+
+The function call ``fact(n)`` creates an array of the integers
 ``0..n-1``, adds one to each element of the array, then computes the
 product of all elements in the array.  The Futhark compiler employs
 *loop fusion* to remove the need for any of these temporary arrays to
@@ -37,21 +39,21 @@ program will expect to be given its arguments on standard input::
 
 This may produce a bunch of diagnostics on standard error, but will
 also write the result on standard output (``0i32`` - a 32-bit zero).
-We can use built-in instrumentation to determine how long the
+We can use the built-in instrumentation to determine how long the
 computation took, not counting GPU context initialisation and the
 like::
 
   $ echo 2000000000 | ./fact -t runtime.txt
 
 The file ``runtime.txt`` will contain the wall time in microseconds.
-On a GTX 780 Ti GPU will compute ``fact(2000000000)`` (two billion) in
-7.0ms .  A `sequential C program`_ using a ``for``-loop to compute the
-same thing takes 1335.3ms on an Intel Xeon E5-2650 CPU.  Of course,
-this is not a realistic performance comparison, as neither program
-accesses memory, but it shows how easy it is to obtain parallel
-execution in Futhark.  If we ask the Futhark compiler to generate
-sequential C code (with ``futhark-c``), the resulting program runs in
-exactly the same time as the hand-written C program.
+On a GTX 780 Ti GPU, ``fact(2000000000)`` (two billion!) runs in 7.0ms
+.  A `sequential C program`_ using a ``for``-loop to compute the same
+thing takes 1335.3ms on an Intel Xeon E5-2650 CPU.  Of course, this is
+not a realistic performance comparison, as neither program accesses
+memory, but it shows how easy it is to obtain parallel execution in
+Futhark.  If we ask the Futhark compiler to generate sequential C code
+(with ``futhark-c``), the resulting program runs in exactly the same
+time as the hand-written C program.
 
 A More Complex Example
 **********************
