@@ -11,7 +11,9 @@ improvements, you can always `contribute`_!
 As Futhark is a functional language, we will start with the obligatory
 factorial program::
 
-  fun int main(int n) = reduce(*, 1, map(1+, iota(n)))
+  fun int main(int n) = fact(n)
+
+  fun int fact(int n) = reduce(*, 1, map(1+, iota(n)))
 
 The function call ``fact(n)`` creates an array of the integers
 ``0..n-1``, adds one to each element of the array, then computes the
