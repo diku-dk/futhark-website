@@ -6,7 +6,7 @@ import           Hakyll
 
 --------------------------------------------------------------------------------
 main :: IO ()
-main = hakyll $ do
+main = hakyllWith config $ do
     match "images/*" $ do
         route idRoute
         compile copyFileCompiler
@@ -91,3 +91,10 @@ postContext :: Compiler (Context String)
 postContext = do
   ctx <- contentContext
   return $ dateField "date" "%B %e, %Y" `mappend` ctx
+
+--------------------------------------------------------------------------------
+config :: Configuration
+config = defaultConfiguration
+  { deployCommand = "rsync --chmod=Do+rx,Fo+r --checksum -ave 'ssh -p 22' \
+                     \_site/* --exclude pub futhark@sigkill.dk:/var/www/htdocs/futhark-lang.org"
+  }
