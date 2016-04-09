@@ -20,7 +20,7 @@ Futhark compiled to sequential CPU code.  The benchmarking setup and
 code can be found `here
 <https://github.com/HIPERFIT/futhark-website/tree/master/benchmarks>`_.
 
-Sum (`Futhark code <benchmarks/programs/sum.fut>`_, `Thrust code <benchmarks/programs/sum.cu>`_)
+Sum (`Futhark <benchmarks/programs/sum.fut>`_, `Thrust <benchmarks/programs/sum.cu>`_)
 ================================================================================================
 
 .. image:: images/sum.svg
@@ -35,7 +35,7 @@ operator.  Thrust has well-implemented basic primitives, which means
 that matching it in performance on simple programs is a satisfying
 result.
 
-MSS (`Futhark code <benchmarks/programs/mss.fut>`_, `Thrust code <benchmarks/programs/mss.cu>`_)
+MSS (`Futhark <benchmarks/programs/mss.fut>`_, `Thrust <benchmarks/programs/mss.cu>`_)
 ================================================================================================
 
 .. image:: images/mss.svg
@@ -49,7 +49,7 @@ implement this via an inclusive scan followed by picking out the last
 element.  This is not too problematic for small input sizes, but the
 extra amount of work begins to have an impact for larger datasets.
 
-Mandelbrot (`Futhark code <benchmarks/programs/mandelbrot.fut>`_, `Thrust code <benchmarks/programs/mandelbrot.cu>`_, `Accelerate code <https://github.com/AccelerateHS/accelerate-examples/tree/master/examples/mandelbrot>`_)
+Mandelbrot (`Futhark <benchmarks/programs/mandelbrot.fut>`_, `Thrust <benchmarks/programs/mandelbrot.cu>`_, `Accelerate <https://github.com/AccelerateHS/accelerate-examples/tree/master/examples/mandelbrot>`_)
 ===============================================================================================================================================================================================================================
 
 .. image:: images/mandelbrot.svg
@@ -63,7 +63,7 @@ benchmark.  When visualising the Mandelbrot set, each pixel can be
 computed completely independently and with no memory accesses apart
 from the final write, making it an excellent fit for GPU computing.
 The amount of work done is proportional to the square of the value on
-the *x*-axis.  If you are curious, the visualisation looks like `this
+the *x*-axis.  The visualisation looks like `this
 <images/mandelbrot.png>`_ (although the benchmark data sets do not
 produce this exact size).
 
