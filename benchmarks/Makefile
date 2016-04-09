@@ -1,9 +1,14 @@
+# This Makefile is a total mess.  I trued to maintain some sort of
+# structure, but eh.  Benchmarking is always a dirty business.
+
 MIN=-10
 MAX=10
 sum_SEQSIZES=100000 500000 1000000 2000000 5000000
 sum_PARSIZES=100000 500000 1000000 2000000 5000000 10000000 20000000 30000000 100000000
 mss_SEQSIZES=100000 200000 500000 800000 1000000
 mss_PARSIZES=100000 200000 500000 800000 1000000 2000000 5000000 10000000
+mandelbrot_SEQSIZES=10 20 50 100
+mandelbrot_PARSIZES=10 20 50 100 200 300 400 500 600 700 800 900 1000
 # The -I is to use a non-default version of Thrust, for example
 # the one from https://github.com/thrust/thrust
 #
@@ -13,7 +18,7 @@ NVCFLAGS=-O3 -I $(HOME)/thrust
 .PHONY: clean
 .SECONDARY:
 
-all: graphs/sum.svg graphs/mss.svg
+all: graphs/sum.svg graphs/mss.svg graphs/mandelbrot.svg
 
 tools/randomarray: tools/randomarray.c
 	gcc -o $@ $< -O3
@@ -34,15 +39,24 @@ clean:
 
 compiled/%-futhark-opencl: programs/%.fut
 	mkdir -p compiled
-	futhark-opencl $< -o $@
+	futhark-opencl programs/$*.fut -o $@
 
 compiled/%-futhark-sequential: programs/%.fut
 	mkdir -p compiled
-	futhark-c $< -o $@
+	futhark-c programs/$*.fut -o $@
 
 compiled/%-thrust: programs/%.cu
-	mkdir -p compiled
-	nvcc $< -o $@ $(NVCFLAGS)
+	nvcc programs/$*.cu -o $@ $(NVCFLAGS)
+
+runtimes/mandelbrot-futhark-opencl.runtimes: compiled/mandelbrot-futhark-opencl
+	mkdir -p runtimes
+	tools/benchmark-futhark.sh scalar compiled/mandelbrot-futhark-opencl $(mandelbrot_PARSIZES) 2>>error.log > $@
+runtimes/mandelbrot-futhark-sequential.runtimes: compiled/mandelbrot-futhark-sequential
+	mkdir -p runtimes
+	tools/benchmark-futhark.sh scalar compiled/mandelbrot-futhark-sequential $(mandelbrot_SEQSIZES) 2>>error.log > $@
+runtimes/mandelbrot-accelerate.runtimes:
+	mkdir -p runtimes
+	tools/benchmark-accelerate.sh mandelbrot $(mandelbrot_PARSIZES) 2>>error.log > $@
 
 runtimes/%-futhark-opencl.runtimes: %-par-dataset compiled/%-futhark-opencl
 	mkdir -p runtimes
@@ -56,7 +70,11 @@ runtimes/%-thrust.runtimes: %-par-dataset compiled/%-thrust
 	mkdir -p runtimes
 	tools/benchmark-thrust.sh compiled/$*-thrust $($*_PARSIZES) 2>>error.log > $@
 
-%-runtimes: runtimes/mss-futhark-opencl.runtimes runtimes/mss-futhark-sequential.runtimes runtimes/mss-thrust.runtimes
+mss-runtimes: runtimes/mss-futhark-opencl.runtimes runtimes/mss-futhark-sequential.runtimes runtimes/mss-thrust.runtimes
+
+sum-runtimes: runtimes/sum-futhark-opencl.runtimes runtimes/sum-futhark-sequential.runtimes runtimes/sum-thrust.runtimes
+
+mandelbrot-runtimes: runtimes/mandelbrot-futhark-opencl.runtimes runtimes/mandelbrot-futhark-sequential.runtimes runtimes/mandelbrot-accelerate.runtimes
 
 graphs/mss.svg: runtimes/mss-futhark-opencl.runtimes runtimes/mss-futhark-sequential.runtimes runtimes/mss-thrust.runtimes
 	mkdir -p graphs
@@ -76,7 +94,22 @@ graphs/sum.svg: runtimes/sum-futhark-opencl.runtimes runtimes/sum-futhark-sequen
 	      '"runtimes/sum-futhark-sequential.runtimes" with linespoints ls 3 title "Sequential"' \
 	) | gnuplot
 
+graphs/mandelbrot.svg: runtimes/mandelbrot-futhark-opencl.runtimes runtimes/mandelbrot-futhark-sequential.runtimes runtimes/mandelbrot-accelerate.runtimes runtimes/mandelbrot-thrust.runtimes
+	mkdir -p graphs
+	(cat style.gnuplot; \
+         echo 'set output "graphs/mandelbrot.svg"'; \
+         echo 'unset logscale x'; \
+         echo 'set xlabel "Width and height of visualisation"'; \
+         echo 'plot "runtimes/mandelbrot-futhark-opencl.runtimes" with linespoints ls 1 title "Futhark",' \
+	      '"runtimes/mandelbrot-thrust.runtimes" with linespoints ls 2 title "Thrust",' \
+	      '"runtimes/mandelbrot-accelerate.runtimes" with linespoints ls 4 title "Accelerate",' \
+	      '"runtimes/mandelbrot-futhark-sequential.runtimes" with linespoints ls 3 title "Sequential"' \
+	) | gnuplot
+
+
 sum-par-dataset: $(sum_PARSIZES:%=data/%_integers)
 sum-seq-dataset: $(sum_SEQSIZES:%=data/%_integers)
 mss-par-dataset: $(mss_PARSIZES:%=data/%_integers)
 mss-seq-dataset: $(mss_SEQSIZES:%=data/%_integers)
+mandelbrot-par-dataset:
+mandelbrot-seq-dataset:

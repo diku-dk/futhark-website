@@ -66,11 +66,11 @@ onclick="gnuplot_svg.toggleCoordBox(evt)"  onmousemove="gnuplot_svg.moveCoordBox
 <g fill="none" color="black" stroke="black" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='gray' stroke-dasharray='2,4' class="gridline"  d='M67.5,136.6 L278.9,136.6  '/></g>
+	<path stroke='gray' stroke-dasharray='2,4' class="gridline"  d='M67.5,134.0 L278.9,134.0  '/></g>
 <g fill="none" color="gray" stroke="gray" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='black'  d='M67.5,136.6 L75.0,136.6 M278.9,136.6 L271.4,136.6  '/>	<g transform="translate(60.5,140.3)" stroke="none" fill="black" font-family="arial" font-size="10.00"  text-anchor="end">
+	<path stroke='black'  d='M67.5,134.0 L75.0,134.0 M278.9,134.0 L271.4,134.0  '/>	<g transform="translate(60.5,137.7)" stroke="none" fill="black" font-family="arial" font-size="10.00"  text-anchor="end">
 		<text><tspan font-family="arial" > 500</tspan></text>
 	</g>
 </g>
@@ -79,11 +79,11 @@ onclick="gnuplot_svg.toggleCoordBox(evt)"  onmousemove="gnuplot_svg.moveCoordBox
 <g fill="none" color="black" stroke="black" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='gray' stroke-dasharray='2,4' class="gridline"  d='M67.5,121.2 L278.9,121.2  '/></g>
+	<path stroke='gray' stroke-dasharray='2,4' class="gridline"  d='M67.5,116.0 L278.9,116.0  '/></g>
 <g fill="none" color="gray" stroke="gray" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='black'  d='M67.5,121.2 L75.0,121.2 M278.9,121.2 L271.4,121.2  '/>	<g transform="translate(60.5,124.9)" stroke="none" fill="black" font-family="arial" font-size="10.00"  text-anchor="end">
+	<path stroke='black'  d='M67.5,116.0 L75.0,116.0 M278.9,116.0 L271.4,116.0  '/>	<g transform="translate(60.5,119.7)" stroke="none" fill="black" font-family="arial" font-size="10.00"  text-anchor="end">
 		<text><tspan font-family="arial" > 1000</tspan></text>
 	</g>
 </g>
@@ -92,11 +92,11 @@ onclick="gnuplot_svg.toggleCoordBox(evt)"  onmousemove="gnuplot_svg.moveCoordBox
 <g fill="none" color="black" stroke="black" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='gray' stroke-dasharray='2,4' class="gridline"  d='M67.5,105.8 L278.9,105.8  '/></g>
+	<path stroke='gray' stroke-dasharray='2,4' class="gridline"  d='M67.5,98.0 L278.9,98.0  '/></g>
 <g fill="none" color="gray" stroke="gray" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='black'  d='M67.5,105.8 L75.0,105.8 M278.9,105.8 L271.4,105.8  '/>	<g transform="translate(60.5,109.5)" stroke="none" fill="black" font-family="arial" font-size="10.00"  text-anchor="end">
+	<path stroke='black'  d='M67.5,98.0 L75.0,98.0 M278.9,98.0 L271.4,98.0  '/>	<g transform="translate(60.5,101.7)" stroke="none" fill="black" font-family="arial" font-size="10.00"  text-anchor="end">
 		<text><tspan font-family="arial" > 1500</tspan></text>
 	</g>
 </g>
@@ -105,11 +105,11 @@ onclick="gnuplot_svg.toggleCoordBox(evt)"  onmousemove="gnuplot_svg.moveCoordBox
 <g fill="none" color="black" stroke="black" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='gray' stroke-dasharray='2,4' class="gridline"  d='M67.5,90.3 L278.9,90.3  '/></g>
+	<path stroke='gray' stroke-dasharray='2,4' class="gridline"  d='M67.5,80.1 L278.9,80.1  '/></g>
 <g fill="none" color="gray" stroke="gray" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='black'  d='M67.5,90.3 L75.0,90.3 M278.9,90.3 L271.4,90.3  '/>	<g transform="translate(60.5,94.0)" stroke="none" fill="black" font-family="arial" font-size="10.00"  text-anchor="end">
+	<path stroke='black'  d='M67.5,80.1 L75.0,80.1 M278.9,80.1 L271.4,80.1  '/>	<g transform="translate(60.5,83.8)" stroke="none" fill="black" font-family="arial" font-size="10.00"  text-anchor="end">
 		<text><tspan font-family="arial" > 2000</tspan></text>
 	</g>
 </g>
@@ -118,25 +118,12 @@ onclick="gnuplot_svg.toggleCoordBox(evt)"  onmousemove="gnuplot_svg.moveCoordBox
 <g fill="none" color="black" stroke="black" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='gray' stroke-dasharray='2,4' class="gridline"  d='M67.5,74.9 L278.9,74.9  '/></g>
+	<path stroke='gray' stroke-dasharray='2,4' class="gridline"  d='M67.5,62.1 L278.9,62.1  '/></g>
 <g fill="none" color="gray" stroke="gray" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='black'  d='M67.5,74.9 L75.0,74.9 M278.9,74.9 L271.4,74.9  '/>	<g transform="translate(60.5,78.6)" stroke="none" fill="black" font-family="arial" font-size="10.00"  text-anchor="end">
+	<path stroke='black'  d='M67.5,62.1 L75.0,62.1 M278.9,62.1 L271.4,62.1  '/>	<g transform="translate(60.5,65.8)" stroke="none" fill="black" font-family="arial" font-size="10.00"  text-anchor="end">
 		<text><tspan font-family="arial" > 2500</tspan></text>
-	</g>
-</g>
-<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-</g>
-<g fill="none" color="black" stroke="black" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
-</g>
-<g fill="none" color="gray" stroke="currentColor" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='gray' stroke-dasharray='2,4' class="gridline"  d='M67.5,59.5 L278.9,59.5  '/></g>
-<g fill="none" color="gray" stroke="gray" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-</g>
-<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='black'  d='M67.5,59.5 L75.0,59.5 M278.9,59.5 L271.4,59.5  '/>	<g transform="translate(60.5,63.2)" stroke="none" fill="black" font-family="arial" font-size="10.00"  text-anchor="end">
-		<text><tspan font-family="arial" > 3000</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
@@ -149,7 +136,7 @@ onclick="gnuplot_svg.toggleCoordBox(evt)"  onmousemove="gnuplot_svg.moveCoordBox
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<path stroke='black'  d='M67.5,44.1 L75.0,44.1 M278.9,44.1 L271.4,44.1  '/>	<g transform="translate(60.5,47.8)" stroke="none" fill="black" font-family="arial" font-size="10.00"  text-anchor="end">
-		<text><tspan font-family="arial" > 3500</tspan></text>
+		<text><tspan font-family="arial" > 3000</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
@@ -162,15 +149,63 @@ onclick="gnuplot_svg.toggleCoordBox(evt)"  onmousemove="gnuplot_svg.moveCoordBox
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<path stroke='black'  d='M67.5,152.0 L67.5,144.5 M67.5,44.1 L67.5,51.6  '/>	<g transform="translate(67.5,170.7)" stroke="none" fill="black" font-family="arial" font-size="10.00"  text-anchor="middle">
-		<text><tspan font-family="arial" > 100000</tspan></text>
+		<text><tspan font-family="arial" > 0</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='black'  d='M99.3,152.0 L99.3,148.3 M99.3,44.1 L99.3,47.8 M117.9,152.0 L117.9,148.3 M117.9,44.1 L117.9,47.8
-		M131.1,152.0 L131.1,148.3 M131.1,44.1 L131.1,47.8 M141.4,152.0 L141.4,148.3 M141.4,44.1 L141.4,47.8
-		M149.8,152.0 L149.8,148.3 M149.8,44.1 L149.8,47.8 M156.8,152.0 L156.8,148.3 M156.8,44.1 L156.8,47.8
-		M163.0,152.0 L163.0,148.3 M163.0,44.1 L163.0,47.8 M168.4,152.0 L168.4,148.3 M168.4,44.1 L168.4,47.8
-		 '/></g>
+</g>
+<g fill="none" color="black" stroke="black" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
+	<path stroke='gray' stroke-dasharray='2,4' class="gridline"  d='M88.6,152.0 L88.6,44.1  '/></g>
+<g fill="none" color="gray" stroke="gray" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+	<path stroke='black'  d='M88.6,152.0 L88.6,144.5 M88.6,44.1 L88.6,51.6  '/>	<g transform="translate(88.6,170.7)" stroke="none" fill="black" font-family="arial" font-size="10.00"  text-anchor="middle">
+		<text><tspan font-family="arial" > 100</tspan></text>
+	</g>
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+</g>
+<g fill="none" color="black" stroke="black" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
+	<path stroke='gray' stroke-dasharray='2,4' class="gridline"  d='M109.8,152.0 L109.8,44.1  '/></g>
+<g fill="none" color="gray" stroke="gray" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+	<path stroke='black'  d='M109.8,152.0 L109.8,144.5 M109.8,44.1 L109.8,51.6  '/>	<g transform="translate(109.8,170.7)" stroke="none" fill="black" font-family="arial" font-size="10.00"  text-anchor="middle">
+		<text><tspan font-family="arial" > 200</tspan></text>
+	</g>
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+</g>
+<g fill="none" color="black" stroke="black" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
+	<path stroke='gray' stroke-dasharray='2,4' class="gridline"  d='M130.9,152.0 L130.9,44.1  '/></g>
+<g fill="none" color="gray" stroke="gray" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+	<path stroke='black'  d='M130.9,152.0 L130.9,144.5 M130.9,44.1 L130.9,51.6  '/>	<g transform="translate(130.9,170.7)" stroke="none" fill="black" font-family="arial" font-size="10.00"  text-anchor="middle">
+		<text><tspan font-family="arial" > 300</tspan></text>
+	</g>
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+</g>
+<g fill="none" color="black" stroke="black" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
+	<path stroke='gray' stroke-dasharray='2,4' class="gridline"  d='M152.1,152.0 L152.1,44.1  '/></g>
+<g fill="none" color="gray" stroke="gray" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+	<path stroke='black'  d='M152.1,152.0 L152.1,144.5 M152.1,44.1 L152.1,51.6  '/>	<g transform="translate(152.1,170.7)" stroke="none" fill="black" font-family="arial" font-size="10.00"  text-anchor="middle">
+		<text><tspan font-family="arial" > 400</tspan></text>
+	</g>
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+</g>
 <g fill="none" color="black" stroke="black" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
@@ -179,15 +214,63 @@ onclick="gnuplot_svg.toggleCoordBox(evt)"  onmousemove="gnuplot_svg.moveCoordBox
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<path stroke='black'  d='M173.2,152.0 L173.2,144.5 M173.2,44.1 L173.2,51.6  '/>	<g transform="translate(173.2,170.7)" stroke="none" fill="black" font-family="arial" font-size="10.00"  text-anchor="middle">
-		<text><tspan font-family="arial" > 1x10</tspan><tspan font-family="arial"  font-size="8.0" dy="-5.00px">6</tspan><tspan font-size="10.0" dy="5.00"></tspan></text>
+		<text><tspan font-family="arial" > 500</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='black'  d='M205.0,152.0 L205.0,148.3 M205.0,44.1 L205.0,47.8 M223.6,152.0 L223.6,148.3 M223.6,44.1 L223.6,47.8
-		M236.8,152.0 L236.8,148.3 M236.8,44.1 L236.8,47.8 M247.1,152.0 L247.1,148.3 M247.1,44.1 L247.1,47.8
-		M255.5,152.0 L255.5,148.3 M255.5,44.1 L255.5,47.8 M262.5,152.0 L262.5,148.3 M262.5,44.1 L262.5,47.8
-		M268.7,152.0 L268.7,148.3 M268.7,44.1 L268.7,47.8 M274.1,152.0 L274.1,148.3 M274.1,44.1 L274.1,47.8
-		 '/></g>
+</g>
+<g fill="none" color="black" stroke="black" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
+	<path stroke='gray' stroke-dasharray='2,4' class="gridline"  d='M194.3,152.0 L194.3,44.1  '/></g>
+<g fill="none" color="gray" stroke="gray" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+	<path stroke='black'  d='M194.3,152.0 L194.3,144.5 M194.3,44.1 L194.3,51.6  '/>	<g transform="translate(194.3,170.7)" stroke="none" fill="black" font-family="arial" font-size="10.00"  text-anchor="middle">
+		<text><tspan font-family="arial" > 600</tspan></text>
+	</g>
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+</g>
+<g fill="none" color="black" stroke="black" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
+	<path stroke='gray' stroke-dasharray='2,4' class="gridline"  d='M215.5,152.0 L215.5,44.1  '/></g>
+<g fill="none" color="gray" stroke="gray" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+	<path stroke='black'  d='M215.5,152.0 L215.5,144.5 M215.5,44.1 L215.5,51.6  '/>	<g transform="translate(215.5,170.7)" stroke="none" fill="black" font-family="arial" font-size="10.00"  text-anchor="middle">
+		<text><tspan font-family="arial" > 700</tspan></text>
+	</g>
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+</g>
+<g fill="none" color="black" stroke="black" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
+	<path stroke='gray' stroke-dasharray='2,4' class="gridline"  d='M236.6,152.0 L236.6,44.1  '/></g>
+<g fill="none" color="gray" stroke="gray" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+	<path stroke='black'  d='M236.6,152.0 L236.6,144.5 M236.6,44.1 L236.6,51.6  '/>	<g transform="translate(236.6,170.7)" stroke="none" fill="black" font-family="arial" font-size="10.00"  text-anchor="middle">
+		<text><tspan font-family="arial" > 800</tspan></text>
+	</g>
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+</g>
+<g fill="none" color="black" stroke="black" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
+	<path stroke='gray' stroke-dasharray='2,4' class="gridline"  d='M257.8,152.0 L257.8,44.1  '/></g>
+<g fill="none" color="gray" stroke="gray" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+	<path stroke='black'  d='M257.8,152.0 L257.8,144.5 M257.8,44.1 L257.8,51.6  '/>	<g transform="translate(257.8,170.7)" stroke="none" fill="black" font-family="arial" font-size="10.00"  text-anchor="middle">
+		<text><tspan font-family="arial" > 900</tspan></text>
+	</g>
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+</g>
 <g fill="none" color="black" stroke="black" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
@@ -196,7 +279,7 @@ onclick="gnuplot_svg.toggleCoordBox(evt)"  onmousemove="gnuplot_svg.moveCoordBox
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<path stroke='black'  d='M278.9,152.0 L278.9,144.5 M278.9,44.1 L278.9,51.6  '/>	<g transform="translate(278.9,170.7)" stroke="none" fill="black" font-family="arial" font-size="10.00"  text-anchor="middle">
-		<text><tspan font-family="arial" > 1x10</tspan><tspan font-family="arial"  font-size="8.0" dy="-5.00px">7</tspan><tspan font-size="10.0" dy="5.00"></tspan></text>
+		<text><tspan font-family="arial" > 1000</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
@@ -210,7 +293,7 @@ onclick="gnuplot_svg.toggleCoordBox(evt)"  onmousemove="gnuplot_svg.moveCoordBox
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<g transform="translate(173.2,193.2)" stroke="none" fill="black" font-family="arial" font-size="10.00"  text-anchor="middle">
-		<text><tspan font-family="arial" >Input elements</tspan></text>
+		<text><tspan font-family="arial" >Width and height of visualisation</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
@@ -226,8 +309,8 @@ onclick="gnuplot_svg.toggleCoordBox(evt)"  onmousemove="gnuplot_svg.moveCoordBox
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="2.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<path stroke='rgb( 95,   2,  31)'  d='M130.7,15.0 L166.2,15.0  '/>	</g>
-	<path stroke='rgb( 95,   2,  31)'  d='M67.5,137.0 L99.3,137.0 L141.4,136.5 L163.0,136.7 L173.2,136.8 L205.0,134.2 L247.1,126.3 L278.9,110.5
-		 '/>	<g id="MSS_runtime_plot_1_keyentry" visibility="visible" onclick="gnuplot_svg.toggleVisibility(evt,'MSS_runtime_plot_1')">
+	<path stroke='rgb( 95,   2,  31)'  d='M69.6,149.1 L71.7,149.1 L78.1,149.0 L88.6,149.0 L109.8,148.4 L130.9,147.6 L152.1,146.3 L173.2,141.1
+		L194.3,139.5 L215.5,137.3 L236.6,135.4 L257.8,132.8 L278.9,130.3  '/>	<g id="MSS_runtime_plot_1_keyentry" visibility="visible" onclick="gnuplot_svg.toggleVisibility(evt,'MSS_runtime_plot_1')">
 	<use xlink:href='#gpDot' x='148.4' y='15.0' color='rgb( 95,   2,  31)'/>
 
 	</g>
@@ -242,24 +325,40 @@ onclick="gnuplot_svg.toggleCoordBox(evt)"  onmousemove="gnuplot_svg.moveCoordBox
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="2.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<path stroke='rgb(  0, 170,  31)'  d='M130.7,30.0 L166.2,30.0  '/>	</g>
-	<path stroke='rgb(  0, 170,  31)'  d='M67.5,143.4 L99.3,142.4 L141.4,139.8 L163.0,136.9 L173.2,134.9 L205.0,125.2 L247.1,96.2 L278.9,50.0
-		 '/>	<g id="MSS_runtime_plot_2_keyentry" visibility="visible" onclick="gnuplot_svg.toggleVisibility(evt,'MSS_runtime_plot_2')">
+	<path stroke='rgb(  0, 170,  31)'  d='M69.6,151.0 L71.7,151.0 L78.1,150.6 L88.6,150.6 L109.8,150.1 L130.9,148.7 L152.1,146.6 L173.2,144.8
+		L194.3,142.8 L215.5,139.7 L236.6,136.8 L257.8,133.3 L278.9,129.1  '/>	<g id="MSS_runtime_plot_2_keyentry" visibility="visible" onclick="gnuplot_svg.toggleVisibility(evt,'MSS_runtime_plot_2')">
 	<use xlink:href='#gpDot' x='148.4' y='30.0' color='rgb(  0, 170,  31)'/>
 
 	</g>
 </g>
 	</g>
-	<g id="MSS_runtime_plot_3" ><title>Sequential</title>
+	<g id="MSS_runtime_plot_3" ><title>Accelerate</title>
 <g fill="none" color="black" stroke="currentColor" stroke-width="2.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<g id="MSS_runtime_plot_3_keyentry" visibility="visible" onclick="gnuplot_svg.toggleVisibility(evt,'MSS_runtime_plot_3')">
 	<g transform="translate(243.2,18.7)" stroke="none" fill="black" font-family="arial" font-size="10.00"  text-anchor="end">
+		<text><tspan font-family="arial" >Accelerate</tspan></text>
+	</g>
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="2.00" stroke-linecap="butt" stroke-linejoin="miter">
+	<path stroke='rgb( 11,  13, 255)'  d='M250.2,15.0 L285.7,15.0  '/>	</g>
+	<path stroke='rgb( 11,  13, 255)'  d='M69.6,146.0 L71.7,146.1 L78.1,145.7 L88.6,144.9 L109.8,142.1 L130.9,136.6 L152.1,127.0 L173.2,118.2
+		L194.3,112.5 L215.5,105.7 L236.6,95.9 L257.8,84.9 L278.9,68.9  '/>	<g id="MSS_runtime_plot_3_keyentry" visibility="visible" onclick="gnuplot_svg.toggleVisibility(evt,'MSS_runtime_plot_3')">
+	<use xlink:href='#gpDot' x='267.9' y='15.0' color='rgb( 11,  13, 255)'/>
+
+	</g>
+</g>
+	</g>
+	<g id="MSS_runtime_plot_4" ><title>Sequential</title>
+<g fill="none" color="black" stroke="currentColor" stroke-width="2.00" stroke-linecap="butt" stroke-linejoin="miter">
+	<g id="MSS_runtime_plot_4_keyentry" visibility="visible" onclick="gnuplot_svg.toggleVisibility(evt,'MSS_runtime_plot_4')">
+	<g transform="translate(243.2,33.7)" stroke="none" fill="black" font-family="arial" font-size="10.00"  text-anchor="end">
 		<text><tspan font-family="arial" >Sequential</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="2.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='rgb(187, 187, 187)'  d='M250.2,15.0 L285.7,15.0  '/>	</g>
-	<path stroke='rgb(187, 187, 187)'  d='M67.5,144.9 L99.3,137.9 L141.4,116.6 L163.0,95.3 L173.2,81.1  '/>	<g id="MSS_runtime_plot_3_keyentry" visibility="visible" onclick="gnuplot_svg.toggleVisibility(evt,'MSS_runtime_plot_3')">
-	<use xlink:href='#gpDot' x='267.9' y='15.0' color='rgb(187, 187, 187)'/>
+	<path stroke='rgb(187, 187, 187)'  d='M250.2,30.0 L285.7,30.0  '/>	</g>
+	<path stroke='rgb(187, 187, 187)'  d='M69.6,150.8 L71.7,147.7 L78.1,126.4 L88.6,49.0  '/>	<g id="MSS_runtime_plot_4_keyentry" visibility="visible" onclick="gnuplot_svg.toggleVisibility(evt,'MSS_runtime_plot_4')">
+	<use xlink:href='#gpDot' x='267.9' y='30.0' color='rgb(187, 187, 187)'/>
 
 	</g>
 </g>
@@ -283,14 +382,14 @@ gnuplot_svg.plot_ybot = 152.0;
 gnuplot_svg.plot_ytop = 44.1;
 gnuplot_svg.plot_width = 211.4;
 gnuplot_svg.plot_height = 107.9;
-gnuplot_svg.plot_axis_xmin = 100000;
-gnuplot_svg.plot_axis_xmax = 1e+07;
+gnuplot_svg.plot_axis_xmin = 0;
+gnuplot_svg.plot_axis_xmax = 1000;
 gnuplot_svg.plot_axis_ymin = 0;
-gnuplot_svg.plot_axis_ymax = 3500;
+gnuplot_svg.plot_axis_ymax = 3000;
 gnuplot_svg.polar_mode = false;
 gnuplot_svg.plot_axis_x2min = "none"
 gnuplot_svg.plot_axis_y2min = "none"
-gnuplot_svg.plot_logaxis_x = 1;
+gnuplot_svg.plot_logaxis_x = 0;
 gnuplot_svg.plot_logaxis_y = 0;
 gnuplot_svg.plot_timeaxis_x = "";
 gnuplot_svg.plot_timeaxis_y = "";

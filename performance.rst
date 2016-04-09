@@ -16,7 +16,9 @@ implementations or other high-quality GPU languages or libraries.
 The graphs show the input size on the *x*-axis, and the resulting
 runtime in microseconds on the *y*-axis.  All runtimes are averaged
 over a hundred runs.  For reference, we also include the runtime for
-Futhark compiled to sequential CPU code.
+Futhark compiled to sequential CPU code.  The benchmarking setup and
+code can be found `here
+<https://github.com/HIPERFIT/futhark-website/tree/master/benchmarks>`_.
 
 Sum (`Futhark code <benchmarks/programs/sum.fut>`_, `Thrust code <benchmarks/programs/sum.cu>`_)
 ================================================================================================
@@ -47,5 +49,24 @@ implement this via an inclusive scan followed by picking out the last
 element.  This is not too problematic for small input sizes, but the
 extra amount of work begins to have an impact for larger datasets.
 
+Mandelbrot (`Futhark code <benchmarks/programs/mandelbrot.fut>`_, `Thrust code <benchmarks/programs/mandelbrot.cu>`_, `Accelerate code <https://github.com/AccelerateHS/accelerate-examples/tree/master/examples/mandelbrot>`_)
+===============================================================================================================================================================================================================================
+
+.. image:: images/mandelbrot.svg
+   :alt: Mandelbrot runtime (lower is better)
+
+Accelerate_ is an array language embedded in Haskell that supports
+flat data-parallelism, and which comes with a CUDA backend.  The
+design of Accelerate makes it natural to jump from CPU to GPU code
+within a single Haskell program, although that is not used in this
+benchmark.  When visualising the Mandelbrot set, each pixel can be
+computed completely independently and with no memory accesses apart
+from the final write, making it an excellent fit for GPU computing.
+The amount of work done is proportional to the square of the value on
+the *x*-axis.  If you are curious, the visualisation looks like `this
+<images/mandelbrot.png>`_ (although the benchmark data sets do not
+produce this exact size).
+
 .. _`benchmarks game`: https://benchmarksgame.alioth.debian.org/
 .. _`Thrust`: https://github.com/thrust/thrust`
+.. _`Accelerate`: https://github.com/AccelerateHS/accelerate

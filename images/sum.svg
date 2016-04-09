@@ -282,8 +282,8 @@ onclick="gnuplot_svg.toggleCoordBox(evt)"  onmousemove="gnuplot_svg.moveCoordBox
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="2.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<path stroke='rgb( 95,   2,  31)'  d='M130.7,15.0 L166.2,15.0  '/>	</g>
-	<path stroke='rgb( 95,   2,  31)'  d='M67.5,148.4 L116.8,148.4 L138.0,148.0 L159.2,147.4 L187.2,144.4 L208.4,139.8 L229.6,130.3 L242.1,120.9
-		L278.9,54.8  '/>	<g id="MSS_runtime_plot_1_keyentry" visibility="visible" onclick="gnuplot_svg.toggleVisibility(evt,'MSS_runtime_plot_1')">
+	<path stroke='rgb( 95,   2,  31)'  d='M67.5,148.4 L116.8,148.5 L138.0,148.1 L159.2,147.4 L187.2,144.3 L208.4,139.8 L229.6,130.5 L242.1,121.0
+		L278.9,54.7  '/>	<g id="MSS_runtime_plot_1_keyentry" visibility="visible" onclick="gnuplot_svg.toggleVisibility(evt,'MSS_runtime_plot_1')">
 	<use xlink:href='#gpDot' x='148.4' y='15.0' color='rgb( 95,   2,  31)'/>
 
 	</g>
@@ -298,8 +298,8 @@ onclick="gnuplot_svg.toggleCoordBox(evt)"  onmousemove="gnuplot_svg.moveCoordBox
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="2.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<path stroke='rgb(  0, 170,  31)'  d='M130.7,30.0 L166.2,30.0  '/>	</g>
-	<path stroke='rgb(  0, 170,  31)'  d='M67.5,140.9 L116.8,140.6 L138.0,140.3 L159.2,139.5 L187.2,137.3 L208.4,133.5 L229.6,125.9 L242.1,118.3
-		L278.9,62.0  '/>	<g id="MSS_runtime_plot_2_keyentry" visibility="visible" onclick="gnuplot_svg.toggleVisibility(evt,'MSS_runtime_plot_2')">
+	<path stroke='rgb(  0, 170,  31)'  d='M67.5,141.1 L116.8,140.8 L138.0,140.3 L159.2,139.4 L187.2,137.1 L208.4,133.4 L229.6,125.8 L242.1,118.6
+		L278.9,61.7  '/>	<g id="MSS_runtime_plot_2_keyentry" visibility="visible" onclick="gnuplot_svg.toggleVisibility(evt,'MSS_runtime_plot_2')">
 	<use xlink:href='#gpDot' x='148.4' y='30.0' color='rgb(  0, 170,  31)'/>
 
 	</g>
@@ -314,7 +314,7 @@ onclick="gnuplot_svg.toggleCoordBox(evt)"  onmousemove="gnuplot_svg.moveCoordBox
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="2.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<path stroke='rgb(187, 187, 187)'  d='M250.2,15.0 L285.7,15.0  '/>	</g>
-	<path stroke='rgb(187, 187, 187)'  d='M67.5,151.0 L116.8,147.1 L138.0,142.2 L159.2,132.4 L187.2,73.6  '/>	<g id="MSS_runtime_plot_3_keyentry" visibility="visible" onclick="gnuplot_svg.toggleVisibility(evt,'MSS_runtime_plot_3')">
+	<path stroke='rgb(187, 187, 187)'  d='M67.5,151.0 L116.8,147.1 L138.0,142.2 L159.2,132.5 L187.2,94.2  '/>	<g id="MSS_runtime_plot_3_keyentry" visibility="visible" onclick="gnuplot_svg.toggleVisibility(evt,'MSS_runtime_plot_3')">
 	<use xlink:href='#gpDot' x='267.9' y='15.0' color='rgb(187, 187, 187)'/>
 
 	</g>
