@@ -69,9 +69,8 @@ computed completely independently and with no memory accesses apart
 from the final write, making it an excellent fit for GPU computing.
 The amount of work done is proportional to the square of the value on
 the *x*-axis.  The visualisation looks like `this
-<images/mandelbrot.png>`_ (although the benchmark data sets do not
-produce this exact size).
+<images/mandelbrot1000.png>`_.
 
 .. _`benchmarks game`: https://benchmarksgame.alioth.debian.org/
-.. _`Thrust`: https://github.com/thrust/thrust`
+.. _`Thrust`: https://github.com/thrust/thrust
 .. _`Accelerate`: https://github.com/AccelerateHS/accelerate
