@@ -12,6 +12,11 @@ fastest language ever, but instead attempt to give an intuition of
 where Futhark lives in the performance space.  This is done by
 comparing performance on fairly simple programs to hand-written
 implementations or other high-quality GPU languages or libraries.
+Such a comparison mostly demonstrates the efficiency basic
+compilation, as these programs are too small and simple to benefit
+from the ability of the Futhark compiler to significantly restructure
+the original program and its data representations through *loop
+fusion* and the like.
 
 The graphs show the input size on the *x*-axis, and the resulting
 runtime in microseconds on the *y*-axis.  All runtimes are averaged
