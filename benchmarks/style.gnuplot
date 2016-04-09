@@ -1,6 +1,6 @@
 set terminal svg size 300,200 dynamic enhanced fname 'arial'  fsize 10 mousing name "MSS_runtime" butt solid
 set xlabel "Input elements"
-set ylabel "Milliseconds"
+set ylabel "Microseconds"
 set logscale x 10
 set key outside
 set key above
