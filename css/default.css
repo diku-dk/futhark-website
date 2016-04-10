@@ -1,9 +1,14 @@
-body {
-    color: black;
-    font: 1.2em/1.62em sans-serif;
-    margin: 0px auto 0px auto;
-    width: 800px;
-    text-align: justify;
+/* This design is heavily inspired by http://haste-lang.org/ */
+
+body{
+    font-family: sans-serif;
+    padding: 0px;
+    margin: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+    max-width: 65em;
+    overflow-y: scroll
 }
 
 div#header {
@@ -20,13 +25,29 @@ h2 {
 }
 
 pre {
-    margin-left: 3em;
+    padding:1em;
+    background-color:#f5f5f5
 }
 
-a:visited{
+a {
+    text-decoration:none;
+    color:#428bca;
+    font-weight:bold
+}
+
+a:visited {
     text-decoration:none;
     color:#0a4080;
     font-weight:bold
+}
+
+#content{
+    background-color: white;
+    padding: 1.5em;
+    padding-top: 0.5em;
+    vertical-align: top;
+    height: 100%;
+    min-height: 14em
 }
 
 @media (min-width:950px){
