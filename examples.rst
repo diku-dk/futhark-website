@@ -97,8 +97,12 @@ commutative reductions.
 On a GTX 780 Ti GPU, Futhark can compute the MSS of ten million
 integers in 1.2ms.
 
+For more examples, you can look at our general benchmarks_ repository
+on Github.
+
 .. _`contribute`: /getinvolved.html
 .. _`introduction`: /
 .. _`sequential C program`: /static/sequential-fact.c
 .. _associative: https://en.wikipedia.org/wiki/Associative_property
 .. _commutative: https://en.wikipedia.org/wiki/Commutative_property
+.. _benchmarks: https://github.com/HIPERFIT/futhark-benchmarks
