@@ -1,8 +1,17 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE FlexibleContexts #-}
-import           Data.Monoid (mappend)
+import           Data.Monoid (mappend, (<>))
+import           Data.List (isPrefixOf)
+import           System.FilePath
 import           Hakyll
+
+postCtx :: Context String
+postCtx = mconcat
+  [ modificationTimeField "mtime" "%U"
+  , dateField "date" "%B %e, %Y"
+  , defaultContext
+  ]
 
 --------------------------------------------------------------------------------
 main :: IO ()
@@ -39,7 +48,7 @@ main = hakyllWith config $ do
             >>= loadAndApplyTemplate "templates/default.html" menu
             >>= relativizeUrls
 
-    match "posts/*" $ do
+    match "blog/*" $ do
         route $ setExtension "html"
         compile $ do
           postCtx <- postContext
@@ -48,20 +57,19 @@ main = hakyllWith config $ do
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
 
+    -- Post list
     create ["blog.html"] $ do
         route idRoute
         compile $ do
-            postCtx <- postContext
-            posts <- recentFirst =<< loadAll "posts/*"
-            menu <- contentContext
-            let archiveCtx =
-                    listField "posts" postCtx (return posts) `mappend`
-                    constField "title" "Archives"            `mappend`
-                    menu
-
+            menu <- getMenu
+            posts <- recentFirst =<< loadAll "blog/*"
+            let ctx = constField "title" "Developer Blog" <>
+                      listField "posts" postCtx (return posts) <>
+                      constField "menu" menu <>
+                      defaultContext
             makeItem ""
-                >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
-                >>= loadAndApplyTemplate "templates/default.html" archiveCtx
+                >>= loadAndApplyTemplate "templates/posts.html" ctx
+                >>= loadAndApplyTemplate "templates/default.html" ctx
                 >>= relativizeUrls
 
     match "templates/*" $ compile templateCompiler
@@ -91,8 +99,9 @@ menuContents = [("Futhark", "index.html"),
 showMenu :: FilePath -> [(String, FilePath)] -> String
 showMenu this items = "<ul id=\"menu\">"++concatMap li items++"</ul>"
   where li (name, item)
-          | item == this = "<li id=\"chosen\"><a href=\"/"++item++"\">"++name++"</a></li>"
-          | otherwise    = "<li><a href=\"/"++item++"\">"++name++"</a></li>"
+          | isThis item = "<li id=\"chosen\"><a href=\"/"++item++"\">"++name++"</a></li>"
+          | otherwise   = "<li><a href=\"/"++item++"\">"++name++"</a></li>"
+        isThis item = dropExtension item `isPrefixOf` dropExtension this
 
 --------------------------------------------------------------------------------
 postContext :: Compiler (Context String)

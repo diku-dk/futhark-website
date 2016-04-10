@@ -47,7 +47,16 @@ a:visited {
     padding-top: 0.5em;
     vertical-align: top;
     height: 100%;
-    min-height: 14em
+    min-height: 14em;
+}
+
+.posttitle {
+    margin-bottom: 0em;
+}
+
+.postmetadata {
+    margin-top:0em;
+    font-size:10pt;
 }
 
 @media (min-width:950px){
