@@ -50,6 +50,11 @@ a:visited {
     position: relative;
     width: 700px;
 }
+#logo a {
+    text-decoration:none;
+    color:#fff;
+    font-weight: normal;
+}
 #slogan {
     font-size: 14px;
     color: #fff;
