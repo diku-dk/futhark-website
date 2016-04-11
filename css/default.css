@@ -41,6 +41,26 @@ a:visited {
     font-weight:bold
 }
 
+#header {
+    background-color: #5f021f;
+}
+
+#logo {
+    font-size: 30px;
+    color: #fff;
+    padding-left: 20px;
+    padding-top: 30px;
+    position: relative;
+    width: 700px;
+}
+#slogan {
+    font-size: 14px;
+    color: #fff;
+    margin-top: 10px;
+    margin-left: 20px;
+    width: 600px;
+}
+
 #content{
     background-color: white;
     padding: 1.5em;
@@ -59,49 +79,58 @@ a:visited {
     font-size:10pt;
 }
 
+#menu{
+    background-color: #5f021f;
+    font-family:verdana;
+    list-style-type:none;
+    padding:0;
+    margin:0;
+    width:100%;
+}
+#menu li {
+    margin:0;
+    color: white;
+}
+#menu li a {
+    background-color: #5f021f;
+    color: white;
+    text-decoration: none;
+}
+
+#menu #chosen, #menu #chosen a {
+    color: #5f021f;
+    background-color: white;
+    text-decoration: none;
+}
+
 @media (min-width:950px){
     #menu{
         float:top;
         display:block;
-        font-family:verdana;
-        list-style-type:none;
-        padding:0px;
-        margin:0px;
         padding-top:2em;
-        width:100%;
         text-align:center;
     }
     #menu li {
-        padding:0;
         margin:0;
         text-align:center;
         display:inline;
-        background-color: #5f021f;
-        color: white;
     }
     #menu li a {
-        border:1px solid black;
         padding: 1em;
-        background-color: #5f021f;
-        color: white;
-        text-decoration: none;
-    }
-
-    #menu #chosen, #menu #chosen a {
-        color: #5f021f;
-        background-color: white;
-        text-decoration: none;
+        border:1px solid black;
     }
 }
 @media (max-width:949px){
-    #menu{
-        font-family:verdana;
-        list-style-type:none;
-        width:100%;
-        padding:0px;
-        margin:0px;
+    #menu {
         padding-top:0em;
-        background-color:white
     }
-    #menu li {padding:0.5em;padding-left:2em;margin:0em;text-align:left;border:1px solid black;border-top:none;border-bottom:none}
+    #menu li {
+        padding:0.5em;
+        padding-left:2em;
+        margin:0em;
+        text-align:left;
+        border:1px solid black;
+        border-top:none;
+        border-bottom:none
+    }
 }

@@ -89,7 +89,7 @@ getMenu = do
              Just me -> showMenu me menuContents
 
 menuContents :: [(String, FilePath)]
-menuContents = [("Futhark", "index.html"),
+menuContents = [("Overview", "index.html"),
                 ("Examples", "examples.html"),
                 ("Docs", "docs.html"),
                 ("Gotta Go Fast!", "performance.html"),
