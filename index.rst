@@ -8,11 +8,10 @@ data-parallel, and purely functional array language**, and comes with
 a **heavily optimising ahead-of-time compiler** that generates GPU
 code via OpenCL_.  Futhark is not designed for graphics programming -
 rather, it uses the compute power of the GPU to accelerate
-computations on data-parallel array computations.  We support
-**regular *nested* data-parallelism**, as well as a form of
-imperative-style in-place modification of arrays, while still
-preserving the overall purity of the language via the use of a
-**uniqueness type system**.
+data-parallel array computations.  We support **regular *nested*
+data-parallelism**, as well as a form of imperative-style in-place
+modification of arrays, while still preserving the overall purity of
+the language via the use of a **uniqueness type system**.
 
 The Futhark language and compiler is an **ongoing research project**.
 It can compile nontrivial programs which then run on real GPUs at very
