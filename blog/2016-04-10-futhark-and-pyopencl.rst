@@ -58,7 +58,7 @@ file with the result.  Our program will consist of two files:
 is defined - it is not the point of this post.)
 
 For convenience, we ask that all decimal literals be considered single
-poing (the type `f32` in Futhark)::
+precision (the type `f32` in Futhark)::
 
   default(f32)
 
@@ -69,20 +69,20 @@ as pairs of `f32`s.  We need three operations: dot product,
 multiplication, and addition::
 
   fun f32 dot({f32,f32} c) =
-    let {r, i} = c in
-    r * r + i * i
+  let {r, i} = c
+  in r * r + i * i
 
   fun {f32,f32} multComplex({f32,f32} x, {f32,f32} y) =
-    let {a, b} = x in
-    let {c, d} = y in
-    {a*c - b * d,
-     a*d + b * c}
+    let {a, b} = x
+    let {c, d} = y
+    in {a*c - b * d,
+        a*d + b * c}
 
   fun {f32,f32} addComplex({f32,f32} x, {f32,f32} y) =
-    let {a, b} = x in
-    let {c, d} = y in
-    {a + c,
-     b + d}
+    let {a, b} = x
+    let {c, d} = y
+    in {a + c,
+        b + d}
 
 We can now define the core function that determines whether a given
 point on the complex plane is part of the Mandelbrot set.  We do this
@@ -92,8 +92,8 @@ which the loop diverges (or the limit, ``depth``, if it does not)::
   fun int divergence(int depth, {f32,f32} c0) =
     loop ({c, i} = {c0, 0}) = while i < depth && dot(c) < 4.0 do
       {addComplex(c0, multComplex(c, c)),
-       i + 1} in
-    i
+      i + 1}
+    in i
 
 The ``mandelbrot`` function returns the divergence point for the
 complex number corresponding to a pixel in a given view of the complex
@@ -101,15 +101,15 @@ plane::
 
   fun [[int,screenX],screenY] mandelbrot(int screenX, int screenY, int depth,
                                          f32 xmin, f32 ymin, f32 xmax, f32 ymax) =
-    let sizex = xmax - xmin in
-    let sizey = ymax - ymin in
-    map(fn [int,screenX] (int y) =>
-          map (fn int (int x) =>
-                 let c0 = {xmin + (f32(x) * sizex) / f32(screenX),
-                           ymin + (f32(y) * sizey) / f32(screenY)} in
-                 divergence(depth, c0)
-              , iota(screenX)),
-          iota(screenY))
+    let sizex = xmax - xmin
+    let sizey = ymax - ymin
+    in map(fn [int,screenX] (int y) =>
+             map (fn int (int x) =>
+                    let c0 = {xmin + (f32(x) * sizex) / f32(screenX),
+                              ymin + (f32(y) * sizey) / f32(screenY)}
+                    in divergence(depth, c0),
+                  iota(screenX)),
+           iota(screenY))
 
 Given the point of divergence for a pixel, we can decide on a colour,
 which is encoded as RGB within a 32-bit integer (the alpha channel is
@@ -119,32 +119,32 @@ not used)::
     if depth == divergence-1
     then 0xFF0000
     else
-      let r = 3 * divergence in
-      let g = 5 * divergence in
-      let b = 7 * divergence in
-      0xFFFFFFFF - (r<<16 | g<<8 | b)
+      let r = 3 * divergence
+      let g = 5 * divergence
+      let b = 7 * divergence
+      in 0xFFFFFFFF - (r<<16 | g<<8 | b)
 
 Finally we tie it all together - the ``main`` function computes the
 point of divergence for each pixel, then colours them::
 
   fun [[int,screenX],screenY] main(int screenX, int screenY, int depth,
                                    f32 xmin, f32 ymin, f32 xmax, f32 ymax) =
-    let escapes = mandelbrot(screenX, screenY, depth, xmin, ymin, xmax, ymax) in
-    map(fn [int,screenX] ([int] row) =>
-          map(escapeToColour(depth), row),
-          escapes)
+    let escapes = mandelbrot(screenX, screenY, depth, xmin, ymin, xmax, ymax)
+    in map(fn [int,screenX] ([int] row) =>
+             map(escapeToColour(depth), row),
+           escapes)
 
 We can test our code by compiling it to a standalone program::
 
-  % futhark-pyopencl mandelbrot.fut
-  % echo 3 2 255 -2.23 -1.15 0.83 1.15 | ./mandelbrot
+  $ futhark-pyopencl mandelbrot.fut
+  $ echo 3 2 255 -2.23 -1.15 0.83 1.15 | ./mandelbrot
   [[-1i32, -395791i32, -593686i32], [-1i32, -50200570i32, -50200570i32]]
 
 Of course, it is not very satisfying to look at fractals as arrays of
 numerically encoded pixel values.  Hence, we pass ``--module`` to
 ``futhark-pyopencl``::
 
-  % futhark-pyopencl --module mandelbrot.fut
+  $ futhark-pyopencl --module mandelbrot.fut
 
 This produces a file ``mandelbrot.py`` defining a single Python class
 ``mandelbrot``, which we can access from ordinary Python code, as
@@ -180,10 +180,11 @@ which we pass to the method::
   maxy=1.15
   fut_image=m.main(width, height, limit, minx, miny, maxx, maxy)
 
-The result value, which we store in the variable ``fut_image``, is a
-two-dimensional Numpy array of shape ``(width,height)``, as befits the
-declared return type of ``[[int,screenX],screenY]``.  We cannot pass
-this directly to the ``png`` library, as it expects a
+The result value, which we store in the variable ``fut_image``.  Since
+we declared the return type of ``main`` to be
+``[[int,screenX],screenY]``, the returned value will be a
+two-dimensional Numpy array of shape ``(width,height)``.  We cannot
+pass this directly to the ``png`` library, as it expects a
 three-dimensional array explicitly encoding the different colour
 channels.  Fortunately, this array transformation is easy to do with
 Numpy::
