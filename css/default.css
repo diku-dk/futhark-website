@@ -11,11 +11,6 @@ body{
     overflow-y: scroll
 }
 
-div#header {
-    margin-bottom: 30px;
-    padding: 12px 0px 12px 0px;
-}
-
 h1 {
     font-size: 24px;
 }
@@ -42,6 +37,8 @@ a:visited {
 }
 
 #header {
+    margin-bottom: 4em;
+    padding: 12px 0px 12px 0px;
     background-color: #5f021f;
 }
 
@@ -85,6 +82,9 @@ a:visited {
     list-style-type:none;
     padding:0;
     margin:0;
+    margin-top: -3em;
+    position: relative;
+    top: 3em;
     width:100%;
 }
 #menu li {
