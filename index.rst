@@ -24,12 +24,12 @@ targets.
 Nevertheless, Futhark can already be used for some real-world
 programming.  **Futhark is not intended to replace your existing
 languages**.  Our intended use case is that Futhark is only used for
-relatively small but compute-intensive parts of an overall
-application.  The Futhark compiler generates code that can be **easily
-integrated with non-Futhark code**.  For example, you can compile a
-Futhark program to a Python module that internally uses PyOpenCL_ to
-execute code on the GPU, yet looks like any other Python module from
-the outside.  The Futhark compiler will also generate more
+relatively small but compute-intensive parts of an application.  The
+Futhark compiler generates code that can be **easily integrated with
+non-Futhark code**.  For example, you can compile a Futhark program to
+a Python module that internally uses PyOpenCL_ to execute code on the
+GPU, yet looks like any other Python module from the outside (`more on
+this here`_).  The Futhark compiler will also generate more
 conventional C code, which can be accessed from any language with a
 basic FFI.
 
@@ -46,3 +46,4 @@ also visit us `on Github`_.
 .. _associative: https://en.wikipedia.org/wiki/Associative_property
 .. _commutative: https://en.wikipedia.org/wiki/Commutative_property
 .. _`on Github`: https://github.com/HIPERFIT/futhark
+.. _`more on this here`: /blog/2016-04-10-futhark-and-pyopencl.html
