@@ -1,7 +1,7 @@
 ---
 title: Using Futhark with PyOpenCL
 author: Troels Henriksen
-description: How to compile a Futhark program into an ordinary Python module with calls to PyOpenCL, that can be used by any Python program.
+description: Compiling a Futhark program into an ordinary reusable Python module with calls to PyOpenCL.
 ---
 
 **INCOMPLETE**
@@ -209,3 +209,7 @@ The result is this moderately attractive fractal in the file
 A slightly more elaborate Python program, which supports command-line
 parameters and reports timing, can be found `here
 <https://github.com/HIPERFIT/futhark-benchmarks/tree/master/accelerate/mandelbrot>`_.
+We also have an `implementation of Game of Life
+<https://github.com/HIPERFIT/futhark-benchmarks/tree/master/misc/life>`_
+that uses `Pygame <http://www.pygame.org/>`_ to render the ongoing
+simulation.
