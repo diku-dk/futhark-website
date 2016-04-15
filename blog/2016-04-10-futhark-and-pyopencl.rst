@@ -33,6 +33,7 @@ code is needed by the concrete GPU.
 
 .. image:: /images/cpu_gpu_division.svg
    :alt: Division between CPU and GPU computation
+   :class: centre
 
 This is what is exploited by the `PyOpenCL
 <https://mathema.tician.de/software/pyopencl/>`_ code generation
@@ -205,6 +206,7 @@ The result is this moderately attractive fractal in the file
 
 .. image:: /images/mandelbrot-opencl.png
    :alt: Mandelbrot fractal produced by PyOpencL
+   :class: centre
 
 A slightly more elaborate Python program, which supports command-line
 parameters and reports timing, can be found `here

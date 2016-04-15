@@ -30,6 +30,7 @@ Sum (`Futhark <benchmarks/programs/sum.fut>`_, `Thrust <benchmarks/programs/sum.
 
 .. image:: images/sum.svg
    :alt: Summation runtime (lower is better)
+   :class: performance_graph
 
 This program simply sums an array of integers.  We compare the Futhark
 code to Thrust_, which is a very high-quality C++ library developed by
@@ -45,6 +46,7 @@ MSS (`Futhark <benchmarks/programs/mss.fut>`_, `Thrust <benchmarks/programs/mss.
 
 .. image:: images/mss.svg
    :alt: MSS runtime (lower is better)
+   :class: performance_graph
 
 This graph shows performance of a *maximum segment sum* implementation
 in Futhark and Thrust.  The sequential runtime is for Futhark code
@@ -59,6 +61,7 @@ Mandelbrot (`Futhark <benchmarks/programs/mandelbrot.fut>`_, `Thrust <benchmarks
 
 .. image:: images/mandelbrot.svg
    :alt: Mandelbrot runtime (lower is better)
+   :class: performance_graph
 
 Accelerate_ is an array language embedded in Haskell that supports
 flat data-parallelism, and which comes with a CUDA backend.  The

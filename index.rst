@@ -19,19 +19,20 @@ high speed.  The Futhark language itself is still very spartan - due
 to the basic design criteria requiring the ability to generate
 high-performance GPU code, it takes more effort to support language
 features that are common in languages with more forgiving compilation
-targets.
+targets.  Nevertheless, **Futhark can already be used for nontrivial
+programs**.  We are actively looking for more potential applications
+as well as people who are interested in contributing to the language
+design.
 
-Nevertheless, Futhark can already be used for some real-world
-programming.  **Futhark is not intended to replace your existing
-languages**.  Our intended use case is that Futhark is only used for
-relatively small but compute-intensive parts of an application.  The
-Futhark compiler generates code that can be **easily integrated with
-non-Futhark code**.  For example, you can compile a Futhark program to
-a Python module that internally uses PyOpenCL_ to execute code on the
-GPU, yet looks like any other Python module from the outside (`more on
-this here`_).  The Futhark compiler will also generate more
-conventional C code, which can be accessed from any language with a
-basic FFI.
+**Futhark is not intended to replace your existing languages**.  Our
+intended use case is that Futhark is only used for relatively small
+but compute-intensive parts of an application.  The Futhark compiler
+generates code that can be **easily integrated with non-Futhark
+code**.  For example, you can compile a Futhark program to a Python
+module that internally uses PyOpenCL_ to execute code on the GPU, yet
+looks like any other Python module from the outside (`more on this
+here`_).  The Futhark compiler will also generate more conventional C
+code, which can be accessed from any language with a basic FFI.
 
 For more information, you can look at `code examples`_, details on
 performance_, our devblog_, or maybe the docs_.  You can of course

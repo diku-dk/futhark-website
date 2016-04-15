@@ -139,3 +139,18 @@ a:visited {
         border-bottom:none
     }
 }
+
+.performance_graph {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.centre {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 6m;
+    width: 80%;
+}
