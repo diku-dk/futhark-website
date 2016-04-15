@@ -47,4 +47,4 @@ also visit us `on Github`_.
 .. _associative: https://en.wikipedia.org/wiki/Associative_property
 .. _commutative: https://en.wikipedia.org/wiki/Commutative_property
 .. _`on Github`: https://github.com/HIPERFIT/futhark
-.. _`more on this here`: /blog/2016-04-10-futhark-and-pyopencl.html
+.. _`more on this here`: /blog/2016-04-15-futhark-and-pyopencl.html
