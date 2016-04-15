@@ -10,10 +10,13 @@ If there is something you believe should be documented, but is not,
 you are very welcome to report the omission as a bug on our bug
 tracker.  See the page `Get Involved`_ for more information.
 
+We also have some Haddock-generated `documentation of the compiler internals`_.
+
 .. _`at Read the Docs`: https://futhark.readthedocs.org/
 .. _`language overview`: https://futhark.readthedocs.org/en/latest/language-overview.html
 .. _`list of papers`: https://futhark.readthedocs.org/en/latest/publications.html
 .. _`Get Involved`: /getinvolved.html
+.. _`documentation of the compiler internals`: /haddock/
 
 Publications
 ============
