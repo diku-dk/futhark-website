@@ -4,8 +4,6 @@ author: Troels Henriksen
 description: Compiling a Futhark program into an ordinary reusable Python module with calls to PyOpenCL.
 ---
 
-**INCOMPLETE**
-
 Python is a language with many qualities, but few would claim that
 performance is among them.  While libraries such as Numpy can be used,
 they are not as flexible as being able to write code directly in a
