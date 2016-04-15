@@ -36,8 +36,8 @@ fun [[int,screenX],screenY] mandelbrot(int screenX, int screenY, int depth,
            iota(screenY))
 
 fun int escapeToColour(int depth, int divergence) =
-  if depth == divergence-1
-  then 0xFF0000
+  if depth == divergence
+  then 0xFFFFFF
   else
     let r = 3 * divergence
     let g = 5 * divergence

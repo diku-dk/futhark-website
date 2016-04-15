@@ -117,8 +117,8 @@ which is encoded as RGB within a 32-bit integer (the alpha channel is
 not used)::
 
   fun int escapeToColour(int depth, int divergence) =
-    if depth == divergence-1
-    then 0xFF0000
+    if depth == divergence
+    then 0x000000
     else
       let r = 3 * divergence
       let g = 5 * divergence
@@ -181,8 +181,8 @@ which we pass to the method::
   maxy=1.15
   fut_image=m.main(width, height, limit, minx, miny, maxx, maxy)
 
-The result value, which we store in the variable ``fut_image``.  Since
-we declared the return type of ``main`` to be
+The result value is stored in the variable ``fut_image``.  Since we
+declared the return type of ``main`` to be
 ``[[int,screenX],screenY]``, the returned value will be a
 two-dimensional Numpy array of shape ``(width,height)``.  We cannot
 pass this directly to the ``png`` library, as it expects a
