@@ -57,7 +57,7 @@ file with the result.  Our program will consist of two files:
 is defined - it is not the point of this post.)
 
 For convenience, we ask that all decimal literals be considered single
-precision (the type `f32` in Futhark)::
+precision (the type ``f32`` in Futhark)::
 
   default(f32)
 
@@ -137,7 +137,7 @@ We can test our code by compiling it to a standalone program::
 
   $ futhark-pyopencl mandelbrot.fut
   $ echo 3 2 255 -2.23 -1.15 0.83 1.15 | ./mandelbrot
-  [[-1i32, -395791i32, -593686i32], [-1i32, -50200570i32, -50200570i32]]
+  [[0i32, 395790i32, 593685i32], [0i32, 0i32, 0i32]]
 
 Of course, it is not very satisfying to look at fractals as arrays of
 numerically encoded pixel values.  Hence, we pass ``--module`` to
