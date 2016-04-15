@@ -39,7 +39,7 @@ This is what is exploited by the `PyOpenCL
 <https://mathema.tician.de/software/pyopencl/>`_ code generation
 backend in the Futhark compiler.  Certainly, the CPU-level code is
 written in pure Python and quite slow, but all it does is use the
-PyOpenCL library to offload work to a GPU.  The fact that this
+PyOpenCL library to offload work to the GPU.  The fact that this
 offloading takes place is hidden from the user of the generated code,
 who is provided a module with functions that accept and produce
 ordinary Numpy arrays.
@@ -211,7 +211,55 @@ The result is this moderately attractive fractal in the file
 A slightly more elaborate Python program, which supports command-line
 parameters and reports timing, can be found `here
 <https://github.com/HIPERFIT/futhark-benchmarks/tree/master/accelerate/mandelbrot>`_.
-We also have an `implementation of Game of Life
+
+Entry Points
+------------
+
+Every *entry point* in the Futhark program becomes a method in the
+generated class.  An entry point is any function named ``text``, as
+well as any function defined using the keyword ``entry`` instead of
+``fun``.  In most cases, the type of the Futhark function maps easily
+to the Python world.  For example, a Futhark function accepting three
+parameters of types ``[[f64]]``, ``[int]`` and ``bool`` will be
+translated into a Python method accepting a two-dimensional Numpy
+array of ``numpy.double``s, a one-dimensional array of ``numpy.int``s,
+and a single ``np.bool``.  And if the Futhark function returns
+``{[int], f64}``, the Python method will return a tuple of two values:
+a Numpy array of integers and a Numpy double-precision float.
+
+Things are more complicated when the entry point accepts or returns
+types that do not correspond easily to Numpy types.  Actually, the
+problem is that the generated code makes use of Futharks internal
+value representation, but I'm happy with blaming Numpy.  For example,
+a function that accepts an array of pairs (e.g. ``[{int,f32}]``) will
+be turned into a method that accepts two arrays: one of integers and
+one of floats.  Similarly, all tuples are flattened.  This not only
+means that a Futhark function returning ``{int, {f32, f32}}`` will be
+turned into a Python method returning a tuple with three elements.  It
+also means that a Futhark function taking an argument of type
+``{f32,f32}`` will be turned into a Python method accepting *two*
+arguments, each being a float.
+
+The best workaround is to only use simple types in entry point
+functions: return only flat tuples, and accept neither tuples nor
+arrays of tuples.  You can still use tuples and arrays of tuples in
+your function bodies and internal functions, it is only the entry
+points that are problematic.  The ``zip`` and ``unzip`` operations are
+entirely free in Futhark, so ``zip``ing two passed-in arrays into a
+single array of pairs carries no overhead.
+
+More Examples
+-------------
+
+We have an `implementation of Game of Life
 <https://github.com/HIPERFIT/futhark-benchmarks/tree/master/misc/life>`_
 that uses `Pygame <http://www.pygame.org/>`_ to render the ongoing
-simulation.
+simulation.  It supports several variants of the game rules, some of
+which look rather interesting when visualised.  It is also an example
+of a program that uses multiple entry points.
+
+We also have an `interactive Mandelbrot explorer
+<https://github.com/HIPERFIT/futhark-benchmarks/tree/master/misc/mandelbrot-explorer>`_,
+the Futhark core of which is very similar to the one described above,
+but where we have written a Pygame interface that allows interactive
+scrolling, zooming, etc.
