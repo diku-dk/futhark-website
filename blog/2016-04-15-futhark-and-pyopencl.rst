@@ -227,16 +227,16 @@ a Numpy array of integers and a Numpy double-precision float.
 
 Things are more complicated when the entry point accepts or returns
 types that do not correspond easily to Numpy types.  Actually, the
-problem is that the generated code makes use of Futharks internal
-value representation, but I'm happy with blaming Numpy.  For example,
-a function that accepts an array of pairs (e.g. ``[{int,f32}]``) will
-be turned into a method that accepts two arrays: one of integers and
-one of floats.  Similarly, all tuples are flattened.  This not only
-means that a Futhark function returning ``{int, {f32, f32}}`` will be
-turned into a Python method returning a tuple with three elements.  It
-also means that a Futhark function taking an argument of type
-``{f32,f32}`` will be turned into a Python method accepting *two*
-arguments, each being a float.
+reason is that the generated code makes use of Futharks internal value
+representation, but I'm happy to blame Numpy instead.  For example, a
+function that accepts an array of pairs (e.g. ``[{int,f32}]``) will be
+turned into a method that accepts two arrays: one of integers and one
+of floats.  Similarly, all tuples are flattened.  This not only means
+that a Futhark function returning ``{int, {f32, f32}}`` will be turned
+into a Python method returning a tuple with three elements.  It also
+means that a Futhark function taking an argument of type ``{f32,f32}``
+will be turned into a Python method accepting *two* arguments, each
+being a float.
 
 The best workaround is to only use simple types in entry point
 functions: return only flat tuples, and accept neither tuples nor
@@ -261,3 +261,14 @@ We also have an `interactive Mandelbrot explorer
 the Futhark core of which is very similar to the one described above,
 but where we have written a Pygame interface that allows interactive
 scrolling, zooming, etc.
+
+Write your own!
+---------------
+
+We are quite interested in developing more interesting use cases for
+Python-Futhark interop.  The best use cases are those that perform a
+good bit of work on the GPU, to amortise the relatively inefficient
+host-level Python (not to mention copying back and forth between
+system memory and the GPU).  If you can think of something, or even
+want to try your hand at implementing it, please `contribute
+</getinvolved.html>`_!
