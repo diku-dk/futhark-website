@@ -37,12 +37,12 @@ fun [[int,screenX],screenY] mandelbrot(int screenX, int screenY, int depth,
 
 fun int escapeToColour(int depth, int divergence) =
   if depth == divergence
-  then 0xFFFFFF
+  then 0
   else
     let r = 3 * divergence
     let g = 5 * divergence
     let b = 7 * divergence
-    in 0xFFFFFFFF - (r<<16 | g<<8 | b)
+    in (r<<16 | g<<8 | b)
 
 fun [[int,screenX],screenY] main(int screenX, int screenY, int depth,
                                  f32 xmin, f32 ymin, f32 xmax, f32 ymax) =

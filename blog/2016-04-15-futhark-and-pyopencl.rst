@@ -116,12 +116,12 @@ not used)::
 
   fun int escapeToColour(int depth, int divergence) =
     if depth == divergence
-    then 0x000000
+    then 0
     else
       let r = 3 * divergence
       let g = 5 * divergence
       let b = 7 * divergence
-      in 0xFFFFFFFF - (r<<16 | g<<8 | b)
+      in (r<<16 | g<<8 | b)
 
 Finally we tie it all together - the ``main`` function computes the
 point of divergence for each pixel, then colours them::
