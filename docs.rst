@@ -21,11 +21,40 @@ We also have some Haddock-generated `documentation of the compiler internals`_.
 Publications
 ============
 
+
 We have published a number of papers on Futhark, and hopefully more in
 the future.  They are presented below in reverse chronological order.
 
+Design and GPGPU Performance of Futhark’s Redomap Construct (`PDF <publications/array16.pdf>`_)
+-----------------------------------------------------------------------------------------------
+
+.. class:: papermetadata
+Submitted to `ARRAY '16`_ (response pending)
+
+A detailed presentation of one of Futharks internal language
+constructs, ``redomap``, which is used for representing various forms
+of ``map``-``reduce``-fusion.  We present some microbenchmarks
+implemented in both Thrust and Futhark and discuss their relative
+performance.
+
+Gotta Go Fast: An Optimising GPGPU Compiler for a Data-Parallel Purely Functional Language (`PDF <publications/icfp16.pdf>`_)
+-----------------------------------------------------------------------------------------------------------------------------
+
+.. class:: papermetadata
+Submitted to `ICFP '16`_ (response pending)
+
+This is the first paper in which we present runtimes for our parallel
+code generator.  We compare the performance of Futhark to Accelerate
+and hand-written Cwith OpenCL and get very decent results.  We also
+talk about the uniquenss type system, kernel extraction, fusion, and
+efficient sequentialisation.  A dense paper, but it contains a a lot
+of information on our compilation process.
+
 Size Slicing - A Hybrid Approach to Size Inference in Futhark (`PDF <publications/fhpc14.pdf>`_)
 ------------------------------------------------------------------------------------------------
+
+.. class:: papermetadata
+Presented at `FHPC '14`_
 
 Futhark supports automatic size inference of arrays, and this paper
 describes our approach, which is based on slicing.  The descriptions
@@ -36,6 +65,9 @@ arrays.
 
 Bounds Checking: An Instance of Hybrid Analysis (`PDF <publications/array14.pdf>`_)
 -----------------------------------------------------------------------------------
+
+.. class:: papermetadata
+Presented at `ARRAY '14`_
 
 We implemented a novel form of bounds checking by extracting
 *predicate functions* from programs with array indexing.  These
@@ -53,8 +85,17 @@ parallelisation.  In the future, we might return to this work.
 A T2 Graph-Reduction Approach To Fusion (`PDF <publications/fhpc13.pdf>`_)
 --------------------------------------------------------------------------
 
+.. class:: papermetadata
+Presented at `FHPC '13`_
+
 A presentation of the core of the producer-consumer fusion algorithm
 in the Futhark compiler (although the language was called L0 at the
 time).  The description of the fundamental algorithm is still correct,
 although it does not cover some of the newer language additions, nor
 does it describe horisontal fusion.
+
+.. _`FHPC '13`: http://hiperfit.dk/fhpc13.html
+.. _`FHPC '14`: https://sites.google.com/site/fhpcworkshops/fhpc-2014
+.. _`ARRAY '14`: http://www.sable.mcgill.ca/array/2014/
+.. _`ICFP '16`: http://conf.researchr.org/home/icfp-2016
+.. _`ARRAY '16`: http://conf.researchr.org/track/pldi-2016/ARRAY-2016
