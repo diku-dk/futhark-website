@@ -81,6 +81,11 @@ a:visited {
     font-size:10pt;
 }
 
+.papermetadata {
+    margin-top:-1em;
+    font-size:10pt;
+}
+
 #menu{
     background-color: #5f021f;
     font-family:verdana;
