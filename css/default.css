@@ -43,12 +43,11 @@ a:visited {
 }
 
 #logo {
+    display: block;
     font-size: 30px;
     color: #fff;
-    padding-left: 20px;
-    padding-top: 30px;
+    margin-left: 20px;
     position: relative;
-    width: 700px;
 }
 #logo a {
     text-decoration:none;
@@ -60,7 +59,6 @@ a:visited {
     color: #fff;
     margin-top: 10px;
     margin-left: 20px;
-    width: 600px;
 }
 
 #content{
@@ -131,16 +129,17 @@ a:visited {
 }
 @media (max-width:949px){
     #menu {
-        padding-top:0em;
+        padding-top: 1em;
+        padding-bottom: 1em;
     }
     #menu li {
-        padding:0.5em;
-        padding-left:2em;
-        margin:0em;
         text-align:left;
-        border:1px solid black;
-        border-top:none;
-        border-bottom:none
+    }
+    #menu li a {
+        display: block;
+        padding-left: 1em;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
     }
 }
 
