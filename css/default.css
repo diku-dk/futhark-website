@@ -107,10 +107,9 @@ a:visited {
     text-decoration: none;
 }
 
-#menu #chosen, #menu #chosen a {
+#menu #chosen, #menu #chosen a, #menu a:hover {
     color: #5f021f;
     background-color: white;
-    text-decoration: none;
 }
 
 @media (min-width:950px){
