@@ -4,7 +4,8 @@ title: Docs
 
 Futhark still suffers from rather spartan documentation.  What we have
 is assembled `at Read the Docs`_.  Among other things, you can find a
-`language overview`_, `list of papers`_, and a set of manual pages.
+`language overview`_, `language reference`_, and a set of manual
+pages.
 
 If there is something you believe should be documented, but is not,
 you are very welcome to report the omission as a bug on our bug
@@ -14,16 +15,16 @@ We also have some Haddock-generated `documentation of the compiler internals`_.
 
 .. _`at Read the Docs`: https://futhark.readthedocs.org/
 .. _`language overview`: https://futhark.readthedocs.org/en/latest/language-overview.html
-.. _`list of papers`: https://futhark.readthedocs.org/en/latest/publications.html
+.. _`language reference`: https://futhark.readthedocs.org/en/latest/language-reference.html
 .. _`Get Involved`: /getinvolved.html
 .. _`documentation of the compiler internals`: /haddock/
 
 Publications
-============
+************
 
-
-We have published a number of papers on Futhark, and hopefully more in
-the future.  They are presented below in reverse chronological order.
+We have published a number of papers on Futhark, and hopefully more
+will follow in the future.  They are presented below in reverse
+chronological order.
 
 Design and GPGPU Performance of Futhark’s Redomap Construct (`PDF <publications/array16.pdf>`_)
 -----------------------------------------------------------------------------------------------
@@ -32,8 +33,8 @@ Design and GPGPU Performance of Futhark’s Redomap Construct (`PDF <publication
 Submitted to `ARRAY '16`_ (response pending)
 
 A detailed presentation of one of Futharks internal language
-constructs, ``redomap``, which is used for representing various forms
-of ``map``-``reduce``-fusion.  We present some microbenchmarks
+constructs - ``redomap`` - which is used to represent various forms of
+``map``-``reduce``-fusion.  We present some microbenchmarks
 implemented in both Thrust and Futhark and discuss their relative
 performance.
 
@@ -43,12 +44,12 @@ Gotta Go Fast: An Optimising GPGPU Compiler for a Data-Parallel Purely Functiona
 .. class:: papermetadata
 Submitted to `ICFP '16`_ (response pending)
 
-This is the first paper in which we present runtimes for our parallel
-code generator.  We compare the performance of Futhark to Accelerate
-and hand-written Cwith OpenCL and get very decent results.  We also
-talk about the uniquenss type system, kernel extraction, fusion, and
-efficient sequentialisation.  A dense paper, but it contains a a lot
-of information on our compilation process.
+This is the first paper in which we present performance figures for
+our parallel code generator.  We compare the performance of Futhark to
+Accelerate and hand-written C with OpenCL and obtain very decent
+results.  We also describe the uniquenss type system, kernel
+extraction, fusion, and efficient sequentialisation.  A dense paper,
+but it contains a lot of information on our compilation process.
 
 Size Slicing - A Hybrid Approach to Size Inference in Futhark (`PDF <publications/fhpc14.pdf>`_)
 ------------------------------------------------------------------------------------------------

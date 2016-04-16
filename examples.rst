@@ -56,7 +56,7 @@ Futhark.  If we ask the Futhark compiler to generate sequential C code
 time as the hand-written C program.
 
 A More Complex Example
-**********************
+----------------------
 
 A more interesting example is the *maximum segment sum problem*
 (*MSS*), where we wish to determine the maximum sum of any contiguous

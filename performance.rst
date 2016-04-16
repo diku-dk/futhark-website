@@ -26,7 +26,7 @@ code can be found `here
 <https://github.com/HIPERFIT/futhark-website/tree/master/benchmarks>`_.
 
 Sum (`Futhark <benchmarks/programs/sum.fut>`_, `Thrust <benchmarks/programs/sum.cu>`_)
-================================================================================================
+------------------------------------------------------------------------------------------------
 
 .. image:: images/sum.svg
    :alt: Summation runtime (lower is better)
@@ -42,7 +42,7 @@ that matching it in performance on simple programs is a satisfying
 result.
 
 MSS (`Futhark <benchmarks/programs/mss.fut>`_, `Thrust <benchmarks/programs/mss.cu>`_)
-================================================================================================
+------------------------------------------------------------------------------------------------
 
 .. image:: images/mss.svg
    :alt: MSS runtime (lower is better)
@@ -57,7 +57,7 @@ element.  This is not too problematic for small input sizes, but the
 extra amount of work begins to have an impact for larger datasets.
 
 Mandelbrot (`Futhark <benchmarks/programs/mandelbrot.fut>`_, `Thrust <benchmarks/programs/mandelbrot.cu>`_, `Accelerate <https://github.com/AccelerateHS/accelerate-examples/tree/master/examples/mandelbrot>`_)
-===============================================================================================================================================================================================================================
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. image:: images/mandelbrot.svg
    :alt: Mandelbrot runtime (lower is better)
