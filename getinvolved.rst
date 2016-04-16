@@ -7,10 +7,10 @@ implement is released under a free software license, and we do all our
 development in the open, `on Github`_.  There are several ways of
 getting involved:
 
-- **Submit a bug!**  Just open an issue on our `bug tracker`_.
-  This does not have to be an actual compiler bug, but might just be a
-  feature suggestion, request for documentation, or anything else you
-  believe we should do.
+- **Submit a bug!** Just open an issue on our `bug tracker`_.  This
+  does not have to be an actual compiler bug, but might just be a
+  feature suggestion, language design proposal, request for
+  documentation, or anything else you believe we should do.
 
 - **Write a patch!** Improving the compiler can be hard, but it is
   very rewarding!  The Futhark compiler is implemented in Haskell, and
