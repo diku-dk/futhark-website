@@ -1,10 +1,12 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE FlexibleContexts #-}
-import           Data.Monoid (mappend, (<>))
+import           Data.Monoid ((<>))
 import           Data.List (isPrefixOf)
 import           System.FilePath
 import           Hakyll
+import           Text.Pandoc
+import           Text.Pandoc.Walk
 
 postCtx :: Context String
 postCtx = mconcat
@@ -44,7 +46,7 @@ main = hakyllWith config $ do
         route $ setExtension "html"
         compile $ do
           menu <- contentContext
-          pandocCompiler
+          pandocRstCompiler
             >>= loadAndApplyTemplate "templates/default.html" menu
             >>= relativizeUrls
 
@@ -52,7 +54,7 @@ main = hakyllWith config $ do
         route $ setExtension "html"
         compile $ do
           postCtx <- postContext
-          pandocCompiler
+          pandocRstCompiler
             >>= loadAndApplyTemplate "templates/post.html"    postCtx
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
@@ -108,6 +110,29 @@ postContext :: Compiler (Context String)
 postContext = do
   ctx <- contentContext
   return $ dateField "date" "%B %e, %Y" `mappend` ctx
+
+--------------------------------------------------------------------------------
+
+-- By default, RST will make all top-level titles <h1>s, but we prefer
+-- to only have a single <h1>: the one in the template.  We use a
+-- technique from
+-- http://maxdelgiudice.com/posts/2015-07-08-rst-headers.html to avoid
+-- this.
+
+shiftHeaderUp :: Block -> Block
+shiftHeaderUp h@(Header n a b)
+    | n < 6     = Header (n+1) a b
+    | otherwise = h
+shiftHeaderUp x = x
+
+shiftAll :: Pandoc -> Pandoc
+shiftAll = walk shiftHeaderUp
+
+pandocRstCompiler :: Compiler (Item String)
+pandocRstCompiler = pandocCompilerWithTransform
+   defaultHakyllReaderOptions
+   defaultHakyllWriterOptions
+   shiftAll
 
 --------------------------------------------------------------------------------
 config :: Configuration
