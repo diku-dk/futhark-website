@@ -68,8 +68,8 @@ as pairs of `f32`s.  We need three operations: dot product,
 multiplication, and addition::
 
   fun f32 dot({f32,f32} c) =
-  let {r, i} = c
-  in r * r + i * i
+    let {r, i} = c
+    in r * r + i * i
 
   fun {f32,f32} multComplex({f32,f32} x, {f32,f32} y) =
     let {a, b} = x
@@ -117,11 +117,10 @@ not used)::
   fun int escapeToColour(int depth, int divergence) =
     if depth == divergence
     then 0
-    else
-      let r = 3 * divergence
-      let g = 5 * divergence
-      let b = 7 * divergence
-      in (r<<16 | g<<8 | b)
+    else let r = 3 * divergence
+         let g = 5 * divergence
+         let b = 7 * divergence
+         in (r<<16 | g<<8 | b)
 
 Finally we tie it all together - the ``main`` function computes the
 point of divergence for each pixel, then colours them::
