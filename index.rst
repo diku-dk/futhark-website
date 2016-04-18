@@ -35,14 +35,16 @@ here`_).  The Futhark compiler will also generate more conventional C
 code, which can be accessed from any language with a basic FFI.
 
 For more information, you can look at `code examples`_, details on
-performance_, our devblog_, or maybe the docs_.  You can of course
-also visit us `on Github`_.
+performance_, our devblog_, or maybe the docs_, which also contains a
+list of our publications_.  You can of course also visit us `on
+Github`_.
 
 .. _OpenCL: https://en.wikipedia.org/wiki/OpenCL
 .. _`code examples`: /examples.html
 .. _performance: /performance.html
 .. _devblog: /blog.html
 .. _docs: /docs.html
+.. _publications: /docs.html#publications
 .. _PyOpenCL: https://mathema.tician.de/software/pyopencl/
 .. _associative: https://en.wikipedia.org/wiki/Associative_property
 .. _commutative: https://en.wikipedia.org/wiki/Commutative_property
