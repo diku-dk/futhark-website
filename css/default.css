@@ -70,8 +70,15 @@ a:visited {
     padding: 1.5em;
     padding-top: 0.5em;
     vertical-align: top;
-    height: 100%;
-    min-height: 14em;
+}
+
+#footer {
+    font-size: 10pt;
+    padding: 20px;
+}
+
+#footer div {
+    text-align: right;
 }
 
 .posttitle {
