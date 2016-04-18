@@ -47,7 +47,7 @@ Submitted to `ICFP '16`_ (response pending)
 This is the first paper in which we present performance figures for
 our parallel code generator.  We compare the performance of Futhark to
 Accelerate and hand-written C with OpenCL and obtain very decent
-results.  We also describe the uniquenss type system, kernel
+results.  We also describe the uniqueness type system, kernel
 extraction, fusion, and efficient sequentialisation.  A dense paper,
 but it contains a lot of information on our compilation process.
 
