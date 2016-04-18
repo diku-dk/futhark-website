@@ -32,7 +32,7 @@ Design and GPGPU Performance of Futhark’s Redomap Construct (`PDF <publication
 .. class:: papermetadata
 Submitted to `ARRAY '16`_ (response pending)
 
-A detailed presentation of one of Futharks internal language
+A detailed presentation of one of Futhark's internal language
 constructs - ``redomap`` - which is used to represent various forms of
 ``map``-``reduce``-fusion.  We present some microbenchmarks
 implemented in both Thrust and Futhark and discuss their relative
