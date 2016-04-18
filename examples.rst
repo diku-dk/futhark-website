@@ -95,7 +95,12 @@ problems (such as *MSS* above) cannot be solved efficiently with just
 commutative reductions.
 
 On a GTX 780 Ti GPU, Futhark can compute the MSS of ten million
-integers in 1.2ms.
+integers in 1.2ms.  Much of the runtine is spent transposing the input
+array in order to ensure optimal memory access patterns during the
+actual reduction, which is necessary when compiling non-commutative
+reductions.  The performance benefit compared to just using a scan
+(which never assumes commutative operators) is illustrated
+`elsewhere`_.
 
 For more examples, you can look at our general benchmarks_ repository
 on Github.
@@ -105,4 +110,5 @@ on Github.
 .. _`sequential C program`: /static/sequential-fact.c
 .. _associative: https://en.wikipedia.org/wiki/Associative_property
 .. _commutative: https://en.wikipedia.org/wiki/Commutative_property
+.. _elsewhere: /performance.html#mss-futhark-thrust
 .. _benchmarks: https://github.com/HIPERFIT/futhark-benchmarks
