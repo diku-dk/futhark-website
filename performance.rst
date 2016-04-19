@@ -76,6 +76,41 @@ the *x*-axis.  Rendering the fractal to an image is not included in
 the runtime measurement, but the visualisation looks like `this
 <images/mandelbrot1000.png>`_.
 
+Hotspot (`Futhark <benchmarks/programs/hotspot.fut`_, `Rodinia <https://www.cs.virginia.edu/~skadron/wiki/rodinia/index.php/HotSpot>`_)
+---------------------------------------------------------------------------------------------------------------------------------------
+
+.. image:: images/hotspot.svg
+   :alt: HotSpot runtime (lower is better)
+   :class: performance_graph
+
+The `Rodinia`_ suite is a collection of benchmark programs that
+exercise various forms of computation.  One of these programs is
+HotSpot, which Rodinia describes as:
+
+   HotSpot is a widely used tool to estimate processor temperature
+   based on an architectural floorplan and simulated power
+   measurements. The thermal simulation iteratively solves a series of
+   differential equations for block. Each output cell in the
+   computational grid represents the average temperature value of the
+   corresponding area of the chip.
+
+Concretely, HotSpot is a rank-1 2D stencil code.  The implementation
+in Futhark is similar to our `stencil example`_, although with more
+complicated edge conditions.
+
+It is a bit of a curiosity that Futhark is a *constant* amount slower
+than the Rodinia implementation (about 5-6ms), no matter the dataset
+size.  One likely reason is that Futhark also measures the cost
+allocating intermediate arrays, which is not the case for the Rodinia
+implementation.
+
+One known overhead in the Futhark implementation is an unnecessary
+copy of the entire array for every iteration of the 360-iteration
+outer time series loop.  This will hopefully go away once we teach the
+Futhark compiler more about reusing memory.
+
 .. _`benchmarks game`: https://benchmarksgame.alioth.debian.org/
 .. _`Thrust`: https://github.com/thrust/thrust
 .. _`Accelerate`: https://github.com/AccelerateHS/accelerate
+.. _`Rodinia`: https://www.cs.virginia.edu/~skadron/wiki/rodinia/index.php/Rodinia:Accelerating_Compute-Intensive_Applications_with_Accelerators
+.. _`stencil example`: /examples.html#gaussian-blur-stencil

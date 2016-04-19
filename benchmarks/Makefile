@@ -1,5 +1,12 @@
-# This Makefile is a total mess.  I trued to maintain some sort of
+# This Makefile is a total mess.  I tried to maintain some sort of
 # structure, but eh.  Benchmarking is always a dirty business.
+
+# Path to unmodified Rodinia
+RODINIA_PATH=$(HOME)/rodinia_3.1
+export RODINIA_PATH
+
+RUNS=100
+export RUNS
 
 MIN=-10
 MAX=10
@@ -9,6 +16,8 @@ mss_SEQSIZES=100000 200000 500000 800000 1000000
 mss_PARSIZES=100000 200000 500000 800000 1000000 2000000 5000000 10000000
 mandelbrot_SEQSIZES=10 20 50 100
 mandelbrot_PARSIZES=10 20 50 100 200 300 400 500 600 700 800 900 1000
+hotspot_SEQSIZES=64 128
+hotspot_PARSIZES=64 512 1024
 # The -I is to use a non-default version of Thrust, for example
 # the one from https://github.com/thrust/thrust
 #
@@ -28,6 +37,19 @@ data/%_integers: tools/randomarray
 
 data/%_scalar:
 	mkdir -p data && echo $* > $@
+
+# Warning: total hack
+data/128_hotspot:
+	mkdir -p data
+	echo 360 > $@
+	cat $(RODINIA_PATH)/data/hotspot/temp_512 | head -n 16384 | tools/futharkise-hotspot-array.py /dev/stdin >> $@
+	cat $(RODINIA_PATH)/data/hotspot/power_512 | head -n 16384 | tools/futharkise-hotspot-array.py /dev/stdin >> $@
+
+data/%_hotspot:
+	mkdir -p data
+	echo 360 > $@
+	tools/futharkise-hotspot-array.py $(RODINIA_PATH)/data/hotspot/temp_$* >> $@
+	tools/futharkise-hotspot-array.py $(RODINIA_PATH)/data/hotspot/power_$* >> $@
 
 clean:
 	rm -rf data
@@ -58,6 +80,18 @@ runtimes/mandelbrot-accelerate.runtimes:
 	mkdir -p runtimes
 	tools/benchmark-accelerate.sh mandelbrot $(mandelbrot_PARSIZES) 2>>error.log > $@
 
+runtimes/hotspot-futhark-opencl.runtimes: hotspot-dataset compiled/hotspot-futhark-opencl
+	mkdir -p runtimes
+	tools/benchmark-futhark-hotspot.sh compiled/hotspot-futhark-opencl $(hotspot_PARSIZES) 2>>error.log > $@
+
+runtimes/hotspot-futhark-sequential.runtimes: hotspot-dataset compiled/hotspot-futhark-sequential
+	mkdir -p runtimes
+	tools/benchmark-futhark-hotspot.sh compiled/hotspot-futhark-sequential $(hotspot_SEQSIZES) 2>>error.log > $@
+
+runtimes/hotspot-rodinia.runtimes:
+	mkdir -p runtimes
+	tools/benchmark-rodinia-hotspot.sh $(hotspot_PARSIZES) 2>>error.log > $@
+
 runtimes/%-futhark-opencl.runtimes: %-par-dataset compiled/%-futhark-opencl
 	mkdir -p runtimes
 	tools/benchmark-futhark.sh compiled/$*-futhark-opencl $($*_PARSIZES) 2>>error.log > $@
@@ -75,6 +109,8 @@ mss-runtimes: runtimes/mss-futhark-opencl.runtimes runtimes/mss-futhark-sequenti
 sum-runtimes: runtimes/sum-futhark-opencl.runtimes runtimes/sum-futhark-sequential.runtimes runtimes/sum-thrust.runtimes
 
 mandelbrot-runtimes: runtimes/mandelbrot-futhark-opencl.runtimes runtimes/mandelbrot-futhark-sequential.runtimes runtimes/mandelbrot-accelerate.runtimes
+
+hotspot-runtimes: runtimes/hotspot-rodinia.runtimes runtimes/hotspot-futhark-opencl.runtimes
 
 graphs/mss.svg: runtimes/mss-futhark-opencl.runtimes runtimes/mss-futhark-sequential.runtimes runtimes/mss-thrust.runtimes
 	mkdir -p graphs
@@ -106,6 +142,17 @@ graphs/mandelbrot.svg: runtimes/mandelbrot-futhark-opencl.runtimes runtimes/mand
 	      '"runtimes/mandelbrot-futhark-sequential.runtimes" with linespoints ls 3 title "Sequential"' \
 	) | gnuplot
 
+graphs/hotspot.svg: runtimes/hotspot-futhark-opencl.runtimes runtimes/hotspot-futhark-sequential.runtimes runtimes/hotspot-rodinia.runtimes
+	mkdir -p graphs
+	(cat style.gnuplot; \
+         echo 'set output "graphs/hotspot.svg"'; \
+         echo 'unset logscale x'; \
+         echo 'set xlabel "Grid edge size"'; \
+         echo 'plot "runtimes/hotspot-futhark-opencl.runtimes" with linespoints ls 1 title "Futhark",' \
+	      '"runtimes/hotspot-futhark-sequential.runtimes" with linespoints ls 3 title "Sequential",' \
+	      '"runtimes/hotspot-rodinia.runtimes" with linespoints ls 5 title "Rodinia"' \
+	) | gnuplot
+
 
 sum-par-dataset: $(sum_PARSIZES:%=data/%_integers)
 sum-seq-dataset: $(sum_SEQSIZES:%=data/%_integers)
@@ -113,3 +160,4 @@ mss-par-dataset: $(mss_PARSIZES:%=data/%_integers)
 mss-seq-dataset: $(mss_SEQSIZES:%=data/%_integers)
 mandelbrot-par-dataset:
 mandelbrot-seq-dataset:
+hotspot-dataset: $(hotspot_SEQSIZES:%=data/%_hotspot) $(hotspot_PARSIZES:%=data/%_hotspot)
