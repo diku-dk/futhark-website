@@ -273,7 +273,9 @@ Which produces `this blurry mess
 <images/gottagofast-veryblurred.png>`_.  Notice the edges - perhaps
 simply keeping them unchanged is not the best way to implement image
 blurring.  Still, this program is a decent description of how to
-implement stencils in Futhark.
+implement stencils in Futhark.  For performance measurements on a
+slightly more complicated stencil, see `HotSpot on the performance
+page`_.
 
 .. _`contribute`: /getinvolved.html
 .. _`introduction`: /
@@ -283,3 +285,4 @@ implement stencils in Futhark.
 .. _elsewhere: /performance.html#mss-futhark-thrust
 .. _benchmarks: https://github.com/HIPERFIT/futhark-benchmarks
 .. _stencil: https://en.wikipedia.org/wiki/Stencil_code
+.. _`HotSpot on the performance page`: /performance.html#hotspot-futhark-rodinia
