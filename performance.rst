@@ -76,8 +76,8 @@ the *x*-axis.  Rendering the fractal to an image is not included in
 the runtime measurement, but the visualisation looks like `this
 <images/mandelbrot1000.png>`_.
 
-Hotspot (`Futhark <benchmarks/programs/hotspot.fut`_, `Rodinia <https://www.cs.virginia.edu/~skadron/wiki/rodinia/index.php/HotSpot>`_)
----------------------------------------------------------------------------------------------------------------------------------------
+HotSpot (`Futhark <benchmarks/programs/hotspot.fut>`_, `Rodinia <https://www.cs.virginia.edu/~skadron/wiki/rodinia/index.php/HotSpot>`_)
+------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. image:: images/hotspot.svg
    :alt: HotSpot runtime (lower is better)
