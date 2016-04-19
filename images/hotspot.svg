@@ -374,7 +374,7 @@ onclick="gnuplot_svg.toggleCoordBox(evt)"  onmousemove="gnuplot_svg.moveCoordBox
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="2.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<path stroke='rgb( 95,   2,  31)'  d='M134.2,15.0 L169.7,15.0  '/>	</g>
-	<path stroke='rgb( 95,   2,  31)'  d='M86.4,134.4 L169.6,118.5 L264.8,48.9  '/>	<g id="MSS_runtime_plot_1_keyentry" visibility="visible" onclick="gnuplot_svg.toggleVisibility(evt,'MSS_runtime_plot_1')">
+	<path stroke='rgb( 95,   2,  31)'  d='M86.4,135.7 L169.6,118.5 L264.8,48.0  '/>	<g id="MSS_runtime_plot_1_keyentry" visibility="visible" onclick="gnuplot_svg.toggleVisibility(evt,'MSS_runtime_plot_1')">
 	<use xlink:href='#gpDot' x='151.9' y='15.0' color='rgb( 95,   2,  31)'/>
 
 	</g>
@@ -403,9 +403,9 @@ onclick="gnuplot_svg.toggleCoordBox(evt)"  onmousemove="gnuplot_svg.moveCoordBox
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="2.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='rgb(128,  96,   0)'  d='M253.7,15.0 L289.2,15.0  '/>	</g>
-	<path stroke='rgb(128,  96,   0)'  d='M86.4,147.6 L169.6,127.8 L264.8,64.3  '/>	<g id="MSS_runtime_plot_3_keyentry" visibility="visible" onclick="gnuplot_svg.toggleVisibility(evt,'MSS_runtime_plot_3')">
-	<use xlink:href='#gpDot' x='271.4' y='15.0' color='rgb(128,  96,   0)'/>
+	<path stroke='rgb(192, 144,   0)'  d='M253.7,15.0 L289.2,15.0  '/>	</g>
+	<path stroke='rgb(192, 144,   0)'  d='M86.4,147.6 L169.6,127.8 L264.8,64.3  '/>	<g id="MSS_runtime_plot_3_keyentry" visibility="visible" onclick="gnuplot_svg.toggleVisibility(evt,'MSS_runtime_plot_3')">
+	<use xlink:href='#gpDot' x='271.4' y='15.0' color='rgb(192, 144,   0)'/>
 
 	</g>
 </g>

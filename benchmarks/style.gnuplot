@@ -9,4 +9,4 @@ set style line 1 lc rgb '#5f021f' lt 1 lw 2 pt 0 ps 1.5   # Futhark
 set style line 2 lc rgb '#00aa1f' lt 1 lw 2 pt 0 ps 1.5   # Thrust
 set style line 3 lc rgb '#bbbbbb' lt 1 lw 2 pt 0 ps 1.5   # Sequential
 set style line 4 lc rgb '#0b0dff' lt 1 lw 2 pt 0 ps 1.5   # Accelerate
-set style line 5 lc rgb '#806000' lt 1 lw 2 pt 0 ps 1.5   # Rodinia
+set style line 5 lc rgb '#c09000' lt 1 lw 2 pt 0 ps 1.5   # Rodinia
