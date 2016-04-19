@@ -220,7 +220,7 @@ to the Python world.  For example, a Futhark function accepting three
 parameters of types ``[[f64]]``, ``[int]`` and ``bool`` will be
 translated into a Python method accepting a two-dimensional Numpy
 array of ``numpy.double``s, a one-dimensional array of ``numpy.int``s,
-and a single ``np.bool``.  And if the Futhark function returns
+and a single ``numpy.bool``.  And if the Futhark function returns
 ``{[int], f64}``, the Python method will return a tuple of two values:
 a Numpy array of integers and a Numpy double-precision float.
 
