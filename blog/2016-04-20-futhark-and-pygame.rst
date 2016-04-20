@@ -53,8 +53,19 @@ First, here is a video of me running the visualisation!
    </video>
    <p style="font-style: italic; margin-top: 0;">Direct link: <a href="/static/life-2016.04.20.webm">life-2016.04.20.webm</a></p>
 
-Secondly, here is how it works: ``life-visualise.py`` first sets up
-PyGame::
+Secondly, here is how it works: `life-gui.py
+<https://github.com/HIPERFIT/futhark-benchmarks/blob/master/misc/life/life-gui.py>`_
+first imports our three Game of Life variants::
+
+  import life
+  import quadlife
+  import quadlife_alt
+
+``life`` uses the usual Game of Life rules, while ``quadlife`` and
+``quadlife_alt`` uses rules invented by `Torben Mogensen
+<http://www.diku.dk/~torbenm/>`_.
+
+It then sets up PyGame::
 
   screen = pygame.display.set_mode(size)
 
@@ -68,6 +79,13 @@ a Futhark Python module.  In this case, we use the NumPy array to get
 the initial simulation values by calling::
 
   world, history = l.init(initworld)
+
+Here, the ``l`` variable is the imported simulation backend,
+i.e. either ``life``, ``quadlife``, or ``quadlife_alt``.  You can
+specify the backend with the ``--variant`` command-line flag.  The
+``l.init`` function is a Futhark function that takes a two-dimensional
+``bool`` NumPy array and returns a two-dimensional ``bool`` NumPy
+array and a two-dimensional ``int`` NumPy array.
 
 We also need a temporary PyGame surface for transferring pixel data
 from NumPy to PyGame, so we run this::
@@ -84,12 +102,9 @@ understand, after which we blit it to the screen::
       screen.blit(surface, (0, 0))
       pygame.display.flip()
 
-Here, the ``l`` variable is the imported simulation backend,
-i.e. either the default ``life`` or one of the alternative variants
-``quadlife`` or ``quadlife_alt``, whose rules are invented by `Torben
-Mogensen <http://www.diku.dk/~torbenm/>`_.  When running the
-visualisation, you can specify the backend with the ``--variant``
-command-line flag.
+Here, ``l.render_frame`` is a Futhark function that takes a
+two-dimensional ``int`` NumPy array and returns a three-dimensional
+pixel array in the colour format expected by PyGame.
   
 Finally, since Game of Life is a state-based simulation, we need a way
 to step through the simulation, using previous output as new input.
@@ -105,6 +120,10 @@ This is pretty simple in Python::
 The ``steps`` argument is the number of simulation steps to perform
 per frame, and defaults to 3.  You can set this to any positive 32-bit
 int.  To increase the work done per frame, the default is 3 and not 1.
+This choice reflects possible real-world use, where we might not care
+about real-time simulation in a visualisation, but just use it to
+track progress, and thus ask the Futhark program to perform large
+chunks of work at a time, and update the display fairly rarely.
 
 We have also added a simple PyGame event check, so that you can close
 the simulation window as expected.
@@ -128,10 +147,12 @@ In the fluid simulator you can add both particles and forces.  See for yourself:
    </video>
    <p style="font-style: italic; margin-top: 0;">Direct link: <a href="/static/fluid-2016.04.20.webm">fluid-2016.04.20.webm</a></p>
 
-My GPU is not the best one around, so I am running this in a fairly
-small window.
+My GPU (a nVidia GT 650 M) is not the newest one around, so I am
+running this in a fairly small window.
 
-The Mandelbrot Explorer is also pretty nifty:
+The Mandelbrot Explorer is also pretty nifty.  This implementation
+re-renders the entire visible region from scratch for every frame.
+This would likely be too slow if it was not GPU-accelerated.
 
 .. raw:: html
 
@@ -146,11 +167,18 @@ The Mandelbrot Explorer is also pretty nifty:
    </video>
    <p style="font-style: italic; margin-top: 0;">Direct link: <a href="/static/mandelbrot-2016.04.20.webm">mandelbrot-2016.04.20.webm</a></p>
 
-In the end of the video, I switch to NumPy's internal Mandelbrot generator.
+In the end of the video, I switch to a Mandelbrot implementation
+written in pure NumPy (also included in the benchmarks repository).
+You can also check out the `Mandelbrot performance numbers
+</performance.html#mandelbrot-futhark-thrust-accelerate>`_.
 
 Finally, there is the HotSpot 2D Heat Equation GUI.  You can see its
-performance `here </performance.html#hotspot-futhark-rodinia>`_.  This
-visualisation is pretty silly.
+performance and a description of it is computing `here
+</performance.html#hotspot-futhark-rodinia>`_.  This visualisation is
+pretty silly, since every marked pixel gets the same power output
+level.  The initial heat levels are random and take a while to
+dissipate, which is why the simulation spends quite some time before
+the generated graphics resemble the drawn graphics.
 
 .. raw:: html
 
@@ -171,18 +199,25 @@ Use Cases
 
 Futhark is an optimising compiler which takes an *entire program* as
 input.  As such, its optimisations are not directed at separate
-functions, but rather the program as a whole.  This is important to
-keep in mind when developing Futhark-PyGame programs, since it means
-that we would like to have as few calls as possible to Futhark from
-Python, and keep as much code as possible inside Futhark.
+functions, but rather the program as a whole.  This is in stark
+contrast to how computing libraries, e.g. NumPy, usually work.  They
+consist of many primitive functions, and expect the programmer to
+structure them together using the host language, in this case Python.
 
-This is in stark contrast to how computing libraries, e.g. NumPy,
-usually work.  They consist of many primitive functions, and expect
-the programmer to structure them together using the host language, in
-this case Python.
+Also, for every call to a function in a Futhark Python module, the
+arguments are copied from CPU to GPU, then the computation is
+performed, and finally the result is copied from GPU to CPU.  This
+adds overhead and is important to keep in mind when developing
+Futhark-PyGame programs, since it means that we would like to have as
+few calls as possible from Python to Futhark, and keep as much code as
+possible inside Futhark.
 
 In conclusion, The Futhark-PyGame combo is best when every step of the
-visualisation -- i.e. every call to Futhark -- is compute-intensive.
+visualisation -- i.e. every call to Futhark -- is compute-intensive,
+so the overhead of copying memory becomes negligible.  Still, the
+current setup works well already.  When we get around to implementing
+lazy on-demand copying of data between CPU and GPU, this should become
+less of an issue.
 
 
 Try them for yourself!
