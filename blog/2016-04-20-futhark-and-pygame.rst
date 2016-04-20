@@ -36,9 +36,9 @@ A Simple Start: Game of Life
 ----------------------------
 
 Let us start with Futhark's own Game of Life visualisation.  This is
-arguably the simplest of the four visualisations, as it is actually
-not interactive.  However, it shows how few lines of code are needed
-to integrate Futhark, NumPy, and PyGame.
+the simplest of the four visualisations, as it is actually not
+interactive.  However, it shows how few lines of code are needed to
+integrate Futhark, NumPy, and PyGame.
 
 First, here is a video of me running the visualisation!
 
