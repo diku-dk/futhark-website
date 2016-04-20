@@ -28,8 +28,8 @@ We currently have four GUI examples:
 
 It is pretty easy to create an interactive visualisation with Futhark,
 so expect this number to go up.  However, note that Futhark
-development does *not* target interactive visualisations -- we just
-want to show off what we have!
+development is not primarily oriented towards graphics programming --
+we just want to show off what we have!
 
 
 A Simple Start: Game of Life
