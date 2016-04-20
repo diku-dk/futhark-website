@@ -1,5 +1,5 @@
 ---
-title: Creating interactive Futhark GUIs
+title: Creating Interactive Futhark GUIs
 author: Niels G. W. Serup
 description: Using PyGame and PyOpenCL to interact with Futhark programs in simple graphical user interfaces.
 ---
@@ -30,7 +30,7 @@ Futhark development does *not* target interactive visualisations --
 it's just nice to show off what we have!
 
 
-A simple start: Game of Life
+A Simple Start: Game of Life
 ----------------------------
 
 Let's start with Futhark's own Game of Life visualisation.  This is
@@ -85,9 +85,10 @@ understand, after which we blit it to the screen::
 
 Here, the ``l`` variable is the imported simulation backend,
 i.e. either the default ``life`` or one of the alternative variants
-``quadlife`` or ``quadlife_alt``, whose rules are invented by Torben
-Mogensen.  When running the visualisation, you can specify the backend
-with the ``--variant`` command-line flag.
+``quadlife`` or ``quadlife_alt``, whose rules are invented by `Torben
+Mogensen <http://www.diku.dk/~torbenm/>`_.  When running the
+visualisation, you can specify the backend with the ``--variant``
+command-line flag.
   
 Finally, since Game of Life is a state-based simulation, we need a way
 to step through the simulation, using previous output as new input.
@@ -101,11 +102,14 @@ This is pretty simple in Python::
               sys.exit()
 
 The ``steps`` argument is the number of simulation steps to perform
-per frame, and defaults to ``3``.  We have also added a simple PyGame
-event check, so that you can close the simulation window as expected.
+per frame, and defaults to 3.  You can set this to any positive 32-bit
+int.  The default is 3 and not 1 to increase the work done per frame.
+
+We have also added a simple PyGame event check, so that you can close
+the simulation window as expected.
 
 
-The three other ones
+The Three Other Ones
 --------------------
 
 In the fluid simulator you can add both particles and forces.  See for yourself:
@@ -143,7 +147,9 @@ The Mandelbrot Explorer is also pretty nifty:
 
 In the end of the video, I switch to Numpy's internal Mandelbrot generator.
 
-Finally, there's the HotSpot GUI:
+Finally, there's the HotSpot 2D Heat Equation GUI.  You can see its
+performance `here </performance.html#hotspot-futhark-rodinia>`_.  This
+visualisation is pretty silly.
 
 .. raw:: html
 
@@ -159,15 +165,15 @@ Finally, there's the HotSpot GUI:
    <p style="font-style: italic; margin-top: 0;">Direct link: <a href="/static/hotspot-2016.04.20.webm">hotspot-2016.04.20.webm</a></p>
 
 
-Usecases
---------
+Use Cases
+---------
 
 Futhark is an optimising compiler which takes an *entire program* as
 input.  As such, its optimisations are not directed at separate
 functions, but rather the program as a whole.  This is important to
 keep in mind when developing Futhark-PyGame programs, since it means
-that we would like to keep as much code as possible inside Futhark,
-and have as few calls as possible to Futhark from Python.
+that we would like to have as few calls as possible to Futhark from
+Python, and keep as much code as possible inside Futhark.
 
 This is in stark contrast to how computing libraries, e.g. NumPy,
 usually work.  They consist of many primitive functions, and expect
