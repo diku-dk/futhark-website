@@ -4,11 +4,12 @@ author: Niels G. W. Serup
 description: Using PyGame and PyOpenCL to interact with Futhark programs in simple graphical user interfaces.
 ---
 
-In the previous blog post, Troels showed you how to use Futhark's
-PyOpenCL backend to generate PNG files with Python and NumPy.  There
-was also a short mention of *interactive* examples built with PyGame.
-In this blog post we will demonstrate how to add interactive visual
-interfaces to simulations implemented in Futhark.
+In `the previous blog post
+</blog/2016-04-15-futhark-and-pyopencl.html>`_, Troels showed you how
+to use Futhark's PyOpenCL backend to generate PNG files with Python
+and NumPy.  There was also a short mention of *interactive* examples
+built with PyGame.  In this blog post we will demonstrate how to add
+interactive visual interfaces to simulations implemented in Futhark.
 
 `PyGame <http://www.pygame.org/>`_ is a Python library for the SDL 1.2
 graphics framework.  Although a Python 3 port does exist, for
@@ -61,9 +62,15 @@ first imports our three Game of Life variants::
   import quadlife
   import quadlife_alt
 
-``life`` uses the usual Game of Life rules, while ``quadlife`` and
-``quadlife_alt`` uses rules invented by `Torben Mogensen
-<http://www.diku.dk/~torbenm/>`_.
+These Python modules are generated from the Futhark programs `life.fut
+<https://github.com/HIPERFIT/futhark-benchmarks/blob/master/misc/life/life.fut>`_,
+`quadlife.fut
+<https://github.com/HIPERFIT/futhark-benchmarks/blob/master/misc/life/quadlife.fut>`_,
+and `quadlife_alt.fut
+<https://github.com/HIPERFIT/futhark-benchmarks/blob/master/misc/life/quadlife_alt.fut>`_
+by means of the ``futhark-pyopencl`` compiler.  ``life`` uses the
+usual Game of Life rules, while ``quadlife`` and ``quadlife_alt`` use
+rules invented by `Torben Mogensen <http://www.diku.dk/~torbenm/>`_.
 
 It then sets up PyGame::
 
