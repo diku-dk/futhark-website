@@ -180,7 +180,7 @@ You can also check out the `Mandelbrot performance numbers
 </performance.html#mandelbrot-futhark-thrust-accelerate>`_.
 
 Finally, there is the HotSpot 2D Heat Equation GUI.  You can see its
-performance and a description of it is computing `here
+performance and a description of what it is computing `here
 </performance.html#hotspot-futhark-rodinia>`_.  This visualisation is
 pretty silly, since every marked pixel gets the same power output
 level.  The initial heat levels are random and take a while to
