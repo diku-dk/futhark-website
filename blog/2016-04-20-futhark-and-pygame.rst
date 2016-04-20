@@ -12,11 +12,12 @@ built with PyGame.  In this blog post we will demonstrate how to add
 interactive visual interfaces to simulations implemented in Futhark.
 
 `PyGame <http://www.pygame.org/>`_ is a Python library for the SDL 1.2
-graphics framework.  Although a Python 3 port does exist, for
+graphics library.  Although a Python 3 port does exist, for
 compatibility reasons we use the original Python 2 library.
 Library-savvy readers might point out that a more modern library like
 pyglet or PySDL2 might be more... modern, but we really only require
-few features, so good old PyGame is sufficient for our basic examples.
+few features, so good old PyGame is sufficient for these basic
+examples.
 
 We currently have four GUI examples:
 
