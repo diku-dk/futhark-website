@@ -104,7 +104,7 @@ This is pretty simple in Python::
 
 The ``steps`` argument is the number of simulation steps to perform
 per frame, and defaults to 3.  You can set this to any positive 32-bit
-int.  The default is 3 and not 1 to increase the work done per frame.
+int.  To increase the work done per frame, the default is 3 and not 1.
 
 We have also added a simple PyGame event check, so that you can close
 the simulation window as expected.
