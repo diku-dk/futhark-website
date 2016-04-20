@@ -7,12 +7,12 @@ description: Using PyGame and PyOpenCL to interact with Futhark programs in simp
 In the previous blog post, Troels showed you how to use Futhark's
 PyOpenCL backend to generate PNG files with Python and NumPy.  There
 was also a short mention of *interactive* examples built with PyGame.
-In this post I'll go into more detail with regards to the interactive
-examples, which have been developed by several people.
+In this blog post we will demonstrate how to add interactive visual
+interfaces to simulations implemented in Futhark.
 
 `PyGame <http://www.pygame.org/>`_ is a Python library for the SDL 1.2
 graphics framework.  Although a Python 3 port does exist, for
-compability reasons we use the original Python 2 library.
+compatibility reasons we use the original Python 2 library.
 Library-savvy readers might point out that a more modern library like
 pyglet or PySDL2 might be more... modern, but we really only require
 few features, so good old PyGame is sufficient for our basic examples.
@@ -24,21 +24,21 @@ We currently have four GUI examples:
   + `Game of Life <https://github.com/HIPERFIT/futhark-benchmarks/tree/master/misc/life>`_
   + `HotSpot 2D Heat Equation GUI <https://github.com/HIPERFIT/futhark-benchmarks/tree/master/rodinia/hotspot>`_
 
-It's pretty easy to create an interactive visualisation with Futhark,
-so it's likely that this number will go up.  However, note that
-Futhark development does *not* target interactive visualisations --
-it's just nice to show off what we have!
+It is pretty easy to create an interactive visualisation with Futhark,
+so expect this number to go up.  However, note that Futhark
+development does *not* target interactive visualisations -- we just
+want to show off what we have!
 
 
 A Simple Start: Game of Life
 ----------------------------
 
-Let's start with Futhark's own Game of Life visualisation.  This is
-arguably the simplest of the four visualisations, as it's actually not
-interactive.  However, it shows how few lines of code are needed to
-integrate Futhark, NumPy, and PyGame.
+Let us start with Futhark's own Game of Life visualisation.  This is
+arguably the simplest of the four visualisations, as it is actually
+not interactive.  However, it shows how few lines of code are needed
+to integrate Futhark, NumPy, and PyGame.
 
-First, here's a video of me running the visualisation!
+First, here is a video of me running the visualisation!
 
 .. raw:: html
 
@@ -53,7 +53,8 @@ First, here's a video of me running the visualisation!
    </video>
    <p style="font-style: italic; margin-top: 0;">Direct link: <a href="/static/life-2016.04.20.webm">life-2016.04.20.webm</a></p>
 
-Secondly, here's how it works: ``life-visualise.py`` first sets up PyGame::
+Secondly, here is how it works: ``life-visualise.py`` first sets up
+PyGame::
 
   screen = pygame.display.set_mode(size)
 
@@ -127,7 +128,7 @@ In the fluid simulator you can add both particles and forces.  See for yourself:
    </video>
    <p style="font-style: italic; margin-top: 0;">Direct link: <a href="/static/fluid-2016.04.20.webm">fluid-2016.04.20.webm</a></p>
 
-My GPU is not the best one around, so I'm running this in a fairly
+My GPU is not the best one around, so I am running this in a fairly
 small window.
 
 The Mandelbrot Explorer is also pretty nifty:
@@ -145,9 +146,9 @@ The Mandelbrot Explorer is also pretty nifty:
    </video>
    <p style="font-style: italic; margin-top: 0;">Direct link: <a href="/static/mandelbrot-2016.04.20.webm">mandelbrot-2016.04.20.webm</a></p>
 
-In the end of the video, I switch to Numpy's internal Mandelbrot generator.
+In the end of the video, I switch to NumPy's internal Mandelbrot generator.
 
-Finally, there's the HotSpot 2D Heat Equation GUI.  You can see its
+Finally, there is the HotSpot 2D Heat Equation GUI.  You can see its
 performance `here </performance.html#hotspot-futhark-rodinia>`_.  This
 visualisation is pretty silly.
 
@@ -187,7 +188,7 @@ visualisation -- i.e. every call to Futhark -- is compute-intensive.
 Try them for yourself!
 ----------------------
 
-If you install the Futhark compiler (and PyOpenCL, Numpy, and PyGame),
+If you install the Futhark compiler (and PyOpenCL, NumPy, and PyGame),
 you should be able to compile and run all of the four GUI examples.
 First run::
 
