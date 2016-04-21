@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env python
 
 import blur
 import png
