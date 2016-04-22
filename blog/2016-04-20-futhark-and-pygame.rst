@@ -87,7 +87,7 @@ These Python modules are generated from the Futhark programs `life.fut
 <https://github.com/HIPERFIT/futhark-benchmarks/blob/master/misc/life/quadlife.fut>`_,
 and `quadlife_alt.fut
 <https://github.com/HIPERFIT/futhark-benchmarks/blob/master/misc/life/quadlife_alt.fut>`_
-by means of the ``futhark-pyopencl`` compiler.  ``life`` uses the
+by means of the ``futhark-pyopencl`` code generator.  ``life`` uses the
 usual Game of Life rules, while ``quadlife`` and ``quadlife_alt`` use
 rules invented by `Torben Mogensen <http://www.diku.dk/~torbenm/>`_.
 
@@ -101,8 +101,8 @@ NumPy array of random initial states::
   initworld = numpy.random.choice([True, False], size=size)
 
 A NumPy array can be used as an argument to an entry point function in
-a Futhark Python module.  In this case, we use the NumPy array to get
-the initial simulation values by calling::
+a Futhark-generated Python module.  In this case, we use the NumPy
+array to get the initial simulation values by calling::
 
   world, history = l.init(initworld)
 
@@ -110,8 +110,8 @@ Here, the ``l`` variable is the imported simulation backend,
 i.e. either ``life``, ``quadlife``, or ``quadlife_alt``.  You can
 specify the backend with the ``--variant`` command-line flag.  The
 ``l.init`` function is a Futhark function that takes a two-dimensional
-``bool`` NumPy array and returns a two-dimensional ``bool`` NumPy
-array and a two-dimensional ``int`` NumPy array.
+``bool`` array and returns a two-dimensional ``bool`` array and a
+two-dimensional ``int`` array.
 
 We also need a temporary PyGame surface for transferring pixel data
 from NumPy to PyGame, so we run this::
@@ -129,8 +129,8 @@ understand, after which we blit it to the screen::
       pygame.display.flip()
 
 Here, ``l.render_frame`` is a Futhark function that takes a
-two-dimensional ``int`` NumPy array and returns a three-dimensional
-pixel array in the colour format expected by PyGame.
+two-dimensional ``int`` array and returns a three-dimensional pixel
+array in the colour format expected by PyGame.
   
 Finally, since Game of Life is a state-based simulation, we need a way
 to step through the simulation, using previous output as new input.
@@ -145,11 +145,12 @@ This is pretty simple in Python::
 
 The ``steps`` argument is the number of simulation steps to perform
 per frame, and defaults to 3.  You can set this to any positive 32-bit
-int.  To increase the work done per frame, the default is 3 and not 1.
-This choice reflects possible real-world use, where we might not care
-about real-time simulation in a visualisation, but just use it to
-track progress, and thus ask the Futhark program to perform large
-chunks of work at a time, and update the display fairly rarely.
+int.  To increase the work done per frame, we have set the default to
+3 and not e.g. 1.  This choice reflects possible real-world use, where
+we might not care about having a real-time visualisation of a
+simulation, but just use the visualisation to track progress, and thus
+ask the Futhark program to perform large chunks of work at a time, and
+update the display fairly rarely.
 
 We have also added a simple PyGame event check, so that you can close
 the simulation window as expected.
@@ -173,12 +174,13 @@ In the fluid simulator you can add both particles and forces.  See for yourself:
    </video>
    <p style="font-style: italic; margin-top: 0;">Direct link: <a href="/static/fluid-2016.04.20.webm">fluid-2016.04.20.webm</a></p>
 
-My GPU (a nVidia GT 650 M) is not the newest one around, so I am
-running this in a fairly small window.
+My laptop's GPU (a nVidia GT 650 M) is not the newest one around, so I
+am running this in a fairly small window to avoid too much lag.
 
-The Mandelbrot Explorer is also pretty nifty.  This implementation
-re-renders the entire visible region from scratch for every frame.
-This would likely be too slow if it was not GPU-accelerated.
+The Mandelbrot Explorer is also pretty nifty.  Note that this
+implementation re-renders the entire visible region from scratch for
+every frame.  This would likely be too slow if it was not
+GPU-accelerated.
 
 .. raw:: html
 
@@ -204,7 +206,7 @@ performance and a description of what it is computing `here
 pretty silly, since every marked pixel gets the same power output
 level.  The initial heat levels are random and take a while to
 dissipate, which is why the simulation spends quite some time before
-the generated graphics resemble the drawn graphics.
+the generated graphics resemble the originally drawn graphics.
 
 .. raw:: html
 
@@ -261,10 +263,11 @@ and then follow the local README to run the GUI.
 
 However, if you do not have the patience required to install Futhark
 (and GHC), we have manually pre-compiled the current versions of the
-four programs into Python with PyOpenCL for you.  Download
-`futhark-guis-v0.1.tar.gz </static/futhark-guis-v0.1.tar.gz>`_.  This
-has only been tested on a Debian, so run at your own risk.  You still
-need to have PyOpenCL, NumPy, and PyGame installed.
+four programs into Python for you with the ``futhark-pyopencl`` code
+generator.  Download `futhark-guis-v0.1.tar.gz
+</static/futhark-guis-v0.1.tar.gz>`_.  This has only been tested on a
+Debian, so run at your own risk.  You still need to have PyOpenCL,
+NumPy, and PyGame installed.
 
 
 Write your own!
