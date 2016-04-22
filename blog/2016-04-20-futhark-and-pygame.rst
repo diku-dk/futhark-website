@@ -1,7 +1,7 @@
 ---
 title: Creating Interactive Futhark GUIs
 author: Niels G. W. Serup
-description: Using PyGame and PyOpenCL to interact with Futhark programs in simple graphical user interfaces.
+description: Using PyGame, NumPy, and PyOpenCL to interact with Futhark programs in simple graphical user interfaces.
 ---
 
 In `the previous blog post
