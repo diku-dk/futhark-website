@@ -4,12 +4,30 @@ author: Niels G. W. Serup
 description: Using PyGame, NumPy, and PyOpenCL to interact with Futhark programs in simple graphical user interfaces.
 ---
 
+Futhark is a functional language which can be compiled into efficient
+GPU code.  See our `performance page </performance.html>`_ for
+details.  Futhark is a pretty specialised language: You can express
+complex programs using, among other things, Futhark's `second-order
+array combinators
+<https://futhark.readthedocs.org/en/latest/language-overview.html#soacs>`_,
+but the programs cannot themselves be interactive in any way; in
+Futhark you can *only* describe computations which take an input,
+return an output, and do not have side effects.  However, since you
+might want to add an interactive touch to your Futhark program (we
+do!), we have developed a code generator for generating Python
+modules.  A Futhark-generated Python module can be imported into any
+Python program, provided you have NumPy and PyOpenCL installed, and
+can then be used for the computing-intensive part of a GUI, while the
+main Python file is used for everything else.
+
 In `the previous blog post
 </blog/2016-04-15-futhark-and-pyopencl.html>`_, Troels showed you how
 to use Futhark's PyOpenCL backend to generate PNG files with Python
-and NumPy.  There was also a short mention of *interactive* examples
-built with PyGame.  In this blog post we will demonstrate how to add
-interactive visual interfaces to simulations implemented in Futhark.
+and NumPy.  There was also a short mention of *interactive* interfaces
+to Futhark programs.  In this blog post I will demonstrate how to use
+PyGame and Python to create those interactive visual interfaces.  The
+concept is largely the same as in the previous post, but the
+visualisations are prettier.
 
 `PyGame <http://www.pygame.org/>`_ is a Python library for the SDL 1.2
 graphics library.  Although a Python 3 port does exist, for
