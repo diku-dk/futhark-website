@@ -205,8 +205,8 @@ edges are left unchanged::
               iota(cols)),
           iota(rows))
 
-You have have heard that branches are expensive on a GPU.  While a
-good basic rule of thumb, what is actually expensive is *branch
+You may have heard that branches are expensive on a GPU.  While this
+is a good basic rule of thumb, what is actually expensive is *branch
 divergence* - that is, when neighboring threads take *different* paths
 through a branch.  In our stencil, only the edge elements will take
 the false branch, and these are few in number compared to the
