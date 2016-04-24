@@ -124,13 +124,19 @@ understand, after which we blit it to the screen::
 
   def render():
       frame = l.render_frame(history)
-      pygame.surfarray.blit_array(surface, frame)
+      pygame.surfarray.blit_array(surface, frame.get())
       screen.blit(surface, (0, 0))
       pygame.display.flip()
 
 Here, ``l.render_frame`` is a Futhark function that takes a
 two-dimensional ``int`` array and returns a three-dimensional pixel
 array in the colour format expected by PyGame.
+
+As the blit array we need to use ``frame.get()`` and not just
+``frame``.  This is because the Futhark-compiled Python module gives
+us a PyOpenCL array, which is mostly compatible with NumPy, but not
+fully -- and Pygame really wants a proper NumPy array, so we use the
+``get()`` method to obtain that.
   
 Finally, since Game of Life is a state-based simulation, we need a way
 to step through the simulation, using previous output as new input.
@@ -222,8 +228,25 @@ the generated graphics resemble the originally drawn graphics.
    <p style="font-style: italic; margin-top: 0;">Direct link: <a href="/static/hotspot-2016.04.20.webm">hotspot-2016.04.20.webm</a></p>
 
 
-Use Cases
----------
+More on Arrays
+--------------
+
+Every array in a Futhark-compiled Python module is of type
+`pyopencl.array.Array
+<https://documen.tician.de/pyopencl/array.html#the-array-class>`_,
+which means that all data is stored on the compute device, in our case
+the GPU.  This enables GPU-stored arrays to be passed to and from a
+Python program without copying between CPU and GPU.
+
+If you pass an array which *is not* a PyOpenCL array, but *is*
+NumPy-compatible, the generated Python code will automatically convert
+it into a PyOpenCL array by transferring its data to the compute
+device.  This means that you can use NumPy to construct e.g. the
+initial arrays of a simulation, and not worry about the finer details.
+
+         
+Tips
+----
 
 Futhark is an optimising compiler which takes an *entire program* as
 input.  As such, its optimisations are not directed at separate
@@ -232,20 +255,9 @@ contrast to how computing libraries, e.g. NumPy, usually work.  They
 consist of many primitive functions, and expect the programmer to
 structure them together using the host language, in this case Python.
 
-Also, for every call to a function in a Futhark Python module, the
-arguments are copied from CPU to GPU, then the computation is
-performed, and finally the result is copied from GPU to CPU.  This
-adds overhead and is important to keep in mind when developing
-Futhark-PyGame programs, since it means that we would like to have as
-few calls as possible from Python to Futhark, and keep as much code as
-possible inside Futhark.
-
-In conclusion, The Futhark-PyGame combo is best when every step of the
-visualisation -- i.e. every call to Futhark -- is compute-intensive,
-so the overhead of copying memory becomes negligible.  Still, the
-current setup works well already.  When we get around to implementing
-lazy on-demand copying of data between CPU and GPU, this should become
-less of an issue.
+Also, for every call to a function in a Futhark Python module, Python
+causes some overhead, which is another reason to have few calls to
+Futhark and much code in Futhark.
 
 
 Try them for yourself!
