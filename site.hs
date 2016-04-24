@@ -56,6 +56,7 @@ main = hakyllWith config $ do
           postCtx <- postContext
           pandocRstCompiler
             >>= loadAndApplyTemplate "templates/post.html"    postCtx
+            >>= saveSnapshot "content"
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
 
@@ -73,6 +74,14 @@ main = hakyllWith config $ do
                 >>= loadAndApplyTemplate "templates/posts.html" ctx
                 >>= loadAndApplyTemplate "templates/default.html" ctx
                 >>= relativizeUrls
+    -- Atom feed
+    create ["atom.xml"] $ do
+      route idRoute
+      compile $ do
+        let feedCtx = postCtx `mappend` bodyField "description"
+        posts <- fmap (take 10) . recentFirst =<<
+            loadAllSnapshots "blog/*" "content"
+        renderAtom feedConfiguration feedCtx posts
 
     match "templates/*" $ compile templateCompiler
 
@@ -140,3 +149,12 @@ config = defaultConfiguration
   { deployCommand = "rsync --chmod=Do+rx,Fo+r --checksum -ave 'ssh -p 22' \
                      \_site/* --exclude pub futhark@sigkill.dk:/var/www/htdocs/futhark-lang.org"
   }
+
+feedConfiguration :: FeedConfiguration
+feedConfiguration = FeedConfiguration
+    { feedTitle       = "Futhark Developer Blog"
+    , feedDescription = "High-performance purely functional data-parallel array programming on the GPU2"
+    , feedAuthorName  = "Troels Henriksen"
+    , feedAuthorEmail = "athas@sigkill.dk"
+    , feedRoot        = "http://futhark-lang.org"
+    }
