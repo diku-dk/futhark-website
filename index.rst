@@ -36,8 +36,8 @@ code, which can be accessed from any language with a basic FFI.
 
 For more information, you can look at `code examples`_, details on
 performance_, our devblog_, or maybe the docs_, which also contains a
-list of our publications_.  You can of course also visit our
-`repository on Github`_, or our repository of `benchmarks`_.
+list of our publications_.  You can of course also visit our `main
+repository on Github`_, or our repository of `benchmarks`_.
 
 .. _OpenCL: https://en.wikipedia.org/wiki/OpenCL
 .. _`code examples`: /examples.html
@@ -48,6 +48,6 @@ list of our publications_.  You can of course also visit our
 .. _PyOpenCL: https://mathema.tician.de/software/pyopencl/
 .. _associative: https://en.wikipedia.org/wiki/Associative_property
 .. _commutative: https://en.wikipedia.org/wiki/Commutative_property
-.. _`on Github`: https://github.com/HIPERFIT/futhark
+.. _`main repository on Github`: https://github.com/HIPERFIT/futhark
 .. _`more on this here`: /blog/2016-04-15-futhark-and-pyopencl.html
 .. _benchmarks: https://github.com/HIPERFIT/futhark-benchmarks
