@@ -26,11 +26,11 @@ We have published a number of papers on Futhark, and hopefully more
 will follow in the future.  They are presented below in reverse
 chronological order.
 
-Design and GPGPU Performance of Futhark’s Redomap Construct (`PDF <publications/array16.pdf>`_)
+Design and GPGPU Performance of Futhark’s Redomap Construct (`PDF (preprint) <publications/array16.pdf>`_)
 -----------------------------------------------------------------------------------------------
 
 .. class:: papermetadata
-Submitted to `ARRAY '16`_ (response pending)
+Accepted for `ARRAY '16`_
 
 A detailed presentation of one of Futhark's internal language
 constructs - ``redomap`` - which is used to represent various forms of
@@ -38,7 +38,7 @@ constructs - ``redomap`` - which is used to represent various forms of
 implemented in both Thrust and Futhark and discuss their relative
 performance.
 
-Gotta Go Fast: An Optimising GPGPU Compiler for a Data-Parallel Purely Functional Language (`PDF <publications/icfp16.pdf>`_)
+Gotta Go Fast: An Optimising GPGPU Compiler for a Data-Parallel Purely Functional Language (`PDF (preprint) <publications/icfp16.pdf>`_)
 -----------------------------------------------------------------------------------------------------------------------------
 
 .. class:: papermetadata
