@@ -5,7 +5,7 @@ title: Docs
 Futhark still suffers from rather spartan documentation.  What we have
 is assembled `at Read the Docs`_.  Among other things, you can find a
 `language overview`_, `language reference`_, and a set of manual
-pages.
+pages.  You can also find instructions on `how to install the Futhark compiler`_.
 
 If there is something you believe should be documented, but is not,
 you are very welcome to report the omission as a bug on our bug
@@ -16,6 +16,7 @@ We also have some Haddock-generated `documentation of the compiler internals`_.
 .. _`at Read the Docs`: https://futhark.readthedocs.org/
 .. _`language overview`: https://futhark.readthedocs.org/en/latest/language-overview.html
 .. _`language reference`: https://futhark.readthedocs.org/en/latest/language-reference.html
+.. _`how to install the Futhark compiler`: https://futhark.readthedocs.io/en/latest/installation.html
 .. _`Get Involved`: /getinvolved.html
 .. _`documentation of the compiler internals`: /haddock/
 
