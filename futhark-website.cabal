@@ -1,0 +1,26 @@
+name:                futhark-website
+version:             1.0
+synopsis:            The Futhark website
+description:         Please see README.md
+homepage:            https://github.com/HIPERFIT/futhark-website#readme
+license:             BSD3
+license-file:        LICENSE
+author:              Troels Henriksen
+maintainer:          athas@sigkill.dk
+category:            Web
+build-type:          Simple
+cabal-version:       >=1.10
+
+executable futhark-website
+  main-is:             site.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base,
+                       filepath,
+                       pandoc,
+                       pandoc-types,
+                       hakyll
+  default-language:    Haskell2010
+
+source-repository head
+  type:     git
+  location: https://github.com/HIPERFIT/futhark-website

@@ -2,7 +2,7 @@
 
 set -e
 
-runhaskell site.hs clean
-runhaskell site.hs build
-runhaskell site.hs deploy
+stack exec futhark-website clean
+stack exec futhark-website build
+stack exec futhark-website deploy
 git push
