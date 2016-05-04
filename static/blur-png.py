@@ -12,7 +12,7 @@ def main(infile, outfile, iterations):
     blurred = b.main(iterations, img)
     # The .get() is to retrieve a Numpy array from the PyOpenCL array
     # being returned.
-    misc.imsave(outfile, blurred.get())
+    misc.imsave(outfile, blurred.get().astype(numpy.uint8))
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Simple Gaussian blur of a PNG file.')
