@@ -13,9 +13,9 @@ tracker.  See the page `Get Involved`_ for more information.
 
 We also have some Haddock-generated `documentation of the compiler internals`_.
 
-.. _`at Read the Docs`: https://futhark.readthedocs.org/
-.. _`language overview`: https://futhark.readthedocs.org/en/latest/language-overview.html
-.. _`language reference`: https://futhark.readthedocs.org/en/latest/language-reference.html
+.. _`at Read the Docs`: https://futhark.readthedocs.io/
+.. _`language overview`: https://futhark.readthedocs.io/en/latest/language-overview.html
+.. _`language reference`: https://futhark.readthedocs.io/en/latest/language-reference.html
 .. _`how to install the Futhark compiler`: https://futhark.readthedocs.io/en/latest/installation.html
 .. _`Get Involved`: /getinvolved.html
 .. _`documentation of the compiler internals`: /haddock/
