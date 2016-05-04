@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import blur
-import png
 import numpy
 from scipy import misc
 import argparse
@@ -11,9 +10,9 @@ def main(infile, outfile, iterations):
     img = misc.imread(infile, mode='RGB')
     (height, width, channels) = img.shape
     blurred = b.main(iterations, img)
-    w = png.Writer(width, height, greyscale=False, alpha=False, bitdepth=8)
-    with open(outfile, 'wb') as f:
-        w.write(f, numpy.reshape(blurred.astype(numpy.uint8), (height, width*3)))
+    # The .get() is to retrieve a Numpy array from the PyOpenCL array
+    # being returned.
+    misc.imsave(outfile, blurred.get())
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Simple Gaussian blur of a PNG file.')
