@@ -66,33 +66,32 @@ using a combination of ``map`` and ``reduce``::
   fun int max(int x, int y) =
     if x > y then x else y
 
-  fun {int,int,int,int} redOp({int,int,int,int} x,
-                              {int,int,int,int} y) =
-    let {mssx, misx, mcsx, tsx} = x in
-    let {mssy, misy, mcsy, tsy} = y in
-    { max(mssx, max(mssy, mcsx + misy))
+  fun (int,int,int,int) redOp((int,int,int,int) x,
+                              (int,int,int,int) y) =
+    let (mssx, misx, mcsx, tsx) = x in
+    let (mssy, misy, mcsy, tsy) = y in
+    ( max(mssx, max(mssy, mcsx + misy))
     , max(misx, tsx+misy)
     , max(mcsy, mcsx+tsy)
-    , tsx + tsy }
+    , tsx + tsy )
 
-  fun {int,int,int,int} mapOp(int x) =
-    { max(x,0), max(x,0), max(x,0), x }
+  fun (int,int,int,int) mapOp(int x) =
+    ( max(x,0), max(x,0), max(x,0), x )
 
   fun int main([int] xs) =
-    let {x, _, _, _} =
-      reduce(redOp, {0,0,0,0}, map(mapOp, xs)) in
+    let (x, _, _, _) =
+      reduce(redOp, (0,0,0,0), map(mapOp, xs)) in
     x
 
-Note that Futhark uses curly braces for tuples.  One interesting
-aspect about this program is that it involves a reduction with an
-operator that is associative_, but not commutative_.  Associativity is
-a requirement for the parallel execution of reductions, but
-commutativity is not required.  Yet, for reasons of implementation
-difficulty, many parallel languages and libraries will malfunction if
-the reduction operator is not commutative.  Futhark supports
-non-commutative operators, as we have found that many interesting
-problems (such as *MSS* above) cannot be solved efficiently with just
-commutative reductions.
+One interesting aspect about this program is that it involves a
+reduction with an operator that is associative_, but not commutative_.
+Associativity is a requirement for the parallel execution of
+reductions, but commutativity is not required.  Yet, for reasons of
+implementation difficulty, many parallel languages and libraries will
+malfunction if the reduction operator is not commutative.  Futhark
+supports non-commutative operators, as we have found that many
+interesting problems (such as *MSS* above) cannot be solved
+efficiently with just commutative reductions.
 
 On a GTX 780 Ti GPU, Futhark can compute the MSS of ten million
 integers in 1.2ms.  Much of the runtine is spent transposing the input
@@ -131,14 +130,14 @@ more convenient to store it as a floating-point number between 0 and
 ``[[f32,cols],rows]`` each.  The result is that we have one array for
 each of the three colour channels::
 
-  fun {[[f32,cols],rows],
+  fun ([[f32,cols],rows],
        [[f32,cols],rows],
-       [[f32,cols],rows]} splitIntoChannels([[[u8,3],cols],rows] image) =
-    unzip(map(fn [{f32,f32,f32},cols] ([[u8,3],cols] row) =>
-                map(fn {f32,f32,f32} ([u8,3] pixel) =>
-                      {f32(pixel[0]) / 255f32,
+       [[f32,cols],rows]) splitIntoChannels([[[u8,3],cols],rows] image) =
+    unzip(map(fn [(f32,f32,f32),cols] ([[u8,3],cols] row) =>
+                map(fn (f32,f32,f32) ([u8,3] pixel) =>
+                      (f32(pixel[0]) / 255f32,
                        f32(pixel[1]) / 255f32,
-                       f32(pixel[2]) / 255f32},
+                       f32(pixel[2]) / 255f32),
                     row),
                 image))
 
@@ -218,12 +217,12 @@ will apply the blurring transformation a user-defined number of times.
 The more iterations we run, the more blurred the image will become::
 
   fun [[[u8,3],cols],rows] main(int iterations, [[[u8,3],cols],rows] image) =
-    let {rs, gs, bs} = splitIntoChannels(image)
-    loop ({rs, gs, bs}) = for i < iterations do
+    let (rs, gs, bs) = splitIntoChannels(image)
+    loop ((rs, gs, bs)) = for i < iterations do
       let rs = blurChannel(rs)
       let gs = blurChannel(gs)
       let bs = blurChannel(bs)
-      in {rs, gs, bs}
+      in (rs, gs, bs)
     in combineChannels(rs, gs, bs)
 
 Our ``main`` function is quite simple.  We split the input image into

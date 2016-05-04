@@ -67,31 +67,31 @@ user-defined types, so we decide to simply represent complex numbers
 as pairs of `f32`s.  We need three operations: dot product,
 multiplication, and addition::
 
-  fun f32 dot({f32,f32} c) =
-    let {r, i} = c
+  fun f32 dot((f32,f32) c) =
+    let (r, i) = c
     in r * r + i * i
 
-  fun {f32,f32} multComplex({f32,f32} x, {f32,f32} y) =
-    let {a, b} = x
-    let {c, d} = y
-    in {a*c - b * d,
-        a*d + b * c}
+  fun (f32,f32) multComplex((f32,f32) x, (f32,f32) y) =
+    let (a, b) = x
+    let (c, d) = y
+    in (a*c - b * d,
+        a*d + b * c)
 
-  fun {f32,f32} addComplex({f32,f32} x, {f32,f32} y) =
-    let {a, b} = x
-    let {c, d} = y
-    in {a + c,
-        b + d}
+  fun (f32,f32) addComplex((f32,f32) x, (f32,f32) y) =
+    let (a, b) = x
+    let (c, d) = y
+    in (a + c,
+        b + d)
 
 We can now define the core function that determines whether a given
 point on the complex plane is part of the Mandelbrot set.  We do this
 by defining a function ``divergence`` that returns the iteration at
 which the loop diverges (or the limit, ``depth``, if it does not)::
 
-  fun int divergence(int depth, {f32,f32} c0) =
-    loop ({c, i} = {c0, 0}) = while i < depth && dot(c) < 4.0 do
-      {addComplex(c0, multComplex(c, c)),
-      i + 1}
+  fun int divergence(int depth, (f32,f32) c0) =
+    loop ((c, i) = (c0, 0)) = while i < depth && dot(c) < 4.0 do
+      (addComplex(c0, multComplex(c, c)),
+      i + 1)
     in i
 
 The ``mandelbrot`` function returns the divergence point for the
@@ -104,8 +104,8 @@ plane::
     let sizey = ymax - ymin
     in map(fn [int,screenX] (int y) =>
              map (fn int (int x) =>
-                    let c0 = {xmin + (f32(x) * sizex) / f32(screenX),
-                              ymin + (f32(y) * sizey) / f32(screenY)}
+                    let c0 = (xmin + (f32(x) * sizex) / f32(screenX),
+                              ymin + (f32(y) * sizey) / f32(screenY))
                     in divergence(depth, c0),
                   iota(screenX)),
            iota(screenY))
@@ -176,7 +176,8 @@ which we pass to the method::
   miny=-1.15
   maxx=0.83
   maxy=1.15
-  fut_image=m.main(width, height, limit, minx, miny, maxx, maxy)
+  # The .get() is to obtain a Numpy array instead of a PyOpenCL array.
+  fut_image=m.main(width, height, limit, minx, miny, maxx, maxy).get()
 
 The result value is stored in the variable ``fut_image``.  Since we
 declared the return type of ``main`` to be
@@ -221,7 +222,7 @@ parameters of types ``[[f64]]``, ``[int]`` and ``bool`` will be
 translated into a Python method accepting a two-dimensional Numpy
 array of ``numpy.double``s, a one-dimensional array of ``numpy.int``s,
 and a single ``numpy.bool``.  And if the Futhark function returns
-``{[int], f64}``, the Python method will return a tuple of two values:
+``([int], f64)``, the Python method will return a tuple of two values:
 a Numpy array of integers and a Numpy double-precision float.
 
 Things are more complicated when the entry point accepts or returns
@@ -229,12 +230,12 @@ types that do not correspond easily to Numpy types.  Actually, the
 reason is that the generated code makes use of Futhark's internal
 value representation, but I'm happy to blame Numpy instead.  For
 example, a function that accepts an array of pairs
-(e.g. ``[{int,f32}]``) will be turned into a method that accepts two
+(e.g. ``[(int,f32)]``) will be turned into a method that accepts two
 arrays: one of integers and one of floats.  Similarly, all tuples are
 flattened.  This not only means that a Futhark function returning
-``{int, {f32, f32}}`` will be turned into a Python method returning a
+``(int, (f32, f32))`` will be turned into a Python method returning a
 tuple with three elements.  It also means that a Futhark function
-taking an argument of type ``{f32,f32}`` will be turned into a Python
+taking an argument of type ``(f32,f32)`` will be turned into a Python
 method accepting *two* arguments, each being a float.
 
 The best workaround is to only use simple types in entry point

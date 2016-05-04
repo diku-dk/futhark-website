@@ -14,7 +14,8 @@ minx=-2.23
 miny=-1.15
 maxx=0.83
 maxy=1.15
-fut_image=m.main(width, height, limit, minx, miny, maxx, maxy)
+# The .get() is to obtain a Numpy array instead of a PyOpenCL array.
+fut_image=m.main(width, height, limit, minx, miny, maxx, maxy).get()
 
 # Futhark gives us an array of 32-bit integers encoding the color,
 # but the PNG writer expects each colour channel to be separate.
