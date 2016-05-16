@@ -139,10 +139,10 @@ We can test our code by compiling it to a standalone program::
   [[0i32, 395790i32, 593685i32], [0i32, 0i32, 0i32]]
 
 Of course, it is not very satisfying to look at fractals as arrays of
-numerically encoded pixel values.  Hence, we pass ``--module`` to
+numerically encoded pixel values.  Hence, we pass ``--library`` to
 ``futhark-pyopencl``::
 
-  $ futhark-pyopencl --module mandelbrot.fut
+  $ futhark-pyopencl --library mandelbrot.fut
 
 This produces a file ``mandelbrot.py`` defining a single Python class
 ``mandelbrot``, which we can access from ordinary Python code, as

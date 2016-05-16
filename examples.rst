@@ -254,7 +254,7 @@ more useful by writing a small Python wrapper program for reading and
 writing PNGs: `blur-png.py </static/blur-png.py>`_.  We must compile
 ``blur.fut`` using the PyOpenCL backend::
 
-  $ futhark-pyopencl --module blur.fut
+  $ futhark-pyopencl --library blur.fut
 
 This produces a Python module ``blur.py`` which is then imported by
 ``blur-png.py``.  We can try it out on any PNG image, say, this
