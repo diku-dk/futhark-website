@@ -13,7 +13,7 @@ where Futhark lies in the performance space.  This is done by
 comparing performance on fairly simple programs to hand-written
 implementations or other high-quality GPU languages or libraries.
 Such comparisons mostly exercise the efficiency of basic language
-constructs; these programs are too small and simple to benefit from
+constructs.  These programs are too small and simple to benefit from
 the ability of the Futhark compiler to significantly restructure the
 original program and its data representations through *loop fusion*
 and the like.
