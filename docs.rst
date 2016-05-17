@@ -27,7 +27,7 @@ We have published a number of papers on Futhark, and hopefully more
 will follow in the future.  They are presented below in reverse
 chronological order.
 
-Design and GPGPU Performance of Futhark’s Redomap Construct (`PDF (preprint) <publications/array16.pdf>`_)
+Design and GPGPU Performance of Futhark’s Redomap Construct (`PDF <publications/array16.pdf>`_)
 ----------------------------------------------------------------------------------------------------------
 
 .. class:: papermetadata
