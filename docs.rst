@@ -43,7 +43,7 @@ Gotta Go Fast: An Optimising GPGPU Compiler for a Data-Parallel Purely Functiona
 ----------------------------------------------------------------------------------------------------------------------------------------
 
 .. class:: papermetadata
-Submitted to `ICFP '16`_ (response pending)
+Submitted to `ICFP '16`_ (not accepted)
 
 This is the first paper in which we present performance figures for
 our parallel code generator.  We compare the performance of Futhark to
