@@ -40,10 +40,10 @@ fun f32 amb_temp() = 80.0
 -- Single iteration of the transient solver in the grid model.
 -- advances the solution of the discretized difference equations by
 -- one time step
-fun [[f32]] single_iteration([[f32,col],row] temp, [[f32,col],row] power,
+fun [][]f32 single_iteration([row][col]f32 temp, [row][col]f32 power,
                               f32 Cap, f32 Rx, f32 Ry, f32 Rz,
                               f32 step) =
-  map (fn [f32] (int r) =>
+  map (fn []f32 (int r) =>
          map(fn f32 (int c) =>
                let delta =
                  (step / Cap) *
@@ -84,7 +84,7 @@ fun [[f32]] single_iteration([[f32,col],row] temp, [[f32,col],row] power,
 -- Transient solver driver routine: simply converts the heat transfer
 -- differential equations to difference equations and solves the
 -- difference equations by iterating
-fun [[f32]] compute_tran_temp(int num_iterations, [[f32,col],row] temp, [[f32,col],row] power) =
+fun [][]f32 compute_tran_temp(int num_iterations, []row[col]f32 temp, []row[col]f32 power) =
   let grid_height = chip_height() / f32(row) in
   let grid_width = chip_width() / f32(col) in
   let Cap = factor_chip() * spec_heat_si() * t_chip() * grid_width * grid_height in
@@ -97,5 +97,5 @@ fun [[f32]] compute_tran_temp(int num_iterations, [[f32,col],row] temp, [[f32,co
     single_iteration(temp, power, Cap, Rx, Ry, Rz, step) in
   temp
 
-fun [[f32]] main(int num_iterations, [[f32,col],row] temp, [[f32,col],row] power) =
+fun [][]f32 main(int num_iterations, [row][col]f32 temp, [row][col]f32 power) =
   compute_tran_temp(num_iterations, temp, power)

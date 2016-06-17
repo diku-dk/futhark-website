@@ -98,11 +98,11 @@ The ``mandelbrot`` function returns the divergence point for the
 complex number corresponding to a pixel in a given view of the complex
 plane::
 
-  fun [[int,screenX],screenY] mandelbrot(int screenX, int screenY, int depth,
-                                         f32 xmin, f32 ymin, f32 xmax, f32 ymax) =
+  fun [screenY][screenX]int mandelbrot(int screenX, int screenY, int depth,
+                                       f32 xmin, f32 ymin, f32 xmax, f32 ymax) =
     let sizex = xmax - xmin
     let sizey = ymax - ymin
-    in map(fn [int,screenX] (int y) =>
+    in map(fn [screenX]int (int y) =>
              map (fn int (int x) =>
                     let c0 = (xmin + (f32(x) * sizex) / f32(screenX),
                               ymin + (f32(y) * sizey) / f32(screenY))
@@ -125,10 +125,10 @@ not used)::
 Finally we tie it all together - the ``main`` function computes the
 point of divergence for each pixel, then colours them::
 
-  fun [[int,screenX],screenY] main(int screenX, int screenY, int depth,
-                                   f32 xmin, f32 ymin, f32 xmax, f32 ymax) =
+  fun [screenY][screenX]int main(int screenX, int screenY, int depth,
+                                 f32 xmin, f32 ymin, f32 xmax, f32 ymax) =
     let escapes = mandelbrot(screenX, screenY, depth, xmin, ymin, xmax, ymax)
-    in map(fn [int,screenX] ([int] row) =>
+    in map(fn [screenX]int ([]int row) =>
              map(escapeToColour(depth), row),
            escapes)
 
@@ -181,7 +181,7 @@ which we pass to the method::
 
 The result value is stored in the variable ``fut_image``.  Since we
 declared the return type of ``main`` to be
-``[[int,screenX],screenY]``, the returned value will be a
+``[screenY][screenX]int``, the returned value will be a
 two-dimensional Numpy array of shape ``(width,height)``.  We cannot
 pass this directly to the ``png`` library, as it expects a
 three-dimensional array explicitly encoding the different colour
@@ -218,11 +218,11 @@ generated class.  An entry point is any function named ``text``, as
 well as any function defined using the keyword ``entry`` instead of
 ``fun``.  In most cases, the type of the Futhark function maps easily
 to the Python world.  For example, a Futhark function accepting three
-parameters of types ``[[f64]]``, ``[int]`` and ``bool`` will be
+parameters of types ``[][]f64``, ``[]int`` and ``bool`` will be
 translated into a Python method accepting a two-dimensional Numpy
 array of ``numpy.double``s, a one-dimensional array of ``numpy.int``s,
 and a single ``numpy.bool``.  And if the Futhark function returns
-``([int], f64)``, the Python method will return a tuple of two values:
+``([]int, f64)``, the Python method will return a tuple of two values:
 a Numpy array of integers and a Numpy double-precision float.
 
 Things are more complicated when the entry point accepts or returns
@@ -230,7 +230,7 @@ types that do not correspond easily to Numpy types.  Actually, the
 reason is that the generated code makes use of Futhark's internal
 value representation, but I'm happy to blame Numpy instead.  For
 example, a function that accepts an array of pairs
-(e.g. ``[(int,f32)]``) will be turned into a method that accepts two
+(e.g. ``[](int,f32)``) will be turned into a method that accepts two
 arrays: one of integers and one of floats.  Similarly, all tuples are
 flattened.  This not only means that a Futhark function returning
 ``(int, (f32, f32))`` will be turned into a Python method returning a

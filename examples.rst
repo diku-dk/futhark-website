@@ -78,7 +78,7 @@ using a combination of ``map`` and ``reduce``::
   fun (int,int,int,int) mapOp(int x) =
     ( max(x,0), max(x,0), max(x,0), x )
 
-  fun int main([int] xs) =
+  fun int main([]int xs) =
     let (x, _, _, _) =
       reduce(redOp, (0,0,0,0), map(mapOp, xs))
     in x
@@ -120,21 +120,21 @@ it works and performs well.  Let's look at how to implement a simple
 image blurring program.
 
 We will represent an image as a three-dimensional array
-``[[[u8,3],cols],rows]``.  The innermost size-3 dimension encodes the
+``[rows][cols][3]u8``.  The innermost size-3 dimension encodes the
 three colour channels for red, green, and blue, respectively.  When
 blurring, it is useful to operate on each colour channel separately.
 Furthermore, instead of the colour being a number from 0 to 255, it is
 more convenient to store it as a floating-point number between 0 and
 1.0.  Therefore, we define a function that transforms an array of type
-``[[[u8,3],cols],rows]`` into three arrays of type
-``[[f32,cols],rows]`` each.  The result is that we have one array for
+``[rows][cols][3]u8`` into three arrays of type
+``[rows][cols]f32`` each.  The result is that we have one array for
 each of the three colour channels::
 
-  fun ([[f32,cols],rows],
-       [[f32,cols],rows],
-       [[f32,cols],rows]) splitIntoChannels([[[u8,3],cols],rows] image) =
-    unzip(map(fn [(f32,f32,f32),cols] ([[u8,3],cols] row) =>
-                map(fn (f32,f32,f32) ([u8,3] pixel) =>
+  fun ([rows][cols]f32,
+       [rows][cols]f32,
+       [rows][cols]f32) splitIntoChannels([rows][cols][3]u8 image) =
+    unzip(map(fn []cols(f32,f32,f32) ([cols][3]u8 row) =>
+                map(fn (f32,f32,f32) ([3]u8 pixel) =>
                       (f32(pixel[0]) / 255f32,
                        f32(pixel[1]) / 255f32,
                        f32(pixel[2]) / 255f32),
@@ -144,7 +144,7 @@ each of the three colour channels::
 This is fairly verbose, although mostly because we are forced to
 repeat the types a number of times.  Futhark does not yet support type
 aliases, but we are working on it.  The function just maps across each
-inner ``[u8,3]`` element, turns this into a triple instead of a
+inner ``[3]u8`` element, turns this into a triple instead of a
 three-element array, then uses ``unzip`` to turn the resulting
 array-of-triples into a triple-of-arrays, which is then returned.
 
@@ -152,13 +152,13 @@ We will also need to re-combine the colour channel arrays into a
 single array.  That function looks like this - again unfortunately
 verbose::
 
-  fun [[[u8,3],cols],rows] combineChannels([[f32,cols],rows] rs,
-                                           [[f32,cols],rows] gs,
-                                           [[f32,cols],rows] bs) =
-    zipWith(fn [[u8,3],cols] ([f32,cols] rs_row,
-                              [f32,cols] gs_row,
-                              [f32,cols] bs_row) =>
-              zipWith(fn [u8,3] (f32 r, f32 g, f32 b) =>
+  fun [rows][cols][3]u8 combineChannels([rows][cols]f32 rs,
+                                        [rows][cols]f32 gs,
+                                        [rows][cols]f32 bs) =
+    zipWith(fn [cols][3]u8 ([cols]f32 rs_row,
+                            [cols]f32 gs_row,
+                            [cols]f32 bs_row) =>
+              zipWith(fn [3]u8 (f32 r, f32 g, f32 b) =>
                         [u8(r * 255f32),
                          u8(g * 255f32),
                          u8(b * 255f32)],
@@ -170,7 +170,7 @@ the function we wish to apply to every pixel in the image.  For
 blurring, we will take the average value of the pixel itself plus each
 of its eight neighbors (nine values in total)::
 
-  fun f32 newValue([[f32,cols],rows] image, int row, int col) =
+  fun f32 newValue([rows][cols]f32 image, int row, int col) =
     unsafe
     let sum =
       image[row-1,col-1] + image[row-1,col] + image[row-1,col+1] +
@@ -195,8 +195,8 @@ Now we can write the actual stencil function, which applies
 ``newValue`` to every inner element of a colour channel array.  The
 edges are left unchanged::
 
-  fun [[f32,cols],rows] blurChannel([[f32,cols],rows] channel) =
-    map(fn [f32,cols] (int row) =>
+  fun [rows][cols]f32 blurChannel([rows][cols]f32 channel) =
+    map(fn [cols]f32 (int row) =>
           map(fn f32 (int col) =>
                 if row > 0 && row < rows-1 && col > 0 && col < cols-1
                 then newValue(channel, row, col)
@@ -216,7 +216,7 @@ applying the stencil several times.  Our program is no different - we
 will apply the blurring transformation a user-defined number of times.
 The more iterations we run, the more blurred the image will become::
 
-  fun [[[u8,3],cols],rows] main(int iterations, [[[u8,3],cols],rows] image) =
+  fun [rows][cols][3]u8 main(int iterations, [rows][cols][3]u8 image) =
     let (rs, gs, bs) = splitIntoChannels(image)
     loop ((rs, gs, bs)) = for i < iterations do
       let rs = blurChannel(rs)

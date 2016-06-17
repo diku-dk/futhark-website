@@ -98,7 +98,7 @@ It then sets up PyGame::
 where ``size`` is a tuple of ``(width, height)``.  We then generate a
 NumPy array of random initial states::
 
-  initworld = numpy.random.choice([True, False], size=size)
+  initworld = numpy.random.choice([True,False], size=size)
 
 A NumPy array can be used as an argument to an entry point function in
 a Futhark-generated Python module.  In this case, we use the NumPy
