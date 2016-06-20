@@ -27,6 +27,20 @@ We have published a number of papers on Futhark, and hopefully more
 will follow in the future.  They are presented below in reverse
 chronological order.
 
+APL on GPUs - A TAIL from the Past, Scribbled in Futhark (`PDF (preprint) <publications/fhpc16.pdf>`_)
+------------------------------------------------------------------------------------------------------
+
+.. class:: papermetadata
+Submitted to `FHPC '16`_
+
+A paper describing an APL compiler (`apltail`_) that operates by
+translating APL into a *typed array intermediate language* (*TAIL*),
+and from there into Futhark.  While the Futhark details are light, the
+paper demonstrates a simple use of Futhark as a target language for a
+compiler.  We succeed in achieving decent speedup on several (small)
+APL programs.  The `accompanying benchmark suite
+<https://github.com/HIPERFIT/futhark-fhpc16>`_ may be worth a look.
+
 Design and GPGPU Performance of Futhark’s Redomap Construct (`PDF <publications/array16.pdf>`_)
 ----------------------------------------------------------------------------------------------------------
 
@@ -98,6 +112,8 @@ does it describe horisontal fusion.
 
 .. _`FHPC '13`: http://hiperfit.dk/fhpc13.html
 .. _`FHPC '14`: https://sites.google.com/site/fhpcworkshops/fhpc-2014
+.. _`FHPC '16`: https://sites.google.com/site/fhpcworkshops/fhpc-2016
 .. _`ARRAY '14`: http://www.sable.mcgill.ca/array/2014/
 .. _`ICFP '16`: http://conf.researchr.org/home/icfp-2016
 .. _`ARRAY '16`: http://conf.researchr.org/track/pldi-2016/ARRAY-2016
+.. _`apltail`: https://github.com/melsman/apltail/
