@@ -58,7 +58,7 @@ explicit.  From there, it turns out to be a relatively straightforward
 task to implement a `compiler from TAIL to Futhark`_, which ultimately
 results in a compilation pipeline from APL to optimised GPU code.  We
 have summarised our work in a paper submitted to `FHPC'16`_ (`preprint
-<publications/fhpc16.pdf>`_).
+</publications/fhpc16.pdf>`_).
 
 This work is interesting for two reasons: first, it enables a level of
 high-performance programming in APL that has been hard to achieve
