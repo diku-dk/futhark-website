@@ -80,4 +80,4 @@ for various different languages.
 .. _`K programming language`: http://kparc.com/
 .. _`apltail`: https://github.com/melsman/apltail/
 .. _`compiler from TAIL to Futhark`: https://github.com/henrikurms/tail2futhark
-.. _`FHPC '16`: https://sites.google.com/site/fhpcworkshops/fhpc-2016
+.. _`FHPC'16`: https://sites.google.com/site/fhpcworkshops/fhpc-2016
