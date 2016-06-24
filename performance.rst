@@ -100,7 +100,7 @@ complicated edge conditions.
 
 It is a bit of a curiosity that Futhark is a *constant* amount slower
 than the Rodinia implementation (about 5-6ms), no matter the dataset
-size.  One likely reason is that Futhark also measures the cost
+size.  One likely reason is that Futhark also measures the cost of
 allocating intermediate arrays, which is not the case for the Rodinia
 implementation.
 
