@@ -33,7 +33,7 @@ Sum (`Futhark <benchmarks/programs/sum.fut>`_, `Thrust <benchmarks/programs/sum.
    :class: performance_graph
 
 This program simply sums an array of integers.  We compare the Futhark
-code to Thrust_, which is a very high-quality C++ library developed by
+code to Thrust_, which is a high-quality C++ library developed by
 NVIDIA (now maintained as an open source project) for GPU programming
 in a high-level STL-like style.  This program resides in a Thrust
 sweet spot, as it can be expressed as a single reduction with a simple
