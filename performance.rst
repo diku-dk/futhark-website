@@ -12,11 +12,11 @@ fastest language ever, but instead attempt to give an intuition of
 where Futhark lies in the performance space.  This is done by
 comparing performance on fairly simple programs to hand-written
 implementations or other high-quality GPU languages or libraries.
-Such comparisons mostly exercise the efficiency of basic language
-constructs.  These programs are too small and simple to benefit from
-the ability of the Futhark compiler to significantly restructure the
-original program and its data representations through *loop fusion*
-and the like.
+Unfortunately, such comparisons mostly exercise the efficiency of
+basic language constructs.  These programs are too small and simple to
+benefit from the ability of the Futhark compiler to significantly
+restructure the original program and its data representations through
+*loop fusion* and the like.
 
 The graphs show input size on the *x*-axis, and the resulting runtime
 in microseconds on the *y*-axis.  All runtimes are averaged over a
@@ -33,14 +33,13 @@ Sum (`Futhark <benchmarks/programs/sum.fut>`_, `Thrust <benchmarks/programs/sum.
    :class: performance_graph
 
 This program simply sums an array of integers.  We compare the Futhark
-code to Thrust_, which is a high-quality C++ library developed by
-NVIDIA (now maintained as an open source project) for GPU programming
-in a high-level STL-like style.  This program resides in a Thrust
-sweet spot, as it can be expressed as a single reduction with a simple
-operator.  Thrust has well-implemented basic primitives, which means
-that matching it in performance on simple programs is a satisfying
-result.  The sequential runtime is for Futhark code compiled to
-sequential CPU code.
+code to Thrust_, a C++ library developed by NVIDIA (now maintained as
+an open source project) for GPU programming in a high-level STL-like
+style.  This program resides in a Thrust sweet spot, as it can be
+expressed as a single reduction with a simple operator.  Thrust has
+well-implemented basic primitives, which means that matching it in
+performance on simple programs is a satisfying result.  The sequential
+runtime is for Futhark code compiled to sequential CPU code.
 
 MSS (`Futhark <benchmarks/programs/mss.fut>`_, `Thrust <benchmarks/programs/mss.cu>`_)
 ------------------------------------------------------------------------------------------------
@@ -98,10 +97,10 @@ Concretely, HotSpot is a rank-1 2D stencil code.  The implementation
 in Futhark is similar to our `stencil example`_, although with more
 complicated edge conditions.
 
-It is a bit of a curiosity that Futhark is a *constant* amount slower
-than the Rodinia implementation (about 5-6ms), no matter the dataset
-size.  One likely reason is that Futhark also measures the cost of
-allocating intermediate arrays, which is not the case for the Rodinia
+It is a bit curious that Futhark is a *constant* amount slower than
+the Rodinia implementation (about 5-6ms), no matter the dataset size.
+One likely reason is that Futhark also measures the cost of allocating
+intermediate arrays, which is not the case for the Rodinia
 implementation.
 
 One known overhead in the Futhark implementation is an unnecessary
