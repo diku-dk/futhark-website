@@ -94,7 +94,7 @@ interesting problems (such as *MSS* above) cannot be solved
 efficiently with just commutative reductions.
 
 On a GTX 780 Ti GPU, Futhark can compute the MSS of ten million
-integers in 1.2ms.  Much of the runtine is spent transposing the input
+integers in 1.2ms.  Much of the runtime is spent transposing the input
 array in order to ensure optimal memory access patterns during the
 actual reduction, which is necessary when compiling non-commutative
 reductions.  The performance benefit compared to just using a scan
