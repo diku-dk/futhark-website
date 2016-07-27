@@ -53,19 +53,6 @@ constructs - ``redomap`` - which is used to represent various forms of
 implemented in both Thrust and Futhark and discuss their relative
 performance.
 
-Gotta Go Fast: An Optimising GPGPU Compiler for a Data-Parallel Purely Functional Language (`PDF (preprint) <publications/icfp16.pdf>`_)
-----------------------------------------------------------------------------------------------------------------------------------------
-
-.. class:: papermetadata
-Submitted to `ICFP '16`_ (not accepted)
-
-This is the first paper in which we present performance figures for
-our parallel code generator.  We compare the performance of Futhark to
-Accelerate and hand-written C with OpenCL and obtain very decent
-results.  We also describe the uniqueness type system, kernel
-extraction, fusion, and efficient sequentialisation.  A dense paper,
-but it contains a lot of information on our compilation process.
-
 Size Slicing - A Hybrid Approach to Size Inference in Futhark (`PDF <publications/fhpc14.pdf>`_)
 ------------------------------------------------------------------------------------------------
 
