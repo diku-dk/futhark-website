@@ -130,16 +130,16 @@ more convenient to store it as a floating-point number between 0 and
 ``[rows][cols]f32`` each.  The result is that we have one array for
 each of the three colour channels::
 
-fun splitIntoChannels(image: [rows][cols][3]u8): ([rows][cols]f32,
-                                                  [rows][cols]f32,
-                                                  [rows][cols]f32) =
-  unzip(map(fn (row: [cols][3]u8): [cols](f32,f32,f32)  =>
-              map(fn (pixel: [3]u8): (f32,f32,f32)  =>
-                    (f32(pixel[0]) / 255f32,
-                     f32(pixel[1]) / 255f32,
-                     f32(pixel[2]) / 255f32),
-                  row),
-            image))
+  fun splitIntoChannels(image: [rows][cols][3]u8): ([rows][cols]f32,
+                                                    [rows][cols]f32,
+                                                    [rows][cols]f32) =
+    unzip(map(fn (row: [cols][3]u8): [cols](f32,f32,f32)  =>
+                map(fn (pixel: [3]u8): (f32,f32,f32)  =>
+                      (f32(pixel[0]) / 255f32,
+                       f32(pixel[1]) / 255f32,
+                       f32(pixel[2]) / 255f32),
+                    row),
+              image))
 
 This is fairly verbose, although mostly because we are forced to
 repeat the types a number of times.  Futhark does not yet support type
@@ -152,18 +152,18 @@ We will also need to re-combine the colour channel arrays into a
 single array.  That function looks like this - again unfortunately
 verbose::
 
-fun combineChannels(rs: [rows][cols]f32,
-                    gs: [rows][cols]f32,
-                    bs: [rows][cols]f32): [rows][cols][3]u8 =
-  zipWith(fn (rs_row: [cols]f32,
-              gs_row: [cols]f32,
-              bs_row: [cols]f32): [cols][3]u8  =>
-            zipWith(fn (r: f32, g: f32, b: f32): [3]u8  =>
-                      [u8(r * 255f32),
-                       u8(g * 255f32),
-                       u8(b * 255f32)],
-                    rs_row, gs_row, bs_row),
-          rs, gs, bs)
+  fun combineChannels(rs: [rows][cols]f32,
+                      gs: [rows][cols]f32,
+                      bs: [rows][cols]f32): [rows][cols][3]u8 =
+    zipWith(fn (rs_row: [cols]f32,
+                gs_row: [cols]f32,
+                bs_row: [cols]f32): [cols][3]u8  =>
+              zipWith(fn (r: f32, g: f32, b: f32): [3]u8  =>
+                        [u8(r * 255f32),
+                         u8(g * 255f32),
+                         u8(b * 255f32)],
+                      rs_row, gs_row, bs_row),
+            rs, gs, bs)
 
 Another thing we will need is the actual stencil function.  That is,
 the function we wish to apply to every pixel in the image.  For
