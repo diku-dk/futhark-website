@@ -99,7 +99,7 @@ complex number corresponding to a pixel in a given view of the complex
 plane::
 
   fun mandelbrot(screenX: int, screenY: int, depth: int,
-                                       xmin: f32, ymin: f32, xmax: f32, ymax: f32): [screenY][screenX]int =
+                 xmin: f32, ymin: f32, xmax: f32, ymax: f32): [screenY][screenX]int =
     let sizex = xmax - xmin
     let sizey = ymax - ymin
     in map(fn (y: int): [screenX]int  =>
@@ -126,7 +126,7 @@ Finally we tie it all together - the ``main`` function computes the
 point of divergence for each pixel, then colours them::
 
   fun main(screenX: int, screenY: int, depth: int,
-                                 xmin: f32, ymin: f32, xmax: f32, ymax: f32): [screenY][screenX]int =
+           xmin: f32, ymin: f32, xmax: f32, ymax: f32): [screenY][screenX]int =
     let escapes = mandelbrot(screenX, screenY, depth, xmin, ymin, xmax, ymax)
     in map(fn (row: []int): [screenX]int  =>
              map(escapeToColour(depth), row),
