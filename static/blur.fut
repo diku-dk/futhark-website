@@ -8,8 +8,8 @@ fun splitIntoChannels(image: [rows][cols][3]u8): ([rows][cols]f32,
   -- unzip to turn it into a triple of arrays.  Due to the way the
   -- Futhark compiler represents arrays in the generated code, zip and
   -- unzip are entirely free.
-  unzip(map(fn (row: [cols][3]u8): [cols](f32,f32,f32)  =>
-              map(fn (pixel: [3]u8): (f32,f32,f32)  =>
+  unzip(map(fn (row) =>
+              map(fn (pixel) =>
                     (f32(pixel[0]) / 255f32,
                      f32(pixel[1]) / 255f32,
                      f32(pixel[2]) / 255f32),
@@ -20,10 +20,8 @@ fun splitIntoChannels(image: [rows][cols][3]u8): ([rows][cols]f32,
 fun combineChannels(rs: [rows][cols]f32,
                     gs: [rows][cols]f32,
                     bs: [rows][cols]f32): [rows][cols][3]u8 =
-  zipWith(fn (rs_row: [cols]f32,
-              gs_row: [cols]f32,
-              bs_row: [cols]f32): [cols][3]u8  =>
-            zipWith(fn (r: f32, g: f32, b: f32): [3]u8  =>
+  zipWith(fn (rs_row, gs_row, bs_row) =>
+            zipWith(fn (r,g,b)  =>
                       [u8(r * 255f32),
                        u8(g * 255f32),
                        u8(b * 255f32)],
@@ -48,8 +46,8 @@ fun newValue(image: [rows][cols]f32, row: int, col: int): f32 =
 -- The actual stencil: call newValue on every pixel in the interior,
 -- leaving the edges unchanged.
 fun blurChannel(channel: [rows][cols]f32): [rows][cols]f32 =
-  map(fn (row: int): [cols]f32  =>
-        map(fn (col: int): f32  =>
+  map(fn (row) =>
+        map(fn (col) =>
               if row > 0 && row < rows-1 && col > 0 && col < cols-1
               then newValue(channel, row, col)
               else channel[row,col],

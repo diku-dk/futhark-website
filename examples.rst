@@ -133,32 +133,31 @@ each of the three colour channels::
   fun splitIntoChannels(image: [rows][cols][3]u8): ([rows][cols]f32,
                                                     [rows][cols]f32,
                                                     [rows][cols]f32) =
-    unzip(map(fn (row: [cols][3]u8): [cols](f32,f32,f32)  =>
-                map(fn (pixel: [3]u8): (f32,f32,f32)  =>
+    unzip(map(fn (row) =>
+                map(fn (pixel) =>
                       (f32(pixel[0]) / 255f32,
                        f32(pixel[1]) / 255f32,
                        f32(pixel[2]) / 255f32),
                     row),
               image))
 
-This is fairly verbose, although mostly because we are forced to
-repeat the types a number of times.  Futhark does not yet support type
-aliases, but we are working on it.  The function just maps across each
-inner ``[3]u8`` element, turns this into a triple instead of a
+The function ``splitIntoChannels`` maps across each inner ``[3]u8``
+element (``pixel``), turns this into a triple instead of a
 three-element array, then uses ``unzip`` to turn the resulting
-array-of-triples into a triple-of-arrays, which is then returned.
+array-of-triples into a triple-of-arrays, which is then returned.  For
+readability, we could have chosen to explicitly indicate the return
+and parameter types of the anonymous function, but in the interest of
+brevity we have left them for the compiler to infer.  It is only
+required to explicitly indicate the types of all top-level functions.
 
 We will also need to re-combine the colour channel arrays into a
-single array.  That function looks like this - again unfortunately
-verbose::
+single array.  That function looks like this::
 
   fun combineChannels(rs: [rows][cols]f32,
                       gs: [rows][cols]f32,
                       bs: [rows][cols]f32): [rows][cols][3]u8 =
-    zipWith(fn (rs_row: [cols]f32,
-                gs_row: [cols]f32,
-                bs_row: [cols]f32): [cols][3]u8  =>
-              zipWith(fn (r: f32, g: f32, b: f32): [3]u8  =>
+    zipWith(fn (rs_row, gs_row, bs_row) =>
+              zipWith(fn (r, g, b) =>
                         [u8(r * 255f32),
                          u8(g * 255f32),
                          u8(b * 255f32)],
@@ -196,8 +195,8 @@ Now we can write the actual stencil function, which applies
 edges are left unchanged::
 
   fun blurChannel(channel: [rows][cols]f32): [rows][cols]f32 =
-    map(fn (row: int): [cols]f32  =>
-          map(fn (col: int): f32  =>
+    map(fn (row) =>
+          map(fn (col) =>
                 if row > 0 && row < rows-1 && col > 0 && col < cols-1
                 then newValue(channel, row, col)
                 else channel[row,col],
