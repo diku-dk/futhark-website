@@ -67,17 +67,17 @@ user-defined types, so we decide to simply represent complex numbers
 as pairs of `f32`s.  We need three operations: dot product,
 multiplication, and addition::
 
-  fun f32 dot((f32,f32) c) =
+  fun dot(c: (f32,f32)): f32 =
     let (r, i) = c
     in r * r + i * i
 
-  fun (f32,f32) multComplex((f32,f32) x, (f32,f32) y) =
+  fun multComplex(x: (f32,f32), y: (f32,f32)): (f32,f32) =
     let (a, b) = x
     let (c, d) = y
     in (a*c - b * d,
         a*d + b * c)
 
-  fun (f32,f32) addComplex((f32,f32) x, (f32,f32) y) =
+  fun addComplex(x: (f32,f32), y: (f32,f32)): (f32,f32) =
     let (a, b) = x
     let (c, d) = y
     in (a + c,
@@ -88,7 +88,7 @@ point on the complex plane is part of the Mandelbrot set.  We do this
 by defining a function ``divergence`` that returns the iteration at
 which the loop diverges (or the limit, ``depth``, if it does not)::
 
-  fun int divergence(int depth, (f32,f32) c0) =
+  fun divergence(depth: int, c0: (f32,f32)): int =
     loop ((c, i) = (c0, 0)) = while i < depth && dot(c) < 4.0 do
       (addComplex(c0, multComplex(c, c)),
       i + 1)
@@ -98,12 +98,12 @@ The ``mandelbrot`` function returns the divergence point for the
 complex number corresponding to a pixel in a given view of the complex
 plane::
 
-  fun [screenY][screenX]int mandelbrot(int screenX, int screenY, int depth,
-                                       f32 xmin, f32 ymin, f32 xmax, f32 ymax) =
+  fun mandelbrot(screenX: int, screenY: int, depth: int,
+                                       xmin: f32, ymin: f32, xmax: f32, ymax: f32): [screenY][screenX]int =
     let sizex = xmax - xmin
     let sizey = ymax - ymin
-    in map(fn [screenX]int (int y) =>
-             map (fn int (int x) =>
+    in map(fn (y: int): [screenX]int  =>
+             map (fn (x: int): int  =>
                     let c0 = (xmin + (f32(x) * sizex) / f32(screenX),
                               ymin + (f32(y) * sizey) / f32(screenY))
                     in divergence(depth, c0),
@@ -114,7 +114,7 @@ Given the point of divergence for a pixel, we can decide on a colour,
 which is encoded as RGB within a 32-bit integer (the alpha channel is
 not used)::
 
-  fun int escapeToColour(int depth, int divergence) =
+  fun escapeToColour(depth: int, divergence: int): int =
     if depth == divergence
     then 0
     else let r = 3 * divergence
@@ -125,10 +125,10 @@ not used)::
 Finally we tie it all together - the ``main`` function computes the
 point of divergence for each pixel, then colours them::
 
-  fun [screenY][screenX]int main(int screenX, int screenY, int depth,
-                                 f32 xmin, f32 ymin, f32 xmax, f32 ymax) =
+  fun main(screenX: int, screenY: int, depth: int,
+                                 xmin: f32, ymin: f32, xmax: f32, ymax: f32): [screenY][screenX]int =
     let escapes = mandelbrot(screenX, screenY, depth, xmin, ymin, xmax, ymax)
-    in map(fn [screenX]int ([]int row) =>
+    in map(fn (row: []int): [screenX]int  =>
              map(escapeToColour(depth), row),
            escapes)
 

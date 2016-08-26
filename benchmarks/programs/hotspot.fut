@@ -14,37 +14,37 @@
 
 default(f32)
 
-fun int str_size() = 256
+fun str_size(): int = 256
 
 -- Maximum power density possible (say 300W for a 10mm x 10mm chip)
-fun f32 max_pd() = 3.0e6
+fun max_pd(): f32 = 3.0e6
 
 -- Required precision in degrees
-fun f32 precision() = 0.001
+fun precision(): f32 = 0.001
 
-fun f32 spec_heat_si() = 1.75e6
+fun spec_heat_si(): f32 = 1.75e6
 
-fun f32 k_si() = 100.0
+fun k_si(): f32 = 100.0
 
 -- Capacitance fitting factor
-fun f32 factor_chip() = 0.5
+fun factor_chip(): f32 = 0.5
 
 -- Chip parameters
-fun f32 t_chip() = 0.0005
-fun f32 chip_height() = 0.016
-fun f32 chip_width() = 0.016
+fun t_chip(): f32 = 0.0005
+fun chip_height(): f32 = 0.016
+fun chip_width(): f32 = 0.016
 
 -- Ambient temperature assuming no package at all
-fun f32 amb_temp() = 80.0
+fun amb_temp(): f32 = 80.0
 
 -- Single iteration of the transient solver in the grid model.
 -- advances the solution of the discretized difference equations by
 -- one time step
-fun [][]f32 single_iteration([row][col]f32 temp, [row][col]f32 power,
-                              f32 Cap, f32 Rx, f32 Ry, f32 Rz,
-                              f32 step) =
-  map (fn []f32 (int r) =>
-         map(fn f32 (int c) =>
+fun single_iteration(temp: [row][col]f32, power: [row][col]f32,
+                              Cap: f32, Rx: f32, Ry: f32, Rz: f32,
+                              step: f32): [][]f32 =
+  map (fn (r: int): []f32  =>
+         map(fn (c: int): f32  =>
                let delta =
                  (step / Cap) *
                (power[r,c] +
@@ -84,7 +84,7 @@ fun [][]f32 single_iteration([row][col]f32 temp, [row][col]f32 power,
 -- Transient solver driver routine: simply converts the heat transfer
 -- differential equations to difference equations and solves the
 -- difference equations by iterating
-fun [][]f32 compute_tran_temp(int num_iterations, []row[col]f32 temp, []row[col]f32 power) =
+fun compute_tran_temp(num_iterations: int, temp: []row[col]f32, power: []row[col]f32): [][]f32 =
   let grid_height = chip_height() / f32(row) in
   let grid_width = chip_width() / f32(col) in
   let Cap = factor_chip() * spec_heat_si() * t_chip() * grid_width * grid_height in
@@ -97,5 +97,5 @@ fun [][]f32 compute_tran_temp(int num_iterations, []row[col]f32 temp, []row[col]
     single_iteration(temp, power, Cap, Rx, Ry, Rz, step) in
   temp
 
-fun [][]f32 main(int num_iterations, [row][col]f32 temp, [row][col]f32 power) =
+fun main(num_iterations: int, temp: [row][col]f32, power: [row][col]f32): [][]f32 =
   compute_tran_temp(num_iterations, temp, power)

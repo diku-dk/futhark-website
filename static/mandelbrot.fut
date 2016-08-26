@@ -1,41 +1,41 @@
 -- Make all decimal literals of type f32.
 default(f32)
 
-fun f32 dot({f32,f32} c) =
-  let {r, i} = c
+fun dot(c: (f32,f32)): f32 =
+  let (r, i) = c
   in r * r + i * i
 
-fun {f32,f32} multComplex({f32,f32} x, {f32,f32} y) =
-  let {a, b} = x
-  let {c, d} = y
-  in {a*c - b * d,
-      a*d + b * c}
+fun multComplex(x: (f32,f32), y: (f32,f32)): (f32,f32) =
+  let (a, b) = x
+  let (c, d) = y
+  in (a*c - b * d,
+      a*d + b * c)
 
-fun {f32,f32} addComplex({f32,f32} x, {f32,f32} y) =
-  let {a, b} = x
-  let {c, d} = y
-  in {a + c,
-      b + d}
+fun addComplex(x: (f32,f32), y: (f32,f32)): (f32,f32) =
+  let (a, b) = x
+  let (c, d) = y
+  in (a + c,
+      b + d)
 
-fun int divergence(int depth, {f32,f32} c0) =
-  loop ({c, i} = {c0, 0}) = while i < depth && dot(c) < 4.0 do
-    {addComplex(c0, multComplex(c, c)),
-     i + 1}
+fun divergence(depth: int, c0: (f32,f32)): int =
+  loop ((c, i) = (c0, 0)) = while i < depth && dot(c) < 4.0 do
+    (addComplex(c0, multComplex(c, c)),
+     i + 1)
   in i
 
-fun [screenY][screenX]int mandelbrot(int screenX, int screenY, int depth,
-                                       f32 xmin, f32 ymin, f32 xmax, f32 ymax) =
+fun mandelbrot(screenX: int, screenY: int, depth: int,
+               xmin: f32, ymin: f32, xmax: f32, ymax: f32): [screenY][screenX]int =
   let sizex = xmax - xmin
   let sizey = ymax - ymin
-  in map(fn [screenX]int (int y) =>
-           map (fn int (int x) =>
-                  let c0 = {xmin + (f32(x) * sizex) / f32(screenX),
-                            ymin + (f32(y) * sizey) / f32(screenY)}
+  in map(fn (y: int): [screenX]int  =>
+           map (fn (x: int): int  =>
+                  let c0 = (xmin + (f32(x) * sizex) / f32(screenX),
+                            ymin + (f32(y) * sizey) / f32(screenY))
                   in divergence(depth, c0)
                , iota(screenX)),
            iota(screenY))
 
-fun int escapeToColour(int depth, int divergence) =
+fun escapeToColour(depth: int, divergence: int): int =
   if depth == divergence
   then 0
   else
@@ -44,9 +44,9 @@ fun int escapeToColour(int depth, int divergence) =
     let b = 7 * divergence
     in (r<<16 | g<<8 | b)
 
-fun [screenY][screenX]int main(int screenX, int screenY, int depth,
-                                 f32 xmin, f32 ymin, f32 xmax, f32 ymax) =
+fun main(screenX: int, screenY: int, depth: int,
+         xmin: f32, ymin: f32, xmax: f32, ymax: f32): [screenY][screenX]int =
   let escapes = mandelbrot(screenX, screenY, depth, xmin, ymin, xmax, ymax)
-  in map(fn [screenX]int ([]int row) =>
+  in map(fn (row: []int): [screenX]int  =>
            map(escapeToColour(depth), row),
          escapes)
