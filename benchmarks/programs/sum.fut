@@ -1,1 +1,1 @@
-fun int main([]int a) = reduce(+, 0, a)
+fun main(a: []int):int = reduce (+) 0 a

@@ -11,15 +11,15 @@ improvements, you can always `contribute`_!
 As Futhark is a functional language, we will start with the obligatory
 factorial program::
 
-  fun fact(n: int): int = reduce(*, 1, map(1+, iota(n)))
+  fun fact(n: int): int = reduce (*) 1 (map (1+) (iota n))
 
-  fun main(n: int): int = fact(n)
+  fun main(n: int): int = fact n
 
-The function call ``fact(n)`` creates an array of the integers
+The function call ``fact n`` creates an array of the integers
 ``0..n-1``, adds one to each element of the array, then computes the
 product of all elements in the array.  The Futhark compiler employs
 *loop fusion* to remove the need for any of these temporary arrays to
-be actually created.  Technically ``fact(n)`` does not compute ``n!``,
+be actually created.  Technically ``fact n`` does not compute ``n!``,
 but rather ``n!  mod 2**32``, as ``int``s are 32 bit in size and will
 rapidly overflow for large ``n``.
 
@@ -63,16 +63,16 @@ A more interesting example is the *maximum segment sum problem*
 subsequence of an array of integers.  We can implement this in Futhark
 using a combination of ``map`` and ``reduce``::
 
-  fun max(x: int, y: int): int =
+  fun max (x: int) (y: int): int =
     if x > y then x else y
 
-  fun redOp(x: (int,int,int,int),
-            y: (int,int,int,int)): (int,int,int,int) =
+  fun redOp (x: (int,int,int,int))
+            (y: (int,int,int,int)): (int,int,int,int) =
     let (mssx, misx, mcsx, tsx) = x
     let (mssy, misy, mcsy, tsy) = y
-    in ( max(mssx, max(mssy, mcsx + misy))
-       , max(misx, tsx+misy)
-       , max(mcsy, mcsx+tsy)
+    in ( max mssx (max mssy (mcsx + misy))
+       , max misx (tsx+misy)
+       , max mcsy (mcsx+tsy)
        , tsx + tsy )
 
   fun mapOp(x: int): (int,int,int,int) =
@@ -80,7 +80,7 @@ using a combination of ``map`` and ``reduce``::
 
   fun main(xs: []int): int =
     let (x, _, _, _) =
-      reduce(redOp, (0,0,0,0), map(mapOp, xs))
+      reduce redOp (0,0,0,0) (map mapOp xs)
     in x
 
 One interesting aspect about this program is that it involves a
@@ -137,9 +137,9 @@ each of the three colour channels::
                 map(fn (pixel) =>
                       (f32(pixel[0]) / 255f32,
                        f32(pixel[1]) / 255f32,
-                       f32(pixel[2]) / 255f32),
-                    row),
-              image))
+                       f32(pixel[2]) / 255f32))
+                    row)
+              image)
 
 The function ``splitIntoChannels`` maps across each inner ``[3]u8``
 element (``pixel``), turns this into a triple instead of a
@@ -157,12 +157,12 @@ single array.  That function looks like this::
                       gs: [rows][cols]f32,
                       bs: [rows][cols]f32): [rows][cols][3]u8 =
     zipWith(fn (rs_row, gs_row, bs_row) =>
-              zipWith(fn (r, g, b) =>
+              zipWith(fn (r,g,b)  =>
                         [u8(r * 255f32),
                          u8(g * 255f32),
-                         u8(b * 255f32)],
-                      rs_row, gs_row, bs_row),
-            rs, gs, bs)
+                         u8(b * 255f32)])
+                      rs_row gs_row bs_row)
+            rs gs bs
 
 Another thing we will need is the actual stencil function.  That is,
 the function we wish to apply to every pixel in the image.  For
@@ -199,9 +199,9 @@ edges are left unchanged::
           map(fn (col) =>
                 if row > 0 && row < rows-1 && col > 0 && col < cols-1
                 then newValue(channel, row, col)
-                else channel[row,col],
-              iota(cols)),
-          iota(rows))
+                else channel[row,col])
+              (iota cols))
+        (iota rows)
 
 You may have heard that branches are expensive on a GPU.  While this
 is a good basic rule of thumb, what is actually expensive is *branch
