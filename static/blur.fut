@@ -8,8 +8,8 @@ fun splitIntoChannels(image: [rows][cols][3]u8): ([rows][cols]f32,
   -- unzip to turn it into a triple of arrays.  Due to the way the
   -- Futhark compiler represents arrays in the generated code, zip and
   -- unzip are entirely free.
-  unzip(map(fn (row) =>
-              map(fn (pixel) =>
+  unzip(map(fn row =>
+              map(fn pixel =>
                     (f32(pixel[0]) / 255f32,
                      f32(pixel[1]) / 255f32,
                      f32(pixel[2]) / 255f32))
@@ -20,8 +20,8 @@ fun splitIntoChannels(image: [rows][cols][3]u8): ([rows][cols]f32,
 fun combineChannels(rs: [rows][cols]f32,
                     gs: [rows][cols]f32,
                     bs: [rows][cols]f32): [rows][cols][3]u8 =
-  zipWith(fn (rs_row, gs_row, bs_row) =>
-            zipWith(fn (r,g,b)  =>
+  zipWith(fn rs_row gs_row bs_row =>
+            zipWith(fn r g b  =>
                       [u8(r * 255f32),
                        u8(g * 255f32),
                        u8(b * 255f32)])

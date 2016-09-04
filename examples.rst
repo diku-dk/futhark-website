@@ -133,8 +133,8 @@ each of the three colour channels::
   fun splitIntoChannels(image: [rows][cols][3]u8): ([rows][cols]f32,
                                                     [rows][cols]f32,
                                                     [rows][cols]f32) =
-    unzip(map(fn (row) =>
-                map(fn (pixel) =>
+    unzip(map(fn row =>
+                map(fn pixel =>
                       (f32(pixel[0]) / 255f32,
                        f32(pixel[1]) / 255f32,
                        f32(pixel[2]) / 255f32))
@@ -156,8 +156,8 @@ single array.  That function looks like this::
   fun combineChannels(rs: [rows][cols]f32,
                       gs: [rows][cols]f32,
                       bs: [rows][cols]f32): [rows][cols][3]u8 =
-    zipWith(fn (rs_row, gs_row, bs_row) =>
-              zipWith(fn (r,g,b)  =>
+    zipWith(fn rs_row gs_row bs_row =>
+              zipWith(fn r g b  =>
                         [u8(r * 255f32),
                          u8(g * 255f32),
                          u8(b * 255f32)])
