@@ -39,10 +39,10 @@ examples.
 
 We currently have four GUI examples:
 
-  + `Mandelbrot Explorer <https://github.com/HIPERFIT/futhark-benchmarks/tree/master/misc/mandelbrot-explorer>`_
-  + `Fluid Simulation GUI <https://github.com/HIPERFIT/futhark-benchmarks/tree/master/accelerate/fluid/gui>`_
+  + `Mandelbrot Explorer <https://github.com/HIPERFIT/futhark-benchmarks/tree/master/accelerate/mandelbrot>`_
+  + `Fluid Simulation <https://github.com/HIPERFIT/futhark-benchmarks/tree/master/accelerate/fluid>`_
   + `Game of Life <https://github.com/HIPERFIT/futhark-benchmarks/tree/master/misc/life>`_
-  + `HotSpot 2D Heat Equation GUI <https://github.com/HIPERFIT/futhark-benchmarks/tree/master/rodinia/hotspot>`_
+  + `HotSpot 2D Heat Equation <https://github.com/HIPERFIT/futhark-benchmarks/tree/master/rodinia/hotspot>`_
 
 It is pretty easy to create an interactive visualisation with Futhark,
 so expect this number to go up.  However, note that Futhark

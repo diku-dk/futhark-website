@@ -257,7 +257,7 @@ which look rather interesting when visualised.  It is also an example
 of a program that uses multiple entry points.
 
 We also have an `interactive Mandelbrot explorer
-<https://github.com/HIPERFIT/futhark-benchmarks/tree/master/misc/mandelbrot-explorer>`_,
+<https://github.com/HIPERFIT/futhark-benchmarks/tree/master/accelerate/mandelbrot>`_,
 the Futhark core of which is very similar to the one described above,
 but where we have written a Pygame interface that allows interactive
 scrolling, zooming, etc.
