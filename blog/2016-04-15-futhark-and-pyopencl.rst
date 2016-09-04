@@ -182,7 +182,7 @@ which we pass to the method::
 The result value is stored in the variable ``fut_image``.  Since we
 declared the return type of ``main`` to be
 ``[screenY][screenX]int``, the returned value will be a
-two-dimensional Numpy array of shape ``(width,height)``.  We cannot
+two-dimensional Numpy array of shape ``(screenY,screenX)``.  We cannot
 pass this directly to the ``png`` library, as it expects a
 three-dimensional array explicitly encoding the different colour
 channels.  Fortunately, this array transformation is easy to do with
