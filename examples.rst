@@ -11,9 +11,9 @@ improvements, you can always `contribute`_!
 As Futhark is a functional language, we will start with the obligatory
 factorial program::
 
-  fun fact(n: int): int = reduce (*) 1 (map (1+) (iota n))
+  fun fact (n: int): int = reduce (*) 1 (map (1+) (iota n))
 
-  fun main(n: int): int = fact n
+  fun main (n: int): int = fact n
 
 The function call ``fact n`` creates an array of the integers
 ``0..n-1``, adds one to each element of the array, then computes the
@@ -63,11 +63,11 @@ A more interesting example is the *maximum segment sum problem*
 subsequence of an array of integers.  We can implement this in Futhark
 using a combination of ``map`` and ``reduce``::
 
-  fun max(x: int) (y: int): int =
+  fun max (x: int) (y: int): int =
     if x > y then x else y
 
-  fun redOp((mssx, misx, mcsx, tsx): (int,int,int,int))
-           ((mssy, misy, mcsy, tsy): (int,int,int,int)): (int,int,int,int) =
+  fun redOp ((mssx, misx, mcsx, tsx): (int,int,int,int))
+            ((mssy, misy, mcsy, tsy): (int,int,int,int)): (int,int,int,int) =
     ( max mssx (max mssy (mcsx + misy))
     , max misx (tsx+misy)
     , max mcsy (mcsx+tsy)
@@ -79,7 +79,7 @@ using a combination of ``map`` and ``reduce``::
     , max x 0
     , x)
 
-  fun main(xs: []int): int =
+  fun main (xs: []int): int =
     let (x, _, _, _) = reduce redOp (0,0,0,0) (map mapOp xs)
     in x
 
