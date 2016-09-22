@@ -27,7 +27,7 @@ We have published a number of papers on Futhark, and hopefully more
 will follow in the future.  They are presented below in reverse
 chronological order.
 
-APL on GPUs - A TAIL from the Past, Scribbled in Futhark (`PDF (preprint) <publications/fhpc16.pdf>`_)
+APL on GPUs - A TAIL from the Past, Scribbled in Futhark (`PDF <publications/fhpc16.pdf>`_)
 ------------------------------------------------------------------------------------------------------
 
 .. class:: papermetadata
