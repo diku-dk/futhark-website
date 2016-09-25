@@ -11,7 +11,8 @@ If there is something you believe should be documented, but is not,
 you are very welcome to report the omission as a bug on our bug
 tracker.  See the page `Get Involved`_ for more information.
 
-We also have some Haddock-generated `documentation of the compiler internals`_.
+We also have some Haddock-generated `documentation of the compiler
+internals`_ which is automatically updated every night.
 
 .. _`at Read the Docs`: https://futhark.readthedocs.io/
 .. _`language overview`: https://futhark.readthedocs.io/en/latest/language-overview.html
