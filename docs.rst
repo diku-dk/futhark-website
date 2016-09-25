@@ -31,7 +31,7 @@ APL on GPUs - A TAIL from the Past, Scribbled in Futhark (`PDF <publications/fhp
 ------------------------------------------------------------------------------------------------------
 
 .. class:: papermetadata
-Submitted to `FHPC '16`_
+Presented at `FHPC '16`_
 
 A paper describing an APL compiler (`apltail`_) that operates by
 translating APL into a *typed array intermediate language* (*TAIL*),
@@ -45,7 +45,7 @@ Design and GPGPU Performance of Futhark’s Redomap Construct (`PDF <publication
 ----------------------------------------------------------------------------------------------------------
 
 .. class:: papermetadata
-Accepted for `ARRAY '16`_
+Presented at `ARRAY '16`_
 
 A detailed presentation of one of Futhark's internal language
 constructs - ``redomap`` - which is used to represent various forms of
