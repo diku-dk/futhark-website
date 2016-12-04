@@ -3,8 +3,7 @@ version:             1.0
 synopsis:            The Futhark website
 description:         Please see README.md
 homepage:            https://github.com/HIPERFIT/futhark-website#readme
-license:             BSD3
-license-file:        LICENSE
+license:             ISC
 author:              Troels Henriksen
 maintainer:          athas@sigkill.dk
 category:            Web
