@@ -153,7 +153,7 @@ config = defaultConfiguration
 feedConfiguration :: FeedConfiguration
 feedConfiguration = FeedConfiguration
     { feedTitle       = "Futhark Developer Blog"
-    , feedDescription = "High-performance purely functional data-parallel array programming on the GPU2"
+    , feedDescription = "High-performance purely functional data-parallel array programming on the GPU"
     , feedAuthorName  = "Troels Henriksen"
     , feedAuthorEmail = "athas@sigkill.dk"
     , feedRoot        = "http://futhark-lang.org"
