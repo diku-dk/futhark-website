@@ -138,7 +138,7 @@ water again.  I then insert plants (the green stuff), which grows into
 the water and eventually comes into contact with fire, upon which the
 it too bursts into fire, sometimes leaving behind a remnant of sand.
 
-.. _`here`: https://www.youtube.com/watch?v=IpFhr6Sicw0
+.. _`here`: http://sigkill.dk/junk/diving-beet.webm
 
 On the right-hand side, I create some wedges of metal onto which I
 drop lava.  The lava pools and slowly eats into the metal, while I
@@ -181,5 +181,3 @@ would like to improve:
     sand dropping some some seemingly inexhaustible source.  I am
     pretty sure this is due to a bug in the gravity rules, although
     they seem identical to the ones in Falling Turnip.
-
-.. _`here`: https://youtu.be/IpFhr6Sicw0
