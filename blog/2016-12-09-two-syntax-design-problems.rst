@@ -15,7 +15,7 @@ which are merely part of a larger system.  Two design principles arise
 from this basic assumption:
 
   1. First, the compiler must generate code that is inter-operable with
-     other languages.  This is primary a technical consideration in
+     other languages.  This is primarily a technical consideration in
      the compiler implementation.
 
   2. Second, the Futhark *language* must be designed to feel familiar.
