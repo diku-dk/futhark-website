@@ -87,8 +87,7 @@ a three-dimensional integer matrix of size *k\*n\*m* would be written
 ``[[[int,m],n],k]``.  This proved very confusing in practice.
 
 One simple solution would be to simply move the size annotation to the
-left of the element type, and perhaps replace the commas with
-asterisks.  Our matrix multiplication function would then be::
+left of the element type.  Our matrix multiplication function would then be::
 
   fun (x: [n,[m,int]]) (y: [m,[p,int]] y): [n,[p,int]] = ...
 
