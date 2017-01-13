@@ -133,12 +133,12 @@ each of the three colour channels::
   fun splitIntoChannels(image: [rows][cols][3]u8): ([rows][cols]f32,
                                                     [rows][cols]f32,
                                                     [rows][cols]f32) =
-    unzip(map(fn row =>
-                map(fn pixel =>
-                      (f32(pixel[0]) / 255f32,
-                       f32(pixel[1]) / 255f32,
-                       f32(pixel[2]) / 255f32))
-                    row)
+    unzip(map (\row ->
+                 map (\pixel ->
+                        (f32(pixel[0]) / 255f32,
+                         f32(pixel[1]) / 255f32,
+                         f32(pixel[2]) / 255f32))
+                     row)
               image)
 
 The function ``splitIntoChannels`` maps across each inner ``[3]u8``
@@ -156,13 +156,13 @@ single array.  That function looks like this::
   fun combineChannels(rs: [rows][cols]f32,
                       gs: [rows][cols]f32,
                       bs: [rows][cols]f32): [rows][cols][3]u8 =
-    zipWith(fn rs_row gs_row bs_row =>
-              zipWith(fn r g b  =>
-                        [u8(r * 255f32),
-                         u8(g * 255f32),
-                         u8(b * 255f32)])
-                      rs_row gs_row bs_row)
-            rs gs bs
+    map (\rs_row gs_row bs_row ->
+           map (\r g b ->
+                  [u8(r * 255f32),
+                   u8(g * 255f32),
+                   u8(b * 255f32)])
+               rs_row gs_row bs_row)
+        rs gs bs
 
 Another thing we will need is the actual stencil function.  That is,
 the function we wish to apply to every pixel in the image.  For
@@ -195,8 +195,8 @@ Now we can write the actual stencil function, which applies
 edges are left unchanged::
 
   fun blurChannel(channel: [rows][cols]f32): [rows][cols]f32 =
-    map(fn (row) =>
-          map(fn (col) =>
+    map (\row ->
+          map(\col ->
                 if row > 0 && row < rows-1 && col > 0 && col < cols-1
                 then newValue(channel, row, col)
                 else channel[row,col])

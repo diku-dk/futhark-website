@@ -27,8 +27,8 @@ fun mandelbrot(screenX: int, screenY: int, depth: int,
                xmin: f32, ymin: f32, xmax: f32, ymax: f32): [screenY][screenX]int =
   let sizex = xmax - xmin
   let sizey = ymax - ymin
-  in map (fn (y: int): [screenX]int =>
-            map (fn (x: int): int =>
+  in map (\(y: int): [screenX]int ->
+            map (\(x: int): int ->
                    let c0 = (xmin + (f32(x) * sizex) / f32(screenX),
                              ymin + (f32(y) * sizey) / f32(screenY))
                    in divergence(depth, c0))
@@ -47,6 +47,6 @@ fun escapeToColour(depth: int) (divergence: int): int =
 fun main(screenX: int, screenY: int, depth: int,
          xmin: f32, ymin: f32, xmax: f32, ymax: f32): [screenY][screenX]int =
   let escapes = mandelbrot(screenX, screenY, depth, xmin, ymin, xmax, ymax)
-  in map(fn (row: []int): [screenX]int =>
+  in map(\(row: []int): [screenX]int ->
            map (escapeToColour depth) row)
          escapes
