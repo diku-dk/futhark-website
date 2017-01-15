@@ -11,16 +11,16 @@ improvements, you can always `contribute`_!
 As Futhark is a functional language, we will start with the obligatory
 factorial program::
 
-  fun fact (n: int): int = reduce (*) 1 (map (1+) (iota n))
+  fun fact (n: i32): i32 = reduce (*) 1 (map (1+) (iota n))
 
-  fun main (n: int): int = fact n
+  fun main (n: i32): i32 = fact n
 
 The function call ``fact n`` creates an array of the integers
 ``0..n-1``, adds one to each element of the array, then computes the
 product of all elements in the array.  The Futhark compiler employs
 *loop fusion* to remove the need for any of these temporary arrays to
 be actually created.  Technically ``fact n`` does not compute ``n!``,
-but rather ``n!  mod 2**32``, as ``int``s are 32 bit in size and will
+but rather ``n!  mod 2**32``, as ``i32``s are 32 bit in size and will
 rapidly overflow for large ``n``.
 
 If we put the above program in a file ``fact.fut``, we can compile it
@@ -63,23 +63,23 @@ A more interesting example is the *maximum segment sum problem*
 subsequence of an array of integers.  We can implement this in Futhark
 using a combination of ``map`` and ``reduce``::
 
-  fun max (x: int) (y: int): int =
+  fun max (x: i32) (y: i32): i32 =
     if x > y then x else y
 
-  fun redOp ((mssx, misx, mcsx, tsx): (int,int,int,int))
-            ((mssy, misy, mcsy, tsy): (int,int,int,int)): (int,int,int,int) =
+  fun redOp ((mssx, misx, mcsx, tsx): (i32,i32,i32,i32))
+            ((mssy, misy, mcsy, tsy): (i32,i32,i32,i32)): (i32,i32,i32,i32) =
     ( max mssx (max mssy (mcsx + misy))
     , max misx (tsx+misy)
     , max mcsy (mcsx+tsy)
     , tsx + tsy)
 
-  fun mapOp (x: int): (int,int,int,int) =
+  fun mapOp (x: i32): (i32,i32,i32,i32) =
     ( max x 0
     , max x 0
     , max x 0
     , x)
 
-  fun main (xs: []int): int =
+  fun main (xs: []i32): i32 =
     let (x, _, _, _) = reduce redOp (0,0,0,0) (map mapOp xs)
     in x
 
@@ -169,7 +169,7 @@ the function we wish to apply to every pixel in the image.  For
 blurring, we will take the average value of the pixel itself plus each
 of its eight neighbors (nine values in total)::
 
-  fun newValue(image: [rows][cols]f32, row: int, col: int): f32 =
+  fun newValue(image: [rows][cols]f32, row: i32, col: i32): f32 =
     unsafe
     let sum =
       image[row-1,col-1] + image[row-1,col] + image[row-1,col+1] +
@@ -215,7 +215,7 @@ applying the stencil several times.  Our program is no different - we
 will apply the blurring transformation a user-defined number of times.
 The more iterations we run, the more blurred the image will become::
 
-  fun main(iterations: int, image: [rows][cols][3]u8): [rows][cols][3]u8 =
+  fun main(iterations: i32, image: [rows][cols][3]u8): [rows][cols][3]u8 =
     let (rs, gs, bs) = splitIntoChannels(image)
     loop ((rs, gs, bs)) = for i < iterations do
       let rs = blurChannel(rs)

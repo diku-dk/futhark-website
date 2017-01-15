@@ -111,7 +111,7 @@ i.e. either ``life``, ``quadlife``, or ``quadlife_alt``.  You can
 specify the backend with the ``--variant`` command-line flag.  The
 ``l.init`` function is a Futhark function that takes a two-dimensional
 ``bool`` array and returns a two-dimensional ``bool`` array and a
-two-dimensional ``int`` array.
+two-dimensional ``i32`` array.
 
 We also need a temporary PyGame surface for transferring pixel data
 from NumPy to PyGame, so we run this::
@@ -129,7 +129,7 @@ understand, after which we blit it to the screen::
       pygame.display.flip()
 
 Here, ``l.render_frame`` is a Futhark function that takes a
-two-dimensional ``int`` array and returns a three-dimensional pixel
+two-dimensional ``i32`` array and returns a three-dimensional pixel
 array in the colour format expected by PyGame.
 
 As the blit array we need to use ``frame.get()`` and not just
@@ -151,7 +151,7 @@ This is pretty simple in Python::
 
 The ``steps`` argument is the number of simulation steps to perform
 per frame, and defaults to 3.  You can set this to any positive 32-bit
-int.  To increase the work done per frame, we have set the default to
+i32.  To increase the work done per frame, we have set the default to
 3 and not e.g. 1.  This choice reflects possible real-world use, where
 we might not care about having a real-time visualisation of a
 simulation, but just use the visualisation to track progress, and thus

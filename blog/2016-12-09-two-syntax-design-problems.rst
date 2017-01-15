@@ -44,15 +44,15 @@ Array Types
 
 The first issue I wish to discuss is the design of Futhark's syntax
 for array types.  For a long while, we had simply adopted Haskell's
-list type syntax: an array of ``int``s was written ``[int]``, and a
-two-dimensional array of ``int``s was written ``[[int]]``.  This was
+list type syntax: an array of ``i32``s was written ``[i32]``, and a
+two-dimensional array of ``i32``s was written ``[[i32]]``.  This was
 both familiar and readable.  However, some timer later we extended
 Futhark with optional *shape declarations*, by which individual
 dimensions of an array could be annotated with a variable or constant
 indicating its size.  For example, a function for matrix
 multiplication could be defined as::
 
-  fun (x: [[int,m],n]) (y: [[int,p],m] y): [[int,p],n] = ...
+  fun (x: [[i32,m],n]) (y: [[i32,p],m] y): [[i32,p],n] = ...
 
 This nicely describes the invariant that an *n\*m* matrix can be
 multiplied with an *m\*p* matrix, yielding an *n\*p* matrix.  Here,
@@ -84,22 +84,22 @@ element type was due to the intuition that such annotations were an
 optional "extra".  However, this design turned out to have a major
 disadvantage: array types had to be read right-to-left.  For example,
 a three-dimensional integer matrix of size *k\*n\*m* would be written
-``[[[int,m],n],k]``.  This proved very confusing in practice.
+``[[[i32,m],n],k]``.  This proved very confusing in practice.
 
 One simple solution would be to simply move the size annotation to the
 left of the element type.  Our matrix multiplication function would then be::
 
-  fun (x: [n,[m,int]]) (y: [m,[p,int]] y): [n,[p,int]] = ...
+  fun (x: [n,[m,i32]]) (y: [m,[p,i32]] y): [n,[p,i32]] = ...
 
 Much better!  But while we are mucking about with the syntax anyway,
 we might also consider more radical changes.  The Haskell notation
 works well when you have only a small number of dimensions, but
-becomes unwieldy fast.  How many dimensions does ``[[[[[int]]]]]``
+becomes unwieldy fast.  How many dimensions does ``[[[[[i32]]]]]``
 have?  It is also annoying that the element type is hidden all the way
 in the middle.  Deeply nested lists of lists are uncommon in Haskell,
 but not particularly so in Futhark.
 
-We considered a C-style syntax, such as ``int[k][n][m]``.  This looks
+We considered a C-style syntax, such as ``i32[k][n][m]``.  This looks
 less noisy, but unfortunately composes badly.  When adding a new outer
 dimension (or stripping the outermost), we have to make modifications
 in the "middle" of the type.  This makes it harder to give type
@@ -110,20 +110,20 @@ signatures.  Let us consider ``map`` again::
 Here, ``ds`` and ``ds'`` are some arbitrary (possibly empty) list of
 shape declarations.  This is very awkward!  Things are much simpler if
 we move the dimensions to the *left* of the element type:
-``[k][n][m]int``.  Now, for any type ``t``, an array of ``n`` ``t``s
+``[k][n][m]i32``.  Now, for any type ``t``, an array of ``n`` ``t``s
 is just ``[n]t``  The type of ``map`` can be written as::
 
   map : (a -> b) -> [n]a -> [n]b
 
 This has much cleaner properties of composition, and is the solution
 we ended up picking.  But can we simplify further?  As a notational
-shortcut we could permit ``[k,n,m]int`` instead of ``[k][n][m]int``.
+shortcut we could permit ``[k,n,m]i32`` instead of ``[k][n][m]i32``.
 This saves a few characters, but we judged that it was not worth
 having two ways of expressing the same type.  Especially since this
 notation is also much less readable when the optional dimension
-declarations are elided: compare ``[][][]int`` and ``[,,]int``.
+declarations are elided: compare ``[][][]i32`` and ``[,,]i32``.
 
-Although the ``[k][n][m]int`` notation looks weird at first glance, it
+Although the ``[k][n][m]i32`` notation looks weird at first glance, it
 has been quite comfortable to use in practice.  After a few months of
 trials, we have not run into any unfortunate issues.  It is easy to
 type, too, as you don't have to move the cursor around too much when

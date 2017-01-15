@@ -89,14 +89,14 @@ simple hash function, feeding it a mixture of element index and step
 count::
 
   -- From http://stackoverflow.com/a/12996028
-  fun hash (x: int): int =
+  fun hash (x: i32): i32 =
     let x = ((x >> 16) ^ x) * 0x45d9f3b
     let x = ((x >> 16) ^ x) * 0x45d9f3b
     let x = ((x >> 16) ^ x) in
     x
 
-  fun rand_array (seed: int) (n: int) (lower: int, upper: int): [n]int =
-    map (fn (i: int): int  =>
+  fun rand_array (seed: i32) (n: i32) (lower: i32, upper: i32): [n]i32 =
+    map (fn (i: i32): i32  =>
           -- We hash i+n to ensure that a random length-n array is not a
           -- prefix of a random length-(n+m) array.
           (hash (seed ^ i+n)) % (upper-lower+1) + lower) (iota n)

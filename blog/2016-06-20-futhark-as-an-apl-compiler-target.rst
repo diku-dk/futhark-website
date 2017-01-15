@@ -35,12 +35,12 @@ will be created in memory, even though they are merely temporary
 values that end up being consumed by the reduction (the ``+/`` part).
 In Futhark, we would write it like this::
 
-  fun main(a: [n][n]int): []int =
+  fun main(a: [n][n]i32): []i32 =
     let a_t = transpose(a)
-    let a_sum = zipWith(fn (r0: []int, r1: []int): [n]int  =>
+    let a_sum = zipWith(fn (r0: []i32, r1: []i32): [n]i32  =>
                           zipWith(+, r0, r1),
                         a, a_t)
-    in map(fn (r: []int): int  =>
+    in map(fn (r: []i32): i32  =>
              reduce(+, 0, r),
           a_sum)
 

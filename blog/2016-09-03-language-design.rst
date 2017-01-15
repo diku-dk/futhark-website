@@ -55,9 +55,9 @@ not doing language design.  This means that Futhark has grown rather
 slowly, but it *has* changed, at least superficially.  As an example,
 here's how we would once have written a matrix-matrix multiplication::
 
-  fun [[int]] main([[int]] x, [[int]] y) =
-    map(fn [int] ([int] xr) =>
-          map(fn int ([int] yc) =>
+  fun [[i32]] main([[i32]] x, [[i32]] y) =
+    map(fn [i32] ([i32] xr) =>
+          map(fn i32 ([i32] yc) =>
                 reduce(+, 0, zipWith(*, xr, yc)),
               transpose(y)),
         x)
@@ -70,7 +70,7 @@ other function call - again, like C.
 
 Here is what it looks like now::
 
-  fun main(x: [n][m]int, y: [m][p]int): [n][p]int =
+  fun main(x: [n][m]i32, y: [m][p]i32): [n][p]i32 =
     map (fn xr =>
            map (fn yc => reduce (+) 0 (zipWith (*) xr yc))
                (transpose y))
