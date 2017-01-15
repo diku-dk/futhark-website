@@ -31,7 +31,7 @@ fun combineChannels(rs: [rows][cols]f32,
 -- Compute the new value for the pixel at the given position.  The
 -- pixel must not be located on the edges or an out-of-bounds access
 -- will occur.
-fun newValue(image: [rows][cols]f32, row: int, col: int): f32 =
+fun newValue(image: [rows][cols]f32, row: i32, col: i32): f32 =
   -- The Futhark compiler cannot prove that these accesses are safe,
   -- and cannot perform dynamic bounds checks in parallel code.  We
   -- use the 'unsafe' keyword to elide the bounds checks.  If we did
@@ -55,7 +55,7 @@ fun blurChannel(channel: [rows][cols]f32): [rows][cols]f32 =
       (iota rows)
 
 -- Perform the specified number of blurring operations on the image.
-fun main(iterations: int, image: [rows][cols][3]u8): [rows][cols][3]u8 =
+fun main(iterations: i32, image: [rows][cols][3]u8): [rows][cols][3]u8 =
   -- First we split the image apart into component channels.
   let (rs, gs, bs) = splitIntoChannels(image)
   -- Then we loop 'iterations' times.

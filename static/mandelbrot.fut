@@ -17,25 +17,25 @@ fun addComplex(x: (f32,f32), y: (f32,f32)): (f32,f32) =
   in (a + c,
       b + d)
 
-fun divergence(depth: int, c0: (f32,f32)): int =
+fun divergence(depth: i32, c0: (f32,f32)): i32 =
   loop ((c, i) = (c0, 0)) = while i < depth && dot(c) < 4.0 do
     (addComplex(c0, multComplex(c, c)),
      i + 1)
   in i
 
-fun mandelbrot(screenX: int, screenY: int, depth: int,
-               xmin: f32, ymin: f32, xmax: f32, ymax: f32): [screenY][screenX]int =
+fun mandelbrot(screenX: i32, screenY: i32, depth: i32,
+               xmin: f32, ymin: f32, xmax: f32, ymax: f32): [screenY][screenX]i32 =
   let sizex = xmax - xmin
   let sizey = ymax - ymin
-  in map (\(y: int): [screenX]int ->
-            map (\(x: int): int ->
+  in map (\(y: i32): [screenX]i32 ->
+            map (\(x: i32): i32 ->
                    let c0 = (xmin + (f32(x) * sizex) / f32(screenX),
                              ymin + (f32(y) * sizey) / f32(screenY))
                    in divergence(depth, c0))
                 (iota screenX))
             (iota screenY)
 
-fun escapeToColour(depth: int) (divergence: int): int =
+fun escapeToColour(depth: i32) (divergence: i32): i32 =
   if depth == divergence
   then 0
   else
@@ -44,9 +44,9 @@ fun escapeToColour(depth: int) (divergence: int): int =
     let b = 7 * divergence
     in (r<<16 | g<<8 | b)
 
-fun main(screenX: int, screenY: int, depth: int,
-         xmin: f32, ymin: f32, xmax: f32, ymax: f32): [screenY][screenX]int =
+fun main(screenX: i32, screenY: i32, depth: i32,
+         xmin: f32, ymin: f32, xmax: f32, ymax: f32): [screenY][screenX]i32 =
   let escapes = mandelbrot(screenX, screenY, depth, xmin, ymin, xmax, ymax)
-  in map(\(row: []int): [screenX]int ->
+  in map(\(row: []i32): [screenX]i32 ->
            map (escapeToColour depth) row)
          escapes

@@ -41,8 +41,8 @@ fun amb_temp(): f32 = 80.0
 fun single_iteration(temp: [row][col]f32, power: [row][col]f32,
                               cap: f32, rx: f32, ry: f32, rz: f32,
                               step: f32): [][]f32 =
-  map  (\(r: int): []f32  ->
-         map (\(c: int): f32  ->
+  map  (\(r: i32): []f32  ->
+         map (\(c: i32): f32  ->
                let temp_el = temp[r,c] in
                let delta =
                  (step / cap) *
@@ -85,7 +85,7 @@ fun single_iteration(temp: [row][col]f32, power: [row][col]f32,
 -- difference equations by iterating.
 --
 -- Returns a new 'temp' array.
-entry compute_tran_temp(num_iterations: int, temp: [row][col]f32, power: [row][col]f32): [row][col]f32 =
+entry compute_tran_temp(num_iterations: i32, temp: [row][col]f32, power: [row][col]f32): [row][col]f32 =
   let grid_height = chip_height() / f32(row) in
   let grid_width = chip_width() / f32(col) in
   let cap = factor_chip() * spec_heat_si() * t_chip() * grid_width * grid_height in
@@ -110,5 +110,5 @@ entry render_frame(temp: [row][col]f32): [row][col][3]i8 =
                  in [i8(intensity), 0i8, i8(intensity)]) (
                temp_r)) temp
 
-fun main(num_iterations: int, temp: [row][col]f32, power: [row][col]f32): [][]f32 =
+fun main(num_iterations: i32, temp: [row][col]f32, power: [row][col]f32): [][]f32 =
   compute_tran_temp(num_iterations, temp, power)
