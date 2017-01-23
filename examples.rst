@@ -6,7 +6,9 @@ Futhark still lacks many of the syntactical niceties that one might
 desire in a programming language.  Therefore, the examples here are
 more verbose than ideal.  Still, they should provide a taste of what
 (simple) Futhark programs look like.  If you have ideas for syntax
-improvements, you can always `contribute`_!
+improvements, you can always `contribute`_!  For more examples, you
+can check the `examples directory in the Futhark repository`_, or at
+our implemented benchmarks_.
 
 As Futhark is a functional language, we will start with the obligatory
 factorial program::
@@ -100,9 +102,6 @@ actual reduction, which is necessary when compiling non-commutative
 reductions.  The performance benefit compared to just using a scan
 (which never assumes commutative operators) is illustrated
 `elsewhere`_.
-
-For more examples, you can look at our general benchmarks_ repository
-on Github.
 
 Gaussian Blur Stencil
 ---------------------
@@ -276,6 +275,8 @@ slightly more complicated stencil, see `HotSpot on the performance
 page`_.
 
 .. _`contribute`: /getinvolved.html
+.. _`examples directory in the Futhark repository`: https://github.com/HIPERFIT/futhark/tree/master/examples
+
 .. _`introduction`: /
 .. _`sequential C program`: /static/sequential-fact.c
 .. _associative: https://en.wikipedia.org/wiki/Associative_property
