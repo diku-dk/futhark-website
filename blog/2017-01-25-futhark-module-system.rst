@@ -19,7 +19,7 @@ compile-time substitution.  This gives us a guarantee that no matter
 which abstractions and parametric behaviour is encoded by the
 programmer via the module system, we can strip it away immediately,
 and produce a program in the monomorphic first-order core language
-that is expected by our optimising compiler.  This is a core part of
+that is expected by our optimising compiler.  This is a core part our of
 `language design philosophy`_.
 
 .. _`language design philosophy`: https://futhark-lang.org/blog/2016-09-03-language-design.html
