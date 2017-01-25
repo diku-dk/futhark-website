@@ -37,10 +37,10 @@ In Futhark, we would write it like this::
 
   fun main(a: [n][n]i32): []i32 =
     let a_t = transpose(a)
-    let a_sum = zipWith(fn (r0: []i32, r1: []i32): [n]i32  =>
+    let a_sum = zipWith(\(r0: []i32, r1: []i32): [n]i32  ->
                           zipWith(+, r0, r1),
                         a, a_t)
-    in map(fn (r: []i32): i32  =>
+    in map(\(r: []i32): i32  ->
              reduce(+, 0, r),
           a_sum)
 

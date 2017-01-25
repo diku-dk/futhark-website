@@ -102,8 +102,8 @@ plane::
                  xmin: f32, ymin: f32, xmax: f32, ymax: f32): [screenY][screenX]i32 =
     let sizex = xmax - xmin
     let sizey = ymax - ymin
-    in map(fn (y: i32): [screenX]i32  =>
-             map (fn (x: i32): i32  =>
+    in map(\(y: i32): [screenX]i32  ->
+             map (\(x: i32): i32  ->
                     let c0 = (xmin + (f32(x) * sizex) / f32(screenX),
                               ymin + (f32(y) * sizey) / f32(screenY))
                     in divergence(depth, c0),
@@ -128,7 +128,7 @@ point of divergence for each pixel, then colours them::
   fun main(screenX: i32, screenY: i32, depth: i32,
            xmin: f32, ymin: f32, xmax: f32, ymax: f32): [screenY][screenX]i32 =
     let escapes = mandelbrot(screenX, screenY, depth, xmin, ymin, xmax, ymax)
-    in map(fn (row: []i32): [screenX]i32  =>
+    in map(\(row: []i32): [screenX]i32  ->
              map(escapeToColour(depth), row),
            escapes)
 

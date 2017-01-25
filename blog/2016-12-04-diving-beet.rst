@@ -96,7 +96,7 @@ count::
     x
 
   fun rand_array (seed: i32) (n: i32) (lower: i32, upper: i32): [n]i32 =
-    map (fn (i: i32): i32  =>
+    map (\(i: i32): i32  ->
           -- We hash i+n to ensure that a random length-n array is not a
           -- prefix of a random length-(n+m) array.
           (hash (seed ^ i+n)) % (upper-lower+1) + lower) (iota n)

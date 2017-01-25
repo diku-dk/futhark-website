@@ -56,8 +56,8 @@ slowly, but it *has* changed, at least superficially.  As an example,
 here's how we would once have written a matrix-matrix multiplication::
 
   fun [[i32]] main([[i32]] x, [[i32]] y) =
-    map(fn [i32] ([i32] xr) =>
-          map(fn i32 ([i32] yc) =>
+    map(\[i32] ([i32] xr) ->
+          map(\i32 ([i32] yc) ->
                 reduce(+, 0, zipWith(*, xr, yc)),
               transpose(y)),
         x)
@@ -71,8 +71,8 @@ other function call - again, like C.
 Here is what it looks like now::
 
   fun main(x: [n][m]i32, y: [m][p]i32): [n][p]i32 =
-    map (fn xr =>
-           map (fn yc => reduce (+) 0 (zipWith (*) xr yc))
+    map (\xr ->
+           map (\yc -> reduce (+) 0 (zipWith (*) xr yc))
                (transpose y))
          x
 
@@ -132,22 +132,22 @@ We can then move on to more advanced features, like:
    to a (statically known) lambda term, but which might have any
    lexical closure.  For example, this would be permitted::
 
-     fun makeAdder x = fn y => y + x
+     fun makeAdder x = \y -> y + x
 
    because the caller of ``makeAdder x`` would always know the
    "form" of the function being returned.  Meanwhile, this would
    not::
 
-     fun adderOrSubber b x = if b then (fn y => y - x) else (fn z => y + x)
+     fun adderOrSubber b x = if b then (\y -> y - x) else (\z -> y + x)
 
    because the form of the returned function depends on a dynamic
    decision.  For this particular function, a workaround could be::
 
-     fun adderOrSubber b x = fn y => y + if b then -x else x
+     fun adderOrSubber b x = \y -> y + if b then -x else x
 
    Note that the function composition operator obeys this rule::
 
-     fun compose f g = fn x => f (g x)
+     fun compose f g = \x -> f (g x)
 
    Except that's a function, not an operator, which reminds me...
 
