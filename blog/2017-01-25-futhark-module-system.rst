@@ -64,7 +64,7 @@ in curly braces.  But, as the name suggests, a module expression is
 just some expression that returns a module.  A module expression is
 syntactically and conceptually distinct from a regular value
 expression, but serves much the same purpose.  The module language is
-designed such that evaluation a module expression can always be done
+designed such that evaluating a module expression can always be done
 at compile time.
 
 Apart from a sequence of declarations, a module expression can also be
