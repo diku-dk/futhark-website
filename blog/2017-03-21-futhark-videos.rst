@@ -1,5 +1,5 @@
 ---
-title: Futhark videos from FOSDEM and Lambda Days now available
+title: Videos from FOSDEM and Lambda Days now available
 author: Troels Henriksen
 description: Videos from recent talks on Futhark have been published.
 ---
