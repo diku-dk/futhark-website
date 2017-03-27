@@ -67,17 +67,17 @@ user-defined types, so we decide to simply represent complex numbers
 as pairs of `f32`s.  We need three operations: dot product,
 multiplication, and addition::
 
-  fun dot(c: (f32,f32)): f32 =
+  let dot(c: (f32,f32)): f32 =
     let (r, i) = c
     in r * r + i * i
 
-  fun multComplex(x: (f32,f32), y: (f32,f32)): (f32,f32) =
+  let multComplex(x: (f32,f32), y: (f32,f32)): (f32,f32) =
     let (a, b) = x
     let (c, d) = y
     in (a*c - b * d,
         a*d + b * c)
 
-  fun addComplex(x: (f32,f32), y: (f32,f32)): (f32,f32) =
+  let addComplex(x: (f32,f32), y: (f32,f32)): (f32,f32) =
     let (a, b) = x
     let (c, d) = y
     in (a + c,
@@ -88,7 +88,7 @@ point on the complex plane is part of the Mandelbrot set.  We do this
 by defining a function ``divergence`` that returns the iteration at
 which the loop diverges (or the limit, ``depth``, if it does not)::
 
-  fun divergence(depth: i32, c0: (f32,f32)): i32 =
+  let divergence(depth: i32, c0: (f32,f32)): i32 =
     loop ((c, i) = (c0, 0)) = while i < depth && dot(c) < 4.0 do
       (addComplex(c0, multComplex(c, c)),
       i + 1)
@@ -98,7 +98,7 @@ The ``mandelbrot`` function returns the divergence point for the
 complex number corresponding to a pixel in a given view of the complex
 plane::
 
-  fun mandelbrot(screenX: i32, screenY: i32, depth: i32,
+  let mandelbrot(screenX: i32, screenY: i32, depth: i32,
                  xmin: f32, ymin: f32, xmax: f32, ymax: f32): [screenY][screenX]i32 =
     let sizex = xmax - xmin
     let sizey = ymax - ymin
@@ -114,7 +114,7 @@ Given the point of divergence for a pixel, we can decide on a colour,
 which is encoded as RGB within a 32-bit integer (the alpha channel is
 not used)::
 
-  fun escapeToColour(depth: i32, divergence: i32): i32 =
+  let escapeToColour(depth: i32, divergence: i32): i32 =
     if depth == divergence
     then 0
     else let r = 3 * divergence
@@ -125,7 +125,7 @@ not used)::
 Finally we tie it all together - the ``main`` function computes the
 point of divergence for each pixel, then colours them::
 
-  fun main(screenX: i32, screenY: i32, depth: i32,
+  let main(screenX: i32, screenY: i32, depth: i32,
            xmin: f32, ymin: f32, xmax: f32, ymax: f32): [screenY][screenX]i32 =
     let escapes = mandelbrot(screenX, screenY, depth, xmin, ymin, xmax, ymax)
     in map(\(row: []i32): [screenX]i32  ->
@@ -216,7 +216,7 @@ Entry Points
 Every *entry point* in the Futhark program becomes a method in the
 generated class.  An entry point is any function named ``text``, as
 well as any function defined using the keyword ``entry`` instead of
-``fun``.  In most cases, the type of the Futhark function maps easily
+``let``.  In most cases, the type of the Futhark function maps easily
 to the Python world.  For example, a Futhark function accepting three
 parameters of types ``[][]f64``, ``[]i32`` and ``bool`` will be
 translated into a Python method accepting a two-dimensional Numpy

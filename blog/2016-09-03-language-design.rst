@@ -55,7 +55,7 @@ not doing language design.  This means that Futhark has grown rather
 slowly, but it *has* changed, at least superficially.  As an example,
 here's how we would once have written a matrix-matrix multiplication::
 
-  fun [[i32]] main([[i32]] x, [[i32]] y) =
+  let [[i32]] main([[i32]] x, [[i32]] y) =
     map(\[i32] ([i32] xr) ->
           map(\i32 ([i32] yc) ->
                 reduce(+, 0, zipWith(*, xr, yc)),
@@ -70,7 +70,7 @@ other function call - again, like C.
 
 Here is what it looks like now::
 
-  fun main(x: [n][m]i32, y: [m][p]i32): [n][p]i32 =
+  let main(x: [n][m]i32, y: [m][p]i32): [n][p]i32 =
     map (\xr ->
            map (\yc -> reduce (+) 0 (zipWith (*) xr yc))
                (transpose y))
@@ -88,7 +88,7 @@ We also used to not have pattern matching for function parameters, or
 type aliases.  To wit, observe the initial version of a vector
 addition function from an `N-body benchmark`_::
 
-  fun {f32, f32, f32} vec_add({f32, f32, f32} v1, {f32, f32, f32} v2) =
+  let {f32, f32, f32} vec_add({f32, f32, f32} v1, {f32, f32, f32} v2) =
     let {x1, y1, z1} = v1
     let {x2, y2, z2} = v2
     in {x1 + x2, y1 + y2, z1 + z2}
@@ -96,7 +96,7 @@ addition function from an `N-body benchmark`_::
 We also used curly braces for tuples in those days.  Now the function
 looks like this::
 
-  fun vec_add((x1, y1, z1): vec3) ((x2, y2, z2): vec3): vec3 =
+  let vec_add((x1, y1, z1): vec3) ((x2, y2, z2): vec3): vec3 =
     (x1 + x2, y1 + y2, z1 + z2)
 
 .. _`N-body benchmark`: https://github.com/HIPERFIT/futhark-benchmarks/blob/master/accelerate/nbody/nbody.fut
@@ -132,22 +132,22 @@ We can then move on to more advanced features, like:
    to a (statically known) lambda term, but which might have any
    lexical closure.  For example, this would be permitted::
 
-     fun makeAdder x = \y -> y + x
+     let makeAdder x = \y -> y + x
 
    because the caller of ``makeAdder x`` would always know the
    "form" of the function being returned.  Meanwhile, this would
    not::
 
-     fun adderOrSubber b x = if b then (\y -> y - x) else (\z -> y + x)
+     let adderOrSubber b x = if b then (\y -> y - x) else (\z -> y + x)
 
    because the form of the returned function depends on a dynamic
    decision.  For this particular function, a workaround could be::
 
-     fun adderOrSubber b x = \y -> y + if b then -x else x
+     let adderOrSubber b x = \y -> y + if b then -x else x
 
    Note that the function composition operator obeys this rule::
 
-     fun compose f g = \x -> f (g x)
+     let compose f g = \x -> f (g x)
 
    Except that's a function, not an operator, which reminds me...
 

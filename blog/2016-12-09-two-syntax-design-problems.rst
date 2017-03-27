@@ -52,7 +52,7 @@ dimensions of an array could be annotated with a variable or constant
 indicating its size.  For example, a function for matrix
 multiplication could be defined as::
 
-  fun (x: [[i32,m],n]) (y: [[i32,p],m] y): [[i32,p],n] = ...
+  let (x: [[i32,m],n]) (y: [[i32,p],m] y): [[i32,p],n] = ...
 
 This nicely describes the invariant that an *n\*m* matrix can be
 multiplied with an *m\*p* matrix, yielding an *n\*p* matrix.  Here,
@@ -89,7 +89,7 @@ a three-dimensional integer matrix of size *k\*n\*m* would be written
 One simple solution would be to simply move the size annotation to the
 left of the element type.  Our matrix multiplication function would then be::
 
-  fun (x: [n,[m,i32]]) (y: [m,[p,i32]] y): [n,[p,i32]] = ...
+  let (x: [n,[m,i32]]) (y: [m,[p,i32]] y): [n,[p,i32]] = ...
 
 Much better!  But while we are mucking about with the syntax anyway,
 we might also consider more radical changes.  The Haskell notation

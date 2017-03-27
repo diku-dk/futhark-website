@@ -13,9 +13,9 @@ our implemented benchmarks_.
 As Futhark is a functional language, we will start with the obligatory
 factorial program::
 
-  fun fact (n: i32): i32 = reduce (*) 1 (map (1+) (iota n))
+  let fact (n: i32): i32 = reduce (*) 1 (map (1+) (iota n))
 
-  fun main (n: i32): i32 = fact n
+  let main (n: i32): i32 = fact n
 
 The function call ``fact n`` creates an array of the integers
 ``0..n-1``, adds one to each element of the array, then computes the
@@ -65,23 +65,23 @@ A more interesting example is the *maximum segment sum problem*
 subsequence of an array of integers.  We can implement this in Futhark
 using a combination of ``map`` and ``reduce``::
 
-  fun max (x: i32) (y: i32): i32 =
+  let max (x: i32) (y: i32): i32 =
     if x > y then x else y
 
-  fun redOp ((mssx, misx, mcsx, tsx): (i32,i32,i32,i32))
+  let redOp ((mssx, misx, mcsx, tsx): (i32,i32,i32,i32))
             ((mssy, misy, mcsy, tsy): (i32,i32,i32,i32)): (i32,i32,i32,i32) =
     ( max mssx (max mssy (mcsx + misy))
     , max misx (tsx+misy)
     , max mcsy (mcsx+tsy)
     , tsx + tsy)
 
-  fun mapOp (x: i32): (i32,i32,i32,i32) =
+  let mapOp (x: i32): (i32,i32,i32,i32) =
     ( max x 0
     , max x 0
     , max x 0
     , x)
 
-  fun main (xs: []i32): i32 =
+  let main (xs: []i32): i32 =
     let (x, _, _, _) = reduce redOp (0,0,0,0) (map mapOp xs)
     in x
 
@@ -129,7 +129,7 @@ more convenient to store it as a floating-point number between 0 and
 ``[rows][cols]f32`` each.  The result is that we have one array for
 each of the three colour channels::
 
-  fun splitIntoChannels(image: [rows][cols][3]u8): ([rows][cols]f32,
+  let splitIntoChannels(image: [rows][cols][3]u8): ([rows][cols]f32,
                                                     [rows][cols]f32,
                                                     [rows][cols]f32) =
     unzip(map (\row ->
@@ -152,7 +152,7 @@ required to explicitly indicate the types of all top-level functions.
 We will also need to re-combine the colour channel arrays into a
 single array.  That function looks like this::
 
-  fun combineChannels(rs: [rows][cols]f32,
+  let combineChannels(rs: [rows][cols]f32,
                       gs: [rows][cols]f32,
                       bs: [rows][cols]f32): [rows][cols][3]u8 =
     map (\rs_row gs_row bs_row ->
@@ -168,7 +168,7 @@ the function we wish to apply to every pixel in the image.  For
 blurring, we will take the average value of the pixel itself plus each
 of its eight neighbors (nine values in total)::
 
-  fun newValue(image: [rows][cols]f32, row: i32, col: i32): f32 =
+  let newValue(image: [rows][cols]f32, row: i32, col: i32): f32 =
     unsafe
     let sum =
       image[row-1,col-1] + image[row-1,col] + image[row-1,col+1] +
@@ -193,7 +193,7 @@ Now we can write the actual stencil function, which applies
 ``newValue`` to every inner element of a colour channel array.  The
 edges are left unchanged::
 
-  fun blurChannel(channel: [rows][cols]f32): [rows][cols]f32 =
+  let blurChannel(channel: [rows][cols]f32): [rows][cols]f32 =
     map (\row ->
           map(\col ->
                 if row > 0 && row < rows-1 && col > 0 && col < cols-1
@@ -214,7 +214,7 @@ applying the stencil several times.  Our program is no different - we
 will apply the blurring transformation a user-defined number of times.
 The more iterations we run, the more blurred the image will become::
 
-  fun main(iterations: i32, image: [rows][cols][3]u8): [rows][cols][3]u8 =
+  let main(iterations: i32, image: [rows][cols][3]u8): [rows][cols][3]u8 =
     let (rs, gs, bs) = splitIntoChannels(image)
     loop ((rs, gs, bs)) = for i < iterations do
       let rs = blurChannel(rs)

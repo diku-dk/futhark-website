@@ -105,7 +105,7 @@ point number.)
 
 Records are constructed via *record expressions*::
 
-  val some_point: point = {x=1.0, y=2.0}
+  let some_point: point = {x=1.0, y=2.0}
 
 A record expression is a comma-separated sequence of *field
 assignments*, enclosed in curly braces.  For example, ``{x=1.0,
@@ -195,7 +195,7 @@ Record patterns can of course also appear as function parameters,
 although type annotations are necessary due to limitations in the type
 inference capabilities of the Futhark compiler::
 
-  fun add_points {x1:f64, y1:f64} {x2:f64, y2:f64} =
+  let add_points {x1:f64, y1:f64} {x2:f64, y2:f64} =
     {x = x1 + x2, y = y1 + y2}
 
 Record Updates
@@ -206,7 +206,7 @@ field of a record, while leaving the others intact.  Using the
 constructs seen so far, this can be done by taking apart the record in
 a record pattern (or using projection), and constructing a new one::
 
-  fun incr_x {x;f64, y:f64} =
+  let incr_x {x;f64, y:f64} =
     {x = x+1.0, y = y}
 
 This works fine for small records, but quickly becomes unwieldy once
@@ -225,7 +225,7 @@ An expression used like this (here, ``p``) must itself evaluate to a
 record.  The fields of that record are added to the record constructed
 by the record expression.  For example, we can rewrite ``incr_x``::
 
-  fun incr_x (p: {x:f64,y:f64}) =
+  let incr_x (p: {x:f64,y:f64}) =
     {p, x = #x p + 1.0}
 
 Record expressions are evaluated left-to-right, such that if duplicate

@@ -39,8 +39,8 @@ is merely a collection of declarations::
 
   module AddI32 = {
     type t = i32
-    fun add (x: t) (y: t): t = x + y
-    val zero: t = 0
+    let add (x: t) (y: t): t = x + y
+    let zero: t = 0
   }
 
 Now, ``AddI32.t`` is an alias for the type ``i32``, and ``Addi32.add``
@@ -55,8 +55,8 @@ And a *module expression*::
 
   {
     type t = i32
-    fun add (x: t) (y: t): t = x + y
-    val zero: t = 0
+    let add (x: t) (y: t): t = x + y
+    let zero: t = 0
   }
 
 In this case, the module expression is just some declarations enclosed
@@ -139,11 +139,11 @@ of a type from the users of a module::
                    val speed: thing -> int } = {
     type thing = int
 
-    val car: thing = 0
-    val plane: thing = 1
-    val futhark: thing = 2
+    let car: thing = 0
+    let plane: thing = 1
+    let futhark: thing = 2
 
-    fun speed (x: thing): int =
+    let speed (x: thing): int =
       if      x == car     then 120
       else if x == plane   then 800
       else if x == futhark then 10000
@@ -180,7 +180,7 @@ the ``Monoid`` module type, and produces a module containing a
 function for collapsing an array::
 
   module Sum(M: Monoid) = {
-    fun sum (a: []M.t): M.t =
+    let sum (a: []M.t): M.t =
       reduce M.add M.zero a
   }
 
@@ -203,8 +203,8 @@ another module; this one anonymous::
 
   module Prod64s = Sum({
     type t = 64
-    fun (x: f64) (y: f64): f64 = x * y
-    fun zero: f64 = 1.0
+    let (x: f64) (y: f64): f64 = x * y
+    let zero: f64 = 1.0
   })
 
 The function ``Prodf64s.sum`` has type ``[]f64 -> f64``, and computes
@@ -236,10 +236,10 @@ scope::
   }) = {
     open M
 
-    fun dotprod (xs: [n]scalar) (ys: [n]scalar): scalar =
+    let dotprod (xs: [n]scalar) (ys: [n]scalar): scalar =
       reduce add zero (zipWith mul xs ys)
 
-    fun matmul (xss: [n][p]scalar) (yss: [p][m]scalar): [n][m]scalar =
+    let matmul (xss: [n][p]scalar) (yss: [p][m]scalar): [n][m]scalar =
       map (\xs -> map (dotprod xs) (transpose yss)) xss
   }
 
