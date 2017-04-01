@@ -34,7 +34,7 @@ result, we have `added Roman numeric literals to Futhark
 
 Like all numeric syntax, they are purely a lexical feature.  In
 Futhark, hexadecimal literals are prefixed with ``0x``, binary with
-``0b``, and now Roman with ``0r``.  Thus, ``0rXV == 0xA``.  The usual
+``0b``, and now Roman with ``0r``.  Thus, ``0rXV == 0xF``.  The usual
 numeric post-fixes are supported, so the performance-savvy historian
 studying the early classical period can write e.g. ``0rXIVu8`` to
 compactly represent the death year of Caesar Augustus as an unsigned
