@@ -28,6 +28,22 @@ We have published a number of papers on Futhark, and hopefully more
 will follow in the future.  They are presented below in reverse
 chronological order.
 
+Futhark: Purely Functional GPU-Programming with Nested Parallelism and In-Place Array Updates (`PDF <publications/pldi17.pdf>`_)
+---------------------------------------------------------------------------------------------
+
+.. class:: papermetadata
+To be presented at `PLDI '17`_
+
+A general and self-contained description of the main points of the
+design and implementation Futhark, including pieces of fusion, a
+formalisation of the uniqueness typing rules, and our mechanism for
+kernel extraction.  The latter is the main novelty, as it allows the
+Futhark compiler to exploit regular nested parallelism in a more
+efficient (albeit also more restricted) manner than full flattening,
+while still being more powerful than approaches that support only flat
+parallelism.  The `accompanying benchmark suite
+<https://github.com/HIPERFIT/futhark-pldi17>`_ is freely accessible.
+
 APL on GPUs - A TAIL from the Past, Scribbled in Futhark (`PDF <publications/fhpc16.pdf>`_)
 ------------------------------------------------------------------------------------------------------
 
@@ -105,3 +121,4 @@ does it describe horisontal fusion.
 .. _`ICFP '16`: http://conf.researchr.org/home/icfp-2016
 .. _`ARRAY '16`: http://conf.researchr.org/track/pldi-2016/ARRAY-2016
 .. _`apltail`: https://github.com/melsman/apltail/
+.. _`PLDI '17`: http://pldi17.sigplan.org/home
