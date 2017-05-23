@@ -29,7 +29,7 @@ will follow in the future.  They are presented below in reverse
 chronological order.
 
 Futhark: Purely Functional GPU-Programming with Nested Parallelism and In-Place Array Updates (`PDF <publications/pldi17.pdf>`_)
----------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
 
 .. class:: papermetadata
 To be presented at `PLDI '17`_
