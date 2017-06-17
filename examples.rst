@@ -8,7 +8,10 @@ more verbose than ideal.  Still, they should provide a taste of what
 (simple) Futhark programs look like.  If you have ideas for syntax
 improvements, you can always `contribute`_!  For more examples, you
 can check the `examples directory in the Futhark repository`_, or at
-our implemented benchmarks_.
+our implemented benchmarks_.  We also maintain a list of `projects
+using Futhark`_.
+
+.. _`projects using Futhark`: #projects-using-futhark
 
 As Futhark is a functional language, we will start with the obligatory
 factorial program::
@@ -285,3 +288,31 @@ page`_.
 .. _benchmarks: https://github.com/HIPERFIT/futhark-benchmarks
 .. _stencil: https://en.wikipedia.org/wiki/Stencil_code
 .. _`HotSpot on the performance page`: /performance.html#hotspot-futhark-rodinia
+
+Projects using Futhark
+----------------------
+
+The majority of written Futhark code is probably still Futhark's own
+test and benchmark suites.  However, there are some programs that have
+been written in Futhark because it was a good tool for the job, and
+not just to test the compiler.  A possibly incomplete list:
+
+
+`Futcam <https://github.com/nqpz/futcam>`_ is an application that
+applies stacks of interactively configurable filters to a webcam
+stream.  Futhark is used to implement the filters.
+
+`tail2futhark <https://github.com/henrikurms/tail2futhark>`_ is not
+written in Futhark itself, but is a code generator that produces
+Futhark, and serves as a component in an APL-to-GPU compilation
+pipeline.  There is a `blog post
+</blog/2016-06-20-futhark-as-an-apl-compiler-target.html>`_ with more
+details.
+
+`Diving Beet <https://github.com/Athas/diving-beet>`_ is a *falling
+sand* game, which is a kind of simple particle simulator toy.  Its
+main purpose is to produce pretty effects.  There is a `blog post
+</blog/2016-12-04-diving-beet.html>`_ with details and a video.
+
+`Futracer <https://github.com/nqpz/futracer>`_ is a fairly slow
+brute-force ray tracer written in Futhark.
