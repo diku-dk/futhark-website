@@ -21,7 +21,7 @@ graphs.
 
 .. _`PLDI`: http://conf.researchr.org/home/pldi-2017
 .. _`associated paper`_: http://dl.acm.org/citation.cfm?doid=3062341.3062354
-.. _`paper PDF`: publications/pldi17.pdf
+.. _`paper PDF`: /publications/pldi17.pdf
 
 Problem Statement
 -----------------
