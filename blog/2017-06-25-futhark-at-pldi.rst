@@ -78,7 +78,7 @@ resembles a cross between Haskell and OCaml.  Parallelism is expressed
 through built-in *second-order array combinators* (SOACs) that
 resemble higher-order functions known from functional programming.
 For example, we can define a function that takes a one-dimensional
-array of integers of input and increments each by one::
+array of integers of input and increments each by two::
 
   let add_two [n] (a: [n]i32): [n]i32 = map (+2) a
 
