@@ -32,7 +32,7 @@ Futhark: Purely Functional GPU-Programming with Nested Parallelism and In-Place 
 --------------------------------------------------------------------------------------------------------------------------------
 
 .. class:: papermetadata
-To be presented at `PLDI '17`_
+Presented at `PLDI '17`_
 
 A general and self-contained description of the main points of the
 design and implementation Futhark, including pieces of fusion, a
