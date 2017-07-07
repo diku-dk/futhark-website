@@ -1,9 +1,10 @@
 -- Split the original three-dimensional array into three
 -- two-dimensional arrays of floats: one per colour channel.  The
 -- elements of the arrays will have a value from 0 to 1.0.
-fun splitIntoChannels(image: [rows][cols][3]u8): ([rows][cols]f32,
-                                                  [rows][cols]f32,
-                                                  [rows][cols]f32) =
+let splitIntoChannels [rows][cols]
+                      (image: [rows][cols][3]u8): ([rows][cols]f32,
+                                                   [rows][cols]f32,
+                                                   [rows][cols]f32) =
   -- The maps themselves will return an array of triples, so we use
   -- unzip to turn it into a triple of arrays.  Due to the way the
   -- Futhark compiler represents arrays in the generated code, zip and
@@ -17,21 +18,23 @@ fun splitIntoChannels(image: [rows][cols][3]u8): ([rows][cols]f32,
             image)
 
 -- The inverse of splitIntoChannels.
-fun combineChannels(rs: [rows][cols]f32,
-                    gs: [rows][cols]f32,
-                    bs: [rows][cols]f32): [rows][cols][3]u8 =
-  zipWith(\rs_row gs_row bs_row ->
-            zipWith(\r g b  ->
-                      [u8(r * 255f32),
-                       u8(g * 255f32),
-                       u8(b * 255f32)])
-                    rs_row gs_row bs_row)
-          rs gs bs
+let combineChannels [rows][cols]
+                    (rs: [rows][cols]f32,
+                     gs: [rows][cols]f32,
+                     bs: [rows][cols]f32): [rows][cols][3]u8 =
+  map (\rs_row gs_row bs_row ->
+         map (\r g b ->
+                [u8(r * 255f32),
+                 u8(g * 255f32),
+                 u8(b * 255f32)])
+             rs_row gs_row bs_row)
+      rs gs bs
 
 -- Compute the new value for the pixel at the given position.  The
 -- pixel must not be located on the edges or an out-of-bounds access
 -- will occur.
-fun newValue(image: [rows][cols]f32, row: i32, col: i32): f32 =
+let newValue [rows][cols]
+             (image: [rows][cols]f32, row: i32, col: i32): f32 =
   -- The Futhark compiler cannot prove that these accesses are safe,
   -- and cannot perform dynamic bounds checks in parallel code.  We
   -- use the 'unsafe' keyword to elide the bounds checks.  If we did
@@ -45,7 +48,8 @@ fun newValue(image: [rows][cols]f32, row: i32, col: i32): f32 =
 
 -- The actual stencil: call newValue on every pixel in the interior,
 -- leaving the edges unchanged.
-fun blurChannel(channel: [rows][cols]f32): [rows][cols]f32 =
+let blurChannel [rows][cols]
+                (channel: [rows][cols]f32): [rows][cols]f32 =
   map(\(row) ->
         map(\(col) ->
               if row > 0 && row < rows-1 && col > 0 && col < cols-1
@@ -55,11 +59,12 @@ fun blurChannel(channel: [rows][cols]f32): [rows][cols]f32 =
       (iota rows)
 
 -- Perform the specified number of blurring operations on the image.
-fun main(iterations: i32, image: [rows][cols][3]u8): [rows][cols][3]u8 =
+let main [rows][cols]
+         (iterations: i32, image: [rows][cols][3]u8): [rows][cols][3]u8 =
   -- First we split the image apart into component channels.
   let (rs, gs, bs) = splitIntoChannels(image)
   -- Then we loop 'iterations' times.
-  loop ((rs, gs, bs)) = for i < iterations do
+  let (rs, gs, bs) = loop (rs, gs, bs) for i < iterations do
     -- Blur each channel by itself.  The Futhark compiler will fuse
     -- these together into just one loop.
     let rs = blurChannel(rs)

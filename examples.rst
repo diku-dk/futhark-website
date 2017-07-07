@@ -132,9 +132,10 @@ more convenient to store it as a floating-point number between 0 and
 ``[rows][cols]f32`` each.  The result is that we have one array for
 each of the three colour channels::
 
-  let splitIntoChannels(image: [rows][cols][3]u8): ([rows][cols]f32,
-                                                    [rows][cols]f32,
-                                                    [rows][cols]f32) =
+  let splitIntoChannels [rows][cols]
+                        (image: [rows][cols][3]u8): ([rows][cols]f32,
+                                                     [rows][cols]f32,
+                                                     [rows][cols]f32) =
     unzip(map (\row ->
                  map (\pixel ->
                         (f32(pixel[0]) / 255f32,
@@ -142,6 +143,17 @@ each of the three colour channels::
                          f32(pixel[2]) / 255f32))
                      row)
               image)
+
+The ``[rows][cols]`` notation preceding the ``image`` parameter is not
+a normal function parameter.  Rather, it is a *size parameter*, a way
+of indicating that the function ``splitIntoChannels`` is polymorphic
+in the sizes ``rows`` and ``cols``.  The main purpose is that we can
+then use these names to indicate the sizes of the parameter and return
+values of the function.  When the function is called, size parameters
+need not be passed arguments explicitly, but are automatically
+inferred from the concrete ``image`` argument.  If we did not
+explicitly add these size parameters, the Futhark compiler would look
+for variables ``rows`` and ``cols`` in scope.
 
 The function ``splitIntoChannels`` maps across each inner ``[3]u8``
 element (``pixel``), turns this into a triple instead of a
@@ -155,9 +167,10 @@ required to explicitly indicate the types of all top-level functions.
 We will also need to re-combine the colour channel arrays into a
 single array.  That function looks like this::
 
-  let combineChannels(rs: [rows][cols]f32,
-                      gs: [rows][cols]f32,
-                      bs: [rows][cols]f32): [rows][cols][3]u8 =
+  let combineChannels [rows][cols]
+                      (rs: [rows][cols]f32,
+                       gs: [rows][cols]f32,
+                       bs: [rows][cols]f32): [rows][cols][3]u8 =
     map (\rs_row gs_row bs_row ->
            map (\r g b ->
                   [u8(r * 255f32),
@@ -171,7 +184,8 @@ the function we wish to apply to every pixel in the image.  For
 blurring, we will take the average value of the pixel itself plus each
 of its eight neighbors (nine values in total)::
 
-  let newValue(image: [rows][cols]f32, row: i32, col: i32): f32 =
+  let newValue [rows][cols]
+               (image: [rows][cols]f32, row: i32, col: i32): f32 =
     unsafe
     let sum =
       image[row-1,col-1] + image[row-1,col] + image[row-1,col+1] +
@@ -196,7 +210,8 @@ Now we can write the actual stencil function, which applies
 ``newValue`` to every inner element of a colour channel array.  The
 edges are left unchanged::
 
-  let blurChannel(channel: [rows][cols]f32): [rows][cols]f32 =
+  let blurChannel [rows][cols]
+                  (channel: [rows][cols]f32): [rows][cols]f32 =
     map (\row ->
           map(\col ->
                 if row > 0 && row < rows-1 && col > 0 && col < cols-1
@@ -217,9 +232,10 @@ applying the stencil several times.  Our program is no different - we
 will apply the blurring transformation a user-defined number of times.
 The more iterations we run, the more blurred the image will become::
 
-  let main(iterations: i32, image: [rows][cols][3]u8): [rows][cols][3]u8 =
+  let main [rows][cols]
+           (iterations: i32, image: [rows][cols][3]u8): [rows][cols][3]u8 =
     let (rs, gs, bs) = splitIntoChannels(image)
-    loop ((rs, gs, bs)) = for i < iterations do
+    let (rs, gs, bs) = loop (rs, gs, bs) for i < iterations do
       let rs = blurChannel(rs)
       let gs = blurChannel(gs)
       let bs = blurChannel(bs)
