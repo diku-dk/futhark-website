@@ -50,13 +50,13 @@ let newValue [rows][cols]
 -- leaving the edges unchanged.
 let blurChannel [rows][cols]
                 (channel: [rows][cols]f32): [rows][cols]f32 =
-  map(\(row) ->
-        map(\(col) ->
+  map (\row ->
+        map(\col ->
               if row > 0 && row < rows-1 && col > 0 && col < cols-1
               then newValue(channel, row, col)
               else channel[row,col])
-            (iota cols))
-      (iota rows)
+            [0...cols-1])
+      [0...rows-1]
 
 -- Perform the specified number of blurring operations on the image.
 let main [rows][cols]

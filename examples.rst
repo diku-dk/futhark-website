@@ -16,17 +16,16 @@ using Futhark`_.
 As Futhark is a functional language, we will start with the obligatory
 factorial program::
 
-  let fact (n: i32): i32 = reduce (*) 1 (map (1+) (iota n))
+  let fact (n: i32): i32 = reduce (*) 1 [1...n]
 
   let main (n: i32): i32 = fact n
 
 The function call ``fact n`` creates an array of the integers
-``0..n-1``, adds one to each element of the array, then computes the
-product of all elements in the array.  The Futhark compiler employs
-*loop fusion* to remove the need for any of these temporary arrays to
-be actually created.  Technically ``fact n`` does not compute ``n!``,
-but rather ``n!  mod 2**32``, as ``i32``s are 32 bit in size and will
-rapidly overflow for large ``n``.
+``1...n``, then computes the product of all elements in the array.
+The Futhark compiler employs *loop fusion* to remove the need for the
+intermediate array to be actually created.  Technically, ``fact n``
+does not compute ``n!``, but rather ``n!  mod 2**32``, as ``i32``s are
+32 bit in size and will rapidly overflow for large ``n``.
 
 If we put the above program in a file ``fact.fut``, we can compile it
 using the OpenCL backend as such::
@@ -217,8 +216,8 @@ edges are left unchanged::
                 if row > 0 && row < rows-1 && col > 0 && col < cols-1
                 then newValue(channel, row, col)
                 else channel[row,col])
-              (iota cols))
-        (iota rows)
+              [0...cols-1])
+        [0...rows-1]
 
 You may have heard that branches are expensive on a GPU.  While this
 is a good basic rule of thumb, what is actually expensive is *branch
