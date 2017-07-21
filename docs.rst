@@ -33,6 +33,19 @@ We have published a number of papers on Futhark, and hopefully more
 will follow in the future.  They are presented below in reverse
 chronological order.
 
+Strategies for Regular Segmented Reductions on GPU (`PDF <publications/fhpc17.pdf>`_)
+-------------------------------------------------------------------------------------
+
+.. class:: papermetadata
+To be presented at `FHPC '17`_
+
+A description of an implementation technique for regular segmented
+reductions on GPU.  The technique is based on having three different
+strategies for dealing with different problem classes.  This is the
+technique currently used by the Futhark compiler, but it is presented
+in a general setting, and could be used by other libraries and
+languages that make use of regular segmented reductions.
+
 Futhark: Purely Functional GPU-Programming with Nested Parallelism and In-Place Array Updates (`PDF <publications/pldi17.pdf>`_)
 --------------------------------------------------------------------------------------------------------------------------------
 
@@ -127,3 +140,4 @@ does it describe horisontal fusion.
 .. _`ARRAY '16`: http://conf.researchr.org/track/pldi-2016/ARRAY-2016
 .. _`apltail`: https://github.com/melsman/apltail/
 .. _`PLDI '17`: http://pldi17.sigplan.org/home
+.. _`FHPC '17`: http://conf.researchr.org/track/FHPC-2017/FHPC-2017-papers
