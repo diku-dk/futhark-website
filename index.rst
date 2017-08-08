@@ -14,7 +14,7 @@ average of an array of *n* 32-bit floating-point numbers::
 
 Futhark is not designed for graphics programming, but instead uses the
 compute power of the GPU to accelerate data-parallel array
-computations.  The language support **regular *nested*
+computations.  The language supports **regular *nested*
 data-parallelism**, as well as a form of imperative-style in-place
 modification of arrays, while still preserving the purity of the
 language via the use of a **uniqueness type system**.
