@@ -99,7 +99,7 @@ looks like this::
   let vec_add((x1, y1, z1): vec3) ((x2, y2, z2): vec3): vec3 =
     (x1 + x2, y1 + y2, z1 + z2)
 
-.. _`N-body benchmark`: https://github.com/HIPERFIT/futhark-benchmarks/blob/master/accelerate/nbody/nbody.fut
+.. _`N-body benchmark`: https://github.com/diku-dk/futhark-benchmarks/blob/master/accelerate/nbody/nbody.fut
 
 Essentially, we are moving towards an SML/Haskell/F# *feel* for
 Futhark, but with the restrictions that result from our demand for
@@ -168,4 +168,4 @@ core language, is not big and fairly easy to understand.
 .. _`Harlan`: https://github.com/eholk/harlan
 .. _`dependent types`: https://en.wikipedia.org/wiki/Dependent_type
 .. _`contribute`: /getinvolved.html
-.. _`Futhark compiler frontend`: https://github.com/HIPERFIT/futhark/tree/master/src/Language
+.. _`Futhark compiler frontend`: https://github.com/diku-dk/futhark/tree/master/src/Language

@@ -23,7 +23,7 @@ in microseconds on the *y*-axis.  All runtimes are averaged over a
 hundred runs.  For reference, we also include the runtime for Futhark
 compiled to sequential CPU code.  The benchmarking setup and code can
 be found `here
-<https://github.com/HIPERFIT/futhark-website/tree/master/benchmarks>`_.
+<https://github.com/diku-dk/futhark-website/tree/master/benchmarks>`_.
 
 Sum (`Futhark <benchmarks/programs/sum.fut>`_, `Thrust <benchmarks/programs/sum.cu>`_)
 ------------------------------------------------------------------------------------------------

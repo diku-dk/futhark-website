@@ -208,7 +208,7 @@ The result is this moderately attractive fractal in the file
 
 A slightly more elaborate Python program, which supports command-line
 parameters and reports timing, can be found `here
-<https://github.com/HIPERFIT/futhark-benchmarks/tree/master/accelerate/mandelbrot>`_.
+<https://github.com/diku-dk/futhark-benchmarks/tree/master/accelerate/mandelbrot>`_.
 
 Entry Points
 ------------
@@ -250,14 +250,14 @@ More Examples
 -------------
 
 We have an `implementation of Game of Life
-<https://github.com/HIPERFIT/futhark-benchmarks/tree/master/misc/life>`_
+<https://github.com/diku-dk/futhark-benchmarks/tree/master/misc/life>`_
 that uses `Pygame <http://www.pygame.org/>`_ to render the ongoing
 simulation.  It supports several variants of the game rules, some of
 which look rather interesting when visualised.  It is also an example
 of a program that uses multiple entry points.
 
 We also have an `interactive Mandelbrot explorer
-<https://github.com/HIPERFIT/futhark-benchmarks/tree/master/accelerate/mandelbrot>`_,
+<https://github.com/diku-dk/futhark-benchmarks/tree/master/accelerate/mandelbrot>`_,
 the Futhark core of which is very similar to the one described above,
 but where we have written a Pygame interface that allows interactive
 scrolling, zooming, etc.

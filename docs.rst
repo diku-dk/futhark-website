@@ -60,7 +60,7 @@ Futhark compiler to exploit regular nested parallelism in a more
 efficient (albeit also more restricted) manner than full flattening,
 while still being more powerful than approaches that support only flat
 parallelism.  The `accompanying benchmark suite
-<https://github.com/HIPERFIT/futhark-pldi17>`_ is freely accessible.
+<https://github.com/diku-dk/futhark-pldi17>`_ is freely accessible.
 
 APL on GPUs - A TAIL from the Past, Scribbled in Futhark (`PDF <publications/fhpc16.pdf>`_)
 ------------------------------------------------------------------------------------------------------
@@ -74,7 +74,7 @@ and from there into Futhark.  While the Futhark details are light, the
 paper demonstrates a simple use of Futhark as a target language for a
 compiler.  We succeed in achieving decent speedup on several (small)
 APL programs.  The `accompanying benchmark suite
-<https://github.com/HIPERFIT/futhark-fhpc16>`_ may be worth a look.
+<https://github.com/diku-dk/futhark-fhpc16>`_ may be worth a look.
 
 Design and GPGPU Performance of Futhark’s Redomap Construct (`PDF <publications/array16.pdf>`_)
 ----------------------------------------------------------------------------------------------------------

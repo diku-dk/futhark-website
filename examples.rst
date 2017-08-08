@@ -293,14 +293,14 @@ slightly more complicated stencil, see `HotSpot on the performance
 page`_.
 
 .. _`contribute`: /getinvolved.html
-.. _`examples directory in the Futhark repository`: https://github.com/HIPERFIT/futhark/tree/master/examples
+.. _`examples directory in the Futhark repository`: https://github.com/diku-dk/futhark/tree/master/examples
 
 .. _`introduction`: /
 .. _`sequential C program`: /static/sequential-fact.c
 .. _associative: https://en.wikipedia.org/wiki/Associative_property
 .. _commutative: https://en.wikipedia.org/wiki/Commutative_property
 .. _elsewhere: /performance.html#mss-futhark-thrust
-.. _benchmarks: https://github.com/HIPERFIT/futhark-benchmarks
+.. _benchmarks: https://github.com/diku-dk/futhark-benchmarks
 .. _stencil: https://en.wikipedia.org/wiki/Stencil_code
 .. _`HotSpot on the performance page`: /performance.html#hotspot-futhark-rodinia
 

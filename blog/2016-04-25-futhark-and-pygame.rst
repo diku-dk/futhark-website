@@ -39,10 +39,10 @@ examples.
 
 We currently have four GUI examples:
 
-  + `Mandelbrot Explorer <https://github.com/HIPERFIT/futhark-benchmarks/tree/master/accelerate/mandelbrot>`_
-  + `Fluid Simulation <https://github.com/HIPERFIT/futhark-benchmarks/tree/master/accelerate/fluid>`_
-  + `Game of Life <https://github.com/HIPERFIT/futhark-benchmarks/tree/master/misc/life>`_
-  + `HotSpot 2D Heat Equation <https://github.com/HIPERFIT/futhark-benchmarks/tree/master/rodinia/hotspot>`_
+  + `Mandelbrot Explorer <https://github.com/diku-dk/futhark-benchmarks/tree/master/accelerate/mandelbrot>`_
+  + `Fluid Simulation <https://github.com/diku-dk/futhark-benchmarks/tree/master/accelerate/fluid>`_
+  + `Game of Life <https://github.com/diku-dk/futhark-benchmarks/tree/master/misc/life>`_
+  + `HotSpot 2D Heat Equation <https://github.com/diku-dk/futhark-benchmarks/tree/master/rodinia/hotspot>`_
 
 It is pretty easy to create an interactive visualisation with Futhark,
 so expect this number to go up.  However, note that Futhark
@@ -74,7 +74,7 @@ First, here is a video of me running the visualisation!
    <p style="font-style: italic; margin-top: 0;">Direct link: <a href="/static/life-2016.04.20.webm">life-2016.04.20.webm</a></p>
 
 Secondly, here is how it works: `life-gui.py
-<https://github.com/HIPERFIT/futhark-benchmarks/blob/master/misc/life/life-gui.py>`_
+<https://github.com/diku-dk/futhark-benchmarks/blob/master/misc/life/life-gui.py>`_
 first imports our three Game of Life variants::
 
   import life
@@ -82,11 +82,11 @@ first imports our three Game of Life variants::
   import quadlife_alt
 
 These Python modules are generated from the Futhark programs `life.fut
-<https://github.com/HIPERFIT/futhark-benchmarks/blob/master/misc/life/life.fut>`_,
+<https://github.com/diku-dk/futhark-benchmarks/blob/master/misc/life/life.fut>`_,
 `quadlife.fut
-<https://github.com/HIPERFIT/futhark-benchmarks/blob/master/misc/life/quadlife.fut>`_,
+<https://github.com/diku-dk/futhark-benchmarks/blob/master/misc/life/quadlife.fut>`_,
 and `quadlife_alt.fut
-<https://github.com/HIPERFIT/futhark-benchmarks/blob/master/misc/life/quadlife_alt.fut>`_
+<https://github.com/diku-dk/futhark-benchmarks/blob/master/misc/life/quadlife_alt.fut>`_
 by means of the ``futhark-pyopencl`` code generator.  ``life`` uses the
 usual Game of Life rules, while ``quadlife`` and ``quadlife_alt`` use
 rules invented by `Torben Mogensen <http://www.diku.dk/~torbenm/>`_.
@@ -267,7 +267,7 @@ If you install the Futhark compiler (and PyOpenCL, NumPy, and PyGame),
 you should be able to compile and run all of the four GUI examples.
 First run::
 
-  git clone https://github.com/HIPERFIT/futhark-benchmarks.git
+  git clone https://github.com/diku-dk/futhark-benchmarks.git
 
 This will download all of Futhark's benchmarks.  Then for each of the
 four interactive examples, ``cd`` into its directory, run ``make``,

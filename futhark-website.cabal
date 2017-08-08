@@ -2,7 +2,7 @@ name:                futhark-website
 version:             1.0
 synopsis:            The Futhark website
 description:         Please see README.md
-homepage:            https://github.com/HIPERFIT/futhark-website#readme
+homepage:            https://github.com/diku-dk/futhark-website#readme
 license:             ISC
 author:              Troels Henriksen
 maintainer:          athas@sigkill.dk
@@ -22,4 +22,4 @@ executable futhark-website
 
 source-repository head
   type:     git
-  location: https://github.com/HIPERFIT/futhark-website
+  location: https://github.com/diku-dk/futhark-website

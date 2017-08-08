@@ -30,7 +30,7 @@ construction as CXIII instead of 113?  Just as a bit-fiddler wants to
 be able to use hexadecimal or binary literals in their code, so would
 a computational classicist clearly wish to use Roman numbers.  As a
 result, we have `added Roman numeric literals to Futhark
-<https://github.com/HIPERFIT/futhark/commit/e22745b2cd8b051d145601702501dfc4fa6121c5>`_.
+<https://github.com/diku-dk/futhark/commit/e22745b2cd8b051d145601702501dfc4fa6121c5>`_.
 
 Like all numeric syntax, they are purely a lexical feature.  In
 Futhark, hexadecimal literals are prefixed with ``0x``, binary with

@@ -54,6 +54,6 @@ repository on Github`_, or our repository of `benchmarks`_.
 .. _PyOpenCL: https://mathema.tician.de/software/pyopencl/
 .. _associative: https://en.wikipedia.org/wiki/Associative_property
 .. _commutative: https://en.wikipedia.org/wiki/Commutative_property
-.. _`main repository on Github`: https://github.com/HIPERFIT/futhark
+.. _`main repository on Github`: https://github.com/diku-dk/futhark
 .. _`more on this here`: /blog/2016-04-15-futhark-and-pyopencl.html
-.. _benchmarks: https://github.com/HIPERFIT/futhark-benchmarks
+.. _benchmarks: https://github.com/diku-dk/futhark-benchmarks

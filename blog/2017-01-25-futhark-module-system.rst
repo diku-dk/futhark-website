@@ -277,4 +277,4 @@ more convenient interfaces to the sound core functionality.
 .. _`structural types`: https://en.wikipedia.org/wiki/Structural_type_system
 .. _`monoid`: https://en.wikipedia.org/wiki/Monoid
 .. _`phase distinction`: https://en.wikipedia.org/wiki/Phase_distinction
-.. _`Futhark standard library`: https://github.com/HIPERFIT/futhark/tree/master/futlib
+.. _`Futhark standard library`: https://github.com/diku-dk/futhark/tree/master/futlib
