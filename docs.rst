@@ -53,7 +53,7 @@ Futhark: Purely Functional GPU-Programming with Nested Parallelism and In-Place 
 Presented at `PLDI '17`_
 
 A general and self-contained description of the main points of the
-design and implementation Futhark, including pieces of fusion, a
+design and implementation of Futhark, including pieces of fusion, a
 formalisation of the uniqueness typing rules, and our mechanism for
 kernel extraction.  The latter is the main novelty, as it allows the
 Futhark compiler to exploit regular nested parallelism in a more
