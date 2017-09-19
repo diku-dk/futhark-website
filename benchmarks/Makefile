@@ -29,11 +29,8 @@ NVCFLAGS=-O3 -I $(HOME)/thrust
 
 all: graphs/sum.svg graphs/mss.svg graphs/mandelbrot.svg
 
-tools/randomarray: tools/randomarray.c
-	gcc -o $@ $< -O3
-
-data/%_integers: tools/randomarray
-	mkdir -p data && tools/randomarray $(MIN) $(MAX) $* > $@
+data/%_integers:
+	mkdir -p data && futhark-dataset --binary --i32-bounds=$(MIN):$(MAX) -g [$*]i32 > $@
 
 data/%_scalar:
 	mkdir -p data && echo $* > $@

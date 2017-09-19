@@ -1,1 +1,1 @@
-fun main(a: []i32):i32 = reduce (+) 0 a
+let main (a: []i32): i32 = reduce (+) 0 a
