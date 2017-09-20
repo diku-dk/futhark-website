@@ -64,8 +64,8 @@ Mandelbrot (`Futhark <benchmarks/programs/mandelbrot.fut>`_, `Thrust <benchmarks
    :class: performance_graph
 
 Accelerate_ is an array language embedded in Haskell that supports
-flat data-parallelism, and which comes with a CUDA backend.  The
-design of Accelerate makes it natural to jump from CPU to GPU code
+flat data-parallelism, and which comes with a backend for NVIDIA GPUs.
+The design of Accelerate makes it natural to jump from CPU to GPU code
 within a single Haskell program, although that is not used in this
 benchmark.  When visualising the Mandelbrot set, each pixel can be
 computed completely independently and with no memory accesses apart
