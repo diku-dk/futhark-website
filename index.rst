@@ -56,5 +56,5 @@ repository on Github`_, or our repository of `benchmarks`_.
 .. _commutative: https://en.wikipedia.org/wiki/Commutative_property
 .. _`main repository on Github`: https://github.com/diku-dk/futhark
 .. _`more on this here`: /blog/2016-04-15-futhark-and-pyopencl.html
-.. _`an example here`: /blog/2017-10-26-calling-futhark-from-c-and-haskell.html
+.. _`an example here`: /blog/2017-09-26-calling-futhark-from-c-and-haskell.html
 .. _benchmarks: https://github.com/diku-dk/futhark-benchmarks
