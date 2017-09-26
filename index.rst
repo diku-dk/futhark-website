@@ -38,7 +38,7 @@ a Python module that internally uses PyOpenCL_ to execute code on the
 GPU, yet looks like any other Python module from the outside (`more on
 this here`_).  The Futhark compiler will also generate more
 conventional C code, which can be accessed from any language with a
-basic FFI.
+basic FFI (`an example here`_).
 
 For more information, you can look at `code examples`_, details on
 performance_, our devblog_, or maybe the docs_, which also contains a
@@ -56,4 +56,5 @@ repository on Github`_, or our repository of `benchmarks`_.
 .. _commutative: https://en.wikipedia.org/wiki/Commutative_property
 .. _`main repository on Github`: https://github.com/diku-dk/futhark
 .. _`more on this here`: /blog/2016-04-15-futhark-and-pyopencl.html
+.. _`an example here`: /blog/2017-10-26-calling-futhark-from-c-and-haskell.html
 .. _benchmarks: https://github.com/diku-dk/futhark-benchmarks
