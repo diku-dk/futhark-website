@@ -15,8 +15,8 @@ Turnip is written in Haskell, and uses the `Repa`_ library to work
 with efficient parallel arrays.  The algorithm used (which I will
 describe shortly) is embarrassingly parallel - essentially a rank-1
 stencil at its core - and seemed expressible in Futhark.  This program
-isn't be a benchmark as such (there is no measurable reference), but
-is just be something fun to play around with.  The result is on Github
+isn't a benchmark as such (there is no measurable reference), but is
+just be something fun to play around with.  The result is on Github
 under the name `Diving Beet`_.  In contrast to Falling Turnip, which
 runs solely on CPU(s), Diving Beet runs on any platform supported by
 OpenCL (although I've only run it on GPUs).  The frontend is written
