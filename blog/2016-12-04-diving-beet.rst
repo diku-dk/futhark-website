@@ -178,6 +178,6 @@ would like to improve:
     having a fairly simple block cellular automaton.
 
   * Bugfixing.  In the video, you may have noticed a few columns of
-    sand dropping some some seemingly inexhaustible source.  I am
+    sand dropping from some some seemingly inexhaustible source.  I am
     pretty sure this is due to a bug in the gravity rules, although
     they seem identical to the ones in Falling Turnip.
