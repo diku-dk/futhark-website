@@ -182,7 +182,7 @@ handling) that calls our generated library::
 
   #include <stdio.h>
 
-  #include "matmul.h"
+  #include "dotprod.h"
 
   int main() {
     int x[] = { 1, 2, 3, 4 };
@@ -302,7 +302,7 @@ finalisers to automate it, if we wished.
 
 Compiling and running this program is as straightforward as with C::
 
-  $ ghc luser.hs -lmatmul -lOpenCL
+  $ ghc luser.hs -ldotprod -lOpenCL
   $ ./luser
   Result: 24
 
