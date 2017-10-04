@@ -1,0 +1,65 @@
+---
+title: Futhark 0.1.0 released
+author: Troels Henriksen
+description: Announcement for the first ever release of the Futhark compiler.
+---
+
+We have just released the first version of the Futhark compiler,
+version 0.1.0 (`source tarballs here
+<https://github.com/diku-dk/futhark/releases>`_).  Of course, nothing
+much has changed, given that the compiler source code has been freely
+available for over three years, and is not particularly `hard to
+compile
+<http://futhark.readthedocs.io/en/latest/installation.html#compiling-from-source>`_.
+Also, nightly binary builds have been `available
+<https://futhark-lang.org/releases/>`_ for a good while.
+
+Why a release now?
+------------------
+
+There are several reasons: One is the real reason, and the others a
+collection of justifications.  The real reason is that I always wanted
+to do a release to mark the conclusion of my PhD studies.  Since I
+handed in my thesis on the 31st of August (defense scheduled for
+mid-November), the time had come.  A collection of secondary reasons
+contributed to the feeling that the stars were right:
+
+  * Futhark has matured.  There are no large-scale language changes on
+    the near horizon, and the compiler is fairly stable and generates
+    decent code.  We have not added major new optimisations recently,
+    so no significant bugs should lie undiscovered.
+
+  * We want to emphasize that Futhark is a practically oriented tool
+    intended for real usage.  Since established software projects make
+    releases, `so do we <https://en.wikipedia.org/wiki/Cargo_cult>`_.
+
+  * Version numbers are a good yardstick when communicating with the
+    world.  It is nicer to talk what changed "between version 0.1.0
+    and 0.2.0", than "from early October to mid-March" (or whenever
+    the next release will be).
+
+  * We are about to embark on developing significant new language
+    features (higher-order functions) and compiler capabilities
+    (gradual flattening and memory block merging).  These clearly
+    deserve a version bump, but we can't very well do that if we don't
+    have version numbers.
+
+Future Release Policy
+---------------------
+
+As alluded to above, we will bump the version number to mark major
+changes or additions, but it is not yet clear how often we will
+perform releases.  We will follow `semantic versioning
+<http://semver.org/>`_, and given that Futhark is still an
+experimental research language, we are certainly likely to make
+backwards-incompatible changes from time to time - at least until we
+hit version 1.0.  It is unlikely that we will make actual bugfix
+releases, unless they are particularly dire, but you never know.
+
+Most likely, releases will coincide with major publications, or
+perhaps uses of Futhark in academic courses (actually, the 0.1.0
+release coincides with a course in `Parallel Functional Programming
+<http://kurser.ku.dk/course/ndak14009u>`_ that will take place at
+`DIKU <http://diku.dk>`_ in a few weeks).  If (as is the hope and
+goal) Futhark starts seeing use outside of academia, probably we will
+have to think a little more about a release schedule.
