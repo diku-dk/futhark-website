@@ -77,13 +77,13 @@ been matched by a corresponding end-marker.  Haskell is one of these
 languages, and delineates block comments with ``{-`` and ``-}``.
 Returning to our previous example, the following Haskell declaration::
 
-  {- set y - }
+  {- set y -}
   y = x + 2
 
 Can be enclosed in a block comment as follows::
 
   {-
-  {- set y - }
+  {- set y -}
   y = x + 2
   -}
 
