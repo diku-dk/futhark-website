@@ -1,6 +1,6 @@
---------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE FlexibleContexts #-}
+import           Control.Monad
 import           Data.Monoid ((<>))
 import           Data.List (isPrefixOf)
 import           System.FilePath
@@ -15,24 +15,20 @@ postCtx = mconcat
   , defaultContext
   ]
 
---------------------------------------------------------------------------------
+static :: Rules ()
+static = void $ route idRoute >> compile copyFileCompiler
+
 main :: IO ()
 main = hakyllWith config $ do
-    match "images/*" $ do
-        route idRoute
-        compile copyFileCompiler
+    match "images/*" static
 
-    match "static/*" $ do
-        route idRoute
-        compile copyFileCompiler
+    match "robots.txt" static
 
-    match "publications/*" $ do
-        route idRoute
-        compile copyFileCompiler
+    match "static/*" static
 
-    match "benchmarks/programs/*" $ do
-        route idRoute
-        compile copyFileCompiler
+    match "publications/*" static
+
+    match "benchmarks/programs/*" static
 
     match "css/*" $ do
         route idRoute
