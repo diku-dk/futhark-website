@@ -137,9 +137,9 @@ each of the three colour channels::
                                                      [rows][cols]f32) =
     unzip(map (\row ->
                  map (\pixel ->
-                        (f32(pixel[0]) / 255f32,
-                         f32(pixel[1]) / 255f32,
-                         f32(pixel[2]) / 255f32))
+                        (f32.u8(pixel[0]) / 255f32,
+                         f32.u8(pixel[1]) / 255f32,
+                         f32.u8(pixel[2]) / 255f32))
                      row)
               image)
 
@@ -172,9 +172,9 @@ single array.  That function looks like this::
                        bs: [rows][cols]f32): [rows][cols][3]u8 =
     map (\rs_row gs_row bs_row ->
            map (\r g b ->
-                  [u8(r * 255f32),
-                   u8(g * 255f32),
-                   u8(b * 255f32)])
+                  [u8.f32(r * 255f32),
+                   u8.f32(g * 255f32),
+                   u8.f32(b * 255f32)])
                rs_row gs_row bs_row)
         rs gs bs
 
