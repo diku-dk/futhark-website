@@ -29,8 +29,8 @@ let mandelbrot(screenX: i32, screenY: i32, depth: i32,
   let sizey = ymax - ymin
   in map (\(y: i32): [screenX]i32 ->
             map (\(x: i32): i32 ->
-                   let c0 = (xmin + (f32(x) * sizex) / f32(screenX),
-                             ymin + (f32(y) * sizey) / f32(screenY))
+                   let c0 = (xmin + (r32(x) * sizex) / r32(screenX),
+                             ymin + (r32(y) * sizey) / r32(screenY))
                    in divergence(depth, c0))
                 (iota screenX))
             (iota screenY)

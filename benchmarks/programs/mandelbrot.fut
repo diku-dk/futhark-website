@@ -24,8 +24,8 @@ let mandelbrot (screenX: i32) (screenY: i32) (limit: i32) (radius: f32)
   let sizey = (ymax - ymin)
   in map (\x  ->
            map (\y  ->
-                  let c0 = complex.mk (xmin + (f32 x * sizex) / f32 screenX)
-                                      (ymin + (f32 y * sizey) / f32 screenY)
+                  let c0 = complex.mk (xmin + (r32 x * sizex) / r32 screenX)
+                                      (ymin + (r32 y * sizey) / r32 screenY)
                   in divergence limit radius c0)
                (iota screenY))
          (iota screenX)
@@ -57,7 +57,7 @@ let interp (x0:f32, x1:f32)
 
 -- the ultraPalette from Accelerate.
 let mk_palette (points: i32) (ix: i32): argb.colour =
-  let p = f32 ix / f32 points
+  let p = r32 ix / r32 points
 
   let p0 = 0.0
   let p1 = 0.16
@@ -67,7 +67,7 @@ let mk_palette (points: i32) (ix: i32): argb.colour =
   let p5 = 1.0
 
   let rgb8 (r: i32) (g: i32) (b: i32) =
-    argb.from_rgba (f32 r / 255.0) (f32 g / 255.0) (f32 b / 255.0) 0.0
+    argb.from_rgba (r32 r / 255.0) (r32 g / 255.0) (r32 b / 255.0) 0.0
 
   let c0 = rgb8 0   7   100
   let c1 = rgb8 32  107 203
@@ -98,16 +98,16 @@ let escape_to_colour (limit: i32) (points: i32)
   else let smooth = log2 (log2 (complex.mag z))
        let scale = 256.0
        let shift = 1664.0
-       let ix = i32 (f32.sqrt (f32 n + 1.0 - smooth) * scale + shift)
+       let ix = t32 (f32.sqrt (r32 n + 1.0 - smooth) * scale + shift)
        in mk_palette points (ix %% points)
 
 let mandelbrot_render (screenX: i32) (screenY: i32)
                       (xcentre: f32) (ycentre: f32) (width: f32)
                       (limit: i32) (radius: f32): [screenX][screenY]i32 =
-  let aspect_ratio = (f32 screenX / f32 screenY)
+  let aspect_ratio = (r32 screenX / r32 screenY)
   let (xmin,ymin) = ((xcentre - width/2.0),
                      (ycentre - (1.0/aspect_ratio)*width/2.0))
-  let (xmax,ymax) = ((xcentre + width/f32 2),
+  let (xmax,ymax) = ((xcentre + width/r32 2),
                      (ycentre + (1.0/aspect_ratio)*width/2.0))
   let escapes = mandelbrot screenX screenY limit radius (xmin, ymin, xmax, ymax)
   let points = 2048
