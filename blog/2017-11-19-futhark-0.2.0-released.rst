@@ -1,0 +1,60 @@
+---
+title: Futhark 0.2.0 released
+author: Troels Henriksen
+description: We released another version of Futhark.  This post elaborates on some of the changes.
+---
+
+We have just released the second version of the Futhark compiler,
+version 0.2.0 (as always, `source tarballs are here
+<https://github.com/diku-dk/futhark/releases>`_).  The linked page
+also contains a detailed changelog.  Compared to the first version, no
+major compiler optimisations have been added.  Instead, we have
+focused on various quality-of-life improvements, in anticipation of
+upcoming human trials in a course on `Parallel Functional Programming
+<http://kurser.ku.dk/course/ndak14009u>`_ at `our department
+<http://diku.dk>`_.  I'd like to highlight and elaborate on some of
+these changes:
+
+
+**Run-time errors due to failed assertions now include a stack trace**
+  What it says on the tin.  We implemented this in a rather hacky way,
+  without having to keep around stack information at runtime, by
+  relying on the fact that the Futhark compiler currently performs
+  aggressive inlining of all functions.  This allows us to compute
+  "stack traces" at compile time, and simply annotate every possible
+  error location.  We will have to improve this in the future, but it
+  works well enough for now.
+
+**``scatter`` expressions nested in ``map``s may now be parallelised ("segmented scatter")**
+  This is an exotic improvement that will become more important once
+  we start performing more speculative parallelisation.  For now, the
+  main consequence is that the library implementation of radix sort
+  can be mapped in parallel, which can be used to compute `row medians
+  <https://github.com/diku-dk/futhark/blob/master/tests/rowmedians.fut>`_.
+
+**Size annotations may now refer to preceding parameters**
+  We could previously define ``replicate`` as follows::
+
+    let replicate 't (n: i32) (x: t): *[n]t =
+      i32.replicate n x
+
+  But we could only describe the type (in e.g. module types) as::
+
+    val replicate: 't: i32 -> t -> *[]t
+
+  because function types could not contain parameter names.  With this
+  change, we can give the more detailed type of replicate::
+
+    val replicate: 't: (n: i32) -> t -> *[n]t
+
+  This makes the `generated documentation
+  <https://futhark-lang.org/docs/futlib/array.html>_` slightly more
+  readable.
+
+**Record syntax and semantics were improved and simplified**
+  We wrote an `entire blog post
+  </blog/2017-11-11-dot-notation-for-records.html>`_ on this topic.
+
+**``f32.e`` is no longer pi**
+  Remarkably, we defined *e* incorrectly for single-precision floats,
+  but nobody noticed until now.
