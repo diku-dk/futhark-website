@@ -10,6 +10,7 @@ body{
     max-width: 65em;
     overflow-y: scroll;
     line-height: 1.4;
+    background-color: #fff9e5;
 }
 
 h1 {
@@ -26,7 +27,7 @@ h3 {
 
 pre {
     padding:1em;
-    background-color:#f5f5f5;
+    background-color:#d8d3c3;
 }
 
 a {
@@ -67,7 +68,6 @@ a:visited {
 }
 
 #content{
-    background-color: white;
     padding: 1.5em;
     padding-top: 0.5em;
     vertical-align: top;
