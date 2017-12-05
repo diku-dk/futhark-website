@@ -2,11 +2,12 @@
 title: Docs
 ---
 
-The Futhark documentation is divided into several parts (and is
-unfortunately still incomplete).  There is the `Futhark Reference
-Manual`_, which contains instructions on how to use the compilers as
-well as the `language reference`_, a `language overview`_, and
-instructions on `how to install the Futhark compiler`_.
+The Futhark documentation is divided into several parts.  The
+in-progress book `Parallel Programming in Futhark`_ can be read freely
+online, and is the starting point for learning Futhark. The `Futhark
+User's Guide`_ contains detailed instructions on how to use the
+compilers, as well as the `language reference`_ and instructions on
+`how to install the Futhark compiler`_.
 
 There is also automatically generated `documentation for the Futhark
 Basis Library`_.
@@ -18,8 +19,8 @@ tracker.  See the page `Get Involved`_ for more information.
 We also have some Haddock-generated `documentation of the compiler
 internals`_ which is automatically updated every night.
 
-.. _`Futhark Reference Manual`: https://futhark.readthedocs.io/
-.. _`language overview`: https://futhark.readthedocs.io/en/latest/language-overview.html
+.. _`Parallel Programming in Futhark`: https://futhark-book.readthedocs.io
+.. _`Futhark User's Guide`: https://futhark.readthedocs.io/
 .. _`language reference`: https://futhark.readthedocs.io/en/latest/language-reference.html
 .. _`how to install the Futhark compiler`: https://futhark.readthedocs.io/en/latest/installation.html
 .. _`documentation for the Futhark Basis Library`: /docs/
