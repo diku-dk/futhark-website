@@ -21,7 +21,7 @@ language via the use of a **uniqueness type system**.
 
 The Futhark language and compiler is an **ongoing research project**.
 It can compile nontrivial programs which then run on real GPUs at very
-high speed.  The Futhark language itself is still somewhat spartan -
+high speed.  The Futhark language itself is still somewhat spartan, as
 due to the basic design goal of generating high-performance parallel
 code, it takes more effort to support language features that are
 common in languages with more forgiving compilation targets.
