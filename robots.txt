@@ -14,7 +14,3 @@ User-agent: Alexibot
 Disallow: /
 User-agent: SurveyBot
 Disallow: /
-User-agent: Xenu’s
-Disallow: /
-User-agent: Xenu’s Link Sleuth 1.1c
-Disallow: /
