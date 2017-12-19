@@ -169,3 +169,9 @@ a:visited {
     width: 6m;
     max-width: 80%;
 }
+
+li { margin-top: 1em; }
+
+li p:first-child { margin-top: 0; }
+
+li p:last-child { margin-bottom: 0; }
