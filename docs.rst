@@ -38,7 +38,7 @@ Design and Implementation of the Futhark Programming Language (`PDF <publication
 ---------------------------------------------------------------------------------------------------------------------
 
 .. class:: papermetadata
-Troels Henriksens PhD thesis, defended in November of 2017
+Troels Henriksens PhD thesis (revised), defended in November of 2017
 
 This PhD thesis describes the overall background and motivation behind
 the development of Futhark, as well as a collection of some of the
