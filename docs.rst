@@ -34,11 +34,30 @@ We have published a number of papers on Futhark, and hopefully more
 will follow in the future.  They are presented below in reverse
 chronological order.
 
+Design and Implementation of the Futhark Programming Language (`PDF <publications/troels-henriksen-phd-thesis.pdf>`_)
+---------------------------------------------------------------------------------------------------------------------
+
+.. class:: papermetadata
+Troels Henriksens PhD thesis, defended in November of 2017
+
+This PhD thesis describes the overall background and motivation behind
+the development of Futhark, as well as a collection of some of the
+core implementation techniques (size-dependent typing, fusion,
+moderate flattening, tiling).  The treatment is high level, and the
+technicalities of the concrete compiler implementation is not
+discussed in great detail.  The first part of the thesis describes the
+overall philosophy behind the design and implementation of Futhark,
+and is fairly readable.  The latter part of the thesis, which
+discusses concrete program transformations, is a more difficult read,
+and probably only of interest to academics.  The empirical evaluation
+chapter is a good description of what Futhark does well, and what it
+does not so well (at least as of the time the thesis was written).
+
 Strategies for Regular Segmented Reductions on GPU (`PDF <publications/fhpc17.pdf>`_)
 -------------------------------------------------------------------------------------
 
 .. class:: papermetadata
-To be presented at `FHPC '17`_
+Presented at `FHPC '17`_
 
 A description of an implementation technique for regular segmented
 reductions on GPU.  The technique is based on having three different
