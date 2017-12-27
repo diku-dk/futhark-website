@@ -114,16 +114,17 @@ difficult because it had no immediate tangible effect.  We still
 generated only slow, leaky, and sequential code, and the language
 itself was neither elegant, nor practically useful.  Under these
 circumstances, I found it hard to stay motivated, and it was hard to
-convince both myself and other that our work would eventually pay off.
-Looking back, I am surprised I did not quit, and I think it would have
-been a good idea to structure the work to have more short-term
-rewards.  This could have taken the form of creating a simple and
-hacky compilation pipeline that could at least run *something* on the
-GPU.  Alternatively, work on the compiler infrastructure (tough and
-unrewarding) could have been interspersed with work on the source
-language (easier and with immediate payoff).  Of course, the latter
-was hampered by the fact that we still refused to admit that we were
-not just compiler researchers, but also language designers.
+convince myself as well as others that our work would eventually pay
+off.  Looking back, I am surprised I did not quit, and I think it
+would have been a good idea to structure the work to have more
+short-term rewards.  This could have taken the form of creating a
+simple and hacky compilation pipeline that could at least run
+*something* on the GPU.  Alternatively, work on the compiler
+infrastructure (tough and unrewarding) could have been interspersed
+with work on the source language (easier and with immediate payoff).
+Of course, the latter was hampered by the fact that we still refused
+to admit that we were not just compiler researchers, but also language
+designers.
 
 But then the Compiler Worked
 ----------------------------
