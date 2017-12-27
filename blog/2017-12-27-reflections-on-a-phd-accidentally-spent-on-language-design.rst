@@ -208,8 +208,8 @@ But please - if anyone knows of a flashy way to visualise `k-means
 clustering in a 34-dimensional space`_, or `market parameter
 calibration in the Heston model`_, please let us now!
 
-.. _`k-means clustering in a 34-dimensional space`_: https://github.com/diku-dk/futhark-benchmarks/tree/master/rodinia/kmeans
-.. _`market parameter calibration in the Heston model`_: https://github.com/diku-dk/futhark-benchmarks/tree/master/misc/heston
+.. _`k-means clustering in a 34-dimensional space`: https://github.com/diku-dk/futhark-benchmarks/tree/master/rodinia/kmeans
+.. _`market parameter calibration in the Heston model`: https://github.com/diku-dk/futhark-benchmarks/tree/master/misc/heston
 
 I learnt two lessons here: First, come up with something flashy for
 capturing people's attention!  It does not have to be something that
