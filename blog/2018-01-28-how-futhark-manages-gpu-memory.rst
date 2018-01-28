@@ -36,8 +36,8 @@ two factors conspired to make this approach non-viable:
   1) The quality of the code emitted by the Futhark compiler improved
      to the point where memory allocation was sometimes the
      bottleneck, even for non-contrived programs.  As an example, we
-     had a GPU kernel computing an FFT that took 500us to run, of
-     which 300us were spent allocating memory for storing the result.
+     had a GPU kernel computing an FFT that took 500µs to run, of
+     which 300µs were spent allocating memory for storing the result.
 
   2) Recent GPU drivers seem to have significantly slowed down
      allocation.  Previously, we observed near-constant time
