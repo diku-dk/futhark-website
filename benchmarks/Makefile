@@ -27,7 +27,7 @@ NVCFLAGS=-O3 -I $(HOME)/thrust
 .PHONY: clean
 .SECONDARY:
 
-all: graphs/sum.svg graphs/mss.svg graphs/mandelbrot.svg
+all: graphs/sum.svg graphs/mss.svg graphs/mandelbrot.svg graphs/hotspot.svg
 
 data/%_integers:
 	mkdir -p data && futhark-dataset --binary --i32-bounds=$(MIN):$(MAX) -g [$*]i32 > $@
