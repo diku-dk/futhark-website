@@ -19,7 +19,7 @@ memory, we would simply call ``clCreateBuffer()`` and get back a
 ``cl_mem``.  This leaked memory, of course, so we eventually added a
 simple `reference counting`_ scheme to free unused memory with
 ``clReleaseMemObject()``.  The design of the Futhark language ensures
-the absence of reference cycles, and a typical Futhark programs
+the absence of reference cycles, and a typical Futhark program
 performs few but large allocations.  This allowed us to avoid the
 usual problems with reference counting, and it worked well for a long
 time.
@@ -41,7 +41,7 @@ two factors conspired to make this approach non-viable:
 
   2) Recent GPU drivers seem to have significantly slowed down
      allocation.  Previously, we observed near-constant time
-     allocation times - for example, 100us on an NVIDIA GTX 780 with
+     allocation times - for example, 100µs on an NVIDIA GTX 780 with
      CUDA 8.0.  But with the CUDA 9.0 drivers, allocation times are
      now linearly proportional on the size of the allocation, and
      rather slow too: approximately 15GiB/s (`OpenCL measuring
@@ -168,7 +168,7 @@ We have a function for inserting an entry into the free list:
 
   void free_list_insert(struct opencl_free_list *l, size_t size, cl_mem mem, const char *tag);
 
-We am eliding the implementation, because it is not very interesting -
+We are eliding the implementation, because it is not very interesting;
 most of the logic is about enlarging the array if there are no empty
 ("invalid") spots left.  A more interesting function is
 ``free_list_find()``, which finds a valid entry with a given tag:
