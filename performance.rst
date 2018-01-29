@@ -8,15 +8,17 @@ game`_, they are typically designed for general-purpose CPU languages,
 and thus not a natural fit for Futhark.
 
 This page will not try to quantitatively prove that Futhark is the
-fastest language ever, but instead attempt to give an intuition of
-where Futhark lies in the performance space.  This is done by
-comparing performance on fairly simple programs to hand-written
-implementations or other high-quality GPU languages or libraries.
-Unfortunately, such comparisons mostly exercise the efficiency of
-basic language constructs.  These programs are too small and simple to
-benefit from the ability of the Futhark compiler to significantly
-restructure the original program and its data representations through
-*loop fusion* and the like.
+*fastest language ever*.  Instead, it merely attempts to give an
+intuition of where Futhark lies in the performance space.  This is
+done by comparing performance on fairly simple programs to
+hand-written implementations or other high-quality GPU languages or
+libraries.  Unfortunately, such comparisons mostly exercise the
+efficiency of basic language constructs.  These programs are too small
+and simple to benefit from the ability of the Futhark compiler to
+significantly restructure the original program and its data
+representations through *loop fusion* and the like.  More
+comprehensive benchmarks can be found in our various `papers
+</publications.html>`_.
 
 The graphs show input size on the *x*-axis, and the resulting runtime
 in microseconds on the *y*-axis.  All runtimes are averaged over a
@@ -82,9 +84,9 @@ HotSpot (`Futhark <benchmarks/programs/hotspot.fut>`_, `Rodinia <https://www.cs.
    :alt: HotSpot runtime (lower is better)
    :class: performance_graph
 
-The `Rodinia`_ suite is a collection of benchmark programs that
-exercise various forms of computation.  One of these programs is
-HotSpot, which Rodinia describes as:
+The `Rodinia`_ suite is a collection of hand-written benchmark
+programs that exercise various forms of GPU computation.  One of these
+programs is HotSpot, which Rodinia describes as:
 
    HotSpot is a widely used tool to estimate processor temperature
    based on an architectural floorplan and simulated power
@@ -95,18 +97,14 @@ HotSpot, which Rodinia describes as:
 
 Concretely, HotSpot is a rank-1 2D stencil code.  The implementation
 in Futhark is similar to our `stencil example`_, although with more
-complicated edge conditions.
-
-It is a bit curious that Futhark is a *constant* amount slower than
-the Rodinia implementation (about 5-6ms), no matter the dataset size.
-One likely reason is that Futhark also measures the cost of allocating
-intermediate arrays, which is not the case for the Rodinia
-implementation.
-
-One known overhead in the Futhark implementation is an unnecessary
-copy of the entire array for every iteration of the 360-iteration
-outer time series loop.  This will hopefully go away once we teach the
-Futhark compiler more about reusing memory.
+complicated edge conditions.  There is a rich literature on various
+clever ways to optimise stencils.  Futhark does not yet employ any of
+these tricks, but still manages to obtain decent performance.  The
+main contributor here is a memory management strategy that avoids both
+copying and expensive allocations inside the outer sequential loop.
+We `wrote a blog post
+</blog/2018-01-28-how-futhark-manages-gpu-memory.html>`_ on the
+technique.
 
 .. _`benchmarks game`: https://benchmarksgame.alioth.debian.org/
 .. _`Thrust`: https://github.com/thrust/thrust
