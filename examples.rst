@@ -16,7 +16,7 @@ using Futhark`_.
 As Futhark is a functional language, we will start with the obligatory
 factorial program::
 
-  let fact (n: i32): i32 = reduce (*) 1 [1...n]
+  let fact (n: i32): i32 = reduce (*) 1 (1...n)
 
   let main (n: i32): i32 = fact n
 
