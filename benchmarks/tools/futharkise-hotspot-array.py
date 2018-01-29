@@ -6,4 +6,4 @@ import math
 
 arr = numpy.loadtxt(sys.argv[1])
 edgesize = math.sqrt(arr.shape[0])
-print numpy.reshape(arr, (edgesize, edgesize)).tolist()
+print numpy.reshape(arr, (int(edgesize), int(edgesize))).tolist()
