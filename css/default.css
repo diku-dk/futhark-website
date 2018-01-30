@@ -28,6 +28,9 @@ h3 {
 pre {
     padding:1em;
     background-color:#d8d3c3;
+    min-width: 100%;
+    max-width: none;
+    display: inline-block;
 }
 
 a {
@@ -142,8 +145,12 @@ a:visited {
     }
 }
 @media (max-width:949px){
-    body{
+    body {
         width: 100%;
+    }
+
+    ol {
+        padding-left: 0;
     }
 
     #header {
