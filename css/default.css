@@ -142,6 +142,10 @@ a:visited {
     }
 }
 @media (max-width:949px){
+    body{
+        width: 100%;
+    }
+
     #header {
         background: #5f021f;
     }
