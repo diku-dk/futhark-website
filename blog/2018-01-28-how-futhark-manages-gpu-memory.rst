@@ -43,7 +43,7 @@ two factors conspired to make this approach non-viable:
      allocation.  Previously, we observed near-constant time
      allocation times - for example, 100µs on an NVIDIA GTX 780 with
      CUDA 8.0.  But with the CUDA 9.0 drivers, allocation times are
-     now linearly proportional on the size of the allocation, and
+     now linearly proportional to the size of the allocation, and
      rather slow too: approximately 15GiB/s (`OpenCL measuring
      program`_, `CUDA measuring program`_).  This change significantly
      increases how much computation is needed to amortise the cost of
@@ -51,9 +51,9 @@ two factors conspired to make this approach non-viable:
      times on an AMD Vega 64, a completely unrelated GPU, so we
      suspect that the cause is some security mechanism and not merely
      a bug, so we cannot simply expect things to go back the way they
-     used to be.  (We also reported the issue to NVIDIA, and they seem
-     to have either not responded, or marked it as WONTFIX - it's a
-     bit hard to tell from their bug tracker.)
+     used to be.  (We also reported the issue to NVIDIA, and the issue
+     is either still open, or marked it as WONTFIX - it's a bit hard
+     to tell from their bug tracker.)
 
 .. _`OpenCL measuring program`: /static/allocs.c
 .. _`CUDA measuring program`: /static/allocs.cu
