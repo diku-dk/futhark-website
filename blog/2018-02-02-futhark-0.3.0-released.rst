@@ -1,0 +1,70 @@
+---
+title: Futhark 0.3.0 released
+author: Troels Henriksen
+description: We released another version of Futhark.  This one doesn't have that many externally visible changes, but still contains some solid improvements.
+---
+
+A new version of Futhark has been released - `source tarballs and full
+changelog here <https://github.com/diku-dk/futhark/releases>`_.  By
+our usual standards, this release contains quite few breaking language
+changes.  In fact, there are only two of them worth mentioning:
+
+  1. `Range literals are now written without brackets
+     <https://github.com/diku-dk/futhark/issues/445>`_.
+
+  2. The syntax `(-x)` can no longer be used as an operator section
+     partially applying subtraction.  This means `map (-x) a` is no
+     longer valid.  The reason for this change is that we recently
+     made a grammar simplification that made it ambiguous whether an
+     expression `(-x)` should be interpreted as a parenthesised
+     negation, or as an operator section.  We picked the former (as
+     does Haskell, from which we cribbed the syntax in the first
+     place).  The grammar simplification that brought up this issue is
+     necessary to eventually support higher-order functions, so it is
+     a small sacrifice compared to what we will gain.
+
+However, there has been a good number of internal changes and
+improvements, which is exactly how I prefer it.  Futhark really need
+not be a volatile or complex language; parallelism is supposed to be
+simple!  The smarts should be in the compiler, not the language.
+
+The most significant improvement is probably the new memory management
+strategy, which got its `own blog post
+</blog/2018-01-28-how-futhark-manages-gpu-memory.html>`_.  There has
+also been a number of improvements to the included basis library
+("futlib"), of which the most significant is probably the inclusion of
+a `Fast Fourier Transform </docs/futlib/fft.html>`_, which was
+developed as part of a bachelors project at `DIKU <http://diku.dk>`_.
+
+Most of my development effort was actually spent on developing our
+upcoming technique of *incremental flattening*.  This is a technique
+that attempts to address the issue that nested parallelism cannot be
+compiled in a way that is optimal for all data sets.  Consider this
+simple case of nested parallelism::
+
+  map (\xs -> reduce (+) 0 xs) xss
+
+Depending on the shape of the two-dimensional array `xss`, the optimal
+way of executing this expression may be to parallelise only the
+outermost `map`, while turning the `reduce` into a low-overhead
+sequential loop, or to produce a more expensive segmented reduction,
+but which exploits more parallelism.  The core principle is that
+*parallelism is not free*, and the compiler should exploit only as
+much parallelism as necessary to fully exploit the hardware.
+Unfortunately, this depends on the size of the input data, which is
+not known at compile-time.
+
+Our solution, which we call incremental flattening (or sometimes,
+*versioned code*), generates *all possible parallelisations* of a
+piece of code, and at run-time selects the version that exhibits the
+*least* amount of parallelism that still saturates the hardware we are
+running on.  It already works pretty well - it can manage our entire
+test and benchmark suites correctly and without any real performance
+regressions, and in several cases with performance improvements.  It
+is still not enabled by default, but can be tried out by setting the
+environment variable `FUTHARK_VERSIONED_CODE` before running the
+compiler.  Hopefully it will turned on by default by the next release
+(and it will certainly be the subject of a blog post eventually).  The
+biggest downside is that it increases compile times, because it
+naturally causes programs under compilation to increase significantly
+in size.
