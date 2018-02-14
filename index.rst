@@ -19,15 +19,16 @@ data-parallelism**, as well as a form of imperative-style in-place
 modification of arrays, while still preserving the purity of the
 language via the use of a **uniqueness type system**.
 
-The Futhark language and compiler is an **ongoing research project**.
-It can compile nontrivial programs which then run on real GPUs at very
-high speed.  The Futhark language itself is still somewhat spartan, as
-due to the basic design goal of generating high-performance parallel
-code, it takes more effort to support language features that are
-common in languages with more forgiving compilation targets.
-Nevertheless, **Futhark can already be used for nontrivial programs**.
-We are actively looking for more potential applications as well as
-people who are interested in contributing to the language design.
+While the Futhark language and compiler is an **ongoing research
+project**, it is quite usable for real programming, and can compile
+nontrivial programs which then run on real GPUs at high speed.  The
+Futhark language itself is still somewhat spartan, as due to the basic
+design goal of generating high-performance parallel code, it takes
+more effort to support language features that are common in languages
+with more forgiving compilation targets.  Nevertheless, **Futhark can
+already be used for nontrivial programs**.  We are actively looking
+for more potential applications as well as people who are interested
+in contributing to the language design.
 
 **Futhark is not intended to replace existing general-purpose
 languages**.  The intended use case is that Futhark is only used for
