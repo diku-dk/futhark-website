@@ -11,6 +11,7 @@ body{
     overflow-y: scroll;
     line-height: 1.4;
     background-color: #fff9e5;
+    color: black;
 }
 
 h1 {
