@@ -1,4 +1,4 @@
-resolver: lts-8.13
+resolver: lts-10.5
 
 packages:
 - '.'
@@ -7,3 +7,6 @@ extra-deps: []
 flags: {}
 
 extra-package-dbs: []
+
+ghc-options:
+  hakyll: -threaded

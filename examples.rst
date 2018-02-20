@@ -14,7 +14,9 @@ using Futhark`_.
 .. _`projects using Futhark`: #projects-using-futhark
 
 As Futhark is a functional language, we will start with the obligatory
-factorial program::
+factorial program:
+
+.. code-block:: Futhark
 
   let fact (n: i32): i32 = reduce (*) 1 (1...n)
 
@@ -65,7 +67,9 @@ A More Complex Example
 A more interesting example is the *maximum segment sum problem*
 (*MSS*), where we wish to determine the maximum sum of any contiguous
 subsequence of an array of integers.  We can implement this in Futhark
-using a combination of ``map`` and ``reduce``::
+using a combination of ``map`` and ``reduce``:
+
+.. code-block:: Futhark
 
   let max (x: i32) (y: i32): i32 =
     if x > y then x else y
@@ -129,7 +133,9 @@ more convenient to store it as a floating-point number between 0 and
 1.0.  Therefore, we define a function that transforms an array of type
 ``[rows][cols][3]u8`` into three arrays of type
 ``[rows][cols]f32`` each.  The result is that we have one array for
-each of the three colour channels::
+each of the three colour channels:
+
+.. code-block:: Futhark
 
   let splitIntoChannels [rows][cols]
                         (image: [rows][cols][3]u8): ([rows][cols]f32,
@@ -164,7 +170,9 @@ brevity we have left them for the compiler to infer.  It is only
 required to explicitly indicate the types of all top-level functions.
 
 We will also need to re-combine the colour channel arrays into a
-single array.  That function looks like this::
+single array.  That function looks like this:
+
+.. code-block:: Futhark
 
   let combineChannels [rows][cols]
                       (rs: [rows][cols]f32,
@@ -181,7 +189,9 @@ single array.  That function looks like this::
 Another thing we will need is the actual stencil function.  That is,
 the function we wish to apply to every pixel in the image.  For
 blurring, we will take the average value of the pixel itself plus each
-of its eight neighbors (nine values in total)::
+of its eight neighbors (nine values in total):
+
+.. code-block:: Futhark
 
   let newValue [rows][cols]
                (image: [rows][cols]f32, row: i32, col: i32): f32 =
@@ -207,7 +217,9 @@ pointing at the problematic array access.
 
 Now we can write the actual stencil function, which applies
 ``newValue`` to every inner element of a colour channel array.  The
-edges are left unchanged::
+edges are left unchanged:
+
+.. code-block:: Futhark
 
   let blurChannel [rows][cols]
                   (channel: [rows][cols]f32): [rows][cols]f32 =
@@ -229,7 +241,9 @@ interior.
 Stencil computations usually have an outer (sequential) loop for
 applying the stencil several times.  Our program is no different - we
 will apply the blurring transformation a user-defined number of times.
-The more iterations we run, the more blurred the image will become::
+The more iterations we run, the more blurred the image will become:
+
+.. code-block:: Futhark
 
   let main [rows][cols]
            (iterations: i32, image: [rows][cols][3]u8): [rows][cols][3]u8 =

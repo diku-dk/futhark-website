@@ -3,8 +3,10 @@
 import           Control.Monad
 import           Data.Monoid ((<>))
 import           Data.List (isPrefixOf)
+import qualified Data.Map as M
 import           System.FilePath
 import           Hakyll
+import           Skylighting (Syntax, parseSyntaxDefinition)
 import           Text.Pandoc
 import           Text.Pandoc.Walk
 
@@ -19,7 +21,10 @@ static :: Rules ()
 static = void $ route idRoute >> compile copyFileCompiler
 
 main :: IO ()
-main = hakyllWith config $ do
+main = do
+  futhark_syntax <- either (error . show) return =<<
+                    parseSyntaxDefinition "skylighting/futhark.xml"
+  hakyllWith config $ do
     match "images/*" static
 
     match "robots.txt" static
@@ -42,7 +47,7 @@ main = hakyllWith config $ do
         route $ setExtension "html"
         compile $ do
           menu <- contentContext
-          pandocRstCompiler
+          pandocRstCompiler futhark_syntax
             >>= loadAndApplyTemplate "templates/default.html" menu
             >>= relativizeUrls
 
@@ -50,7 +55,7 @@ main = hakyllWith config $ do
         route $ setExtension "html"
         compile $ do
           postCtx <- postContext
-          pandocRstCompiler
+          pandocRstCompiler futhark_syntax
             >>= loadAndApplyTemplate "templates/post.html"    postCtx
             >>= saveSnapshot "content"
             >>= loadAndApplyTemplate "templates/default.html" postCtx
@@ -133,11 +138,13 @@ shiftHeaderUp x = x
 shiftAll :: Pandoc -> Pandoc
 shiftAll = walk shiftHeaderUp
 
-pandocRstCompiler :: Compiler (Item String)
-pandocRstCompiler = pandocCompilerWithTransform
-   defaultHakyllReaderOptions
-   defaultHakyllWriterOptions
-   shiftAll
+pandocRstCompiler :: Syntax -> Compiler (Item String)
+pandocRstCompiler futhark_syntax = pandocCompilerWithTransform
+                                   defaultHakyllReaderOptions { readerIndentedCodeClasses = ["Futhark"] }
+                                   defaultHakyllWriterOptions { writerSyntaxMap = syntaxmap }
+                                   shiftAll
+  where syntaxmap = M.insert "Futhark" futhark_syntax $
+                    writerSyntaxMap defaultHakyllWriterOptions
 
 --------------------------------------------------------------------------------
 config :: Configuration

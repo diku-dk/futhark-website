@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "language.dtd"
+[
+<!ENTITY DEC "[0-9][0-9_]*"> <!-- Decimal digits with underscores. -->
+]>
+<language name="Futhark" version="9" kateversion="3.4" section="Sources" extensions="*.fut" mimetype="text/x-futhark" author="Troels Henriksen (athas@sigkill.dk)" license="LGPL">
+  <highlighting>
+    <list name="keywords">
+      <item>if</item>
+      <item>then</item>
+      <item>else</item>
+      <item>let</item>
+      <item>loop</item>
+      <item>default</item>
+      <item>val</item>
+      <item>for</item>
+      <item>do</item>
+      <item>with</item>
+      <item>local</item>
+      <item>open</item>
+      <item>include</item>
+      <item>import</item>
+      <item>type</item>
+      <item>entry</item>
+      <item>module</item>
+      <item>empty</item>
+      <item>while</item>
+      <item>unsafe</item>
+    </list>
+    <list name="funclike">
+      <item>reshape</item>
+      <item>rearrange</item>
+      <item>rotate</item>
+      <item>map</item>
+      <item>reduce</item>
+      <item>reduce_comm</item>
+      <item>zip</item>
+      <item>unzip</item>
+      <item>scan</item>
+      <item>concat</item>
+      <item>filter</item>
+      <item>partition</item>
+      <item>stream_map</item>
+      <item>stream_map_per</item>
+      <item>stream_red</item>
+      <item>stream_red_per</item>
+      <item>length</item>
+    </list>
+    <contexts>
+      <context attribute="Normal" lineEndContext="#stay" name="code">
+        <RegExpr attribute="Comment" context="comment"  String="--[\-]*([^!#\$%&amp;\*\+\./&lt;=&gt;\?@&#92;\^\|\-~:]|$)" />
+        <keyword attribute="Keyword" context="#stay" String="keywords" />
+        <keyword attribute="Builtin" context="#stay" String="funclike" />
+
+        <!-- Numeric constants. -->
+        <!-- Note that they may contain underscores. -->
+        <RegExpr String="-?0[xX][0-9A-Fa-f_]+" context="#stay" attribute="Hexadecimal" />
+        <RegExpr String="-?0[oO][0-7_]+" context="#stay" attribute="Octal" />
+        <RegExpr String="-?0[bB][01_]+" context="#stay" attribute="Binary" />
+        <RegExpr String="-?&DEC;(\.&DEC;([eE][-+]?&DEC;)?|[eE][-+]?&DEC;)" context="#stay" attribute="Float" />
+        <RegExpr String="-?&DEC;" context="#stay" attribute="Decimal" />
+      </context>
+
+      <context attribute="Comment" lineEndContext="#pop" name="comment">
+      </context>
+
+    </contexts>
+    <itemDatas>
+      <itemData name="Normal"           defStyleNum="dsNormal"   spellChecking="false" />
+      <itemData name="Comment"          defStyleNum="dsComment" />
+
+      <itemData name="Keyword"          defStyleNum="dsKeyword"  spellChecking="false" />
+      <itemData name="Builtin"          defStyleNum="dsKeyword"  spellChecking="false" />
+
+      <itemData name="Decimal"                 defStyleNum="dsDecVal"   />
+      <itemData name="Hexadecimal"             defStyleNum="dsBaseN"    />
+      <itemData name="Octal"                   defStyleNum="dsBaseN"    />
+      <itemData name="Binary"                  defStyleNum="dsBaseN"    />
+      <itemData name="Float"                   defStyleNum="dsFloat"    />
+    </itemDatas>
+  </highlighting>
+  <general>
+    <folding indentationsensitive="1"/>
+    <comments>
+      <comment name="singleLine" start="--" />
+      <comment name="multiLine" start="{-" end="-}" />
+    </comments>
+    <keywords casesensitive="1" />
+  </general>
+</language>

@@ -8,7 +8,9 @@ and purely functional array language** in the ML family, and comes
 with a **heavily optimising ahead-of-time compiler** that presently
 generates GPU code via OpenCL_, although the language itself is
 hardware-agnostic.  As a simple example, this function computes the
-average of an array of 64-bit floating-point numbers::
+average of an array of 64-bit floating-point numbers:
+
+.. code-block:: Futhark
 
   let average (xs: []f64) = reduce (+) 0.0 xs / r64 (length xs)
 
