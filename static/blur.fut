@@ -55,8 +55,8 @@ let blurChannel [rows][cols]
               if row > 0 && row < rows-1 && col > 0 && col < cols-1
               then newValue(channel, row, col)
               else channel[row,col])
-            [0...cols-1])
-      [0...rows-1]
+            (0...cols-1))
+      (0...rows-1)
 
 -- Perform the specified number of blurring operations on the image.
 let main [rows][cols]

@@ -229,7 +229,7 @@ edges are left unchanged:
                 then newValue(channel, row, col)
                 else channel[row,col])
               [0...cols-1])
-        [0...rows-1]
+        (0...rows-1)
 
 You may have heard that branches are expensive on a GPU.  While this
 is a good basic rule of thumb, what is actually expensive is *branch
