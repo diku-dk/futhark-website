@@ -5,7 +5,7 @@ description: I spent over three years on researching compiler optimisations, and
 ---
 
 The majority of the development work on Futhark has been carried out
-during my PhD work at `DIKU`_.  As I handed in my thesis in December
+during my PhD work at `DIKU`_.  As I handed in my thesis in September
 and successfully defended it in November (`read it here!`_), this feels
 like a good time to reflect on the experiences I made.  I do not have
 some golden advice to pass on to future generations of PhD students
