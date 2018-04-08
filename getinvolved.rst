@@ -37,3 +37,10 @@ getting involved:
 .. _`bug tracker`: https://github.com/diku-dk/futhark/issues
 .. _`benchmarks`: https://github.com/diku-dk/futhark-benchmarks
 .. _`also on Github`: https://github.com/diku-dk/futhark-website
+
+Furthermore, there is a ``#futhark`` IRC channel on `Freenode`_, and
+`/r/futhark`_ on Reddit, and a `channel on gitter.im`_.
+
+.. _`Freenode`: https://webchat.freenode.net/
+.. _`/r/futhark`: https://www.reddit.com/r/futhark/
+.. _`channel on gitter.im`: https://gitter.im/futhark-lang/Lobby
