@@ -18,7 +18,7 @@ and simple to benefit from the ability of the Futhark compiler to
 significantly restructure the original program and its data
 representations through *loop fusion* and the like.  More
 comprehensive benchmarks can be found in our various `papers
-</publications.html>`_.
+</docs.html>`_.
 
 The graphs show input size on the *x*-axis, and the resulting runtime
 in microseconds on the *y*-axis.  All runtimes are averaged over a
