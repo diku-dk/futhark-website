@@ -49,7 +49,12 @@ simply use function pointers.  These techniques are inefficient for
 the kind of high-performance execution intended for Futhark,
 especially on restricted devices such as GPUs.  Thus, as long as your
 program type-checks, you should not worry that your use of
-higher-order functions has a negative performance impact.
+higher-order functions has a negative performance impact.  To try it
+out, we have produced a `Futhark port
+<https://github.com/diku-dk/futhark-benchmarks/tree/master/misc/functional-images>`_
+of Conal Elliott's `Functional Images
+<http://conal.net/papers/functional-images/>`_, which represents
+images as functions from coordinates to colours.
 
 One nice consequence of this design is that the Futhark core language
 (which is monomorphic and first-order) remains entirely unchanged (we
