@@ -209,11 +209,11 @@ The alert reader will have noticed that ``newValue`` cannot be applied
 to pixels on the edge of the image - doing so would result in
 out-of-bounds accesses to the ``image`` array.  We will take care to
 only call the ``newValue`` function with safe indices, but the Futhark
-compiler is sadly not yet smart to realise this - thus we are forced
-to use the ``unsafe`` keyword to prevent the insertion of bounds
-checks that would otherwise hinder parallelisation.  If we did not use
-``unsafe``, the Futhark compiler would fail with an error message
-pointing at the problematic array access.
+compiler is sadly not yet smart enough to realise this - thus we are
+forced to use the ``unsafe`` keyword to prevent the insertion of
+bounds checks that would otherwise hinder parallelisation.  If we did
+not use ``unsafe``, the Futhark compiler would fail with an error
+message pointing at the problematic array access.
 
 Now we can write the actual stencil function, which applies
 ``newValue`` to every inner element of a colour channel array.  The
@@ -228,7 +228,7 @@ edges are left unchanged:
                 if row > 0 && row < rows-1 && col > 0 && col < cols-1
                 then newValue(channel, row, col)
                 else channel[row,col])
-              [0...cols-1])
+              (0...cols-1))
         (0...rows-1)
 
 You may have heard that branches are expensive on a GPU.  While this
