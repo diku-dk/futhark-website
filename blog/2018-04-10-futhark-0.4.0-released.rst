@@ -1,0 +1,93 @@
+---
+title: Futhark 0.4.0 released
+author: Troels Henriksen
+description: We released another version of Futhark, with very large improvements to the source language (higher-order functions and type inference).
+---
+
+A new version of the Futhark compiler has been released (`source
+tarballs and full changelog here
+<https://github.com/diku-dk/futhark/releases>`_).  We have continued
+work on compiler optimisations and code generation - notably a
+significant improvement to the `kernel extraction algorithm
+</blog/2017-06-25-futhark-at-pldi.html>`_, although it is not yet
+enabled by default.  However, the main changes in this release are in
+the source language.  Specifically, the work of Anders Kiel Hovgaard,
+a master's student at `DIKU <http://diku.dk>`_, has resulted in
+Futhark now supporting higher-order functions and
+`Hindley-Milner-style type inference
+<http://dev.stephendiehl.com/fun/006_hindley_milner.html>`_.  This is
+by far the largest extension we have ever made to the source language,
+and it has completely transformed how we write Futhark programs.
+Considering the complexity of these features, it is likely that they
+are still somewhat buggy, but we have been using them quite
+intensively for the past few weeks to ensure they are in good shape.
+Hopefully, most straightforward uses will not trigger bugs.  While one
+goal of Futhark is to be similar to existing functional languages,
+there are some quirks and limitations that I will discuss below.
+
+Higher-order functions
+----------------------
+
+To a first approximation, Futhark's higher-order functions work as one
+might expect from Haskell or an ML language.  However, the focus on
+performance has led us to introduce some unusual restrictions:
+
+* A function may not be returned from a branch.
+* A function may not be put in an array.
+* A function may not be used as a loop parameter.
+
+This means that while Futhark supports *higher-order* functions,
+functions are not *first class values*.  The justification for these
+restrictions is that they permit efficient `defunctionalisation
+<https://en.wikipedia.org/wiki/Defunctionalization>`_ - a process that
+converts a higher-order program to a first-order program.
+Specifically, the Futhark compiler guarantees that use higher-order
+functions carry no run-time overhead what-so-ever.  This is in
+contrast to conventional defunctionalisation, which may produce large
+amounts of control flow, and most other functional languages, which
+simply use function pointers.  These techniques are inefficient for
+the kind of high-performance execution intended for Futhark,
+especially on restricted devices such as GPUs.  Thus, as long as your
+program type-checks, you should not worry that your use of
+higher-order functions has a negative performance impact.
+
+One nice consequence of this design is that the Futhark core language
+(which is monomorphic and first-order) remains entirely unchanged (we
+also perform `monomorphisation <http://mlton.org/Monomorphise>`_).
+The programmer can write advanced polymorphic and higher-order code,
+but it will all be compiled away by the time the optimisation passes
+are run.
+
+Type inference
+--------------
+
+Our implementation of type inference is quite conventional, and
+perhaps even a little old-fashioned.  The error messages are quite
+crude, but the Futhark type system is simple enough that they tend to
+be comprehensible.
+
+Some limitations remain that will be addressed in the next release.
+The main such limitation is that type inference is limited in the
+presence of record and field projection.  For example, the following
+will not type check:
+
+.. code-block:: Futhark
+
+   let f x = x.foo
+
+The compiler will complain that ``x`` is not a record with a field
+``foo``.  However, it will work if we add a type annotation:
+
+.. code-block:: Futhark
+
+   let f (x: {foo: i32}) = x.foo
+
+Or we could simply use a record pattern:
+
+.. code-block:: Futhark
+
+   let f {foo} = foo
+
+Standard ML already has a clean solution to this problem, so it will
+definitely be fixed eventually.  For now, a few type annotations will
+be necessary for code that makes heavy use of record.
