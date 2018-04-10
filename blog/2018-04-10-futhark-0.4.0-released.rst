@@ -94,5 +94,5 @@ Or we could simply use a record pattern:
    let f {foo} = foo
 
 Standard ML already has a clean solution to this problem, so it will
-definitely be fixed eventually.  For now, a few type annotations will
-be necessary for code that makes heavy use of record.
+definitely be fixed eventually.  For now, a few type annotations may
+be necessary for code that makes heavy use of records.
