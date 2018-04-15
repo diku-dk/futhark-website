@@ -63,18 +63,18 @@ a:visited {
 #logo {
     display: block;
     font-size: 30px;
-    color: #fff;
+    color: #fff9e5;
     margin-left: 200px;
     position: relative;
 }
 #logo a {
     text-decoration:none;
-    color:#fff;
+    color:#fff9e5;
     font-weight: normal;
 }
 #slogan {
     font-size: 14px;
-    color: #fff;
+    color: #fff9e5;
     margin-top: 10px;
     margin-left: 200px;
 }
@@ -119,17 +119,17 @@ a:visited {
 }
 #menu li {
     margin:0;
-    color: white;
+    color: #fff9e5;
 }
 #menu li a {
     background-color: #5f021f;
-    color: white;
+    color: #fff9e5;
     text-decoration: none;
 }
 
 #menu #chosen, #menu #chosen a, #menu a:hover {
     color: #5f021f;
-    background-color: white;
+    background-color: #fff9e5;
 }
 
 @media (min-width:950px){
