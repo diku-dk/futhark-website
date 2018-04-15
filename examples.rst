@@ -2,10 +2,11 @@
 title: Code Examples
 ---
 
-Futhark still lacks many of the syntactical niceties that one might
-desire in a programming language.  Therefore, the examples here are
-more verbose than ideal.  Still, they should provide a taste of what
-(simple) Futhark programs look like.  If you have ideas for syntax
+This page provides example programs that provide a taste of what
+(simple) Futhark programs look like.  These programs are more verbose
+than necessary, as they avoid using advanced language features or
+library functions.  Types are given explicitly for clarity, despite
+Futhark supporting full type inference.  If you have ideas for syntax
 improvements, you can always `contribute`_!  For more examples, you
 can check the `examples directory in the Futhark repository`_, or at
 our implemented benchmarks_.  We also maintain a list of `projects
