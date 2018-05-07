@@ -1,6 +1,3 @@
--- Make all decimal literals of type f32.
-default(f32)
-
 let dot(c: (f32,f32)): f32 =
   let (r, i) = c
   in r * r + i * i

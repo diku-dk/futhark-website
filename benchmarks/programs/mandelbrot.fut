@@ -3,8 +3,6 @@
 import "/futlib/complex"
 import "/futlib/colour"
 
-default(f32)
-
 module complex = complex f32
 type complex = complex.complex
 

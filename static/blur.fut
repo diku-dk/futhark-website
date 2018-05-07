@@ -22,8 +22,8 @@ let combineChannels [rows][cols]
                     (rs: [rows][cols]f32,
                      gs: [rows][cols]f32,
                      bs: [rows][cols]f32): [rows][cols][3]u8 =
-  map (\rs_row gs_row bs_row ->
-         map (\r g b ->
+  map3 (\rs_row gs_row bs_row ->
+         map3 (\r g b ->
                 [u8.f32(r * 255f32),
                  u8.f32(g * 255f32),
                  u8.f32(b * 255f32)])
