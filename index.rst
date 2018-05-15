@@ -14,6 +14,15 @@ average of an array of 64-bit floating-point numbers:
 
   let average (xs: []f64) = reduce (+) 0.0 xs / r64 (length xs)
 
+.. container:: quicklinks
+
+   **Quick links**
+
+   * `Tutorial <http://futhark-book.readthedocs.io/en/latest/>`_
+   * `User's guide <https://futhark.readthedocs.io>`_
+   * `Language reference <https://futhark.readthedocs.io/en/latest/language-reference.html>`_
+   * `Library reference <docs/>`_
+
 Futhark is not designed for graphics programming, but instead uses the
 compute power of the GPU to accelerate data-parallel array
 computations.  The language supports **regular *nested*
