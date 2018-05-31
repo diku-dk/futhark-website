@@ -30,7 +30,6 @@
     <list name="funclike">
       <item>reshape</item>
       <item>rearrange</item>
-      <item>rotate</item>
       <item>map</item>
       <item>reduce</item>
       <item>reduce_comm</item>
