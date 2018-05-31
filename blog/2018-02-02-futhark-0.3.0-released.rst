@@ -33,7 +33,7 @@ strategy, which got its `own blog post
 </blog/2018-01-28-how-futhark-manages-gpu-memory.html>`_.  There has
 also been a number of improvements to the included basis library
 ("futlib"), of which the most significant is probably the inclusion of
-a `Fast Fourier Transform </docs/futlib/fft.html>`_, which was
+a `Fast Fourier Transform </docs/doc/futlib/fft.html>`_, which was
 developed as part of a bachelors project at `DIKU <http://diku.dk>`_.
 
 Most of my development effort was actually spent on developing our
