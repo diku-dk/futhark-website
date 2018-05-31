@@ -1,0 +1,139 @@
+---
+title: Futhark 0.5.1 released
+author: Troels Henriksen
+description: We made another one!
+---
+
+We have released a new version of the compiler for Futhark, the worlds
+leading pure ML-like array programming language named after the `Runic
+alphabet <https://en.wikipedia.org/wiki/Elder_Futhark>`_.  The major
+change is a switch to a new versioning scheme, where released version
+numbers never end in ``.0``.  `The full changelog is here
+<https://github.com/diku-dk/futhark/releases/tag/v0.5.1>`_.  This
+version a stability and consolidation release, without much work work
+on new compiler optimisations (at least none that are ready for use by
+default).  Instead, we have worked on polishing the language, its
+tools, and the enclosed libraries.  This has mostly been driven by
+exploiting the higher-order functions and type inference we `added in
+0.4.0 </blog/2018-04-10-futhark-0.4.0-released.html>`_, but also by
+feedback we obtained via human trials in the `PFP course at Chalmers
+<http://www.cse.chalmers.se/edu/year/2018/course/DAT280_Parallel_Functional_Programming/>`_
+and student projects at DIKU.  It is quite rewarding to witness people
+having fun with Futhark and obtaining good results, since I mostly
+spend my days looking at the things that do not yet work.
+
+The remainder of this post will elaborate on some of the improvements
+and changes.
+
+Overloaded numeric literals
+---------------------------
+
+All languages that support multiple numeric types have to decide how
+to handle plain literals such as ``2``.  Which type should that have?
+Haskell solves this elegantly by interpreting it as the function
+application ``fromInteger 2``, where ``fromInteger`` is a method in
+the ``Num`` typeclass.  Normal type inference will choose the
+appropriate instance of ``Num``.  This interacts nicely with
+user-defined types as well.  Unfortunately, Futhark does not support
+type classes, and we don't intend to add them in the short term.
+C-like languages use implicit numeric conversions to make the specific
+type of constants less important, but this `causes a host of other
+problems
+<http://www.informit.com/articles/article.aspx?p=686170&seqNum=6>`_.
+We don't want to go there.  So far, the Futhark solution has been to
+support *type suffixes* for indicating the type of a literal.  For
+example, ``2u16`` is an unsigned 16-bit integer, and ``2f64`` is a
+double precision floating point number.  This is unambiguous, but
+notationally heavy.  With 0.5.1, Futhark now supports overloaded
+numeric literals via a lightweight integration in normal type
+inference.  Concretely, when a literal such as ``2`` is encountered,
+the compiler creates a new type variable and constraints it such that
+it can only `unify
+<https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system>`_
+with the built-in numeric types.  The main downsides are lack of
+support for literals of user-defined numeric types, as well as lack of
+integration with type-generic through the `module system
+</blog/2017-01-25-futhark-module-system.html>`_.  In practice, these
+downsides turned out to be not all that problematic.  While we may
+revisit this feature in the future, the current solution provides a
+nice improvement in notational brevity, with very little
+implementation complexity (and importantly: no language extensions, so
+we can replace it with something more elaborate in the future).
+
+``rotate``, ``concat``, and ``reshape`` are no longer language constructs
+-------------------------------------------------------------------------
+
+In the early days of Futhark, many things that ought to conceptually
+be functions were instead defined as syntactical language constructs
+in the grammar.  This was motivated partly by the inability of our
+(then) first-order type system to model higher-order functions, and
+partly by our desire for the compiler to directly recognise certain
+"functions" to perform optimisations and rewrites on them.  As both
+the language and compiler has grown in power, some of these design
+decisions have become obsolete.  The problem with language constructs,
+compared to functions, is that the former do not support conveniences
+such as partial application.  Consider, for example, the ``rotate``
+construct, which shifts the elements of an array by some number of
+positions:
+
+.. code-block:: Futhark
+
+   rotate 3 xs
+
+If we wanted to rotate each row of a two-dimensional array, we might
+try to write:
+
+.. code-block:: Futhark
+
+   map (rotate 3) xss
+
+Previously, this would be a syntax error, because the syntax for
+``rotate`` specifies that it must have exactly two arguments - and
+here there is only one.  We previously addressed this partially by
+adding yet more special-purpose syntax for rotating an inner
+dimension:
+
+.. code-block:: Futhark
+
+   rotate@1 3 xss
+
+It was a simple enough matter to define a ``rotate`` function that
+permits partial application, but unfortunately the ``map``-based
+notation is still not fully equivalent to ``rotate@1``.  The
+difference is that the ``map`` will manifest the rotated array in
+memory, while ``rotate@1`` is guaranteed to be a cheap index
+transformation.  The solution is to keep ``rotate`` as a construct in
+the compiler-internal core language, and teach the compiler to
+internally translate ``map (rotate 3)`` to ``rotate@1``.  This keeps
+the user-facing language simple and well-behaved, while still
+permitting important optimisations.  Specifically, the new ``rotate``
+library function is defined as:
+
+.. code-block:: Futhark
+
+   let rotate 't (r: i32) (xs: []t) = intrinsics.rotate (r, xs)
+
+Here, ``intrinsics.rotate`` is a function that is known to the
+compiler, and maps to a special internal language construct.  There is
+a little more to it - it is not just fragile pattern matching - but
+this is the basic technique, which we also used to remove ``concat``
+and turn ``reshape`` into the functions ``flatten`` and ``unflatten``.
+There are still a few function-like constructs remaining, namely
+``rearrange``, ``zip``, and ``unzip``.  We will get to these
+eventually!
+
+The work also opens up the possibility of using ``@`` as a general
+shortcut for applying a function on an inner dimension of an array;
+perhaps even implied to get "automatic vectorisation" in the style of
+APL or Numpy.  But that will have to wait for another day...
+
+Improvements to ``futhark-doc``
+-------------------------------
+
+We have improved the quality of the output produced by our
+documentation generator, which mostly manifests as `nicer
+documentation for the basis library
+<https://futhark-lang.org/docs/>`_.  For example, `there is an index!
+<https://futhark-lang.org/docs/doc-index.html>`_. As we start working
+on some kind of built-in package manager for Futhark, easy ways of
+writing nice library documentation will probably prove important.
