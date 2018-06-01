@@ -62,7 +62,7 @@ The following Futhark program computes the dot product of two integer
 vectors::
 
   entry dotprod (xs: []i32) (ys: []i32): i32 =
-    reduce (+) 0 (map (*) xs ys)
+    reduce (+) 0 (map2 (*) xs ys)
 
 We define the ``dotprod`` function with ``entry`` to indicate that it
 should be externally visible.  After saving this program as
