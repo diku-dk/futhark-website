@@ -36,7 +36,7 @@ addition to the one for C, and we are currently working on a similar
 one for C#.  It would be a relatively small matter to add similar
 backends for R, Ruby, Java, Swift, Rust, and so forth.  Yet for each
 of these backends we would have to set up testing and benchmarking
-infrastructure to remain they remain operational, even in the face of
+infrastructure to ensure they remain operational, even in the face of
 changes in the library landscape of the target landscape (for example,
 defects or modifications made to way we access OpenCL).  Over-extension
 here would result in either spending all our resources on maintenance
