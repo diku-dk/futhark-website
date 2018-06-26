@@ -161,3 +161,12 @@ does it describe horisontal fusion.
 .. _`apltail`: https://github.com/melsman/apltail/
 .. _`PLDI '17`: http://pldi17.sigplan.org/home
 .. _`FHPC '17`: http://conf.researchr.org/track/FHPC-2017/FHPC-2017-papers
+
+Student Projects (incomplete)
+*****************************
+
+* Niels G. W. Serup: **Memory Block Merging in Futhark**. MSc thesis. Department of Computer Science, University of Copenhagen. November, 2017. (`PDF <student-projects/niels-msc-thesis.pdf>`_)
+
+* Rasmus Wriedt Larsen: **Generating Efficient Code for Futhark’s Segmented Redomap**. MSc thesis. Department of Computer Science, University of Copenhagen. March, 2017. (`PDF <student-projects/rasmus-msc-thesis.pdf>`_)
+
+* Niels G. W. Serup: **Extending Futhark with a write construct**. MSc project. Department of Computer Science, University of Copenhagen. June, 2016. (`PDF <student-projects/niels-write-construct.pdf>`_).
