@@ -167,8 +167,7 @@ Student Projects (incomplete)
 
 * Frederik Thorøe: **Auto-tuning of threshold-parameters in Futhark**.  BSc thesis.  University of Copenhagen. June, 2018. (`PDF <student-projects/frederik-thoroe-bsc-thesis.pdf>`_)
 
-* Mette Marie Kowalski: **Designing and Accelerating a Generic FFT
-Library in Futhark**. BSc thesis.  Department of Computer Science, University of Copenhagen. June, 2018. (`PDF <student-projects/mette-kowalski-bsc-thesis.pdf>`_)
+* Mette Marie Kowalski: **Designing and Accelerating a Generic FFT Library in Futhark**. BSc thesis.  Department of Computer Science, University of Copenhagen. June, 2018. (`PDF <student-projects/mette-kowalski-bsc-thesis.pdf>`_)
 
 * Niels G. W. Serup: **Memory Block Merging in Futhark**. MSc thesis. Department of Computer Science, University of Copenhagen. November, 2017. (`PDF <student-projects/niels-msc-thesis.pdf>`_)
 
