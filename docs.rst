@@ -162,8 +162,8 @@ does it describe horisontal fusion.
 .. _`PLDI '17`: http://pldi17.sigplan.org/home
 .. _`FHPC '17`: http://conf.researchr.org/track/FHPC-2017/FHPC-2017-papers
 
-Student Projects (incomplete)
-*****************************
+Selected Student Projects
+*************************
 
 * Frederik Thorøe: **Auto-tuning of threshold-parameters in Futhark**.  BSc thesis.  University of Copenhagen. June, 2018. (`PDF <student-projects/frederik-thoroe-bsc-thesis.pdf>`_)
 
