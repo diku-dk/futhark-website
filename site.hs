@@ -33,6 +33,8 @@ main = do
 
     match "publications/*" static
 
+    match "student-projects/*" static
+
     match "benchmarks/programs/*" static
 
     match "css/*" $ do
