@@ -165,6 +165,8 @@ does it describe horisontal fusion.
 Student Projects (incomplete)
 *****************************
 
+* Frederik Thorøe: **Auto-tuning of threshold-parameters in Futhark**.  BSc thesis.  University of Copenhagen. June, 2018. (`PDF <student-projects/frederik-thoroe-bsc-thesis.pdf>`_)
+
 * Niels G. W. Serup: **Memory Block Merging in Futhark**. MSc thesis. Department of Computer Science, University of Copenhagen. November, 2017. (`PDF <student-projects/niels-msc-thesis.pdf>`_)
 
 * Rasmus Wriedt Larsen: **Generating Efficient Code for Futhark’s Segmented Redomap**. MSc thesis. Department of Computer Science, University of Copenhagen. March, 2017. (`PDF <student-projects/rasmus-msc-thesis.pdf>`_)
