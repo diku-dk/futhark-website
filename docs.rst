@@ -165,11 +165,13 @@ does it describe horisontal fusion.
 Selected Student Projects
 *************************
 
-* Kasper Abildtrup Hansen: **FFT Generator in Furthark: A prototype Futhark library using FFTW technniques**. MSc project. University of Copenhagen. June, 2018. (`PDF <student-projects/kasper-hansen-genfft.pdf>`_)
+* Kasper Abildtrup Hansen: **FFT Generator in Furthark: A prototype Futhark library using FFTW technniques**. MSc project. Department of Computer Science, University of Copenhagen. June, 2018. (`PDF <student-projects/kasper-hansen-genfft.pdf>`_)
 
-* Frederik Thorøe: **Auto-tuning of threshold-parameters in Futhark**.  BSc thesis.  University of Copenhagen. June, 2018. (`PDF <student-projects/frederik-thoroe-bsc-thesis.pdf>`_)
+* Frederik Thorøe: **Auto-tuning of threshold-parameters in Futhark**.  BSc thesis.  Department of Computer Science, University of Copenhagen. June, 2018. (`PDF <student-projects/frederik-thoroe-bsc-thesis.pdf>`_)
 
 * Mette Marie Kowalski: **Designing and Accelerating a Generic FFT Library in Futhark**. BSc thesis.  Department of Computer Science, University of Copenhagen. June, 2018. (`PDF <student-projects/mette-kowalski-bsc-thesis.pdf>`_)
+
+* Anders Kiel Hovgaard: **Higher-order functions for a high-performance programming language for GPUs**.  MSc project.  Department of Computer Science, University of Copenhagen. May, 2018. (`PDF <student-projects/hovgaard-msc-thesis.pdf>`_)
 
 * Niels G. W. Serup: **Memory Block Merging in Futhark**. MSc thesis. Department of Computer Science, University of Copenhagen. November, 2017. (`PDF <student-projects/niels-msc-thesis.pdf>`_)
 
