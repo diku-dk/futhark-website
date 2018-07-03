@@ -168,10 +168,10 @@ type used in the entry points of the Futhark program.
 
 The single entry point is declared like this::
 
-  int futhark_dotprod(struct futhark_context *ctx,
-                      int32_t *out0,
-                      struct futhark_i32_1d *in0,
-                      struct futhark_i32_1d *in1);
+  int futhark_entry_dotprod(struct futhark_context *ctx,
+                            int32_t *out0,
+                            const struct futhark_i32_1d *in0,
+                            const struct futhark_i32_1d *in1);
 
 As the original Futhark program accepted two parameters and returned
 one value, the corresponding C function takes one *out* parameter and
@@ -195,7 +195,7 @@ handling) that calls our generated library::
     struct futhark_i32_1d *y_arr = futhark_new_i32_1d(ctx, y, 4);
 
     int res;
-    futhark_dotprod(ctx, &res, x_arr, y_arr);
+    futhark_entry_dotprod(ctx, &res, x_arr, y_arr);
     futhark_context_sync(ctx);
 
     printf("Result: %d\n", res);
@@ -266,9 +266,9 @@ functions for freeing context and data::
     futhark_new_i32_1d :: Ptr Futhark_Context -> Ptr Int32
                        -> Int32 -> IO (Ptr Futhark_i32_1d)
 
-  foreign import ccall "futhark_dotprod"
-    futhark_dotprod :: Ptr Futhark_Context -> Ptr Int32
-                    -> Ptr Futhark_i32_1d -> Ptr Futhark_i32_1d -> IO ()
+  foreign import ccall "futhark_entry_dotprod"
+    futhark_entry_dotprod :: Ptr Futhark_Context -> Ptr Int32
+                          -> Ptr Futhark_i32_1d -> Ptr Futhark_i32_1d -> IO ()
 
 We use empty data declarations to declare Haskell types corresponding
 to the C types.  This is a nice trick for getting type-safe pointers,
@@ -290,7 +290,7 @@ desired.  We can call  the imported functions like this::
     x_arr <- futhark_new_i32_1d ctx x 4
     y_arr <- futhark_new_i32_1d ctx y 4
 
-    res <- alloca $ \res -> do futhark_dotprod ctx res x_arr y_arr
+    res <- alloca $ \res -> do futhark_entry_dotprod ctx res x_arr y_arr
                                peek res
     putStrLn $ "Result: " ++ show res
 
