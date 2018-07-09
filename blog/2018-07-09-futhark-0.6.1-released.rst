@@ -1,0 +1,121 @@
+---
+title: Futhark 0.6.1 released
+author: Troels Henriksen
+description: Hot off the presses, get it while the cache is still warm!
+---
+
+Futhark 0.6.1 has been released.  You can `read the full changelog
+<https://github.com/diku-dk/futhark/releases/tag/v0.6.1>`_ and install
+it the `usual ways
+<http://futhark.readthedocs.io/en/latest/installation.html>`_.
+
+This release was not supposed to be a significant one.  I only
+intended for it to remove a few obsolete constructs and fix some bugs.
+However, close to the release, a handful of nifty features managed to
+sneak their way in.  Interestingly, most of these features were
+motivated by actual users who encountered various difficulties or made
+suggestions for improvement.  Some of these users were students doing
+projects at `DIKU <http://diku.dk>`_, where we conduct human trials
+with Futhark on more or less willing subjects.  However, the main
+source of motivation was Pepijn de Vos who implemented the `discrete
+cosine transform
+<http://pepijndevos.nl/2018/07/04/loefflers-discrete-cosine-transform-algorithm-in-futhark.html>`_,
+and also found time to `implement a fast automatic Futhark-Python FFI
+<https://futhark-lang.org/blog/2018-07-05-python-gotta-go-faster.html>`_
+after I remarked that I was not sure it would be possible.  This may
+well be the first release that has been so heavily user-influenced.
+
+Improvements to memory usage
+----------------------------
+
+One improvement is to the deallocation of memory.  While Futhark's
+`GPU memory manager
+<https://futhark-lang.org/blog/2018-01-28-how-futhark-manages-gpu-memory.html>`_
+addressed most of our allocation performance woes, it did not to
+anything to address peak memory consumption.  Specifically, memory
+management was still centred around `basic blocks
+<https://en.wikipedia.org/wiki/Basic_block>`_ We can think of basic
+blocks as sequences of statements executed in sequence.  Only at the
+end of a basic block would allocations go out of scope and thus be
+deallocated.  For example, consider the following sequence of
+statements, of which some allocate memory, some use it, and some free
+it::
+
+  1:  m1 <- alloc()
+  2:  m2 <- alloc()
+  3:  use(m1, m2)
+  4:  m3 <- alloc()
+  5:  use(m2, m3)
+  6:  m4 <- alloc()
+  7:  use(m3, m4)
+  8:  free(m1)
+  9:  free(m2)
+  10: free(m3)
+  11: free(m4)
+
+This is a simplified example of a pattern that frequent pattern in
+Futhark-generated code: just before some bulk parallel operation (like
+a GPU kernel), memory is allocated for the output.  This memory is
+then subsequently used as input to some subsequent operation.  At the
+end of the basic block, all allocations performed during its execution
+are freed (possibly except those used to store the final result, which
+we elide for simplicity).
+
+It is clear that in the above example, some of the allocations are
+held for longer than strictly necessary.  For example, ``m2`` is last
+used in line 5, but is not deallocated until line 9.  This means we
+have more memory allocated at once than strictly necessary.  In the
+worse case, the device we are running on may not have enough memory to
+run the program to completion!  This was the problem encountered by
+Pepijn de Vos.  The solution was a `rather simple patch
+<https://github.com/diku-dk/futhark/commit/1656b307d66a3bcbd90902f81b3f0b0c29698b38#diff-245c0e18ab2a5cb6e35c2a569fdd686eR496>`_
+that uses a crude `liveness analysis
+<https://en.wikipedia.org/wiki/Live_variable_analysis>`_ to insert
+deallocations after the last statement in which an allocation is used::
+
+  1:  m1 <- alloc()
+  2:  m2 <- alloc()
+  3:  use(m1, m2)
+  4:  free(m1)
+  5:  m3 <- alloc()
+  6:  use(m2, m3)
+  7:  free(m2)
+  8:  m4 <- alloc()
+  9:  use(m3, m4)
+  10: free(m3)
+  11: free(m4)
+
+Now, at any point in time, only two memory blocks are allocated.  On
+one version of the discrete cosine transform, this resulted in a
+five-fold reduction in peak memory footprint.  Not bad for such a
+simple patch.
+
+Other improvements
+------------------
+
+Another important improvement is to ``futharki``, the Futhark REPL.
+This, too, was motivated by a user (Pepijn again) asking why basic
+things did not work, and thus unwittingly shaming me into fixing it.
+Specifically, ``futharki`` now supports entering declarations, not
+just expressions, which makes experimenting with modularised libraries
+much nicer.  Unfortunately, the largest problem with ``futharki``
+`remains unresolved <https://github.com/diku-dk/futhark/issues/537>`_:
+specifically that the interpreter operates on the core language, not
+the source language.  Since the core language uses a different
+(flattened/unzipped) value representation, this makes expressions that
+return tuples (or arrays of tuples) produce unexpected results.
+Contributions are very welcome!
+
+However, as is the eventual fate of all language designers, I am most
+pleased with this release *removes* from the Futhark language.
+Specifically, ``rearrange`` and ``zip`` are no longer language
+constructs, but instead available through library functions.  These
+were the last remaining function-like language constructs.  From now
+on, anything that *looks* like a function in Futhark *is* a function,
+and can be partially applied or passed to a higher-order function.
+
+Happily, this marks the removal of the last legacy construct in
+Futhark.  There is now nothing left that I wish to remove.  While it
+is certain that we will still break compatibility from time to time,
+it should be much less frequent in the past, and only occur for exotic
+cases.
