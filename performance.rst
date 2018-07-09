@@ -110,7 +110,7 @@ We `wrote a blog post
 </blog/2018-01-28-how-futhark-manages-gpu-memory.html>`_ on the
 technique.
 
-.. _`benchmarks game`: https://benchmarksgame.alioth.debian.org/
+.. _`benchmarks game`: https://benchmarksgame-team.pages.debian.net/benchmarksgame/
 .. _`Thrust`: https://github.com/thrust/thrust
 .. _`Accelerate`: https://github.com/AccelerateHS/accelerate
 .. _`Rodinia`: https://www.cs.virginia.edu/~skadron/wiki/rodinia/index.php/Rodinia:Accelerating_Compute-Intensive_Applications_with_Accelerators
