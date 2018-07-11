@@ -107,7 +107,7 @@ return tuples (or arrays of tuples) produce unexpected results.
 Contributions are very welcome!
 
 However, as is the eventual fate of all language designers, I am most
-pleased with this release *removes* from the Futhark language.
+pleased with what this release *removes* from the Futhark language.
 Specifically, ``rearrange`` and ``zip`` are no longer language
 constructs, but instead available through library functions.  These
 were the last remaining function-like language constructs.  From now
