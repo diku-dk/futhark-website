@@ -346,3 +346,7 @@ main purpose is to produce pretty effects.  There is a `blog post
 
 `Futracer <https://github.com/nqpz/futracer>`_ is a fairly slow
 brute-force ray tracer written in Futhark.
+
+`Futball <https://github.com/Athas/futball>`_ is a game about avoiding
+getting hit by balls.  The rendering engine is a ray tracer written in
+Futhark.
