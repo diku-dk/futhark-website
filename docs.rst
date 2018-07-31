@@ -53,8 +53,8 @@ We have published a number of papers on Futhark, and hopefully more
 will follow in the future.  They are presented below in reverse
 chronological order.
 
-Design and Implementation of the Futhark Programming Language (`PDF <publications/troels-henriksen-phd-thesis.pdf>`_)
----------------------------------------------------------------------------------------------------------------------
+Design and Implementation of the Futhark Programming Language (`pdf <publications/troels-henriksen-phd-thesis.pdf>`_, `bib <publications/troels-henriksen-phd-thesis.bib>`_)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. class:: papermetadata
 Troels Henriksens PhD thesis (revised), defended in November of 2017
@@ -72,8 +72,8 @@ and probably only of interest to academics.  The empirical evaluation
 chapter is a good description of what Futhark does well, and what it
 does not so well (at least as of the time the thesis was written).
 
-Strategies for Regular Segmented Reductions on GPU (`PDF <publications/fhpc17.pdf>`_)
--------------------------------------------------------------------------------------
+Strategies for Regular Segmented Reductions on GPU (`pdf <publications/fhpc17.pdf>`_, `bib <publications/fhpc17.bib>`_)
+-----------------------------------------------------------------------------------------------------------------------
 
 .. class:: papermetadata
 Presented at `FHPC '17`_
@@ -85,8 +85,8 @@ technique currently used by the Futhark compiler, but it is presented
 in a general setting, and could be used by other libraries and
 languages that make use of regular segmented reductions.
 
-Futhark: Purely Functional GPU-Programming with Nested Parallelism and In-Place Array Updates (`PDF <publications/pldi17.pdf>`_)
---------------------------------------------------------------------------------------------------------------------------------
+Futhark: Purely Functional GPU-Programming with Nested Parallelism and In-Place Array Updates (`pdf <publications/pldi17.pdf>`_, `bib <publications/pldi17.bib>`_)
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. class:: papermetadata
 Presented at `PLDI '17`_
@@ -101,8 +101,8 @@ while still being more powerful than approaches that support only flat
 parallelism.  The `accompanying benchmark suite
 <https://github.com/diku-dk/futhark-pldi17>`_ is freely accessible.
 
-APL on GPUs - A TAIL from the Past, Scribbled in Futhark (`PDF <publications/fhpc16.pdf>`_)
-------------------------------------------------------------------------------------------------------
+APL on GPUs - A TAIL from the Past, Scribbled in Futhark (`pdf <publications/fhpc16.pdf>`_, `bib <publications/fhpc16.bib>`_)
+-----------------------------------------------------------------------------------------------------------------------------
 
 .. class:: papermetadata
 Presented at `FHPC '16`_
@@ -115,8 +115,8 @@ compiler.  We succeed in achieving decent speedup on several (small)
 APL programs.  The `accompanying benchmark suite
 <https://github.com/diku-dk/futhark-fhpc16>`_ may be worth a look.
 
-Design and GPGPU Performance of Futhark’s Redomap Construct (`PDF <publications/array16.pdf>`_)
-----------------------------------------------------------------------------------------------------------
+Design and GPGPU Performance of Futhark’s Redomap Construct (`pdf <publications/array16.pdf>`_, `bib <publications/array16.bib>`_)
+----------------------------------------------------------------------------------------------------------------------------------
 
 .. class:: papermetadata
 Presented at `ARRAY '16`_
@@ -127,8 +127,8 @@ constructs - ``redomap`` - which is used to represent various forms of
 implemented in both Thrust and Futhark and discuss their relative
 performance.
 
-Size Slicing - A Hybrid Approach to Size Inference in Futhark (`PDF <publications/fhpc14.pdf>`_)
-------------------------------------------------------------------------------------------------
+Size Slicing - A Hybrid Approach to Size Inference in Futhark (`pdf <publications/fhpc14.pdf>`_, `bib <publications/fhpc14.bib>`_)
+----------------------------------------------------------------------------------------------------------------------------------
 
 .. class:: papermetadata
 Presented at `FHPC '14`_
@@ -140,8 +140,8 @@ grown support for user-defined size annotations, which can sometimes
 enable the compiler to make better assumptions about the shapes of
 arrays.
 
-Bounds Checking: An Instance of Hybrid Analysis (`PDF <publications/array14.pdf>`_)
------------------------------------------------------------------------------------
+Bounds Checking: An Instance of Hybrid Analysis (`pdf <publications/array14.pdf>`_, `bib <publications/array14.bib>`_)
+----------------------------------------------------------------------------------------------------------------------
 
 .. class:: papermetadata
 Presented at `ARRAY '14`_
@@ -159,8 +159,8 @@ Futhark compiler.  Instead, we provide an ``unsafe`` keyword that one
 can use to remove bounds checks that would otherwise hinder
 parallelisation.  In the future, we might return to this work.
 
-A T2 Graph-Reduction Approach To Fusion (`PDF <publications/fhpc13.pdf>`_)
---------------------------------------------------------------------------
+A T2 Graph-Reduction Approach To Fusion (`pdf <publications/fhpc13.pdf>`_, `bib <publications/fhpc13.bib>`_)
+------------------------------------------------------------------------------------------------------------
 
 .. class:: papermetadata
 Presented at `FHPC '13`_
@@ -184,16 +184,16 @@ does it describe horisontal fusion.
 Selected Student Projects
 *************************
 
-* Kasper Abildtrup Hansen: **FFT Generator in Furthark: A prototype Futhark library using FFTW technniques**. MSc project. Department of Computer Science, University of Copenhagen. June, 2018. (`PDF <student-projects/kasper-hansen-genfft.pdf>`_)
+* Kasper Abildtrup Hansen: **FFT Generator in Furthark: A prototype Futhark library using FFTW technniques**. MSc project. Department of Computer Science, University of Copenhagen. June, 2018. (`pdf <student-projects/kasper-hansen-genfft.pdf>`_)
 
-* Frederik Thorøe: **Auto-tuning of threshold-parameters in Futhark**.  BSc thesis.  Department of Computer Science, University of Copenhagen. June, 2018. (`PDF <student-projects/frederik-thoroe-bsc-thesis.pdf>`_)
+* Frederik Thorøe: **Auto-tuning of threshold-parameters in Futhark**.  BSc thesis.  Department of Computer Science, University of Copenhagen. June, 2018. (`pdf <student-projects/frederik-thoroe-bsc-thesis.pdf>`_)
 
-* Mette Marie Kowalski: **Designing and Accelerating a Generic FFT Library in Futhark**. BSc thesis.  Department of Computer Science, University of Copenhagen. June, 2018. (`PDF <student-projects/mette-kowalski-bsc-thesis.pdf>`_)
+* Mette Marie Kowalski: **Designing and Accelerating a Generic FFT Library in Futhark**. BSc thesis.  Department of Computer Science, University of Copenhagen. June, 2018. (`pdf <student-projects/mette-kowalski-bsc-thesis.pdf>`_)
 
-* Anders Kiel Hovgaard: **Higher-order functions for a high-performance programming language for GPUs**.  MSc project.  Department of Computer Science, University of Copenhagen. May, 2018. (`PDF <student-projects/hovgaard-msc-thesis.pdf>`_)
+* Anders Kiel Hovgaard: **Higher-order functions for a high-performance programming language for GPUs**.  MSc project.  Department of Computer Science, University of Copenhagen. May, 2018. (`pdf <student-projects/hovgaard-msc-thesis.pdf>`_)
 
-* Niels G. W. Serup: **Memory Block Merging in Futhark**. MSc thesis. Department of Computer Science, University of Copenhagen. November, 2017. (`PDF <student-projects/niels-msc-thesis.pdf>`_)
+* Niels G. W. Serup: **Memory Block Merging in Futhark**. MSc thesis. Department of Computer Science, University of Copenhagen. November, 2017. (`pdf <student-projects/niels-msc-thesis.pdf>`_)
 
-* Rasmus Wriedt Larsen: **Generating Efficient Code for Futhark’s Segmented Redomap**. MSc thesis. Department of Computer Science, University of Copenhagen. March, 2017. (`PDF <student-projects/rasmus-msc-thesis.pdf>`_)
+* Rasmus Wriedt Larsen: **Generating Efficient Code for Futhark’s Segmented Redomap**. MSc thesis. Department of Computer Science, University of Copenhagen. March, 2017. (`pdf <student-projects/rasmus-msc-thesis.pdf>`_)
 
-* Niels G. W. Serup: **Extending Futhark with a write construct**. MSc project. Department of Computer Science, University of Copenhagen. June, 2016. (`PDF <student-projects/niels-write-construct.pdf>`_).
+* Niels G. W. Serup: **Extending Futhark with a write construct**. MSc project. Department of Computer Science, University of Copenhagen. June, 2016. (`pdf <student-projects/niels-write-construct.pdf>`_).
