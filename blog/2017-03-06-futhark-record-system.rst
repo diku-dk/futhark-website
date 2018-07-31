@@ -41,7 +41,7 @@ run-time.  In some languages (e.g. Python) the distinction is less
 clear-cut, but we still tend to organise our values as some where the
 keys are dynamic, and others where they are static.  Records are a
 useful organising principle, even when they are all just hash tables
-underneath and there is no type system enforcement .  However, as
+underneath and there is no type system enforcement.  However, as
 Futhark is a statically typed language, we will need to make decisions
 about how record types work.
 
