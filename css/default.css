@@ -63,6 +63,10 @@ a:visited {
     font-weight:bold
 }
 
+.titlelink, .titlelink:visited {
+    color: black;
+}
+
 #header {
     margin-bottom: 4em;
     padding: 12px 0px 12px 0;

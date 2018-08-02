@@ -1,5 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE FlexibleContexts #-}
+module Main (main) where
+import qualified           Debug.Trace
 import           Control.Monad
 import           Data.Monoid ((<>))
 import           Data.List (isPrefixOf)
@@ -125,26 +127,29 @@ postContext = do
 
 --------------------------------------------------------------------------------
 
--- By default, RST will make all top-level titles <h1>s, but we prefer
--- to only have a single <h1>: the one in the template.  We use a
--- technique from
+-- | By default, RST will make all top-level titles <h1>s, but we
+-- prefer to only have a single <h1>: the one in the template.  We use
+-- a technique from
 -- http://maxdelgiudice.com/posts/2015-07-08-rst-headers.html to avoid
 -- this.
-
 shiftHeaderUp :: Block -> Block
 shiftHeaderUp h@(Header n a b)
     | n < 6     = Header (n+1) a b
     | otherwise = h
 shiftHeaderUp x = x
 
-shiftAll :: Pandoc -> Pandoc
-shiftAll = walk shiftHeaderUp
+-- | All headers should be links to themselves.
+selfLinkHeader :: Block -> Block
+selfLinkHeader (Header n (ident, classes, kvs) b) =
+  Header n (ident, classes, kvs) [b']
+  where b' = Link (ident <> "-link", ["titlelink"], []) b ('#' : ident, ident)
+selfLinkHeader x = x
 
 pandocRstCompiler :: Syntax -> Compiler (Item String)
 pandocRstCompiler futhark_syntax = pandocCompilerWithTransform
                                    defaultHakyllReaderOptions { readerIndentedCodeClasses = ["Futhark"] }
                                    defaultHakyllWriterOptions { writerSyntaxMap = syntaxmap }
-                                   shiftAll
+                                   (walk (selfLinkHeader . shiftHeaderUp))
   where syntaxmap = M.insert "Futhark" futhark_syntax $
                     writerSyntaxMap defaultHakyllWriterOptions
 
