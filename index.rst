@@ -21,7 +21,8 @@ average of an array of 64-bit floating-point numbers:
    * `Tutorial <http://futhark-book.readthedocs.io/en/latest/>`_
    * `User's guide <https://futhark.readthedocs.io>`_
    * `Language reference <https://futhark.readthedocs.io/en/latest/language-reference.html>`_
-   * `Library reference <docs/>`_
+   * `Basis library <docs/>`_
+   * `More packages <pkgs/>`_
 
 Futhark is not designed for graphics programming, but instead uses the
 compute power of the GPU to accelerate data-parallel array
