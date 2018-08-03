@@ -69,28 +69,28 @@ things we cannot expect it to do.
    after fetching the dependencies.  This creates operational
    simplicity.
 
-6. **No need for a central server.** We do not want more
+5. **No need for a central server.** We do not want more
    infrastructure maintenance burdens.  However, the design should
    permit us to later add such a server as a package registry, as this
    seems likely to be useful for documentation and discoverability.
 
-7. **The package manager must fetch only pre-packaged tarballs.**
+6. **The package manager must fetch only pre-packaged tarballs.**
    Interfacing directly with version control systems is too complex.
    Fortunately, code hosting sites like GitHub make it trivial to
    generate tarballs corresponding to revision tags.
 
-8. **It need not be possible for a program to simultaneously depend on
+7. **It need not be possible for a program to simultaneously depend on
    multiple versions of the same package.** Such support might be
    difficult to implement, and is anyway only needed for large
    programs.  Futhark programs are supposed to be small, so this is
    complexity that is not worth it.
 
-9. **"Vendoring" (copying the dependencies directly into your own
+8. **"Vendoring" (copying the dependencies directly into your own
    source repository) must still be possible for those who prefer
    that.** Ideally, just by committing the ``lib/`` directory alluded
    to in point 4.
 
-10. **Initially focus on supporting a GitHub-centred workflow**.  This
+9. **Initially focus on supporting a GitHub-centred workflow**.  This
     is only relevant if it becomes necessary to make a choice about
     what code hosting service to support initially (if a generic
     solution is not possible).  Ultimately it is not appropriate to
