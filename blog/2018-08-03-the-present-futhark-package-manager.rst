@@ -271,9 +271,10 @@ This means that all ``futhark-pkg`` operations are in principle
 completely safe (barring exploitable bugs in ``futhark-pkg`` itself,
 which is unlikely but not impossible).  Further, Futhark code itself
 is also completely pure, so executing it cannot have any unfortunate
-effects, such as stealing your data.  The worst it can do is loop
-infinitely, consume arbitrarily large amounts of memory, or produce
-wrong results.
+effects, such as `infecting all of your own packages with a worm
+<https://jamie.build/how-to-build-an-npm-worm>`_.  The worst it can do
+is loop infinitely, consume arbitrarily large amounts of memory, or
+produce wrong results.
 
 The exception is packages that uses ``unsafe``.  With some cleverness,
 ``unsafe`` can be combined with in-place updates to perform arbitrary
