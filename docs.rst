@@ -53,6 +53,19 @@ We have published a number of papers on Futhark, and hopefully more
 will follow in the future.  They are presented below in reverse
 chronological order.
 
+Static Interpretation of Higher-Order Modules in Futhark (`pdf <publications/icfp18.pdf>`_, `bib <publications/icfp18.bib>`_)
+-----------------------------------------------------------------------------------------------------------------------------
+
+.. class:: papermetadata
+To be presented at `ICFP '18`_
+
+This paper discusses the higher-order ML-style module system available
+in Futhark.  Most of the discussion is a theoretical treatment,
+including a formally-verified implementation in Coq.  The
+implementation in the Futhark compiler does not use this verified
+implementation for a variety of reasons, but it does almost exactly
+follow the semantic object definitions given in the paper.
+
 Design and Implementation of the Futhark Programming Language (`pdf <publications/troels-henriksen-phd-thesis.pdf>`_, `bib <publications/troels-henriksen-phd-thesis.bib>`_)
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -180,6 +193,7 @@ does it describe horisontal fusion.
 .. _`apltail`: https://github.com/melsman/apltail/
 .. _`PLDI '17`: http://pldi17.sigplan.org/home
 .. _`FHPC '17`: http://conf.researchr.org/track/FHPC-2017/FHPC-2017-papers
+.. _`ICFP '18`: https://conf.researchr.org/home/icfp-2018
 
 Selected Student Projects
 *************************
