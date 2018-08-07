@@ -198,7 +198,11 @@ does it describe horisontal fusion.
 Selected Student Projects
 *************************
 
-* Kasper Abildtrup Hansen: **FFT Generator in Furthark: A prototype Futhark library using FFTW technniques**. MSc project. Department of Computer Science, University of Copenhagen. June, 2018. (`pdf <student-projects/kasper-hansen-genfft.pdf>`_)
+* Mikkel Storgaard Knudsen: **FShark: Futhark programming in FSharp**. MSc project. Department of Computer Science, University of Copenhagen. August, 2018. (`pdf <student-projects/mikkel-msc-thesis.pdf>`_)
+
+* Marek Hlava and Martin Metaksov: **Accelerated Interest Rate Option Pricing using Trinomial Trees**. MSc project. Department of Computer Science, University of Copenhagen. August, 2018. (`pdf <student-projects/marek-martin-msc-thesis.pdf>`_)
+
+* Kasper Abildtrup Hansen: **FFT Generator in Futhark: A prototype Futhark library using FFTW technniques**. MSc project. Department of Computer Science, University of Copenhagen. June, 2018. (`pdf <student-projects/kasper-hansen-genfft.pdf>`_)
 
 * Frederik Thorøe: **Auto-tuning of threshold-parameters in Futhark**.  BSc thesis.  Department of Computer Science, University of Copenhagen. June, 2018. (`pdf <student-projects/frederik-thoroe-bsc-thesis.pdf>`_)
 
