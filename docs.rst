@@ -198,6 +198,8 @@ does it describe horisontal fusion.
 Selected Student Projects
 *************************
 
+* Duc Minh Tran: **Implementation of a deep learning library in Futhark**.  BSc Thesis.  Department of Computer Science, University of Copenhagen.  August 2018. (`pdf <student-projects/duc-bsd-thesis.pdf>`_)
+
 * Mikkel Storgaard Knudsen: **FShark: Futhark programming in FSharp**. MSc thesis. Department of Computer Science, University of Copenhagen. August, 2018. (`pdf <student-projects/mikkel-msc-thesis.pdf>`_)
 
 * Marek Hlava and Martin Metaksov: **Accelerated Interest Rate Option Pricing using Trinomial Trees**. MSc thesis. Department of Computer Science, University of Copenhagen. August, 2018. (`pdf <student-projects/marek-martin-msc-thesis.pdf>`_)
