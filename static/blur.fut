@@ -9,13 +9,13 @@ let splitIntoChannels [rows][cols]
   -- unzip to turn it into a triple of arrays.  Due to the way the
   -- Futhark compiler represents arrays in the generated code, zip and
   -- unzip are entirely free.
-  unzip(map(\row ->
-              map(\pixel ->
-                    (f32.u8(pixel[0]) / 255f32,
-                     f32.u8(pixel[1]) / 255f32,
-                     f32.u8(pixel[2]) / 255f32))
-                  row)
-            image)
+  unzip3 (map (\row ->
+                unzip3 (map(\pixel ->
+                             (f32.u8(pixel[0]) / 255f32,
+                              f32.u8(pixel[1]) / 255f32,
+                              f32.u8(pixel[2]) / 255f32))
+                           row))
+              image)
 
 -- The inverse of splitIntoChannels.
 let combineChannels [rows][cols]
