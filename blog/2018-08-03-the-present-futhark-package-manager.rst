@@ -87,7 +87,7 @@ local file system (except updating ``futhark.pkg``) is done via
 
   3 directories, 2 files
 
-The contents of an installed are just ordinary files in the file
+The contents of an installed package are just ordinary files in the file
 system, and can be imported with the usual language mechanisms::
 
   > import "lib/github.com/athas/fibs/fibs"
