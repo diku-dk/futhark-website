@@ -1,0 +1,32 @@
+---
+title: Futhark 0.6.3 released
+author: Troels Henriksen
+description: We didn't even break compatibility this time.
+---
+
+Today we released a new version of the Futhark compiler (`full
+changelog <https://github.com/diku-dk/futhark/releases/tag/v0.6.3>`_).
+The most notable thing, perhaps, is that this is the *third*
+compatible release in a row.  That's a new record!  The reason is that
+the language itself is stabilising, as `the 0.6.1 release removed the
+last major warts from the language
+<2018-07-09-futhark-0.6.1-released.html>`_.
+
+Of course, the language stabilising doesn't mean we can't start
+breaking the included library instead.  This related to the most
+significant improvement in Futhark 0.6.3 - the new package manager
+(which I wrote about both `before
+<2018-07-20-the-future-futhark-package-manager.html>`_ and `after
+<2018-08-03-the-present-futhark-package-manager.html>`_ it was
+implemented).  I have been quite busy in trying to turn pieces of the
+basis library into separate packages (`here's a list
+<https://futhark-lang.org/pkgs/>`_).  Since incompatibly changing the
+basis library constitutes a breaking language change, it seems like a
+good strategy to minimise its scope, and instead provide a good
+package manager.
+
+In conclusion, the next version of Futhark will definitely break
+compatibility, as it will be stripped of most of the basis library.
+On the upside, it will have `a just merged C# backend
+<https://github.com/diku-dk/futhark/pull/612>`_ implemented by Mikkel
+Storgaard Knudsen.
