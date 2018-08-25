@@ -1,9 +1,9 @@
 -- Port of Accelerate's Mandelbrot example.
 
-import "/futlib/complex"
-import "/futlib/colour"
+import "lib/github.com/diku-dk/complex/complex"
+import "lib/github.com/athas/matte/colour"
 
-module complex = complex f32
+module complex = mk_complex f32
 type complex = complex.complex
 
 let dot (c: complex): f32 =
