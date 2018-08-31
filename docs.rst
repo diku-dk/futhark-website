@@ -10,7 +10,8 @@ compilers, as well as the `language reference`_ and instructions on
 `how to install the Futhark compiler`_.
 
 There is also automatically generated `documentation for the Futhark
-Basis Library`_.
+Basis Library`_.  The basis library is very small, so in most cases
+you will want to use `external packages <pkgs/>`_.
 
 If there is something you believe should be documented, but is not,
 you are very welcome to report the omission as a bug on our bug
