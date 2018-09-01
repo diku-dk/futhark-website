@@ -67,6 +67,26 @@ implementation in the Futhark compiler does not use this verified
 implementation for a variety of reasons, but it does almost exactly
 follow the semantic object definitions given in the paper.
 
+Modular Acceleration: Tricky Cases of Functional High-Performance Computing
+---------------------------------------------------------------------------
+
+.. class:: papermetadata
+To be presented at `FHPC '18`_ (`pdf <publications/fhpc18.pdf>`_, `bib <publications/fhpc18.bib>`_)
+
+This case study examines the data-parallel functional implementation
+of three algorithms: generation of quasi-random Sobol numbers,
+breadth-first search, and calibration of Heston market parameters via
+a least-squares procedure.  We show that while all these problems
+permit elegant functional implementations, good performance depends on
+subtle issues that must be confronted in both the implementations of
+the algorithms themselves, as well as the compiler that is responsible
+for ultimately generating high-performance code.  In particular, we
+demonstrate a modular technique for generating quasi-random Sobol
+numbers in an efficient manner, study the efficient implementation of
+an irregular graph algorithm without sacrificing parallelism, and
+argue for the utility of nested regular data parallelism in the
+context of nonlinear parameter calibration.
+
 Design and Implementation of the Futhark Programming Language
 -------------------------------------------------------------
 
@@ -195,6 +215,7 @@ does it describe horisontal fusion.
 .. _`PLDI '17`: http://pldi17.sigplan.org/home
 .. _`FHPC '17`: http://conf.researchr.org/track/FHPC-2017/FHPC-2017-papers
 .. _`ICFP '18`: https://conf.researchr.org/home/icfp-2018
+.. _`FHPC '18`: https://icfp18.sigplan.org/track/FHPC-2018-papers
 
 Selected Student Projects
 *************************
