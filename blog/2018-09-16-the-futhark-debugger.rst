@@ -169,17 +169,18 @@ particular, they had to be easy to maintain and easy to learn for
 users.  Increasing the maintenance burden was avoided by removing the
 old interpreter.  In fact, the old interpreter was problematic in that
 we had to modify it whenever we added or removed constructs in the
-core language, which happens more frequently than the source language.
+core language, which happens much more frequently than in the source
+language.
 
 From the user's point of view, I did not want to add a Futhark
-debugging tool with its own set of commands that had to be
-specifically learnt.  However, every Futhark programmer knows how to
-call functions, and (eventually) knows how to enter expressions at a
-REPL.  Hence, the debugger interface was built to depend almost
-entirely on these two concepts.  This is in contrast to, say, ``gdb``,
-where you usually set breakpoints via debugger commands, and inspect
-the environment via various printing commands (although in fairness,
-``gdb`` also allows some C expressions to be entered).
+debugging tool with its own set of commands that had to be memorized.
+However, every Futhark programmer knows how to call functions, and
+(eventually) knows how to enter expressions at a REPL.  Hence, the
+debugger interface was built to depend almost entirely on these two
+concepts.  This is in contrast to, say, ``gdb``, where you usually set
+breakpoints via debugger commands, and inspect the environment via
+various printing commands (although in fairness, ``gdb`` also allows
+some C expressions to be entered).
 
 I have already used ``futharki`` to debug various programs, and for
 all its simplicity, it seems to work very well.  Most of all, I look
