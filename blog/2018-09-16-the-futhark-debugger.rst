@@ -85,12 +85,12 @@ handled by an external layer.
 
 The following is an example of how to use the new interpreter,
 ``futharki``, to inspect Futhark code.  Since ``futharki`` is very
-slow when compared to compiled code, this does mean that we can only
-debug on cut-down smaller testing sets, not on realistic workloads.
-However, we believe that the nature of data-parallel programs mean
-that erroneous behaviour does not depend on the size of the input—we
-have "bug scalability", in a sense.  I think that data-parallelism is
-unusual among parallel programming paradigms by having this property.
+slow when compared to compiled code, we can only debug on cut-down
+smaller testing sets, not on realistic workloads.  However, we
+conjecture that in data-parallel programs, erroneous behaviour does
+not depend on the size of the input—we have "bug scalability", in a
+sense.  I think that data-parallelism is unusual among parallel
+programming paradigms by having this property.
 
 ``futharki`` exposes debugging facilities through two special
 functions: ``trace`` and ``break``.  The ``trace`` function has the
