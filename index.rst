@@ -33,14 +33,14 @@ language via the use of a **uniqueness type system**.
 
 While the Futhark language and compiler is an **ongoing research
 project**, it is quite usable for real programming, and can compile
-nontrivial programs which then run on real GPUs at high speed.  The
-Futhark language itself is still somewhat spartan, as due to the basic
-design goal of generating high-performance parallel code, it takes
-more effort to support language features that are common in languages
-with more forgiving compilation targets.  Nevertheless, **Futhark can
-already be used for nontrivial programs**.  We are actively looking
-for more potential applications as well as people who are interested
-in contributing to the language design.
+nontrivial programs which then run on real GPUs at high speed.
+
+Futhark is a simple language and is designed to be easy to learn,
+although it omits some common features in order to generate
+high-performance parallel code.  Nevertheless, **Futhark can already
+be used for nontrivial programs**.  We are actively looking for more
+potential applications as well as people who are interested in
+contributing to the language design.
 
 **Futhark is not intended to replace existing general-purpose
 languages**.  The intended use case is that Futhark is only used for
