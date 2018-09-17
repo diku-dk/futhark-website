@@ -184,10 +184,10 @@ some C expressions to be entered).
 
 I have already used ``futharki`` to debug various programs, and for
 all its simplicity, it seems to work very well.  Most of all, I look
-forward to being answer the question *"how do I debug my program?"*
-with something else than *"stare really hard at it for a few hours"*.
-In retrospect, I'm a little surprised we've managed to write
-nontrivial Futhark programs at all.
+forward to answering the question *"how do I debug my program?"* with
+something else than *"stare really hard at it for a few hours"*.  In
+retrospect, I'm a little surprised we've managed to write nontrivial
+Futhark programs at all.
 
 Futhark is a small and simple language—only the compilers are large
 and complicated.  It has been our hope that this would mean that it is
