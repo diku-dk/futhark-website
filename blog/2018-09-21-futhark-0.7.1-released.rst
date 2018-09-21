@@ -1,0 +1,253 @@
+---
+title: Futhark 0.7.1 released
+author: Troels Henriksen
+description: We sure did break compatibility this time.
+---
+
+Futhark 0.7.1 has just been released—`full changelog at the usual
+place <https://github.com/diku-dk/futhark/releases/tag/v0.7.1>`_.
+This release was primarily motivated by `ICFP 2018
+<https://conf.researchr.org/home/icfp-2018>`_ which takes place next
+week, and where two members of the Futhark team—`Martin Elsman
+<http://www.elsman.com/>`_ and myself—will be giving presentations.
+Functionality-wise, this is another big release, as this post will
+hopefully show.
+
+There is a major breaking change in that we deleted the vast majority
+of the basis library, and instead migrated it to `external packages
+<https://futhark-lang.org/pkgs/>`_ that are accessed via the package
+manager we introduced in 0.6.3 (more `here
+<2018-07-20-the-future-futhark-package-manager.html>`_ and `here
+<2018-08-03-the-present-futhark-package-manager.html>`_).  The
+motivation behind this change is to allow more active evolution of
+libraries without tying them to the release schedule of the compiler,
+and to permit library experimentation without requiring specific
+compiler versions.  The only library code that remains bundled with
+the compiler is the implicitly imported `default prelude
+<https://futhark-lang.org/docs/doc/futlib/prelude.html>`_, which
+mostly wraps compiler intrinsics and defines extremely simple utility
+functions (such as ``head`` or ``take``) that can only be reasonably
+implemented in one way.
+
+Apart from breaking all programs that depend on the basis library, the
+0.7.1 release brings three major features.  One of them is the `new
+interpreter/debugger <2018-09-16-the-futhark-debugger.html>`_, and the
+two others are discussed below.
+
+C# Backend
+----------
+
+The Futhark compiler aggressively offloads computation to the GPU via
+the OpenCL API.  OpenCL works by having an ordinary program running on
+the CPU that transmits code and data to the GPU (or any other
+*accelerator*, but we'll stick to GPUs).  In the ideal case, the
+CPU-code is mostly glue that performs bookkeeping and making API
+calls.  No matter the language the CPU code is written in, the GPU
+code will be written in OpenCL C and translated at program
+initialisation to whatever machine code is needed by the concrete GPU.
+
+Since the early days, we exploited this property to provide a
+`PyOpenCL backend <2016-04-15-futhark-and-pyopencl.html>`_ that makes
+it very convenient to call Futhark code from Python.  Thanks to the
+work of Mikkel Storgaard Knudsen—a now-graduated masters student at
+`DIKU <http://diku.dk>`_—we not also have a similar C#/OpenCL backend.
+While the PyOpenCL backend generates code that is in some cases a few
+factors slower than our C/OpenCL backend, the C#/OpenCL backend
+generates code with barely any performance difference.  Full details
+are in `Mikkel's thesis <../student-projects/mikkel-msc-thesis.pdf>`_
+(which also discusses the implementation of a compiler from a subset
+of F# to Futhark).
+
+The main limitation right now is how arrays are passed from C# to
+Futhark and back again.  This is done by copying them to the CPU in
+the form of a flattened one-dimensional array, along with a separate
+array containing the dimensions of the original multidimensional
+array.  Not exactly a pleasant or efficient calling convention.  We'll
+come up with a more sophisticated design once we get some more
+experience with how the C# inter-op can be most useful.  The C and
+PyOpenCL backends do not suffer from this problem, so we know how to
+solve it on a technical level.
+
+Histogram Computations
+----------------------
+
+Futhark is fundamentally a `lambda calculus
+<https://en.wikipedia.org/wiki/Lambda_calculus>`_-derived language,
+where definition and application of functions are the building blocks
+on top of which everything else is built.  However, Futhark's parallel
+prowess comes from a small collection of built-in functions, called
+*SOACs*, that are not expressed in terms of more primitive concepts,
+but are instead handled directly by the compiler.  These SOACs require
+significant implementation effort (*every* part of the compiler must
+know about them) and we therefore try to limit their number.  Until
+recently, they were limited to ``map``, ``scan``, ``reduce``, and
+``scatter`` (and some streaming variants), which can handle most
+problems efficiently (often by using them to build more powerful
+abstractions).  However, sometimes we come across problems that cannot
+be efficiently handled with *any* combination of the existing SOACs.
+If these problems occur sufficiently frequently, or are instances of
+an underlying general pattern, we may be inspired to add a new SOAC.
+This occured with a parallel pattern sometimes called a *generalised
+reduction* in the compiler literature, but that most people will
+recognise as a *histogram*.
+
+A histogram computation takes as input a collection of elements, maps
+each to one of *k* *bins*, and counts the number of elements that fall
+into each bin (discarding invalid bins).  In imperative pseudo-code, we
+might write it as:
+
+.. code-block:: none
+
+   for x in xs:
+     bin = to_bin(x)
+     if bin >= 0 && bin < k:
+       bins[bin] = bins[bin] + 1
+
+This is the most common form of a histogram.  However, we can
+generalise it to use any arbitrary function *f* to update the chosen
+bin:
+
+.. code-block:: none
+
+   for x in xs:
+     bin = to_bin(x)
+     if bin >= 0 && bin < k:
+       bins[bin] = f(bins[bin], x)
+
+For example, we might pick *f* to be a ``max`` function, which will
+find the maximum element for every bin.  If the function *f* is
+commutative (*f(x,y) = f(y,x)*) and associative (*f(x,f(y,z)) =
+f(f(x,y), z)*), then all iterations of the loop can in principle be
+evaluated in parallel (as long as we are careful to update the bin
+atomically).  Viewed this way, a histogram computation performs *k*
+reductions in parallel, which is the source of the term *generalised
+reduction*.
+
+Histograms in Futhark
+=====================
+
+So how did we previously express the above in Futhark?  For
+simplicity, let us stick to the original formulation where we are
+simply counting occurrences of integers.  We can write it as a
+sequential loop with in-place updates secured by Futhark's `uniqueness
+types
+<https://futhark-book.readthedocs.io/en/latest/language.html#in-place-updates>`_::
+
+  let histogram_seq [n] (k: i32) (is: [n]i32): [k]i32 =
+    loop h = replicate k 0 for i in is do
+      if i >= 0 && i < k then h with [i] <- h[i] + 1
+                         else h
+
+Unfortunately, there is no parallelism here, and the compiler will not
+let us perform updates on an externally defined array within a
+parallel loop, as it is not safe in general.
+
+One option is performing a sequential loop over all the bins, and
+count for each bin the number of elements that go into it::
+
+  let histogram_loop [n] (k: i32) (is: [n]i32): [k]i32 =
+    let bucket i = is |> map ((==i) >-> i32.bool) |> i32.sum
+    in map bucket (0..<k)
+
+This is very efficient for small *k* as this kind of *segmented
+reduction* is handled efficiently by the Futhark compiler, but it is
+asymptotically inefficient: *O(nk)* instead of *O(n)*.
+
+Futhark contains some unusual `streaming combiners
+<2017-06-25-futhark-at-pldi.html>`_ that can be used to assign a
+sequential operation to some number of thread (the exact count is left
+up to the compiler and run-time), and combine the per-thread results
+into a single result.  We can use this to implement the histogram as
+follows::
+
+  let histogram [n] (k: i32) (is: [n]i32): [k]i32 =
+    stream_red_per (map2 (+)) (histogram_seq k) is
+
+Since each thread produces a histogram (a vector), we use vector
+addition (``map2 (+)``) to combine the per-thread results.
+Unfortunately, this implementation requires the creation of a size-*k*
+histogram *per thread*, which is fine for low *k*, but disastrous for
+larger *k*, since a GPU will typically require tens of thousands of
+threads in order to be saturated.  For all but small *k*, we will pay
+a huge premium in memory.
+
+A scalable solution turns out to be rather complicated to write, and
+not all that performant in practice.  The following implementation
+first *sorts* the elements by bin with a radix sort (from
+`github.com/diku-dk/sorts <https://github.com/diku-dk/sorts>`_), then
+uses an irregular segmented reduction (from
+`github.com/diku-dk/segmented
+<https://github.com/diku-dk/segmented>`_) to compute the number of
+elements in each bin::
+
+  let histogram_reduction [n] (k: i32) (is: [n]i32) =
+    let num_bits = t32 (f32.ceil (log2 (r32 k)))
+    let is' = radix_sort num_bits i32.get_bit is
+    let flags = map2 (!=) is' (rotate 1 is')
+    in segmented_reduce (+) 0 flags is'
+
+The problem is that the radix sort is quite an expensive operation
+(and the segmented reduction is not particularly cheap either).
+Clearly something was missing from Futhark.
+
+The solution was a new SOAC, ``reduce_by_index``, which was designed
+and implemented by yet another DIKU student, Sune Hellfritzsch.  With
+this, we can implement the histogram as follows::
+
+  let histogram_reduce_by_index [n] (k: i32) (is: [n]i32): [k]i32 =
+    let bins = replicate k 0
+    in reduce_by_index bins (+) 0 is (replicate n 1)
+
+The arguments to ``reduce_by_index`` are, in order, the initial
+contents of the bins, the bin-combining operator (*f*), a neutral
+element for the operator, the bin assignments for each element, and
+finally the elements themselves.
+
+The compiler uses some clever tricks to handle ``reduce_by_index``.
+Mostly, it uses low-level `atomic functions
+<https://www.khronos.org/registry/OpenCL/sdk/1.2/docs/man/xhtml/atomicFunctions.html>`_
+to efficiently update the bins with a minimum of synchronisation.  It
+can even exploit that certain common operators (like 32-bit integer
+addition) are supported directly by the hardware (``atomic_add()`` in
+OpenCL).  However, ``reduce_by_index`` can handle *any* operator, by
+falling back to a `CAS
+<https://en.wikipedia.org/wiki/Compare-and-swap>`_-based locking
+mechanism.  While not nearly as efficient as when direct hardware
+support is available, it at least scales decently.  Furthermore, for
+small *k*, the implementation of ``reduce_by_index`` uses *multiple*
+histograms that are updated independently and only combined at the
+end, in order to minimise expensive conflicts where multiple threads
+try to update the same bin at the same time.
+
+Scalability is good.  The following table lists various values of *k*
+and *n* and the time it takes to compute the corresponding histogram
+on a Vega 64 GPU:
+
+===  =====  ==========  ====  =====  ==========
+*k*  *n*    Time in μs   *k*  *n*    Time in μs
+---  -----  ----------  ----  -----  ----------
+  8  2²⁰       139       256  2²⁰       120
+  8  2²²       230       256  2²²       212
+  8  2²⁴       596       256  2²⁴       574
+
+ 32  2²⁰       141       2¹⁶  2²⁰       127
+ 32  2²²       230       2¹⁶  2²²       201
+ 32  2²⁴       594       2¹⁶  2²⁴       565
+
+128  2²⁰       127       2²²  2²⁰       291
+128  2²²       213       2²²  2²²       459
+128  2²⁴       583       2²²  2²⁴       748
+===  =====  ==========  ====  =====  ==========
+
+Note how the run-time is (almost) invariant of *k*.  For this
+benchmark, I compute the bin assignments as ``map (%k) (iota n)``,
+which provides perfectly regular accesses.  In practice, scaling will
+likely not be as smooth, as high *k* likely implies more irregular
+memory accesses.  As a comparison, a straightforward sequential C
+implementation takes 112,374μs for *k=8, n=2²⁴* on my Ryzen 7 1700X -
+that's over 180 times as long.
+
+Finally, there is one case where ``reduce_by_index`` still performs
+poorly, namely when *k* is so large that only a single histogram array
+is used by all threads, yet only a few bins are actually used.  This
+will cause collisions and hence poor performance.  So, don't do that.
