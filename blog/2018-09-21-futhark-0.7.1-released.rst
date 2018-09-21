@@ -1,5 +1,5 @@
 ---
-title: Futhark 0.7.1 released
+title: Futhark 0.7.1 released, now with C# backend and efficient histograms on GPU
 author: Troels Henriksen
 description: We sure did break compatibility this time.
 ---
