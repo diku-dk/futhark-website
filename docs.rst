@@ -40,6 +40,8 @@ Tools
 
 * `futhark-mode <https://github.com/diku-dk/futhark-mode>`_ for Emacs.
 
+* `Syntax highlighting for Vim <https://github.com/BeneCollyridam/futhark-vim>`_.
+
 * `Futhark language definition for Gedit
   <https://github.com/diku-dk/futhark/blob/master/tools/futhark.lang>`_.
   Simply place the linked file in
