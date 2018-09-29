@@ -143,11 +143,11 @@ each of the three colour channels:
                                                      [rows][cols]f32,
                                                      [rows][cols]f32) =
     unzip3 (map (\row ->
-                  unzip3 (map(\pixel ->
-                               (f32.u8(pixel[0]) / 255f32,
-                                f32.u8(pixel[1]) / 255f32,
-                                f32.u8(pixel[2]) / 255f32))
-                             row))
+                  unzip3 (map (\pixel ->
+                                (f32.u8(pixel[0]) / 255f32,
+                                 f32.u8(pixel[1]) / 255f32,
+                                 f32.u8(pixel[2]) / 255f32))
+                              row))
                 image)
 
 The ``[rows][cols]`` notation preceding the ``image`` parameter is not
@@ -225,11 +225,11 @@ edges are left unchanged:
   let blurChannel [rows][cols]
                   (channel: [rows][cols]f32): [rows][cols]f32 =
     map (\row ->
-          map(\col ->
-                if row > 0 && row < rows-1 && col > 0 && col < cols-1
-                then newValue(channel, row, col)
-                else channel[row,col])
-              (0...cols-1))
+          map (\col ->
+                 if row > 0 && row < rows-1 && col > 0 && col < cols-1
+                 then newValue(channel, row, col)
+                 else channel[row,col])
+               (0...cols-1))
         (0...rows-1)
 
 You may have heard that branches are expensive on a GPU.  While this
