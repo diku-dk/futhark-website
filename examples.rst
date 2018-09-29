@@ -142,13 +142,13 @@ each of the three colour channels:
                         (image: [rows][cols][3]u8): ([rows][cols]f32,
                                                      [rows][cols]f32,
                                                      [rows][cols]f32) =
-  unzip3 (map (\row ->
-                unzip3 (map(\pixel ->
-                             (f32.u8(pixel[0]) / 255f32,
-                              f32.u8(pixel[1]) / 255f32,
-                              f32.u8(pixel[2]) / 255f32))
-                           row))
-              image)
+    unzip3 (map (\row ->
+                  unzip3 (map(\pixel ->
+                               (f32.u8(pixel[0]) / 255f32,
+                                f32.u8(pixel[1]) / 255f32,
+                                f32.u8(pixel[2]) / 255f32))
+                             row))
+                image)
 
 The ``[rows][cols]`` notation preceding the ``image`` parameter is not
 a normal function parameter.  Rather, it is a *size parameter*, a way
