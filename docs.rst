@@ -60,7 +60,7 @@ Static Interpretation of Higher-Order Modules in Futhark
 --------------------------------------------------------
 
 .. class:: papermetadata
-To be presented at `ICFP '18`_ (`pdf <publications/icfp18.pdf>`_, `bib <publications/icfp18.bib>`_)
+Presented at `ICFP '18`_ (`pdf <publications/icfp18.pdf>`_, `bib <publications/icfp18.bib>`_)
 
 This paper discusses the higher-order ML-style module system available
 in Futhark.  Most of the discussion is a theoretical treatment,
@@ -73,7 +73,7 @@ Modular Acceleration: Tricky Cases of Functional High-Performance Computing
 ---------------------------------------------------------------------------
 
 .. class:: papermetadata
-To be presented at `FHPC '18`_ (`pdf <publications/fhpc18.pdf>`_, `bib <publications/fhpc18.bib>`_)
+Presented at `FHPC '18`_ (`pdf <publications/fhpc18.pdf>`_, `bib <publications/fhpc18.bib>`_)
 
 This case study examines the data-parallel functional implementation
 of three algorithms: generation of quasi-random Sobol numbers,
