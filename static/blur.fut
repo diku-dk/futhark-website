@@ -19,9 +19,9 @@ let splitIntoChannels [rows][cols]
 
 -- The inverse of splitIntoChannels.
 let combineChannels [rows][cols]
-                    (rs: [rows][cols]f32,
-                     gs: [rows][cols]f32,
-                     bs: [rows][cols]f32): [rows][cols][3]u8 =
+                    (rs: [rows][cols]f32)
+                    (gs: [rows][cols]f32)
+                    (bs: [rows][cols]f32): [rows][cols][3]u8 =
   map3 (\rs_row gs_row bs_row ->
          map3 (\r g b ->
                 [u8.f32(r * 255f32),
@@ -34,7 +34,7 @@ let combineChannels [rows][cols]
 -- pixel must not be located on the edges or an out-of-bounds access
 -- will occur.
 let newValue [rows][cols]
-             (image: [rows][cols]f32, row: i32, col: i32): f32 =
+             (image: [rows][cols]f32) (row: i32) (col: i32): f32 =
   -- The Futhark compiler cannot prove that these accesses are safe,
   -- and cannot perform dynamic bounds checks in parallel code.  We
   -- use the 'unsafe' keyword to elide the bounds checks.  If we did
@@ -53,23 +53,23 @@ let blurChannel [rows][cols]
   map (\row ->
         map(\col ->
               if row > 0 && row < rows-1 && col > 0 && col < cols-1
-              then newValue(channel, row, col)
+              then newValue channel row col
               else channel[row,col])
             (0...cols-1))
       (0...rows-1)
 
 -- Perform the specified number of blurring operations on the image.
 let main [rows][cols]
-         (iterations: i32, image: [rows][cols][3]u8): [rows][cols][3]u8 =
+         (iterations: i32) (image: [rows][cols][3]u8): [rows][cols][3]u8 =
   -- First we split the image apart into component channels.
-  let (rs, gs, bs) = splitIntoChannels(image)
+  let (rs, gs, bs) = splitIntoChannels image
   -- Then we loop 'iterations' times.
-  let (rs, gs, bs) = loop (rs, gs, bs) for i < iterations do
+  let (rs, gs, bs) = loop (rs, gs, bs) for _i < iterations do
     -- Blur each channel by itself.  The Futhark compiler will fuse
     -- these together into just one loop.
-    let rs = blurChannel(rs)
-    let gs = blurChannel(gs)
-    let bs = blurChannel(bs)
+    let rs = blurChannel rs
+    let gs = blurChannel gs
+    let bs = blurChannel bs
     in (rs, gs, bs)
   -- Finally, combine the separate channels back into a single image.
-  in combineChannels(rs, gs, bs)
+  in combineChannels rs gs bs

@@ -176,9 +176,9 @@ single array.  That function looks like this:
 .. code-block:: Futhark
 
   let combineChannels [rows][cols]
-                      (rs: [rows][cols]f32,
-                       gs: [rows][cols]f32,
-                       bs: [rows][cols]f32): [rows][cols][3]u8 =
+                      (rs: [rows][cols]f32)
+                      (gs: [rows][cols]f32)
+                      (bs: [rows][cols]f32): [rows][cols][3]u8 =
     map3 (\rs_row gs_row bs_row ->
            map3 (\r g b ->
                   [u8.f32(r * 255f32),
@@ -195,7 +195,7 @@ of its eight neighbors (nine values in total):
 .. code-block:: Futhark
 
   let newValue [rows][cols]
-               (image: [rows][cols]f32, row: i32, col: i32): f32 =
+               (image: [rows][cols]f32) (row: i32) (col: i32): f32 =
     unsafe
     let sum =
       image[row-1,col-1] + image[row-1,col] + image[row-1,col+1] +
@@ -225,9 +225,9 @@ edges are left unchanged:
   let blurChannel [rows][cols]
                   (channel: [rows][cols]f32): [rows][cols]f32 =
     map (\row ->
-          map (\col ->
+           map(\col ->
                  if row > 0 && row < rows-1 && col > 0 && col < cols-1
-                 then newValue(channel, row, col)
+                 then newValue channel row col
                  else channel[row,col])
                (0...cols-1))
         (0...rows-1)
@@ -247,14 +247,14 @@ The more iterations we run, the more blurred the image will become:
 .. code-block:: Futhark
 
   let main [rows][cols]
-           (iterations: i32, image: [rows][cols][3]u8): [rows][cols][3]u8 =
-    let (rs, gs, bs) = splitIntoChannels(image)
+           (iterations: i32) (image: [rows][cols][3]u8): [rows][cols][3]u8 =
+    let (rs, gs, bs) = splitIntoChannels image
     let (rs, gs, bs) = loop (rs, gs, bs) for i < iterations do
-      let rs = blurChannel(rs)
-      let gs = blurChannel(gs)
-      let bs = blurChannel(bs)
+      let rs = blurChannel rs
+      let gs = blurChannel gs
+      let bs = blurChannel bs
       in (rs, gs, bs)
-    in combineChannels(rs, gs, bs)
+    in combineChannels rs gs bs
 
 Our ``main`` function is quite simple.  We split the input image into
 three different channels, use a sequential loop to blur each colour
