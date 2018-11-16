@@ -65,7 +65,7 @@ Enclosing this in block comments produces::
 Unfortunately, under C syntax rules, the block comment always ends at
 the *first* seen ``*/``, which in this case occurs just before
 ``int``, and was part of the code we wanted to comment out in the
-first place!  We ``*/`` we inserted is no longer part of a comment,
+first place!  The ``*/`` we inserted is no longer part of a comment,
 which will likely cause a parse error.
 
 Being Smart about Block Comments
