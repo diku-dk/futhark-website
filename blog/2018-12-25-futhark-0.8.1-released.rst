@@ -1,0 +1,225 @@
+---
+title: Futhark 0.8.1 released, with reflections on Advent of Code
+author: Troels Henriksen
+description: It's a Christmas miracle!
+---
+
+I just tagged a new release of Futhark, everyone's favourite parallel
+functional array language named after the Runic alphabet (`full
+changelog here
+<https://github.com/diku-dk/futhark/releases/tag/v0.8.1>`_).  For this
+post, I want to point out the most significant changes, and then spend
+a bit of time talking about my surprisingly good experiences using
+Futhark to solve problems from the `Advent of Code
+<https://adventofcode.com/2018>`_).
+
+The release
+-----------
+
+This release has no big feature additions or significant new
+optimisations, but instead contains smaller quality-of-life
+improvements and a great deal of bug-fixes.  This is not because we
+have stopped working on major improvements - quite the contrary.
+Indeed, the primary purpose of this release is to make conservative
+improvements available before we start merging the more significant
+changes we are working on (two new code generation backends and a
+rework of how parallel reductions are compiled).  For this release,
+there have been two breaking changes:
+
+  * The ``<-`` symbol can no longer be used for in-place updates and
+    record updates.  Use ``=`` instead.
+
+  * Entry points that accept a single tuple-typed parameter are no
+    longer silently rewritten to accept multiple parameters.
+
+Both of these had been deprecated for several releases, so it looks
+like Futhark is finally stabilising at the language level.  The only
+significant performance-related improvement is a re-implementation of
+transpositions by Jakob Stokholm Bertelsen, an undergrad here at `DIKU
+<http://diku.dk>`_, which speeds up some transpositions by up to
+around 50%.  Since transpositions are frequently inserted by the
+Futhark compiler to rearrange arrays for better locality, this can
+have a significant impact on some benchmarks.  For example, `this
+graph`_ shows the impact on the `LocVolCalib
+<https://github.com/diku-dk/futhark-benchmarks/blob/master/finpar/LocVolCalib.fut>`_
+benchmark (about 10%), which we already considered to run quite fast.
+
+.. _`this graph`: https://futhark-lang.org/benchmark-dashboard/index.html#/visualize?selected=%5B%5B%22230%2C25%2C75%22%2C%22opencl%22%2C%22GTX780%22%2C%22futhark-benchmarks%2Ffinpar%2FLocVolCalib.fut%22%2C%22LocVolCalib-data%2Fsmall.in%22%5D%2C%5B%2260%2C180%2C75%22%2C%22opencl%22%2C%22GTX780%22%2C%22futhark-benchmarks%2Ffinpar%2FLocVolCalib.fut%22%2C%22LocVolCalib-data%2Fmedium.in%22%5D%2C%5B%22255%2C225%2C25%22%2C%22opencl%22%2C%22GTX780%22%2C%22futhark-benchmarks%2Ffinpar%2FLocVolCalib.fut%22%2C%22LocVolCalib-data%2Flarge.in%22%5D%5D&graphType=slowdown&slowdownMax=2&xLeft=96&xRight=98
+
+Advent of Code
+--------------
+
+A great deal of the bugs fixed for this release were found by
+participating in `Advent of Code <https://adventofcode.com/2018>`_, a
+website that every year releases a daily programming problem from the
+1st to the 25th of December.  On a personal level, I do not normally
+like programming competitions.  I'm not interested in speed-coding, and
+I don't have much of a competitive streak in the first place.  From a
+Futhark point of view, many such programming problems require
+facilities that are not practical, such as arbitrary-size integers
+(bignums), or assume that the programmer will have access to a library
+of common data structures.
+
+Advent of Code is delightfully different.  First, the problems are
+simple enough that even solving one every day will (usually!) not take
+too much of your time.  Indeed, many of them seem designed to support
+a straightforward and correct brute-force solution, as well as
+increasingly refined and efficient solutions.  I enjoyed that a lot,
+as I often find more pleasure in refining a program's simplicity or
+performance, than coming up with the program in the first place.  For
+most other collections of problems, in particular `Project Euler
+<https://projecteuler.net/>`_, I would expend a lot of effort finding
+the right solution in the first place, and by the end I would be too
+sick of the problem to want to spend any time polishing my solution.
+
+A second unexpected quality of Advent of Code is that it assumes
+surprisingly little of the programming language in use.  For example,
+you do not need (or particularly benefit from) features like bignums,
+regular expressions (except for input parsing), floating point
+numbers(!), or IO.  It is almost as if the problems were made to be
+solved in obscure or esoteric languages.  While some libraries can be
+useful - quite a number of the problems involved breadth-first search
+in some capacity, for example - they are hardly essential.
+
+In the end, I ended up solving most of the Advent of Code problems in
+Futhark (`my code is here
+<https://github.com/athas/advent_of_code_2018>`_), although as of this
+writing I have not solved the last two days, on account of Christmas
+and all.  While I am pretty sure that the Advent of Code designer does
+not particularly concern himself with parallel programming, a
+surprisingly large proportion of the problems were amenable to elegant
+parallel formulations (even if the data-sets given would usually not
+saturate a modern GPU).  For the rest, it was nice to try to really
+exercise Futhark's capabilities for imperative programming.  Indeed, I
+was surprised to find that Futhark compiled to sequential C and
+written with intelligent use of `in-place updates
+<https://futhark.readthedocs.io/en/latest/language-reference.html#in-place-updates>`_
+is actually a really efficient functional language, often matching the
+hand-written C or Rust I saw other participants post.
+
+The following problems were particularly noteworthy.  Most of my
+solutions depend on an accompanying Python script for converting the
+input into a form that can be easily consumed by Futhark (remember,
+`Futhark is not for standalone applications
+<https://futhark-lang.org/blog/2017-09-26-calling-futhark-from-c-and-haskell.html>`):
+
+* `Day 1 <https://adventofcode.com/2018/day/1>`_ (`.fut
+  <https://github.com/athas/advent_of_code_2018/blob/master/1.fut>`_):
+  Part 1 is a straightforward summation, but the second is about
+  finding the first repeat in a dynamically generated sequence of
+  numbers.  Sounds quite sequential, but can be solved efficiently
+  with a parallel ``scan``.
+
+* `Day 2 <https://adventofcode.com/2018/day/2>`_ (`.fut
+  <https://github.com/athas/advent_of_code_2018/blob/master/2.fut>`_)
+  is ostensibly a string processing problem that could have been
+  *really painful* in Futhark, but because all the "strings" have the
+  same length, it just becomes a straightforward array processing
+  problem.
+
+* `Day 6 <https://adventofcode.com/2018/day/6>`_ (`.fut
+  <https://github.com/athas/advent_of_code_2018/blob/master/6.fut>`_)
+  was the first problem in which I initially used a 2D automaton (like
+  `Game of Life
+  <https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life>`_), to find
+  the point in a set of points that was most distant from other
+  points.  As the problems continued to increase in complexity, I
+  ended up writing these automatons quite frequently as a brute-force
+  solution.  For this problem, however, I eventually ended up
+  switching to simply checking, for each coordinate, the distance to
+  all points.
+
+* `Day 7 <https://adventofcode.com/2018/day/7>`_ (`.fut
+  <https://github.com/athas/advent_of_code_2018/blob/master/7.fut>`_)
+  was when I first considered giving up.  The problem is about writing
+  scheduler based on a DAG encoding dependencies.  This is a highly
+  sequential tree algorithm, which Futhark is totally unsuited for.  I
+  did end up making it work, though, using strictly sequential
+  Futhark.
+
+* `Day 8 <https://adventofcode.com/2018/day/8>`_ (`.fut
+  <https://github.com/athas/advent_of_code_2018/blob/master/8.fut>`_)
+  was another tree algorithm, and was when I actually *did* give up,
+  and implemented the second part `in Haskell
+  <https://github.com/athas/advent_of_code_2018/blob/master/8.hs>`_.
+  While this problem can undoubtedly be solved in Futhark, it would
+  require a level of manual stack management that I really cannot
+  stomach.  Futhark is not for every task, that's fine, but I was
+  worried by this point that Futhark would be unsuitable for all
+  remaining problems (fortunately, that was not the case).
+
+* `Day 9 <https://adventofcode.com/2018/day/9>`_ (`.fut
+  <https://github.com/athas/advent_of_code_2018/blob/master/9.fut>`_)
+  was about managing doubly linked lists, and was the first time I
+  fully embraced Futhark as a sequential language.  The resulting
+  solution is nice and efficient, although it does read like something
+  you'd write in 70s Pascal, due to Futhark's lack of support for
+  pointer structures.  (`Day 14
+  <https://github.com/athas/advent_of_code_2018/blob/master/14.fut>`_
+  is similar.)
+
+* `Day 11 <https://adventofcode.com/2018/day/11>`_ (`.fut
+  <https://github.com/athas/advent_of_code_2018/blob/master/11.fut>`_)
+  was my favourite of the whole series, and exemplifies why I enjoyed
+  Advent of Code so much.  The problem is amenable to a parallel brute
+  force solution (although it takes 1.5s on a Vega 64 GPU, so I'm not
+  sure other sequential languages would fare as well), but also
+  permits a `clever solution
+  <https://en.wikipedia.org/wiki/Summed-area_table>`_ based on dynamic
+  programming.  While dynamic programming techniques are often quite
+  sequential, I managed to rewrite it to be based on prefix-summing
+  first the rows and then the columns of a matrix.  This was a
+  wonderful problem and I am quite proud of my solution.
+
+* `Day 13 <https://adventofcode.com/2018/day/13>`_ (`.fut
+  <https://github.com/athas/advent_of_code_2018/blob/master/13.fut>`_)
+  was about path-finding, and is a horrible sequential program.  It is
+  mostly interesting because it exposed two compiler bugs and an
+  interpreter bug.
+
+* `Day 16 <https://adventofcode.com/2018/day/16>`_ (`.fut
+  <https://github.com/athas/advent_of_code_2018/blob/master/16.fut>`_)
+  let me try my hand at writing a byte-code interpreter in Futhark.  It
+  went OK.
+
+* `Day 17 <https://adventofcode.com/2018/day/17>`_ (`.fut
+  <https://github.com/athas/advent_of_code_2018/blob/master/17.fut>`_)
+  is about simulating water running downwards, and is probably the
+  single most inefficient solution I made.  I implemented it as a 2D
+  cellular automaton updating the *entire* world for every iteration,
+  even though only a tiny fraction of cells (those near the head of
+  falling water) will actually change.  This works only because I have
+  a beefy GPU, and might serve as a dubious example of how Futhark
+  allows you to get away with not actually thinking.  Brawns scale
+  better than brains, sometimes.
+
+* `Day 20 <https://adventofcode.com/2018/day/20>`_ (`.fut
+  <https://github.com/athas/advent_of_code_2018/blob/master/20.fut>`_)
+  was about simulating an NFA, with state deduplication necessary to
+  make execution feasible.  This was a nightmare, as it intrinsically
+  involves managing stacks of NFA states.  To avoid irregular arrays,
+  I ended up padding to some assumes maximums.  In the end, it is
+  neither elegant nor fast, and I'm a bit surprised I could make it
+  work at all.  I did at one point give up and try to write it in
+  Haskell instead, but eventually I went back to Futhark because I
+  found it more fun.
+
+* `Day 22 <https://adventofcode.com/2018/day/22>`_ (`.fut
+  <https://github.com/athas/advent_of_code_2018/blob/master/22.fut>`_)
+  was another stencil abuse, this time to implement breadth-first
+  search.  If I participate in Advent of Code next year, I will
+  definitely prepare a generic breadth-first search in advance.
+
+In conclusion, I am surprised that Futhark actually managed to work
+for me.  I had expected that after a few simple problems, the
+remaining would require too many facilities that Futhark does not
+provide, but that did not happen.  The limiting factor was generally
+my own intellect, not the language.  It was nice to exercise parts of
+Futhark that normally do not see much use, in particular since that
+also allowed me to flush out a number of compiler bugs (fortunately,
+they were all in the front-end and caused type errors or compiler
+crashes - debugging code generator bugs is a sure way to lose the
+Christmas spirit).
+
+I can definitely recommend inventing your own programming language and
+then solve Advent of Code problems with it.
