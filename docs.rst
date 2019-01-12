@@ -56,6 +56,28 @@ We have published a number of papers on Futhark, and hopefully more
 will follow in the future.  They are presented below in reverse
 chronological order.
 
+High-Performance Defunctionalisation in Futhark
+-----------------------------------------------
+
+.. class:: papermetadata
+Presented at `TFP '18`_ (`preprint <publications/tfp18.pdf>`_)
+
+Futhark initially did not support higher-order functions, because the
+usual compilation strategy creates a great degree of indirection,
+which can inhibit optimisation and efficient compilation.  In this
+paper, we present a de functionalisation transformation that relies on
+type-based restrictions on the use of expressions of functional type,
+such that we can completely eliminate higher-order functions in all
+cases, without introducing any branching. We prove the correctness of
+the transformation and discuss its implementation in Futhark, a
+data-parallel functional language that generates GPU code. The use of
+these restricted higher-order functions has no impact on run-time
+performance, and we argue that we gain many of the benefits of general
+higher-order functions, without in most practical cases being hindered
+by the restrictions.  An extended treatment can be found in Anders
+Kiel Hovgaard's master's thesis, `available here
+<student-projects/hovgaard-msc-thesis.pdf>`_.
+
 Static Interpretation of Higher-Order Modules in Futhark
 --------------------------------------------------------
 
@@ -218,6 +240,7 @@ does it describe horisontal fusion.
 .. _`FHPC '17`: http://conf.researchr.org/track/FHPC-2017/FHPC-2017-papers
 .. _`ICFP '18`: https://conf.researchr.org/home/icfp-2018
 .. _`FHPC '18`: https://icfp18.sigplan.org/track/FHPC-2018-papers
+.. _`TFP '18`: http://www.cse.chalmers.se/~myreen/tfp2018/
 
 Selected Student Projects
 *************************
