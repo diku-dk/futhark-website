@@ -56,6 +56,26 @@ We have published a number of papers on Futhark, and hopefully more
 will follow in the future.  They are presented below in reverse
 chronological order.
 
+Incremental Flattening for Nested Data Parallelism
+--------------------------------------------------
+
+.. class:: papermetadata
+To be presented at `PPOPP '19`_ (`preprint <publications/ppopp19.pdf>`_)
+
+This paper expands on the compilation scheme presented in our `PLDI
+2017 paper
+<#futhark-purely-functional-gpu-programming-with-nested-parallelism-and-in-place-array-updates>`_,
+to employ a *multi-versioned* approach, in which the parallelism in
+the program is mapped to multiple independent (but semantically
+equivalent) code versions, and the best one picked at run-time based
+on the concrete input data observed.  The title is an homage to the
+paper `Data-Only Flattening for Nested Data Parallelism
+<https://dl.acm.org/citation.cfm?id=2442525>`_, which also seeks to
+improve on the inefficiency of full flattening.
+
+`Research artifact available here.
+<https://github.com/diku-dk/futhark-ppopp19>`_
+
 High-Performance Defunctionalisation in Futhark
 -----------------------------------------------
 
@@ -241,6 +261,7 @@ does it describe horisontal fusion.
 .. _`ICFP '18`: https://conf.researchr.org/home/icfp-2018
 .. _`FHPC '18`: https://icfp18.sigplan.org/track/FHPC-2018-papers
 .. _`TFP '18`: http://www.cse.chalmers.se/~myreen/tfp2018/
+.. _`PPOPP '19`: https://ppopp19.sigplan.org/
 
 Selected Student Projects
 *************************
