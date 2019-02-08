@@ -68,7 +68,7 @@ never had anything against CUDA on principle, and thanks to the work
 of Jakob Stokholm Bertelsen, a student here at `DIKU
 <http://diku.dk>`_, the Futhark compiler now contains a fully
 operational CUDA backend (`and his thesis is here for the curious
-../student-projects/jakob-bsc-thesis.pdf`_).
+<../student-projects/jakob-bsc-thesis.pdf>`_).
 
 So, why did we want to add a CUDA backend?  There are three main
 reasons:
