@@ -266,6 +266,8 @@ does it describe horisontal fusion.
 Selected Student Projects
 *************************
 
+* Jakob Stokholm Bertelsen: **Implementing a CUDA Backend for Futhark**.  BSc thesis. Department of Computer Science, University of Copenhagen. January, 2018. (`pdf <student-projects/jakob-bsc-thesis.pdf>`_)
+
 * Sune Hellfritzsch: **Efficient Histogram Computation on GPGPUs**. MSc thesis. Department of Computer Science, University of Copenhagen. October, 2018. (`pdf <student-projects/hellfritzsch-msc-thesis.pdf>`_)
 
 * Duc Minh Tran: **Implementation of a deep learning library in Futhark**.  BSc Thesis.  Department of Computer Science, University of Copenhagen.  August 2018. (`pdf <student-projects/duc-bsc-thesis.pdf>`_)
