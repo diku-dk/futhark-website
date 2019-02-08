@@ -1,0 +1,271 @@
+---
+title: Futhark 0.9.1 released - now with CUDA backend
+author: Troels Henriksen
+description: The main addition in this release is a new student-developed compiler backend
+---
+
+A new release of Futhark is available (`full changelog here
+<https://github.com/diku-dk/futhark/releases/tag/v0.9.1>`_).  It comes
+with two significant changes and a new CUDA backend.
+
+The two changes
+---------------
+
+The first change is a tweak to the rules for aliasing, which are
+related to Futhark's support for `efficient in-place updates with
+uniqueness types
+<https://futhark.readthedocs.io/en/latest/language-reference.html#in-place-updates>`_.
+The new rule is that a function may never return an array which
+aliases a global variable.  The point of this can be explained by
+looking at the type of the transposition function::
+
+  val transpose 'a : [][]a -> [][]a
+
+Under the old rules, the array returned by a call to this function
+might potentially alias *anything*, which makes an in-place update on
+the result impossible.  Under the new rules, we know that it can at
+most alias the array being transposed.  Hence, we can perform an
+in-place update on the result ``transpose`` if and only if we can
+perform an in-place update on the argument to ``transpose``.
+Surprisingly, this change broke almost no code.  I still have the
+nagging feeling that some of the designs in the uniqueness type system
+are wrong (in the convenience sense, not soundness), but covering that
+requires a dedicated blog post.
+
+The second change in this release is a restructuring of the compiler
+binaries.  Previously, the different compiler versions, such as
+``futhark-opencl`` and ``futhark-c`` were completely separate
+binaries, as were tools like ``futhark-dataset``, despite all being
+compiled from largely the same source code.  Each binary would contain
+its own copy of the parser, type checker, compiler passes, and so on.
+This resulted in inflated linking time then compiling the compiler
+itself, and also took up a lot of space when installed.  In
+particular, it made us reluctant to add more tools, because each would
+take up 10-30MiB of space after installation.
+
+To address this, all compiler versions and tools have been merged into
+a single ``futhark`` binary.  Instead of ``futhark-opencl`` the
+command to run is now ``futhark opencl``.  While the single
+``futhark`` binary is of course quite large, it grows only a little
+when we add new sub-commands, because code can be shared with the
+existing ones.  The size reduction is evident by looking at the size
+of the `compressed release tarballs
+<https://futhark-lang.org/releases/>`_ - from 38MiB down to 9MiB.
+
+With that out of the way, let's talk about the major addition for this
+release.
+
+The CUDA backend
+----------------
+
+When we first conceived of Futhark, we decided to use OpenCL as our
+compilation target, despite NVIDIAs CUDA being more wide-spread, and
+all of our GPUs being from NVIDIA in any case.  This was done mainly
+because we liked the idea of portability (and being able to experiment
+on Intel GPUs on laptops has certainly been useful), and the fact that
+we did not need the convenience features of CUDA anyway.  However, we
+never had anything against CUDA on principle, and thanks to the work
+of Jakob Stokholm Bertelsen, a student here at `DIKU
+<http://diku.dk>`_, the Futhark compiler now contains a fully
+operational CUDA backend (`and his thesis is here for the curious
+../student-projects/jakob-bsc-thesis.pdf`_).
+
+So, why did we want to add a CUDA backend?  There are three main
+reasons:
+
+1. Some GPUs *only* support CUDA (notably the `Tegra line of SoCs
+   <https://www.nvidia.com/object/tegra.html>`_), and we'd like for
+   these to be programmable with Futhark.  Another
+
+2. CUDA-compiled Futhark can easily inter-operate with existing CUDA
+   code, which allows progressive integration of Futhark in an
+   existing CUDA application.  Since CUDA is more widely used than
+   OpenCL, we hope this will be useful.
+
+3. Some hardware features (like half-precision floats, dynamic
+   parallelism, and demand-paged memory) are only exposed to CUDA, not
+   OpenCL.  While we don't yet make use of any of these features, we
+   might do so in the future.
+
+CUDA and OpenCL are very similar programming models. This helped in
+the development of the CUDA backend, as no changes to the overall
+compiler pipeline were needed - the primary difference is with the
+host-level API that communicates with the GPU.  In fact, the actual
+GPU kernels we provide for CUDA are the exact same we generate for
+OpenCL, except prefixed with various functions and preprocessor
+definitions that map OpenCL terms to CUDA.  We even use the `NVRTC API
+<https://docs.nvidia.com/cuda/nvrtc/index.html>`_ for run-time
+compilation, so we can do hardware-specific JIT specialisation, just
+like we do with OpenCL.  This is not because we consider the CUDA
+backend to be of lesser importance - in fact, I expect it may become
+our most important backend - but merely to simplify the maintenance.
+
+In an ideal world, since the code we provide to OpenCL and CUDA is
+essentially identical, performance should be the same.  However, we
+often heard the argument that CUDA is supposed to be faster than
+OpenCL on NVIDIA hardware, and that we are handicapping the compiler
+by generating OpenCL.  Anecdotally, I never observed this to be the
+case for equivalent programs.  CUDA implementations could indeed
+outperform OpenCL, but only by exploiting hardware features that were
+not available through OpenCL (and even that was fairly rare).
+
+The creation of the CUDA backend gives us the opportunity to compare
+CUDA and OpenCL performance on our relatively large benchmark suite
+(about 50 programs), where both the CUDA and OpenCL code have exactly
+the same structure.  Of course, there is the caveat that our OpenCL
+backend is far more mature than the CUDA backend, and there might
+still be inefficiencies in the latter that we have to fix.
+
+The Futhark CI infrastructure runs our entire benchmark suite for
+every commit, and records the raw results in a JSON file - we have
+`quite a collection <https://futhark-lang.org/benchmark-results/>`_ by
+now.  For our purposes, we'll dig out the JSON file corresponding to a
+`CUDA run
+<https://futhark-lang.org/benchmark-results/futhark-cuda-K40-546961f0e0c8ea8eef3128bbda88024d686563b2.json>`_
+and an `OpenCL run
+<https://futhark-lang.org/benchmark-results/futhark-opencl-K40-546961f0e0c8ea8eef3128bbda88024d686563b2.json>`_,
+of the same version of the compiler and on the same GPU (an older
+NVIDIA K40, because we are poor academics).  Using our sophisticated
+analysis tooling (a `hacked-up Python script
+<https://github.com/diku-dk/futhark/blob/master/tools/cmp-bench-json.py>`_)
+we can compare the relative performance of CUDA versus OpenCL.  The
+`raw results <../static/opencl-cuda-comparison.txt>`_ are a bit
+intimidating, so let me summarise.  Overall: CUDA performance is
+generally within 10% of OpenCL, possibly with a slight edge to CUDA in
+the smaller programs, and to OpenCL in the larger.  Let's focus on
+some of the interesting differences, where numbers greater than 1
+indicate that CUDA outperforms OpenCL by that amount:
+
+`Myocyte`_
+==========
+
+.. code-block::
+
+  futhark-benchmarks/rodinia/myocyte/myocyte.fut
+    data/small.in:                                                        0.88x
+    data/medium.in:                                                       1.64x
+
+For the Myocyte benchmark, CUDA is 12% slower than OpenCL on the
+smaller dataset, and 64% faster on the larger dataset.  I have a hard
+time explaining this discrepancy, but this benchmark is in some ways a
+bit of an outlier, in that it compiles to a very large kernel with a
+huge number of intermediate arrays.  I suspect it is very sensitive to
+low-level details in register allocation and such, as we have observed
+large swings in performance merely by changing the order in which
+address calculations are performed.
+
+.. _`Myocyte`: https://github.com/diku-dk/futhark-benchmarks/blob/master/rodinia/myocyte/myocyte.fut
+
+`OptionPricing`_
+================
+
+.. code-block::
+
+  futhark-benchmarks/finpar/OptionPricing.fut
+    OptionPricing-data/small.in:                                          1.77x
+    OptionPricing-data/medium.in:                                         1.49x
+    OptionPricing-data/large.in:                                          1.50x
+
+This is one of the few nontrivial benchmarks where CUDA completely
+trounces OpenCL.  It is particularly interesting because OptionPricing
+is one of the original sample problems that were published in `FinPar
+<https://dl.acm.org/citation.cfm?id=2898354>`_ and served as the
+original inspiration for the development of Futhark.  We have a
+hand-written highly optimised OpenCL implementation of OptionPricing
+against which the Futhark implementation was already fairly
+competitive, so seeing CUDA grow 50% faster on top of that is quite
+surprising.
+
+.. _`OptionPricing`: https://github.com/diku-dk/futhark-benchmarks/blob/master/finpar/OptionPricing.fut
+
+`Tunnel`_
+=========
+
+.. code-block::
+
+  futhark-benchmarks/accelerate/tunnel/tunnel.fut
+    #0 ("10.0f32 800i32 600i32"):                                         0.68x
+    #1 ("10.0f32 1000i32 1000i32"):                                       0.67x
+    #2 ("10.0f32 2000i32 2000i32"):                                       0.68x
+    #3 ("10.0f32 4000i32 4000i32"):                                       0.66x
+    #4 ("10.0f32 8000i32 8000i32"):                                       0.67x
+
+The poor performance of CUDA for the Tunnel benchmark is surprising,
+because it is a rather trivial program: a two-deep ``map`` nest
+(compiled to a two-dimensional kernel) that performs some scalar
+computation to compute a colour value.  In fact, I was so surprised at
+this behaviour that I dug a little deeper and compared the `PTX
+<https://docs.nvidia.com/cuda/parallel-thread-execution/index.html>`_
+(high-level NVIDIA-specific GPU assembly) generated by OpenCL and
+NVIDIA. The important difference arises from these loops in the
+original source code (slightly reformatted for readability)::
+
+    loop samples = {x=0.0, y=0.0} for i in -2...2 do
+      loop samples for j in -2...2 do
+        ...
+
+This is just two nested five-iteration loops, with 25 iterations in
+total.  In the PTX generated by CUDA (but not OpenCL), the two loops
+are annotated with ``nounroll`` pragmas.  If I remove these pragmas by
+hand and load my modified PTX (though the convenient ``--load-ptx``
+command line option supported by CUDA-compiled Futhark executables),
+performance becomes identical to the OpenCL version.  For some reason,
+the CUDA compiler is more conservative about unrolling, which is in
+this case apparently a crucial optimisation.  This is surprising to
+me, since I had assumed that NVIDIA CUDA and NVIDIA OpenCL just used
+different front-ends to the same kernel compiler.
+
+.. _`Tunnel`: https://github.com/diku-dk/futhark-benchmarks/blob/master/accelerate/tunnel/tunnel.fut`
+
+`N-body`_
+=========
+
+.. code-block::
+
+  futhark-benchmarks/accelerate/nbody/nbody.fut
+    data/1000-bodies.in:                                                  0.38x
+    data/10000-bodies.in:                                                 0.38x
+    data/100000-bodies.in:                                                0.48x
+
+For this benchmark I also suspected lack of unrolling to be the
+culprit, but after I investigated the PTX I was surprised to find that
+the issue arises from this line of code::
+
+  let invr = 1.0f32 / f32.sqrt rsqr
+
+For this, OpenCL generates a fast approximate inverse square root
+instruction (``rsqrt.approx.f32``), while CUDA generates a slower
+combination of of an accurate square root and a reciprocal
+(``sqrt.rn.f32``, ``rcp.rn.f32``).  Both the OpenCL and CUDA kernels
+are compiled without asking for any unsafe or inaccurate
+floating-point optimisations, so I'm surprised that the OpenCL
+compiler is willing to do this.
+
+.. _`N-body`: https://github.com/diku-dk/futhark-benchmarks/blob/master/accelerate/nbody/nbody.fut
+
+Conclusions
+===========
+
+In summary, OpenCL and CUDA seem to perform quite similarly for the
+code generated by the Futhark compiler.  In the cases where large
+differences exist, and I was able to determine the cause, it comes
+down to subtle assumptions about low-level optimisations, which could
+easily have gone either way.  We can probably close the gap with a bit
+more work, possibly by passing more compiler options.
+
+Ultimately, I am quite satisfied with our new CUDA backend, and Jakob
+has reason to be proud of the result.  It is never a simple thing to
+add a new backend to an existing compiler, and this one not handles
+all existing programs correctly, but also performs competitively with
+a much more mature existing backend.  Doing work of this magnitude and
+quality in an undergraduate thesis is quite impressive.
+
+Finally, I should mention that another student has developed a `Vulkan
+<https://www.khronos.org/vulkan/>`_ backend (Steffen Holst Larsen,
+`report here <../student-projects/steffen-msc-project.pdf`_).  This is
+also a very impressive piece of work, but as Vulkan Compute is a much
+more hostile and complex environment than OpenCL, it is not yet fully
+operational, and performance is not yet on par with the OpenCL
+backend.  We hope to eventually finish it and make it available as
+well (unreasonably curious people can of course just `check out the
+branch <https://github.com/diku-dk/futhark/tree/vulkan-backend>`_).

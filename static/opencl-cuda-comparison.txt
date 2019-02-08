@@ -1,0 +1,708 @@
+futhark-benchmarks/Sune-ImageProc/interp.fut
+  data/fake.in:                                                         1.00x
+
+futhark-benchmarks/Sune-ImageProc/interp_cos_plays.fut
+  data/fake.in:                                                         0.57x
+
+futhark-benchmarks/accelerate/canny/canny.fut
+  data/lena256.in:                                                      1.12x
+  data/lena512.in:                                                      1.02x
+
+futhark-benchmarks/accelerate/crystal/crystal.fut
+  #0 ("200i32 30.0f32 5i32 1i32 1.0f32"):                               1.08x
+  #4 ("2000i32 30.0f32 50i32 1i32 1.0f32"):                             0.99x
+  #5 ("4000i32 30.0f32 50i32 1i32 1.0f32"):                             1.02x
+
+futhark-benchmarks/accelerate/fft/fft.fut
+  data/256x256.in:                                                      1.08x
+  data/128x512.in:                                                      1.27x
+  data/64x256.in:                                                       1.50x
+  data/512x512.in:                                                      0.89x
+  data/1024x1024.in:                                                    0.94x
+  data/128x128.in:                                                      1.66x
+
+futhark-benchmarks/accelerate/fluid/fluid.fut
+  benchmarking/medium.in:                                               1.12x
+
+futhark-benchmarks/accelerate/hashcat/hashcat.fut
+  rockyou.dataset:                                                      0.98x
+
+futhark-benchmarks/accelerate/kmeans/kmeans.fut
+  data/trivial.in:                                                      1.39x
+  data/k5_n50000.in:                                                    1.15x
+  data/k5_n200000.in:                                                   1.05x
+
+futhark-benchmarks/accelerate/mandelbrot/mandelbrot.fut
+  #0 ("800i32 600i32 -0.7f32 0.0f32 3.067f32 100i32 16.0f..."):         0.79x
+  #1 ("1000i32 1000i32 -0.7f32 0.0f32 3.067f32 100i32 16...."):         0.78x
+  #2 ("2000i32 2000i32 -0.7f32 0.0f32 3.067f32 100i32 16...."):         0.77x
+  #3 ("4000i32 4000i32 -0.7f32 0.0f32 3.067f32 100i32 16...."):         0.78x
+  #4 ("8000i32 8000i32 -0.7f32 0.0f32 3.067f32 100i32 16...."):         0.80x
+
+futhark-benchmarks/accelerate/nbody/nbody.fut
+  data/1000-bodies.in:                                                  0.38x
+  data/10000-bodies.in:                                                 0.38x
+  data/100000-bodies.in:                                                0.48x
+
+futhark-benchmarks/accelerate/pagerank/pagerank.fut
+  data/small.in:                                                        1.37x
+  data/random_medium.in:                                                0.95x
+
+futhark-benchmarks/accelerate/ray/trace.fut
+  #0 ("800i32 600i32 100i32 50.0f32 -100.0f32 -700.0f32 1..."):         0.44x
+
+futhark-benchmarks/accelerate/tunnel/tunnel.fut
+  #0 ("10.0f32 800i32 600i32"):                                         0.68x
+  #1 ("10.0f32 1000i32 1000i32"):                                       0.67x
+  #2 ("10.0f32 2000i32 2000i32"):                                       0.68x
+  #3 ("10.0f32 4000i32 4000i32"):                                       0.66x
+  #4 ("10.0f32 8000i32 8000i32"):                                       0.67x
+
+futhark-benchmarks/finpar/LocVolCalib.fut
+  LocVolCalib-data/small.in:                                            0.71x
+  LocVolCalib-data/medium.in:                                           0.91x
+  LocVolCalib-data/large.in:                                            0.99x
+
+futhark-benchmarks/finpar/OptionPricing.fut
+  OptionPricing-data/small.in:                                          1.77x
+  OptionPricing-data/medium.in:                                         1.49x
+  OptionPricing-data/large.in:                                          1.50x
+
+futhark-benchmarks/jgf/crypt/crypt.fut
+  crypt-data/medium.in:                                                 1.03x
+
+futhark-benchmarks/jgf/crypt/keys.fut
+  crypt-data/userkey0.txt:                                              1.41x
+
+futhark-benchmarks/jgf/series/series.fut
+  data/10000.in:                                                        1.24x
+  data/100000.in:                                                       1.24x
+  data/1000000.in:                                                      1.29x
+
+futhark-benchmarks/micro/reduce-segmented.fut:prod_mat4_i32
+  1i32 10000000i32 [10000000]i32 [10000000]i32 [10000000]i32 [10000000]i32:      0.89x
+  10i32 1000000i32 [10000000]i32 [10000000]i32 [10000000]i32 [10000000]i32:      0.87x
+  100i32 100000i32 [10000000]i32 [10000000]i32 [10000000]i32 [10000000]i32:      0.96x
+  1000i32 10000i32 [10000000]i32 [10000000]i32 [10000000]i32 [10000000]i32:      1.04x
+  10000i32 1000i32 [10000000]i32 [10000000]i32 [10000000]i32 [10000000]i32:      1.03x
+  100000i32 100i32 [10000000]i32 [10000000]i32 [10000000]i32 [10000000]i32:      1.03x
+  1000000i32 10i32 [10000000]i32 [10000000]i32 [10000000]i32 [10000000]i32:      0.96x
+  10000000i32 1i32 [10000000]i32 [10000000]i32 [10000000]i32 [10000000]i32:      0.96x
+
+futhark-benchmarks/micro/reduce-segmented.fut:sum_i16
+  1i32 100000000i32 [100000000]i16:                                     0.96x
+  10i32 10000000i32 [100000000]i16:                                     0.89x
+  100i32 1000000i32 [100000000]i16:                                     0.98x
+  1000i32 100000i32 [100000000]i16:                                     1.01x
+  10000i32 10000i32 [100000000]i16:                                     1.01x
+  100000i32 1000i32 [100000000]i16:                                     0.97x
+  1000000i32 100i32 [100000000]i16:                                     0.78x
+  10000000i32 10i32 [100000000]i16:                                     0.77x
+  100000000i32 1i32 [100000000]i16:                                     0.87x
+
+futhark-benchmarks/micro/reduce-segmented.fut:sum_i32
+  1i32 100000000i32 [100000000]i32:                                     0.91x
+  10i32 10000000i32 [100000000]i32:                                     0.97x
+  100i32 1000000i32 [100000000]i32:                                     1.03x
+  1000i32 100000i32 [100000000]i32:                                     1.01x
+  10000i32 10000i32 [100000000]i32:                                     1.01x
+  100000i32 1000i32 [100000000]i32:                                     1.05x
+  1000000i32 100i32 [100000000]i32:                                     0.81x
+  10000000i32 10i32 [100000000]i32:                                     0.80x
+  100000000i32 1i32 [100000000]i32:                                     0.86x
+
+futhark-benchmarks/micro/reduce-segmented.fut:sum_i64
+  1i32 100000000i32 [100000000]i64:                                     0.95x
+  10i32 10000000i32 [100000000]i64:                                     0.88x
+  100i32 1000000i32 [100000000]i64:                                     1.01x
+  1000i32 100000i32 [100000000]i64:                                     1.01x
+  10000i32 10000i32 [100000000]i64:                                     1.01x
+  100000i32 1000i32 [100000000]i64:                                     1.02x
+  1000000i32 100i32 [100000000]i64:                                     1.10x
+  10000000i32 10i32 [100000000]i64:                                     1.09x
+  100000000i32 1i32 [100000000]i64:                                     0.91x
+
+futhark-benchmarks/micro/reduce-segmented.fut:sum_i8
+  1i32 100000000i32 [100000000]i8:                                      0.96x
+  10i32 10000000i32 [100000000]i8:                                      0.88x
+  100i32 1000000i32 [100000000]i8:                                      0.97x
+  1000i32 100000i32 [100000000]i8:                                      1.01x
+  10000i32 10000i32 [100000000]i8:                                      1.02x
+  100000i32 1000i32 [100000000]i8:                                      0.97x
+  1000000i32 100i32 [100000000]i8:                                      0.72x
+  10000000i32 10i32 [100000000]i8:                                      0.74x
+  100000000i32 1i32 [100000000]i8:                                      0.87x
+
+futhark-benchmarks/micro/reduce-segmented.fut:sum_iota_i32
+  1i32 100000000i32:                                                    1.36x
+  10i32 10000000i32:                                                    1.37x
+  100i32 1000000i32:                                                    1.37x
+  1000i32 100000i32:                                                    1.18x
+  10000i32 10000i32:                                                    1.00x
+  100000i32 1000i32:                                                    1.03x
+  1000000i32 100i32:                                                    1.35x
+  10000000i32 10i32:                                                    1.34x
+  100000000i32 1i32:                                                    0.93x
+
+futhark-benchmarks/micro/reduce.fut:lss_f32
+  [10000]i32 [10000]i32 [10000]i32 [10000]i32:                          1.33x
+  [100000]i32 [100000]i32 [100000]i32 [100000]i32:                      1.07x
+  [1000000]i32 [1000000]i32 [1000000]i32 [1000000]i32:                  0.96x
+  [10000000]i32 [10000000]i32 [10000000]i32 [10000000]i32:              0.86x
+
+futhark-benchmarks/micro/reduce.fut:lss_f64
+  [10000]i32 [10000]i32 [10000]i32 [10000]i32:                          1.32x
+  [100000]i32 [100000]i32 [100000]i32 [100000]i32:                      1.14x
+  [1000000]i32 [1000000]i32 [1000000]i32 [1000000]i32:                  1.10x
+  [10000000]i32 [10000000]i32 [10000000]i32 [10000000]i32:              1.10x
+
+futhark-benchmarks/micro/reduce.fut:lss_i32
+  [10000]i32 [10000]i32 [10000]i32 [10000]i32:                          1.32x
+  [100000]i32 [100000]i32 [100000]i32 [100000]i32:                      1.10x
+  [1000000]i32 [1000000]i32 [1000000]i32 [1000000]i32:                  0.97x
+  [10000000]i32 [10000000]i32 [10000000]i32 [10000000]i32:              0.89x
+
+futhark-benchmarks/micro/reduce.fut:lss_i8
+  [10000]i32 [10000]i32 [10000]i32 [10000]i32:                          1.33x
+  [100000]i32 [100000]i32 [100000]i32 [100000]i32:                      1.04x
+  [1000000]i32 [1000000]i32 [1000000]i32 [1000000]i32:                  0.94x
+  [10000000]i32 [10000000]i32 [10000000]i32 [10000000]i32:              0.88x
+
+futhark-benchmarks/micro/reduce.fut:lss_iota_f32
+  #0 ("10000i32"):                                                      1.36x
+  #1 ("100000i32"):                                                     1.30x
+  #2 ("1000000i32"):                                                    1.27x
+  #3 ("10000000i32"):                                                   0.96x
+  #4 ("100000000i32"):                                                  0.80x
+
+futhark-benchmarks/micro/reduce.fut:lss_iota_f64
+  #0 ("10000i32"):                                                      1.28x
+  #1 ("100000i32"):                                                     1.52x
+  #2 ("1000000i32"):                                                    1.19x
+  #3 ("10000000i32"):                                                   0.97x
+  #4 ("100000000i32"):                                                  1.01x
+
+futhark-benchmarks/micro/reduce.fut:lss_iota_i32
+  #0 ("10000i32"):                                                      1.39x
+  #1 ("100000i32"):                                                     1.29x
+  #2 ("1000000i32"):                                                    1.20x
+  #3 ("10000000i32"):                                                   1.03x
+  #4 ("100000000i32"):                                                  0.88x
+
+futhark-benchmarks/micro/reduce.fut:lss_iota_i8
+  #0 ("10000i32"):                                                      1.41x
+  #1 ("100000i32"):                                                     1.34x
+  #2 ("1000000i32"):                                                    1.26x
+  #3 ("10000000i32"):                                                   1.08x
+  #4 ("100000000i32"):                                                  0.96x
+
+futhark-benchmarks/micro/reduce.fut:prod_iota_mat4_f32
+  #0 ("10000i32"):                                                      1.31x
+  #1 ("100000i32"):                                                     1.29x
+  #2 ("1000000i32"):                                                    1.28x
+  #3 ("10000000i32"):                                                   1.16x
+  #4 ("100000000i32"):                                                  0.99x
+
+futhark-benchmarks/micro/reduce.fut:prod_iota_mat4_f64
+  #0 ("10000i32"):                                                      1.14x
+  #1 ("100000i32"):                                                     1.42x
+  #2 ("1000000i32"):                                                    1.30x
+  #3 ("10000000i32"):                                                   1.07x
+  #4 ("100000000i32"):                                                  0.95x
+
+futhark-benchmarks/micro/reduce.fut:prod_iota_mat4_i32
+  #0 ("10000i32"):                                                      1.27x
+  #1 ("100000i32"):                                                     1.45x
+  #2 ("1000000i32"):                                                    1.24x
+  #3 ("10000000i32"):                                                   1.20x
+  #4 ("100000000i32"):                                                  0.99x
+
+futhark-benchmarks/micro/reduce.fut:prod_iota_mat4_i8
+  #0 ("10000i32"):                                                      1.29x
+  #1 ("100000i32"):                                                     1.29x
+  #2 ("1000000i32"):                                                    1.26x
+  #3 ("10000000i32"):                                                   1.03x
+  #4 ("100000000i32"):                                                  0.95x
+
+futhark-benchmarks/micro/reduce.fut:prod_mat4_f32
+  [10000]i32 [10000]i32 [10000]i32 [10000]i32:                          1.24x
+  [100000]i32 [100000]i32 [100000]i32 [100000]i32:                      1.07x
+  [1000000]i32 [1000000]i32 [1000000]i32 [1000000]i32:                  0.96x
+  [10000000]i32 [10000000]i32 [10000000]i32 [10000000]i32:              0.89x
+
+futhark-benchmarks/micro/reduce.fut:prod_mat4_f64
+  [10000]i32 [10000]i32 [10000]i32 [10000]i32:                          1.09x
+  [100000]i32 [100000]i32 [100000]i32 [100000]i32:                      1.08x
+  [1000000]i32 [1000000]i32 [1000000]i32 [1000000]i32:                  1.04x
+  [10000000]i32 [10000000]i32 [10000000]i32 [10000000]i32:              0.92x
+
+futhark-benchmarks/micro/reduce.fut:prod_mat4_i32
+  [10000]i32 [10000]i32 [10000]i32 [10000]i32:                          1.19x
+  [100000]i32 [100000]i32 [100000]i32 [100000]i32:                      1.14x
+  [1000000]i32 [1000000]i32 [1000000]i32 [1000000]i32:                  0.99x
+  [10000000]i32 [10000000]i32 [10000000]i32 [10000000]i32:              0.89x
+
+futhark-benchmarks/micro/reduce.fut:prod_mat4_i8
+  [10000]i32 [10000]i32 [10000]i32 [10000]i32:                          1.17x
+  [100000]i32 [100000]i32 [100000]i32 [100000]i32:                      1.07x
+  [1000000]i32 [1000000]i32 [1000000]i32 [1000000]i32:                  0.97x
+  [10000000]i32 [10000000]i32 [10000000]i32 [10000000]i32:              0.87x
+
+futhark-benchmarks/micro/reduce.fut:sum_f32
+  [10000]i32:                                                           0.96x
+  [100000]i32:                                                          1.17x
+  [1000000]i32:                                                         1.12x
+  [10000000]i32:                                                        0.96x
+  [100000000]i32:                                                       0.90x
+
+futhark-benchmarks/micro/reduce.fut:sum_f64
+  [10000]i32:                                                           1.07x
+  [100000]i32:                                                          1.47x
+  [1000000]i32:                                                         1.14x
+  [10000000]i32:                                                        1.01x
+  [100000000]i32:                                                       0.98x
+
+futhark-benchmarks/micro/reduce.fut:sum_i32
+  [10000]i32:                                                           0.89x
+  [100000]i32:                                                          1.14x
+  [1000000]i32:                                                         1.11x
+  [10000000]i32:                                                        1.02x
+  [100000000]i32:                                                       0.89x
+
+futhark-benchmarks/micro/reduce.fut:sum_i8
+  [10000]i32:                                                           0.91x
+  [100000]i32:                                                          1.21x
+  [1000000]i32:                                                         1.12x
+  [10000000]i32:                                                        0.96x
+  [100000000]i32:                                                       0.89x
+
+futhark-benchmarks/micro/reduce.fut:sum_iota_f32
+  #0 ("10000i32"):                                                      0.88x
+  #1 ("100000i32"):                                                     1.24x
+  #2 ("1000000i32"):                                                    1.28x
+  #3 ("10000000i32"):                                                   1.06x
+  #4 ("100000000i32"):                                                  1.04x
+
+futhark-benchmarks/micro/reduce.fut:sum_iota_f64
+  #0 ("10000i32"):                                                      1.00x
+  #1 ("100000i32"):                                                     1.23x
+  #2 ("1000000i32"):                                                    1.18x
+  #3 ("10000000i32"):                                                   1.02x
+  #4 ("100000000i32"):                                                  1.00x
+
+futhark-benchmarks/micro/reduce.fut:sum_iota_i32
+  #0 ("10000i32"):                                                      0.92x
+  #1 ("100000i32"):                                                     1.30x
+  #2 ("1000000i32"):                                                    1.23x
+  #3 ("10000000i32"):                                                   1.05x
+  #4 ("100000000i32"):                                                  0.97x
+
+futhark-benchmarks/micro/reduce.fut:sum_iota_i8
+  #0 ("10000i32"):                                                      0.92x
+  #1 ("100000i32"):                                                     1.30x
+  #2 ("1000000i32"):                                                    1.27x
+  #3 ("10000000i32"):                                                   1.07x
+  #4 ("100000000i32"):                                                  0.95x
+
+futhark-benchmarks/micro/reduce.fut:sum_scaled_f32
+  [10000]i32:                                                           1.11x
+  [100000]i32:                                                          1.23x
+  [1000000]i32:                                                         1.02x
+  [10000000]i32:                                                        0.94x
+  [100000000]i32:                                                       0.93x
+
+futhark-benchmarks/micro/reduce.fut:sum_scaled_f64
+  [10000]i32:                                                           1.18x
+  [100000]i32:                                                          1.45x
+  [1000000]i32:                                                         1.11x
+  [10000000]i32:                                                        0.96x
+  [100000000]i32:                                                       0.95x
+
+futhark-benchmarks/micro/reduce.fut:sum_scaled_i32
+  [10000]i32:                                                           0.99x
+  [100000]i32:                                                          1.21x
+  [1000000]i32:                                                         1.00x
+  [10000000]i32:                                                        0.94x
+  [100000000]i32:                                                       0.94x
+
+futhark-benchmarks/micro/reduce.fut:sum_scaled_i8
+  [10000]i32:                                                           1.06x
+  [100000]i32:                                                          1.22x
+  [1000000]i32:                                                         1.10x
+  [10000000]i32:                                                        0.94x
+  [100000000]i32:                                                       0.90x
+
+futhark-benchmarks/micro/scan.fut:lss_f32
+  [10000]i32 [10000]i32 [10000]i32 [10000]i32:                          1.71x
+  [100000]i32 [100000]i32 [100000]i32 [100000]i32:                      1.02x
+  [1000000]i32 [1000000]i32 [1000000]i32 [1000000]i32:                  0.98x
+
+futhark-benchmarks/micro/scan.fut:lss_f64
+  [10000]i32 [10000]i32 [10000]i32 [10000]i32:                          1.46x
+  [100000]i32 [100000]i32 [100000]i32 [100000]i32:                      1.11x
+  [1000000]i32 [1000000]i32 [1000000]i32 [1000000]i32:                  1.03x
+
+futhark-benchmarks/micro/scan.fut:lss_i32
+  [10000]i32 [10000]i32 [10000]i32 [10000]i32:                          1.49x
+  [100000]i32 [100000]i32 [100000]i32 [100000]i32:                      1.01x
+  [1000000]i32 [1000000]i32 [1000000]i32 [1000000]i32:                  1.01x
+
+futhark-benchmarks/micro/scan.fut:lss_i8
+  [10000]i32 [10000]i32 [10000]i32 [10000]i32:                          1.52x
+  [100000]i32 [100000]i32 [100000]i32 [100000]i32:                      1.02x
+  [1000000]i32 [1000000]i32 [1000000]i32 [1000000]i32:                  0.98x
+
+futhark-benchmarks/micro/scan.fut:lss_iota_f32
+  #0 ("10000i32"):                                                      1.72x
+  #1 ("100000i32"):                                                     1.04x
+  #2 ("1000000i32"):                                                    0.97x
+  #3 ("10000000i32"):                                                   0.94x
+
+futhark-benchmarks/micro/scan.fut:lss_iota_f64
+  #0 ("10000i32"):                                                      1.54x
+  #1 ("100000i32"):                                                     1.07x
+  #2 ("1000000i32"):                                                    0.97x
+  #3 ("10000000i32"):                                                   0.90x
+
+futhark-benchmarks/micro/scan.fut:lss_iota_i32
+  #0 ("10000i32"):                                                      1.58x
+  #1 ("100000i32"):                                                     1.02x
+  #2 ("1000000i32"):                                                    1.00x
+  #3 ("10000000i32"):                                                   0.94x
+
+futhark-benchmarks/micro/scan.fut:lss_iota_i8
+  #0 ("10000i32"):                                                      1.66x
+  #1 ("100000i32"):                                                     0.99x
+  #2 ("1000000i32"):                                                    1.00x
+  #3 ("10000000i32"):                                                   0.86x
+
+futhark-benchmarks/micro/scan.fut:prod_iota_mat4_f32
+  #0 ("10000i32"):                                                      1.57x
+  #1 ("100000i32"):                                                     1.05x
+  #2 ("1000000i32"):                                                    0.93x
+  #3 ("10000000i32"):                                                   0.79x
+
+futhark-benchmarks/micro/scan.fut:prod_iota_mat4_f64
+  #0 ("10000i32"):                                                      1.22x
+  #1 ("100000i32"):                                                     1.06x
+  #2 ("1000000i32"):                                                    1.03x
+  #3 ("10000000i32"):                                                   1.02x
+
+futhark-benchmarks/micro/scan.fut:prod_iota_mat4_i32
+  #0 ("10000i32"):                                                      1.60x
+  #1 ("100000i32"):                                                     1.08x
+  #2 ("1000000i32"):                                                    0.96x
+  #3 ("10000000i32"):                                                   0.85x
+
+futhark-benchmarks/micro/scan.fut:prod_iota_mat4_i8
+  #0 ("10000i32"):                                                      1.50x
+  #1 ("100000i32"):                                                     1.00x
+  #2 ("1000000i32"):                                                    0.92x
+  #3 ("10000000i32"):                                                   0.84x
+
+futhark-benchmarks/micro/scan.fut:prod_mat4_f32
+  [10000]i32 [10000]i32 [10000]i32 [10000]i32:                          1.64x
+  [100000]i32 [100000]i32 [100000]i32 [100000]i32:                      1.07x
+  [1000000]i32 [1000000]i32 [1000000]i32 [1000000]i32:                  0.85x
+
+futhark-benchmarks/micro/scan.fut:prod_mat4_f64
+  [10000]i32 [10000]i32 [10000]i32 [10000]i32:                          1.52x
+  [100000]i32 [100000]i32 [100000]i32 [100000]i32:                      1.14x
+  [1000000]i32 [1000000]i32 [1000000]i32 [1000000]i32:                  1.11x
+
+futhark-benchmarks/micro/scan.fut:prod_mat4_i32
+  [10000]i32 [10000]i32 [10000]i32 [10000]i32:                          1.79x
+  [100000]i32 [100000]i32 [100000]i32 [100000]i32:                      1.10x
+  [1000000]i32 [1000000]i32 [1000000]i32 [1000000]i32:                  0.95x
+
+futhark-benchmarks/micro/scan.fut:prod_mat4_i8
+  [10000]i32 [10000]i32 [10000]i32 [10000]i32:                          1.94x
+  [100000]i32 [100000]i32 [100000]i32 [100000]i32:                      1.04x
+  [1000000]i32 [1000000]i32 [1000000]i32 [1000000]i32:                  0.85x
+
+futhark-benchmarks/micro/scan.fut:sum_f32
+  [10000]i32:                                                           1.49x
+  [100000]i32:                                                          1.09x
+  [1000000]i32:                                                         0.99x
+  [10000000]i32:                                                        0.95x
+  [100000000]i32:                                                       1.01x
+
+futhark-benchmarks/micro/scan.fut:sum_f64
+  [10000]i32:                                                           1.56x
+  [100000]i32:                                                          1.09x
+  [1000000]i32:                                                         1.02x
+  [10000000]i32:                                                        0.98x
+  [100000000]i32:                                                       1.01x
+
+futhark-benchmarks/micro/scan.fut:sum_i32
+  [10000]i32:                                                           1.52x
+  [100000]i32:                                                          1.09x
+  [1000000]i32:                                                         1.06x
+  [10000000]i32:                                                        1.01x
+  [100000000]i32:                                                       1.05x
+
+futhark-benchmarks/micro/scan.fut:sum_i8
+  [10000]i32:                                                           1.24x
+  [100000]i32:                                                          1.02x
+  [1000000]i32:                                                         0.96x
+  [10000000]i32:                                                        0.87x
+  [100000000]i32:                                                       0.89x
+
+futhark-benchmarks/micro/scan.fut:sum_iota_f32
+  #0 ("10000i32"):                                                      1.33x
+  #1 ("100000i32"):                                                     1.13x
+  #2 ("1000000i32"):                                                    1.19x
+  #3 ("10000000i32"):                                                   1.12x
+  #4 ("100000000i32"):                                                  1.11x
+
+futhark-benchmarks/micro/scan.fut:sum_iota_f64
+  #0 ("10000i32"):                                                      1.32x
+  #1 ("100000i32"):                                                     1.16x
+  #2 ("1000000i32"):                                                    1.12x
+  #3 ("10000000i32"):                                                   1.02x
+  #4 ("100000000i32"):                                                  1.05x
+
+futhark-benchmarks/micro/scan.fut:sum_iota_i32
+  #0 ("10000i32"):                                                      1.32x
+  #1 ("100000i32"):                                                     1.17x
+  #2 ("1000000i32"):                                                    1.14x
+  #3 ("10000000i32"):                                                   1.07x
+  #4 ("100000000i32"):                                                  1.09x
+
+futhark-benchmarks/micro/scan.fut:sum_iota_i8
+  #0 ("10000i32"):                                                      1.35x
+  #1 ("100000i32"):                                                     1.01x
+  #2 ("1000000i32"):                                                    0.99x
+  #3 ("10000000i32"):                                                   0.92x
+  #4 ("100000000i32"):                                                  0.91x
+
+futhark-benchmarks/micro/scan.fut:sum_scaled_f32
+  [10000]i32:                                                           1.48x
+  [100000]i32:                                                          1.13x
+  [1000000]i32:                                                         1.05x
+  [10000000]i32:                                                        0.97x
+  [100000000]i32:                                                       1.04x
+
+futhark-benchmarks/micro/scan.fut:sum_scaled_f64
+  [10000]i32:                                                           1.44x
+  [100000]i32:                                                          1.19x
+  [1000000]i32:                                                         1.10x
+  [10000000]i32:                                                        0.92x
+  [100000000]i32:                                                       0.92x
+
+futhark-benchmarks/micro/scan.fut:sum_scaled_i32
+  [10000]i32:                                                           1.62x
+  [100000]i32:                                                          1.11x
+  [1000000]i32:                                                         1.07x
+  [10000000]i32:                                                        0.99x
+  [100000000]i32:                                                       1.05x
+
+futhark-benchmarks/micro/scan.fut:sum_scaled_i8
+  [10000]i32:                                                           1.36x
+  [100000]i32:                                                          1.09x
+  [1000000]i32:                                                         0.97x
+  [10000000]i32:                                                        0.89x
+  [100000000]i32:                                                       0.98x
+
+futhark-benchmarks/micro/transpose.fut:map_transpose_i32
+  1i32 1i32 100000000i32 [100000000]i32:                                0.99x
+  10i32 1i32 10000000i32 [100000000]i32:                                1.01x
+  1000i32 1i32 100000i32 [100000000]i32:                                1.03x
+  1i32 1000i32 100000i32 [100000000]i32:                                1.01x
+  10i32 1000i32 10000i32 [100000000]i32:                                1.01x
+  1000i32 1000i32 100i32 [100000000]i32:                                0.99x
+  1i32 10000000i32 10i32 [100000000]i32:                                0.95x
+  10i32 10000000i32 1i32 [100000000]i32:                                1.03x
+  1000i32 100000i32 1i32 [100000000]i32:                                1.03x
+
+futhark-benchmarks/micro/transpose.fut:map_transpose_i64
+  1i32 1i32 100000000i32 [100000000]i64:                                1.00x
+  10i32 1i32 10000000i32 [100000000]i64:                                1.01x
+  1000i32 1i32 100000i32 [100000000]i64:                                1.02x
+  1i32 1000i32 100000i32 [100000000]i64:                                1.00x
+  10i32 1000i32 10000i32 [100000000]i64:                                1.00x
+  1000i32 1000i32 100i32 [100000000]i64:                                1.01x
+  1i32 10000000i32 10i32 [100000000]i64:                                0.91x
+  10i32 10000000i32 1i32 [100000000]i64:                                0.97x
+  1000i32 100000i32 1i32 [100000000]i64:                                0.98x
+
+futhark-benchmarks/micro/transpose.fut:map_transpose_i8
+  1i32 1i32 100000000i32 [100000000]i8:                                 1.01x
+  10i32 1i32 10000000i32 [100000000]i8:                                 0.97x
+  1000i32 1i32 100000i32 [100000000]i8:                                 0.95x
+  1i32 1000i32 100000i32 [100000000]i8:                                 0.96x
+  10i32 1000i32 10000i32 [100000000]i8:                                 0.96x
+  1000i32 1000i32 100i32 [100000000]i8:                                 0.93x
+  1i32 10000000i32 10i32 [100000000]i8:                                 0.94x
+  10i32 10000000i32 1i32 [100000000]i8:                                 0.95x
+  1000i32 100000i32 1i32 [100000000]i8:                                 0.95x
+
+futhark-benchmarks/micro/transpose.fut:transpose_i32
+  1i32 100000000i32 [100000000]i32:                                     1.00x
+  2i32 50000000i32 [100000000]i32:                                      1.03x
+  4i32 25000000i32 [100000000]i32:                                      1.03x
+  10i32 10000000i32 [100000000]i32:                                     0.94x
+  100i32 1000000i32 [100000000]i32:                                     1.00x
+  1000i32 100000i32 [100000000]i32:                                     1.01x
+  10000i32 10000i32 [100000000]i32:                                     1.00x
+  100000i32 1000i32 [100000000]i32:                                     1.01x
+  1000000i32 100i32 [100000000]i32:                                     1.02x
+  10000000i32 10i32 [100000000]i32:                                     0.96x
+  25000000i32 4i32 [100000000]i32:                                      1.04x
+  50000000i32 2i32 [100000000]i32:                                      1.03x
+  100000000i32 1i32 [100000000]i32:                                     1.00x
+
+futhark-benchmarks/micro/transpose.fut:transpose_i64
+  1i32 100000000i32 [100000000]i64:                                     1.00x
+  2i32 50000000i32 [100000000]i64:                                      1.00x
+  4i32 25000000i32 [100000000]i64:                                      1.02x
+  10i32 10000000i32 [100000000]i64:                                     0.93x
+  100i32 1000000i32 [100000000]i64:                                     0.99x
+  1000i32 100000i32 [100000000]i64:                                     1.00x
+  10000i32 10000i32 [100000000]i64:                                     1.00x
+  100000i32 1000i32 [100000000]i64:                                     1.00x
+  1000000i32 100i32 [100000000]i64:                                     1.00x
+  10000000i32 10i32 [100000000]i64:                                     0.92x
+  25000000i32 4i32 [100000000]i64:                                      1.03x
+  50000000i32 2i32 [100000000]i64:                                      1.03x
+  100000000i32 1i32 [100000000]i64:                                     1.00x
+
+futhark-benchmarks/micro/transpose.fut:transpose_i8
+  1i32 100000000i32 [100000000]i8:                                      1.01x
+  2i32 50000000i32 [100000000]i8:                                       0.97x
+  4i32 25000000i32 [100000000]i8:                                       0.97x
+  10i32 10000000i32 [100000000]i8:                                      0.93x
+  100i32 1000000i32 [100000000]i8:                                      0.94x
+  1000i32 100000i32 [100000000]i8:                                      0.95x
+  10000i32 10000i32 [100000000]i8:                                      0.98x
+  100000i32 1000i32 [100000000]i8:                                      0.95x
+  1000000i32 100i32 [100000000]i8:                                      0.91x
+  10000000i32 10i32 [100000000]i8:                                      0.93x
+  25000000i32 4i32 [100000000]i8:                                       0.95x
+  50000000i32 2i32 [100000000]i8:                                       0.97x
+  100000000i32 1i32 [100000000]i8:                                      1.00x
+
+futhark-benchmarks/misc/bfast/bfast-cloudy.fut
+  data/sahara-cloudy.in:                                                0.87x
+  data/peru.in:                                                         0.89x
+
+futhark-benchmarks/misc/bfast/bfast.fut
+  data/sahara.in:                                                       0.98x
+
+futhark-benchmarks/misc/heston/heston32.fut
+  data/1062_quotes.in:                                                  1.38x
+  data/10000_quotes.in:                                                 1.03x
+  data/100000_quotes.in:                                                0.91x
+
+futhark-benchmarks/misc/heston/heston64.fut
+  data/1062_quotes.in:                                                  0.96x
+  data/10000_quotes.in:                                                 0.94x
+  data/100000_quotes.in:                                                0.98x
+
+futhark-benchmarks/misc/radix_sort/radix_sort_blelloch_benchmark.fut
+  data/radix_sort_10K.in:                                               1.62x
+  data/radix_sort_100K.in:                                              1.02x
+  data/radix_sort_1M.in:                                                1.00x
+
+futhark-benchmarks/misc/radix_sort/radix_sort_large.fut
+  data/radix_sort_10K.in:                                               1.44x
+  data/radix_sort_100K.in:                                              1.14x
+  data/radix_sort_1M.in:                                                0.98x
+
+futhark-benchmarks/parboil/mri-q/mri-q.fut
+  data/small.in:                                                        1.01x
+  data/large.in:                                                        1.02x
+
+futhark-benchmarks/parboil/sgemm/sgemm.fut
+  data/tiny.in:                                                         1.27x
+  data/small.in:                                                        1.06x
+  data/medium.in:                                                       0.86x
+
+futhark-benchmarks/parboil/stencil/stencil.fut
+  data/small.in:                                                        1.03x
+  data/default.in:                                                      1.04x
+
+futhark-benchmarks/parboil/tpacf/tpacf.fut
+  data/small.in:                                                        1.00x
+  data/medium.in:                                                       1.00x
+  data/large.in:                                                        1.00x
+
+futhark-benchmarks/rodinia/backprop/backprop.fut
+  data/small.in:                                                        1.32x
+  data/medium.in:                                                       1.01x
+
+futhark-benchmarks/rodinia/bfs/bfs_asympt_ok_but_slow.fut
+  data/4096nodes.in:                                                    1.53x
+  data/512nodes_high_edge_variance.in:                                  1.31x
+  data/graph1MW_6.in:                                                   1.06x
+  data/64kn_32e-var-1-256-skew.in:                                      0.94x
+
+futhark-benchmarks/rodinia/bfs/bfs_filt_padded_fused.fut
+  data/4096nodes.in:                                                    1.35x
+  data/512nodes_high_edge_variance.in:                                  1.30x
+  data/graph1MW_6.in:                                                   1.04x
+  data/64kn_32e-var-1-256-skew.in:                                      1.05x
+
+futhark-benchmarks/rodinia/bfs/bfs_heuristic.fut
+  data/4096nodes.in:                                                    1.42x
+  data/512nodes_high_edge_variance.in:                                  1.22x
+  data/graph1MW_6.in:                                                   1.03x
+  data/64kn_32e-var-1-256-skew.in:                                      1.03x
+
+futhark-benchmarks/rodinia/bfs/bfs_iter_work_ok.fut
+  data/4096nodes.in:                                                    1.28x
+  data/512nodes_high_edge_variance.in:                                  1.23x
+  data/graph1MW_6.in:                                                   1.07x
+  data/64kn_32e-var-1-256-skew.in:                                      1.06x
+
+futhark-benchmarks/rodinia/cfd/cfd.fut
+  data/fvcorr.domn.097K.toa:                                            0.96x
+  data/fvcorr.domn.193K.toa:                                            0.96x
+
+futhark-benchmarks/rodinia/hotspot/hotspot.fut
+  data/64.in:                                                           1.35x
+  data/512.in:                                                          0.69x
+  data/1024.in:                                                         0.67x
+
+futhark-benchmarks/rodinia/kmeans/kmeans.fut
+  data/100.in:                                                          0.90x
+  data/204800.in:                                                       1.15x
+  data/kdd_cup.in:                                                      0.86x
+
+futhark-benchmarks/rodinia/lavaMD/lavaMD.fut
+  data/3_boxes.in:                                                      0.78x
+  data/10_boxes.in:                                                     1.00x
+
+futhark-benchmarks/rodinia/lud/lud-clean.fut
+  data/16by16.in:                                                       0.98x
+  data/64.in:                                                           0.97x
+  data/256.in:                                                          0.97x
+  data/512.in:                                                          0.91x
+  data/2048.in:                                                         0.98x
+
+futhark-benchmarks/rodinia/lud/lud.fut
+  data/16by16.in:                                                       1.08x
+  data/64.in:                                                           1.01x
+  data/256.in:                                                          0.92x
+  data/512.in:                                                          0.92x
+  data/2048.in:                                                         0.95x
+
+futhark-benchmarks/rodinia/myocyte/myocyte.fut
+  data/small.in:                                                        0.88x
+  data/medium.in:                                                       1.64x
+
+futhark-benchmarks/rodinia/nn/nn.fut
+  data/medium.in:                                                       1.35x
+
+futhark-benchmarks/rodinia/nw/nw.fut
+  data/large.in:                                                        1.02x
+
+futhark-benchmarks/rodinia/particlefilter/particlefilter.fut
+  data/128_128_10_image_10000_particles.in:                             0.96x
+  data/128_128_10_image_400000_particles.in:                            0.90x
+
+futhark-benchmarks/rodinia/pathfinder/pathfinder.fut
+  data/medium.in:                                                       1.00x
+
+futhark-benchmarks/rodinia/srad/srad.fut
+  data/image.in:                                                        1.08x
