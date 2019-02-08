@@ -262,10 +262,10 @@ quality in an undergraduate thesis is quite impressive.
 
 Finally, I should mention that another student has developed a `Vulkan
 <https://www.khronos.org/vulkan/>`_ backend (Steffen Holst Larsen,
-`report here <../student-projects/steffen-msc-project.pdf`_).  This is
-also a very impressive piece of work, but as Vulkan Compute is a much
-more hostile and complex environment than OpenCL, it is not yet fully
-operational, and performance is not yet on par with the OpenCL
+`report here <../student-projects/steffen-msc-project.pdf>`_).  This
+is also a very impressive piece of work, but as Vulkan Compute is a
+much more hostile and complex environment than OpenCL, it is not yet
+fully operational, and performance is not yet on par with the OpenCL
 backend.  We hope to eventually finish it and make it available as
 well (unreasonably curious people can of course just `check out the
 branch <https://github.com/diku-dk/futhark/tree/vulkan-backend>`_).
