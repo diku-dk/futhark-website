@@ -75,7 +75,7 @@ reasons:
 
 1. Some GPUs *only* support CUDA (notably the `Tegra line of SoCs
    <https://www.nvidia.com/object/tegra.html>`_), and we'd like for
-   these to be programmable with Futhark.  Another
+   these to be programmable with Futhark.
 
 2. CUDA-compiled Futhark can easily inter-operate with existing CUDA
    code, which allows progressive integration of Futhark in an
