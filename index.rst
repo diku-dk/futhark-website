@@ -6,7 +6,7 @@ Futhark is a small programming language designed to be compiled to
 efficient parallel code.  It is a **statically typed, data-parallel,
 and purely functional array language** in the ML family, and comes
 with a **heavily optimising ahead-of-time compiler** that presently
-generates GPU code via OpenCL_, although the language itself is
+generates GPU code via CUDA_ and OpenCL_, although the language itself is
 hardware-agnostic.  As a simple example, this function computes the
 average of an array of 64-bit floating-point numbers:
 
@@ -58,6 +58,7 @@ performance_, our devblog_, or maybe the docs_, which also contains a
 list of our publications_.  You can of course also visit our `main
 repository on Github`_, or our repository of `benchmarks`_.
 
+.. _CUDA: https://developer.nvidia.com/about-cuda
 .. _OpenCL: https://en.wikipedia.org/wiki/OpenCL
 .. _`code examples`: /examples.html
 .. _performance: /performance.html
