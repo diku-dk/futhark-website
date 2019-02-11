@@ -17,4 +17,4 @@ install:
   - true
 
 script:
-  - futhark-test -t .
+  - futhark test -t .
