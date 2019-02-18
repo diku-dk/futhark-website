@@ -60,7 +60,7 @@ Incremental Flattening for Nested Data Parallelism
 --------------------------------------------------
 
 .. class:: papermetadata
-To be presented at `PPOPP '19`_ (`pdf <publications/ppopp19.pdf>`_, `bib <publications/ppopp19.bib>`_)
+Presented at `PPOPP '19`_ (`pdf <publications/ppopp19.pdf>`_, `bib <publications/ppopp19.bib>`_)
 
 This paper expands on the compilation scheme presented in our `PLDI
 2017 paper
