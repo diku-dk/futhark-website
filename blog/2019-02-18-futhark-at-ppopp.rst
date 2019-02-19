@@ -122,7 +122,7 @@ structure of the program remains nested.  Further, this approach does
 not address the other problem with flattening, over-parallelisation,
 as we shall discuss next.
 
-Problem one: unnecessary parallelism
+Problem two: unnecessary parallelism
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The core problem with the matrix multiplication example is the
