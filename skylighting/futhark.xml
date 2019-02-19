@@ -32,6 +32,8 @@
       <item>reshape</item>
       <item>rearrange</item>
       <item>map</item>
+      <item>map2</item>
+      <item>redomap</item>
       <item>reduce</item>
       <item>reduce_comm</item>
       <item>zip</item>
@@ -45,6 +47,8 @@
       <item>stream_red</item>
       <item>stream_red_per</item>
       <item>length</item>
+      <item>replicate</item>
+      <item>transpose</item>
     </list>
     <contexts>
       <context attribute="Normal" lineEndContext="#stay" name="code">
