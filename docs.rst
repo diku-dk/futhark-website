@@ -71,7 +71,9 @@ equivalent) code versions, and the best one picked at run-time based
 on the concrete input data observed.  The title is an homage to the
 paper `Data-Only Flattening for Nested Data Parallelism
 <https://dl.acm.org/citation.cfm?id=2442525>`_, which also seeks to
-improve on the inefficiency of full flattening.
+improve on the inefficiency of full flattening.  See also the `blog
+post on the paper
+</blog/2019-02-18-futhark-at-ppopp.html>`_.
 
 `Research artifact available here.
 <https://github.com/diku-dk/futhark-ppopp19>`_
