@@ -8,7 +8,7 @@ This Monday I presented Futhark at `PPoPP`_, a large academic
 conference on the principles and practice of parallel programming.  As
 `with the PLDI paper <2017-06-25-futhark-at-pldi.html>`_, this blog
 post is the main substance of the paper condensed into a more
-accessible form (but you can get the `paper PDF <../publications/ppopp19.odf>`_ if you want all the
+accessible form (but you can get the `paper PDF <../publications/ppopp19.pdf>`_ if you want all the
 gory details).
 
 .. _`PPoPP`: https://ppopp19.sigplan.org/
