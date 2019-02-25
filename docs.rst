@@ -268,9 +268,9 @@ does it describe horisontal fusion.
 Selected Student Projects
 *************************
 
-* Steffen Holst Larsen: **Futhark Vulkan Backend**.  MSc project. Department of Computer Science, University of Copenhagen. January, 2018. (`pdf <student-projects/steffen-msc-project.pdf>`_)
+* Steffen Holst Larsen: **Futhark Vulkan Backend**.  MSc project. Department of Computer Science, University of Copenhagen. January, 2019. (`pdf <student-projects/steffen-msc-project.pdf>`_)
 
-* Jakob Stokholm Bertelsen: **Implementing a CUDA Backend for Futhark**.  BSc thesis. Department of Computer Science, University of Copenhagen. January, 2018. (`pdf <student-projects/jakob-bsc-thesis.pdf>`_)
+* Jakob Stokholm Bertelsen: **Implementing a CUDA Backend for Futhark**.  BSc thesis. Department of Computer Science, University of Copenhagen. January, 2019. (`pdf <student-projects/jakob-bsc-thesis.pdf>`_)
 
 * Sune Hellfritzsch: **Efficient Histogram Computation on GPGPUs**. MSc thesis. Department of Computer Science, University of Copenhagen. October, 2018. (`pdf <student-projects/hellfritzsch-msc-thesis.pdf>`_)
 
