@@ -33,11 +33,11 @@ does not compute ``n!``, but rather ``n!  mod 2**32``, as ``i32``s are
 If we put the above program in a file ``fact.fut``, we can compile it
 using the OpenCL backend as such::
 
-  $ futhark-opencl fact.fut
+  $ futhark opencl fact.fut
 
 If all goes well, this produces an executable program ``fact`` in the
 current directory.  Similarly, we can compile to sequential C code
-with ``futhark-c``.  As mentioned in the `introduction`_, Futhark is
+with ``futhark c``.  As mentioned in the `introduction`_, Futhark is
 not intended to be used for writing standalone programs, but it is
 supported in order to enable testing and benchmarking.  A standalone
 program will expect to be given its arguments on standard input::
@@ -59,7 +59,7 @@ thing takes 1335.3ms on an Intel Xeon E5-2650 CPU.  Of course, this is
 not a realistic performance comparison, as neither program accesses
 memory, but it shows how easy it is to obtain parallel execution in
 Futhark.  If we ask the Futhark compiler to generate sequential C code
-(with ``futhark-c``), the resulting program runs in exactly the same
+(with ``futhark c``), the resulting program runs in exactly the same
 time as the hand-written C program.
 
 A More Complex Example
@@ -285,7 +285,7 @@ more useful by writing a small Python wrapper program for reading and
 writing PNGs: `blur-png.py </static/blur-png.py>`_.  We must compile
 ``blur.fut`` using the PyOpenCL backend::
 
-  $ futhark-pyopencl --library blur.fut
+  $ futhark pyopencl --library blur.fut
 
 This produces a Python module ``blur.py`` which is then imported by
 ``blur-png.py``.  We can try it out on any PNG image, say, this
