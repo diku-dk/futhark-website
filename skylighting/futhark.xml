@@ -28,33 +28,10 @@
       <item>while</item>
       <item>unsafe</item>
     </list>
-    <list name="funclike">
-      <item>reshape</item>
-      <item>rearrange</item>
-      <item>map</item>
-      <item>map2</item>
-      <item>redomap</item>
-      <item>reduce</item>
-      <item>reduce_comm</item>
-      <item>zip</item>
-      <item>unzip</item>
-      <item>scan</item>
-      <item>concat</item>
-      <item>filter</item>
-      <item>partition</item>
-      <item>stream_map</item>
-      <item>stream_map_per</item>
-      <item>stream_red</item>
-      <item>stream_red_per</item>
-      <item>length</item>
-      <item>replicate</item>
-      <item>transpose</item>
-    </list>
     <contexts>
       <context attribute="Normal" lineEndContext="#stay" name="code">
         <RegExpr attribute="Comment" context="comment"  String="--[\-]*([^!#\$%&amp;\*\+\./&lt;=&gt;\?@&#92;\^\|\-~:]|$)" />
         <keyword attribute="Keyword" context="#stay" String="keywords" />
-        <keyword attribute="Builtin" context="#stay" String="funclike" />
 
         <!-- Numeric constants. -->
         <!-- Note that they may contain underscores. -->
