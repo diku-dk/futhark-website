@@ -1,0 +1,108 @@
+---
+title: Futhark 0.10.1 released
+author: Troels Henriksen
+description: Another one of these managed to escape.
+---
+
+Futhark 0.10.1 is upon us (`full changelog in the usual place
+<https://github.com/diku-dk/futhark/releases/tag/v0.10.1>`_).  This is
+not a release with many new features or optimisations.  Instead, our
+focus has been on polishing, fixing bugs, and preparing to enable
+`incremental flattening <2019-02-18-futhark-at-ppopp.html>`_ by
+default.  For this blog post, I am going to focus on one subtle change
+to the language semantics, but which is simultaneously both a
+conceptual bug-fix and an enable of further optimisations.
+
+New restrictions on shape polymorphism
+--------------------------------------
+
+One of Futhark's relatively few unusual language features is the
+support for *size parameters*, by which we can express constraints on
+the shapes of arrays passed to functions.  For example, the type of
+``zip`` is the following:
+
+.. code-block:: Futhark
+
+  val zip 'a 'b [n] : [n]a -> [n]b -> [n](a, b)
+
+This signature states that for any types ``a`` and ``b``, and any size
+``n``, the function ``zip`` takes an array of ``n`` ``a``s and an
+array of ``n`` ``b``s, and produces an array of ``n`` pairs of ``a``s
+and ``b``s.  If you pass arrays of different sizes to ``zip``, then it
+will fail at run-time, but we wish to eventually move this checking to
+compile-time.
+
+Now consider another function, this one for concatenating two arrays:
+
+.. code-block:: Futhark
+
+  val concat 'a : []a -> []a -> []a
+
+Here there are no size parameters, which makes sense: two arrays of
+different sizes should be concatenable.  However, there is actually a
+constraint on the arrays that can be passed to ``concat``, one that is
+unfortunately not captured in the type.  In Futhark, all
+multidimensional arrays must be *regular*, meaning that their elements
+must have the same shape: arrays like ``[[1,2], [3]]`` are forbidden.
+This implies that a concatenation ``concat [[1,2]] [[3]]`` is not
+allowed, as it would produce an irregular array.  However, this is not
+expressible in the type system, because in the type for ``concat`` we
+impose no restrictions on which types can be substituted for ``a``.
+We could create a version of ``concat``that makes the restriction
+apparent for two-dimensional arrays:
+
+.. code-block:: Futhark
+
+  val concat_2d 'a [n] : [][n]a -> [][n]a -> [][n]a
+
+However, we would need a function for every possible array rank, of
+which there are an infinite number (although I think six-dimensional
+arrays are the most I have ever seen in a real Futhark program, and
+that was an extreme case).  But worse, there is nothing that prevents
+us from still using the ordinary ``concat``.
+
+To address this, we added a restriction on parametric polymorphism: if
+an array is passed for a function parameter of a polymorphic type, all
+arrays passed for parameters of that type must have the same shape.
+For example, given a function
+
+.. code-block:: Futhark
+
+  let pair 'a (x: a) (y: a) = (x, y)
+
+The application ``pair [1] [2,3]`` will now fail.  Instead, we would
+have to give each parameter a distinct type:
+
+.. code-block:: Futhark
+
+  let pair 'a 'b (x: a) (y: b) = (x, y)
+
+This is also what will be inferred if explicit type annotations are
+left out.
+
+This sounds draconian, but it turns out not a single program was
+broken by adding this restriction.  It also fits well with one's
+intuition about sizes being part of types.  Finally, the
+implementation was natural.  As part of its compilation strategy,
+Futhark performs *monomorphisation*, where calls to a polymorphic
+function is replaced with a call to an instantiation of the
+polymorphic function where all type parameters have been replaced with
+concrete types.  For example, an application ``concat [[1,2]] [[3]]``
+will be transformed into ``concat_2d_i32 [[1,2]] [[3]]``, where
+
+.. code-block:: Futhark
+
+  val concat_2d_i32 : [n] : [][n]i32 -> [][n]i32 -> [][n]i32
+
+When we instantiate a type parameter with an array type (here, ``a``
+is replaced with ``[]i32``), we simply invent a new size parameter for
+each dimension of the type, and use that size parameter in *all*
+replacements.
+
+This change is primarily one more step on the long road towards proper
+dependent types, but it is also a small improvement for the compiler.
+By specifying size restrictions as early in the program as possible,
+we are able to move checking out of inner loops, and help some of the
+transformations that depend on size analysis.  However, this is a
+minor advantage - the compiler was already pretty good at figuring
+these things out.
