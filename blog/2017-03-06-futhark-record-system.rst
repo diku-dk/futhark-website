@@ -206,7 +206,7 @@ field of a record, while leaving the others intact.  Using the
 constructs seen so far, this can be done by taking apart the record in
 a record pattern (or using projection), and constructing a new one::
 
-  let incr_x {x;f64, y:f64} =
+  let incr_x {x:f64, y:f64} =
     {x = x+1.0, y = y}
 
 This works fine for small records, but quickly becomes unwieldy once
