@@ -75,7 +75,7 @@ but for an interesting reason:
 
 .. code-block:: Futhark
 
-   let iota (n: i32) =
+   let iota (n: i32): [n]i32 =
      0..1..<n
 
 Futhark has special syntax for ranges, but this feels a bit like
@@ -86,7 +86,7 @@ express ``iota`` as a `prefix sum
 
 .. code-block:: Futhark
 
-   let iota (n: i32) =
+   let iota (n: i32): [n]i32 =
      scan (+) 0 (replicate n 1)
 
 In some parallel languages (`NESL
@@ -106,14 +106,14 @@ like ``replicate``:
 
 .. code-block:: Futhark
 
-   let replicate 'a (n: i32) (x: a) =
+   let replicate 'a (n: i32) (x: a): [n]a =
      map (\_ -> x) (iota n)
 
 Or ``concat``:
 
 .. code-block:: Futhark
 
-   let concat 't (xs: []t) (ys: []t): *[]t =
+   let concat 't (xs: []t) (ys: []t): []t =
      map (\i -> if i < length xs
                 then xs[i]
                 else ys[i - length xs])
@@ -123,7 +123,7 @@ Or ``rotate``:
 
 .. code-block:: Futhark
 
-   let rotate 't (r: i32) (xs: []t) =
+   let rotate 't (r: i32) (xs: []t): []t =
      map (\i -> xs[(i+r) % length xs])
          (iota (length xs))
 
@@ -330,7 +330,7 @@ expressed with a combination of ``scan`` and ``scatter``:
 
 .. code-block::
 
-   let filter 'a (p: a -> bool) (as: []a): *[]a =
+   let filter 'a (p: a -> bool) (as: []a): []a =
      let keep = map (\a -> if p a then 1 else 0) as
      let offsets = scan (+) 0 keep
      let num_to_keep = reduce (+) 0 keep
