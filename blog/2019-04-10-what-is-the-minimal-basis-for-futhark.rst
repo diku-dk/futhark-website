@@ -43,7 +43,7 @@ example, consider this non-intrinsic replacement for ``reduce``:
 .. code-block:: Futhark
 
    let reduce 'a (op: a -> a -> a) (ne: a) (as: []a): a =
-     loop for x = ne for a in as do op x a
+     loop x = ne for a in as do x `op` a
 
 This function is completely sequential and therefore has work *O(n)*
 and span *O(n)*.  In contrast, ``intrinsics.reduce`` has span
