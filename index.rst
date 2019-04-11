@@ -1,6 +1,11 @@
 ---
-title: What is Futhark?
+title: Why Futhark?
 ---
+
+.. container:: tagline
+
+   Because it's nicer than writing CUDA or OpenCL by hand!
+
 
 Futhark is a small programming language designed to be compiled to
 efficient parallel code.  It is a **statically typed, data-parallel,
