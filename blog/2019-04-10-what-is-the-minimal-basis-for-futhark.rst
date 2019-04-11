@@ -199,7 +199,7 @@ We `wrote a paper
 <https://futhark-lang.org/docs.html#design-and-gpgpu-performance-of-futharks-redomap-construct>`_
 on the idea, but we can also try to express it in Futhark:
 
-.. code-block::
+.. code-block:: Futhark
 
    let num_threads : i32 = 128 * 256
 
@@ -273,7 +273,7 @@ is, so maybe we stand a chance.  The algorithm we'll be using is a
 simple but work-inefficient one first presented by Danny Hillis and
 Guy Steele:
 
-.. code-block::
+.. code-block:: Futhark
 
    let scan [n] 'a (op: a -> a -> a) (_ne: a) (as: [n]a): [n]a =
      let iters = t32 (f32.ceil (f32.log2 (r32 n)))
@@ -328,7 +328,7 @@ be extremely inefficient.
 ``partition`` is a kind of generalised ``filter``, which can be
 expressed with a combination of ``scan`` and ``scatter``:
 
-.. code-block::
+.. code-block:: Futhark
 
    let filter 'a (p: a -> bool) (as: []a): []a =
      let keep = map (\a -> if p a then 1 else 0) as
@@ -357,7 +357,7 @@ subtle constructs that are used to `expose optimisation opportunities
 to the compiler <2017-06-25-futhark-at-pldi.html>`_.  However, their
 semantics are quite simple:
 
-.. code-block::
+.. code-block:: Futhark
 
    let stream_map 'a 'b (f: []a -> []b) (as: []a): []b =
      f as
@@ -373,7 +373,7 @@ applying ``f`` to the whole array, as above, we may end up with a
 fully sequential program.  A more reasonable approach is to reorganise
 the input arrays into size-1 chunks, and apply ``f`` to each of these:
 
-.. code-block::
+.. code-block:: Futhark
 
    let stream_map 'a 'b (f: []a -> []b) (as: []a): []b =
      as |> unflatten (length as) 1 |> map f |> flatten
@@ -391,7 +391,7 @@ Trying it out
 As a larger example, let's try writing a simple dot product
 using these constructs:
 
-.. code-block::
+.. code-block:: Futhark
 
    let dotprod [n] (xs: [n]i32) (ys: [n]i32): i32 =
      reduce (+) 0 (map (\(x, y) -> x*y) (zip xs ys))
