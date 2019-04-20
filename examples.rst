@@ -217,8 +217,10 @@ not use ``unsafe``, the Futhark compiler would fail with an error
 message pointing at the problematic array access.
 
 Now we can write the actual stencil function, which applies
-``newValue`` to every inner element of a colour channel array.  The
-edges are left unchanged:
+``newValue`` to every inner element of a colour channel array.  This
+uses the ``iota`` function for constructing an array of integers
+ranging from *0* to the provided argument (the latter not inclusive).
+The edges are left unchanged:
 
 .. code-block:: Futhark
 
@@ -229,8 +231,8 @@ edges are left unchanged:
                  if row > 0 && row < rows-1 && col > 0 && col < cols-1
                  then newValue channel row col
                  else channel[row,col])
-               (0...cols-1))
-        (0...rows-1)
+               (iota cols))
+        (iota rows)
 
 You may have heard that branches are expensive on a GPU.  While this
 is a good basic rule of thumb, what is actually expensive is *branch
