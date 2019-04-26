@@ -101,7 +101,7 @@ The following problems were particularly noteworthy.  Most of my
 solutions depend on an accompanying Python script for converting the
 input into a form that can be easily consumed by Futhark (remember,
 `Futhark is not for standalone applications
-<https://futhark-lang.org/blog/2017-09-26-calling-futhark-from-c-and-haskell.html>`):
+<https://futhark-lang.org/blog/2017-09-26-calling-futhark-from-c-and-haskell.html>`_):
 
 * `Day 1 <https://adventofcode.com/2018/day/1>`_ (`.fut
   <https://github.com/athas/advent_of_code_2018/blob/master/1.fut>`_):
