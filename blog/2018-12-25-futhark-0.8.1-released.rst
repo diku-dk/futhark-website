@@ -198,7 +198,7 @@ input into a form that can be easily consumed by Futhark (remember,
   was about simulating an NFA, with state deduplication necessary to
   make execution feasible.  This was a nightmare, as it intrinsically
   involves managing stacks of NFA states.  To avoid irregular arrays,
-  I ended up padding to some assumes maximums.  In the end, it is
+  I ended up padding to some assumed maximum.  In the end, it is
   neither elegant nor fast, and I'm a bit surprised I could make it
   work at all.  I did at one point give up and try to write it in
   Haskell instead, but eventually I went back to Futhark because I
