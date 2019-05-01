@@ -183,12 +183,14 @@ elements in each bin::
   let histogram_reduction [n] (k: i32) (is: [n]i32) =
     let num_bits = t32 (f32.ceil (log2 (r32 k)))
     let is' = radix_sort num_bits i32.get_bit is
-    let flags = map2 (!=) is' (rotate 1 is')
-    in segmented_reduce (+) 0 flags is'
+    let flags = map2 (!=) is' (rotate (-1) is')
+    in segmented_reduce (+) 0 flags (replicate n 1)
 
-The problem is that the radix sort is quite an expensive operation
-(and the segmented reduction is not particularly cheap either).
-Clearly something was missing from Futhark.
+Actually, this implementation is not entirely correct, as it assumes
+that no bin is empty.  Note that it does not use *k* at all.  Another
+problem is that the radix sort is quite an expensive operation (and
+the segmented reduction is not particularly cheap either).  Clearly
+something was missing from Futhark.
 
 The solution was a new SOAC, ``reduce_by_index``, which was designed
 and implemented by yet another DIKU student, Sune Hellfritzsch.  With
