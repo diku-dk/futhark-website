@@ -134,15 +134,15 @@ point of divergence for each pixel, then colours them::
 
 We can test our code by compiling it to a standalone program::
 
-  $ futhark-pyopencl mandelbrot.fut
+  $ futhark pyopencl mandelbrot.fut
   $ echo 3 2 255 -2.23 -1.15 0.83 1.15 | ./mandelbrot
   [[0i32, 395790i32, 593685i32], [0i32, 0i32, 0i32]]
 
 Of course, it is not very satisfying to look at fractals as arrays of
 numerically encoded pixel values.  Hence, we pass ``--library`` to
-``futhark-pyopencl``::
+``futhark pyopencl``::
 
-  $ futhark-pyopencl --library mandelbrot.fut
+  $ futhark pyopencl --library mandelbrot.fut
 
 This produces a file ``mandelbrot.py`` defining a single Python class
 ``mandelbrot``, which we can access from ordinary Python code, as
@@ -152,7 +152,7 @@ shown below.
 ------------------------------------------------------------
 
 We will need to import a PNG encoder, Numpy, and of course the module
-produced by ``futhark-pyopencl``::
+produced by ``futhark pyopencl``::
 
   import png
   import numpy
