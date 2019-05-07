@@ -1,4 +1,4 @@
-let dot (r: f32 , i: f32): f32 =
+let dot (r: f32, i: f32): f32 =
   r * r + i * i
 
 let multComplex (a: f32, b: f32) (c: f32, d: f32): (f32,f32) =

@@ -67,7 +67,7 @@ user-defined types, so we decide to simply represent complex numbers
 as pairs of `f32`s.  We need three operations: dot product,
 multiplication, and addition::
 
-  let dot (r: f32 , i: f32): f32 =
+  let dot (r: f32, i: f32): f32 =
     r * r + i * i
 
   let multComplex (a: f32, b: f32) (c: f32, d: f32): (f32,f32) =
