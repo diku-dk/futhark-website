@@ -67,21 +67,16 @@ user-defined types, so we decide to simply represent complex numbers
 as pairs of `f32`s.  We need three operations: dot product,
 multiplication, and addition::
 
-  let dot (c: (f32,f32)): f32 =
-    let (r, i) = c
-    in r * r + i * i
+  let dot (r: f32 , i: f32): f32 =
+    r * r + i * i
 
-  let multComplex (x: (f32,f32)) (y: (f32,f32)): (f32,f32) =
-    let (a, b) = x
-    let (c, d) = y
-    in (a*c - b * d,
-        a*d + b * c)
+  let multComplex (a: f32, b: f32) (c: f32, d: f32): (f32,f32) =
+    (a*c - b * d,
+     a*d + b * c)
 
-  let addComplex (x: (f32,f32)) (y: (f32,f32)): (f32,f32) =
-    let (a, b) = x
-    let (c, d) = y
-    in (a + c,
-        b + d)
+  let addComplex (a: f32, b: f32) (c: f32, d: f32): (f32,f32) =
+    (a + c,
+     b + d)
 
 We can now define the core function that determines whether a given
 point on the complex plane is part of the Mandelbrot set.  We do this
