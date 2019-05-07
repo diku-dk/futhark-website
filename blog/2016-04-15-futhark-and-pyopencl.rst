@@ -56,65 +56,55 @@ file with the result.  Our program will consist of two files:
 (Do not worry too much about the specifics of how the Mandelbrot set
 is defined - it is not the point of this post.)
 
-For convenience, we ask that all decimal literals be considered single
-precision (the type ``f32`` in Futhark)::
-
-  default(f32)
-
 Since Futhark does not have built-in support for complex numbers, we
 have to define our own.  Futhark does not yet support proper
 user-defined types, so we decide to simply represent complex numbers
 as pairs of `f32`s.  We need three operations: dot product,
 multiplication, and addition::
 
-  let dot(c: (f32,f32)): f32 =
-    let (r, i) = c
-    in r * r + i * i
+  let dot (r: f32, i: f32): f32 =
+    r * r + i * i
 
-  let multComplex(x: (f32,f32), y: (f32,f32)): (f32,f32) =
-    let (a, b) = x
-    let (c, d) = y
-    in (a*c - b * d,
-        a*d + b * c)
+  let multComplex (a: f32, b: f32) (c: f32, d: f32): (f32,f32) =
+    (a*c - b * d,
+     a*d + b * c)
 
-  let addComplex(x: (f32,f32), y: (f32,f32)): (f32,f32) =
-    let (a, b) = x
-    let (c, d) = y
-    in (a + c,
-        b + d)
+  let addComplex (a: f32, b: f32) (c: f32, d: f32): (f32,f32) =
+    (a + c,
+     b + d)
 
 We can now define the core function that determines whether a given
 point on the complex plane is part of the Mandelbrot set.  We do this
 by defining a function ``divergence`` that returns the iteration at
 which the loop diverges (or the limit, ``depth``, if it does not)::
 
-  let divergence(depth: i32, c0: (f32,f32)): i32 =
-    loop ((c, i) = (c0, 0)) = while i < depth && dot(c) < 4.0 do
-      (addComplex(c0, multComplex(c, c)),
-      i + 1)
+  let divergence (depth: i32) (c0: (f32,f32)): i32 =
+    let (_, i) =
+      loop (c, i) = (c0, 0) while (i < depth) && (dot c < 4.0) do
+        (addComplex c0 (multComplex c c), i + 1)
     in i
 
 The ``mandelbrot`` function returns the divergence point for the
 complex number corresponding to a pixel in a given view of the complex
 plane::
 
-  let mandelbrot(screenX: i32, screenY: i32, depth: i32,
-                 xmin: f32, ymin: f32, xmax: f32, ymax: f32): [screenY][screenX]i32 =
+  let mandelbrot (screenX: i32) (screenY: i32) (depth: i32)
+                 (xmin: f32) (ymin: f32) (xmax: f32) (ymax: f32): [screenY][screenX]i32 =
     let sizex = xmax - xmin
     let sizey = ymax - ymin
-    in map(\(y: i32): [screenX]i32  ->
+    in map (\(y: i32): [screenX]i32  ->
              map (\(x: i32): i32  ->
-                    let c0 = (xmin + (f32(x) * sizex) / f32(screenX),
-                              ymin + (f32(y) * sizey) / f32(screenY))
-                    in divergence(depth, c0),
-                  iota(screenX)),
-           iota(screenY))
+                    let c0 = (xmin + (r32 x * sizex) / r32 screenX,
+                              ymin + (r32 y * sizey) / r32 screenY)
+                    in (divergence depth c0))
+                  (iota screenX))
+           (iota screenY)
 
 Given the point of divergence for a pixel, we can decide on a colour,
 which is encoded as RGB within a 32-bit integer (the alpha channel is
 not used)::
 
-  let escapeToColour(depth: i32, divergence: i32): i32 =
+  let escapeToColour (depth: i32) (divergence: i32): i32 =
     if depth == divergence
     then 0
     else let r = 3 * divergence
@@ -125,24 +115,24 @@ not used)::
 Finally we tie it all together - the ``main`` function computes the
 point of divergence for each pixel, then colours them::
 
-  let main(screenX: i32, screenY: i32, depth: i32,
-           xmin: f32, ymin: f32, xmax: f32, ymax: f32): [screenY][screenX]i32 =
-    let escapes = mandelbrot(screenX, screenY, depth, xmin, ymin, xmax, ymax)
-    in map(\(row: []i32): [screenX]i32  ->
-             map(escapeToColour(depth), row),
-           escapes)
+  let main (screenX: i32) (screenY: i32) (depth: i32)
+           (xmin: f32) (ymin: f32) (xmax: f32) (ymax: f32): [screenY][screenX]i32 =
+    let escapes = mandelbrot screenX screenY depth xmin ymin xmax ymax
+    in map (\(row: []i32): [screenX]i32  ->
+             map (escapeToColour depth) row)
+           escapes
 
 We can test our code by compiling it to a standalone program::
 
-  $ futhark-pyopencl mandelbrot.fut
+  $ futhark pyopencl mandelbrot.fut
   $ echo 3 2 255 -2.23 -1.15 0.83 1.15 | ./mandelbrot
   [[0i32, 395790i32, 593685i32], [0i32, 0i32, 0i32]]
 
 Of course, it is not very satisfying to look at fractals as arrays of
 numerically encoded pixel values.  Hence, we pass ``--library`` to
-``futhark-pyopencl``::
+``futhark pyopencl``::
 
-  $ futhark-pyopencl --library mandelbrot.fut
+  $ futhark pyopencl --library mandelbrot.fut
 
 This produces a file ``mandelbrot.py`` defining a single Python class
 ``mandelbrot``, which we can access from ordinary Python code, as
@@ -152,7 +142,7 @@ shown below.
 ------------------------------------------------------------
 
 We will need to import a PNG encoder, Numpy, and of course the module
-produced by ``futhark-pyopencl``::
+produced by ``futhark pyopencl``::
 
   import png
   import numpy
