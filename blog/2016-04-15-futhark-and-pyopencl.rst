@@ -56,11 +56,6 @@ file with the result.  Our program will consist of two files:
 (Do not worry too much about the specifics of how the Mandelbrot set
 is defined - it is not the point of this post.)
 
-For convenience, we ask that all decimal literals be considered single
-precision (the type ``f32`` in Futhark)::
-
-  default(f32)
-
 Since Futhark does not have built-in support for complex numbers, we
 have to define our own.  Futhark does not yet support proper
 user-defined types, so we decide to simply represent complex numbers
