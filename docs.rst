@@ -56,6 +56,18 @@ We have published a number of papers on Futhark, and hopefully more
 will follow in the future.  They are presented below in reverse
 chronological order.
 
+
+Data-Parallel Flattening by Expansion
+-------------------------------------
+
+.. class:: papermetadata
+To be presented at `ARRAY '19`_ (`pdf <publications/array19.pdf>`_)
+
+One of Futhark's main difficulties is its restriction to *regular*
+parallelism.  This paper presents a programming technique for
+expressing certain kinds of *irregular* data-parallel problems in a
+regular manner.
+
 Incremental Flattening for Nested Data Parallelism
 --------------------------------------------------
 
@@ -264,6 +276,7 @@ does it describe horisontal fusion.
 .. _`FHPC '18`: https://icfp18.sigplan.org/track/FHPC-2018-papers
 .. _`TFP '18`: http://www.cse.chalmers.se/~myreen/tfp2018/
 .. _`PPOPP '19`: https://ppopp19.sigplan.org/
+.. _`ARRAY '19`: https://pldi19.sigplan.org/home/ARRAY-2019
 
 Selected Student Projects
 *************************
