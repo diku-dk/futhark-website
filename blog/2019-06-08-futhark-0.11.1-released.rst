@@ -111,7 +111,7 @@ polymorphism for lambdas.  For now, the type is this:
 
 .. code-block:: Futhark
 
-  val stream_map [n] 'a 'b : (f : c -> []a -> []b) -> [n]a -> [n]b
+  val stream_map [n] 'a 'b : (f : i32 -> []a -> []b) -> [n]a -> [n]b
 
 And the stream in OptionPricing is now written like:
 
