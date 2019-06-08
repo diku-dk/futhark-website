@@ -1,0 +1,263 @@
+---
+title: Futhark 0.11.1 released
+author: Troels Henriksen
+description: A release with few user-visible features, but significantly improved performance and memory consumption for some programs.
+---
+
+Futhark 0.11.1 has just been released to manufacturing (meaning `the
+tarball has been uploaded <https://futhark-lang.org/releases/>`_).
+The last release announcement was for 0.10.1, despite `releasing
+0.10.2 <https://github.com/diku-dk/futhark/releases/tag/v0.10.2>`_ a
+month later.
+
+Despite months of active development, the interesting part is how
+*little* has changed in a user-visible way.  The main `changes
+<https://github.com/diku-dk/futhark/releases/tag/v0.11.1>`_ are in the
+compiler, which now generates faster code and has fewer bugs, which is
+exactly the way we like it.  However, since I bumped the version
+number from 0.10 to 0.11, there have been *some* breaking changes,
+which I am going to discuss.
+
+Breaking changes
+================
+
+Futhark supports a form of implicit type parameters, called *size
+parameters*, which are most often used to impose constraints on
+functions.  For example, that the two vectors passed to a dot product
+must have the same size:
+
+.. code-block:: Futhark
+
+  let dotprod [n] (xs: [n]f32) (ys: [n]f32) = ...
+
+The programmer does not have to manually pass the ``n`` - it is
+inferred from the values of the concrete parameters ``xs`` and ``ys``.
+
+Size constraints are currently checked dynamically, but we'd like to
+eventually start enforcing them at the type level.  This requires us
+to be more precise about exactly what they mean, and remove uses whose
+precise semantics are hard to pin down.  I'll eventually write a
+detailed blog post about the work I have been doing in that direction,
+but for now, let's stick to the bits of language cleanup I found
+necessary to perform in advance.
+
+Size parameters can also be used to conveniently obtain the size of
+some parameter:
+
+.. code-block:: Futhark
+
+  let length [n] 't (xs: [n]t) = n
+
+This ``length`` function is polymorphic in some type ``t``, takes an
+array of ``n`` such ``t``s, and returns ``n``.
+
+Until this release, Futhark also supported size parameters (but not
+arbitrary type parameters) in lambda abstractions:
+
+.. code-block:: Futhark
+
+  \[n] (xs: [n]i32) : [n]i32 -> ...
+
+This was a fairly obscure feature, but it did see use - specifically,
+in conjunction with the built-in functions ``stream_map`` and
+``stream_red``. To quote `OptionPricing.fut
+<https://github.com/diku-dk/futhark-benchmarks/blob/master/finpar/OptionPricing.fut>`_:
+
+.. code-block:: Futhark
+
+  let sobol_mat = stream_map (\[chunk] (ns: [chunk]i32): [chunk][sobvctsz]f32  ->
+                                sobolChunk dir_vs (unsafe ns[0]) chunk)
+                             (iota num_mc_it)
+
+``stream_map`` has the invariant that the passed-in function must
+return an array of exactly the same size (in its outer dimension) that
+it is called with.
+
+The above works fine as long as size annotations are just glorified
+assertions rather than really tying into the type system. However, it
+starts causing trouble when we want to verify them in the type
+checker, because these lambda-bound size parameters are really a form
+of higher-rank polymorphism, while Futhark's type system is generally
+built around rank-1 polymorphism. In principle, the type of stream_map
+should be something like:
+
+.. code-block:: Futhark
+
+  val stream_map [n] 'a 'b : (forall c . [c]a -> [c]b) -> [n]a -> b
+
+But this is not valid Futhark syntax - we have no ``forall``, and I'm not
+particularly inclined to introduce it. The current type is:
+
+.. code-block:: Futhark
+
+  val stream_map [n] 'a 'b : ([]a -> []b) -> [n]a -> [n]b
+
+So the fact that the functional argument must be size-preserving is
+not visible. Introducing higher-rank polymorphism just to encode this
+requirement seems a bit like overkill. I'd much rather give it a type
+like this:
+
+.. code-block:: Futhark
+
+  val stream_map [n] 'a 'b : (f : (c: i32) -> [c]a -> [c]b) -> [n]a -> [n]b
+
+The difference is that the chunk size is now passed as an explicit
+named parameter ``c``, and the chunk array then has a type dependent
+on c. This also reflects that size parameters are really more of a
+notational convenience - the real underlying calculus uses explicit
+parameters.  This type is not valid at the moment, but it is
+comparatively much simpler to support than full higher-ranked
+polymorphism for lambdas.  For now, the type is this:
+
+.. code-block:: Futhark
+
+  val stream_map [n] 'a 'b : (f : c -> []a -> []b) -> [n]a -> [n]b
+
+And the stream in OptionPricing is now written like:
+
+.. code-block:: Futhark
+
+  let sobol_mat = stream_map (\(chunk: i32) (ns: [chunk]i32): [chunk][sobvctsz]f32  ->
+                                sobolChunk dir_vs (unsafe ns[0]) chunk)
+                             (iota num_mc_it)
+
+There is not really any loss in clarity. The only loss is that you
+cannot pass in a "normal" named function that uses size
+parameters. Considering how rare the stream functions are in Futhark
+programs, I feel this is a minor drawback.  Therefore, lambdas no
+longer support size parameters.
+
+As an even more obscure feature, size "parameters" were also supported
+in ordinary ``let``-patterns:
+
+.. code-block:: Futhark
+
+  let [n] (xs: [n]i32) = ...
+
+This binds an array ``xs``, *and* assigns its size to the fresh
+variable ``n``.  This feature was extremely obscure, and from what I
+could see had *never* been used outside of a few test programs.  It
+also raised nasty questions about what constructions like the
+following should do:
+
+.. code-block:: Futhark
+
+  let [n] (xs: [n][n]i32) = ...
+
+If I find myself thinking for more than five minutes what to do with a
+feature that has *never* been `fired in anger
+<https://en.wiktionary.org/wiki/fire_in_anger>`_, then my policy is to
+just remove it, and so it was.
+
+Performance improvements to vector reductions
+=============================================
+
+There have been many small improvements to performance, but the most
+significant one, or at least the one that I'm most proud of, concerns
+reductions where the operator is some form of multidimensional array
+addition:
+
+.. code-block:: Futhark
+
+  reduce (map2 (+)) (replicate m 0) xss
+
+The above expression transforms an array ``xss`` of type ``[n][m]i32``
+into an array of type ``[m]i32`` by adding together the vectors using
+vector addition.  The naive translation to GPU code is fairly
+inefficient, because threads end up transmitting ``m``-element vectors
+to each other through GPU local memory (`shared memory in CUDA-land
+<https://devblogs.nvidia.com/using-shared-memory-cuda-cc/>`_).  This
+is particularly bad because local memory is a sharply limited
+resource - often no more than 48KiB is available.  Thus, for larger
+``m``, we will have to use *global memory*, which is significantly
+slower.
+
+A common trick, and something the Futhark compiler will also do
+automatically, is to *interchange* the ``reduce`` and the ``map``, to
+construct an explicit segmented reduction that sums each column of
+``xss``:
+
+.. code-block:: Futhark
+
+  map (reduce (+) 0) (transpose xss)
+
+This is more efficient, because now the reduction is on scalars rather
+than vectors.  Unfortunately, it can inhibit fusion.  Consider the
+case where the array ``xss`` is first processed by some other ``map``:
+
+.. code-block:: Futhark
+
+  reduce (map2 (+)) (replicate m 0) (map f xss)
+
+Since the ``map`` is feeding directly into the ``reduce``, we don't
+have to manifest the result of ``map f xss`` in memory at all - it can
+be `fused <https://en.wikipedia.org/wiki/Loop_fission_and_fusion>`_
+with the ``reduce``.  This is particularly important if ``n`` is
+large, and can make the difference between whether the program will be
+able to run at all or not, because it might otherwise run out of
+memory.  Unfortunately, if do the interchange trick above, the
+``transpose`` inhibits fusibility:
+
+.. code-block:: Futhark
+
+  map (reduce (+) 0) (transpose (map f xss))
+
+There are some cases where you are able to move the ``transpose`` all
+the way out to ``xss`` itself, but it depends subtly on the structure
+of the function ``f``.
+
+This is an unfortunate issue, since reductions where the operator is a
+perfect ``map2`` nest around some simple scalar operator (like ``+``)
+are quite common.  Therefore, I spent some time teaching the Futhark
+compiler how to recognise them and handle them directly.  The trick is
+to realise that even though we have to add together ``n`` vectors of
+``m`` elements each, we can actually treat it as performing ``m``
+summations of ``n``-element vectors.  This is the same ideas as the
+interchange trick, but now done implicitly inside the ``reduce``
+itself - *after* fusion.  It means the GPU threads are now
+collaborating on adding together scalars, not entire vectors.  This is
+a simple technique, and it only works when the reduction operator is
+exactly a ``map2`` nest, but for those programs it is easily orders of
+magnitude faster than the naive approach.
+
+Lower memory usage for ``map``s
+===============================
+
+Consider a program that contains a ``map`` that internally constructs
+an array to do some intermediate work, then returns a scalar.  The
+following is contrived, because realistic examples of this pattern
+tend to be rather large:
+
+.. code-block:: Futhark
+
+  map (\x -> let tmp = [x+1, x+2, x+3, x+4]
+             in i32.sum tmp)
+      xs
+
+In particular, assume that the compiler is not able to optimise away
+the allocation of the ``tmp`` array.  Now, suppose that ``xs`` has
+``n`` elements.  In a naive translation, we would generate code that
+launches ``n`` GPU threads, and gives each of them its own distinct
+memory location in which to store the ``tmp`` array (these locations
+will be interleaved for `coalescing reasons
+<https://cvw.cac.cornell.edu/GPU/coalesced>`_, but that's a different
+story).  This is a bit of a waste.  If ``n`` is huge, say a hundred
+million, then we are launching about a thousand times more threads
+than necessary to saturate the GPU.  This is by itself not a problem,
+but it *is* a problem that we are also using a thousand times more
+memory for the ``tmp`` arrays.  GPUs handle over-subscription of
+threads well, but deal poorly with memory pressure.  Of course, we do
+need to find space for the ``n``-element array produced by the
+``map``, but there is no need to create room for more intermediate
+results than necessary to saturate the GPU.
+
+The Futhark compiler has long handled this problem for other
+constructs, like ``reduce`` and ``scan``, where the number of physical
+threads is bounded to some machine-specific number (typically about
+2¹⁶).  For ``map``, however, we always launched a thread for every
+single input element, with unique allocations for intermediate
+results.  In the new version of the compiler, we are putting a cap on
+the number of physical threads, and using virtualisation to make each
+physical thread behave like multiple logical threads.  Futhark is
+still a bit of a memory hog, but this is a good starting point for
+improving the situation.
