@@ -117,7 +117,8 @@ This setup is transient, meaning it'll go away on next reboot, but
 you'll have to delete ``/swapfile`` yourself.
 
 Now clone the `Futhark Git repository
-<https://github.com/diku-dk/futhark>`_ as usual and run::
+<https://github.com/diku-dk/futhark>`_ as usual, ``cd`` into it, and
+run::
 
   $ stack --nix install --fast -j1
 
