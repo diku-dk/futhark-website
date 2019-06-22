@@ -6,10 +6,10 @@ description: How to run Futhark code, and the Futhark compiler, on NVIDIAs small
 
 I recently got my hands on an `NVIDIA Jetson Nano
 <https://developer.nvidia.com/embedded/jetson-nano-developer-kit>`_,
-which NVIDIA describes as "a small, powerful computer that lets you
-run multiple neural networks in parallel".  In practice, it's a lot
-like a souped-up Raspberry Pi, with a quad-core ARM CPU, a 128-core
-Maxwell-based NVIDIA GPU, and 4GiB of RAM, and a power consumption of
+which NVIDIA describes as *"a small, powerful computer that lets you
+run multiple neural networks in parallel"*.  In practice, it resembles
+a souped-up Raspberry Pi, with a quad-core ARM CPU, a 128-core
+Maxwell-based NVIDIA GPU, 4GiB of RAM, and a power consumption of
 5W. Quite slow compared to a real computer, but fast enough that you
 can do interesting things with it.  Some people are using them for
 `self-driving cars
@@ -80,10 +80,9 @@ infrastructure set up on the Jetson.
 
 Ideally, we'd cross-compile an ARM build of Futhark from a beefier
 machine, but cross-compiling is notoriously difficult, and I could not
-get it to work.  Instead, we'll be compiling Futhark on the Jetson
-itself.  Futhark uses the `Stack build tool
-<https://haskellstack.org>`_, which fortunately comes compiled for
-ARM::
+get it to work.  Instead, we'll compile Futhark on the Jetson itself.
+Futhark uses the `Stack build tool <https://haskellstack.org>`_, which
+fortunately comes compiled for ARM::
 
   $ curl -sSL https://get.haskellstack.org/ | sh
 
@@ -93,21 +92,21 @@ theory we could use GHC 8.4.2 to compile GHC 8.6.5 on the Jetson, this
 would take an extremely long time.  Instead, we will be `using the Nix
 package manager <https://nixos.org/nix/download.html>`_, which has
 binary releases of recent GHCs.  Installing Nix is non-invasive (we
-will not be using all of `NixOS <https://nixos.org/>`_, which is
-definitely invasive)::
+will not be using all of `NixOS <https://nixos.org/>`_, which would
+definitely be invasive)::
 
   $ curl https://nixos.org/nix/install | sh
 
 While this saves us from compiling GHC itself, we still have to
-compile a *lot* of Haskell, and GHC always hungers for memory.
-However, GHC also hungers for RAM disk space (specifically
-``/var/run``), and the default cap of 10% of physical memory is not
-sufficient.  Edit ``/etc/systemd/logind.conf`` and set
-``RuntimeDirectorySize=30%``.  Reboot after this.  If you have more
-systemd knowledge than I, maybe you can avoid the reboot.
+compile a *lot* of Haskell, and GHC always hungers for memory.  First,
+GHC uses too too much RAM-disk space (specifically ``/var/run``), and
+the default cap of 10% of physical memory is not sufficient.  Edit
+``/etc/systemd/logind.conf`` and set ``RuntimeDirectorySize=30%``.
+Reboot after this.  If you have more systemd knowledge than I, maybe
+you can avoid the reboot.
 
-Memory-wise, the 4GiB in the Jetson is also not enough.  Therefore,
-set up a 4GiB swap file::
+RAM-wise, the Jetson's 4GiB is not enough.  Therefore, set up a 4GiB
+swap file::
 
   # sudo fallocate -l 4G /swapfile
   # sudo chmod 600 /swapfile
@@ -140,9 +139,9 @@ running part of the Futhark test suite::
 
 Hopefully, it should work.  Congratulations!  You can now compile and
 run Futhark programs on the Jetson.  There are no other
-Jetson-specific considerations that I have detected.  Unfortunately,
-the CUDA backend is for C, not Python, although it may be possible
-that we create a `PyCUDA <https://documen.tician.de/pycuda/>`_ backend
-someday.  If you want to easily show some graphics, consider `Lys
+Jetson-specific considerations that I have noticed.  Unfortunately,
+the CUDA backend is for C, not Python, although we may implement a
+`PyCUDA <https://documen.tician.de/pycuda/>`_ backend some day.  If
+you want to easily show some graphics, consider `Lys
 <https://github.com/diku-dk/lys>`_, which will certainly also be the
-topic of a coming blog post.
+topic of a future blog post.
