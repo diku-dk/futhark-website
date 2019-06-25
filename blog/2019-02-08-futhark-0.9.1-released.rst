@@ -25,7 +25,7 @@ Under the old rules, the array returned by a call to this function
 might potentially alias *anything*, which makes an in-place update on
 the result impossible.  Under the new rules, we know that it can at
 most alias the array being transposed.  Hence, we can perform an
-in-place update on the result ``transpose`` if and only if we can
+in-place update on the result of ``transpose`` if and only if we can
 perform an in-place update on the argument to ``transpose``.
 Surprisingly, this change broke almost no code.  I still have the
 nagging feeling that some of the designs in the uniqueness type system
@@ -38,7 +38,7 @@ binaries.  Previously, the different compiler versions, such as
 binaries, as were tools like ``futhark-dataset``, despite all being
 compiled from largely the same source code.  Each binary would contain
 its own copy of the parser, type checker, compiler passes, and so on.
-This resulted in inflated linking time then compiling the compiler
+This resulted in inflated linking time when compiling the compiler
 itself, and also took up a lot of space when installed.  In
 particular, it made us reluctant to add more tools, because each would
 take up 10-30MiB of space after installation.
