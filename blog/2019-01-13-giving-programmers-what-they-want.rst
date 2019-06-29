@@ -27,9 +27,9 @@ be defined as::
 
 This runs correctly, but the programmer may be dismayed at the
 run-time performance.  The reason is that the Futhark compiler treats
-arrays uniformly: they are located on the heap (possibly the GPU is
+arrays uniformly: they are located on the heap (possibly the GPU if
 using an appropriate compiler), and collective operations like
-``map2`` and ``reduce`` are executed in the GPU.  The base overhead of
+``map2`` and ``reduce`` are executed on the GPU.  The base overhead of
 launching a GPU operation seems to be at least 10μs, which is *vastly*
 slower than multiplying and summing six floats on the CPU.
 Essentially, the compiler treats all arrays as potentially large and
