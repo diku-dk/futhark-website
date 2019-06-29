@@ -15,7 +15,7 @@ experience with having other people, mostly students, write Futhark
 code.  One common technique we have observed is to use small
 constant-sized arrays as a data structure.  This may be a habit that
 comes from NumPy or other array languages, where this seems to be a
-popular style.  For example, several we might represent a point in
+popular style.  For example, we might represent a point in
 three-dimensional space as a three-element array::
 
   type vec3 = [3]f32
