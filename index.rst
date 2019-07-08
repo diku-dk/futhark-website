@@ -24,6 +24,7 @@ floating-point numbers:
 
    **Quick links**
 
+   * `Installation <https://futhark.readthedocs.io/en/latest/installation.html>`_
    * `Tutorial <http://futhark-book.readthedocs.io/en/latest/>`_
    * `User's guide <https://futhark.readthedocs.io>`_
    * `Language reference <https://futhark.readthedocs.io/en/latest/language-reference.html>`_
