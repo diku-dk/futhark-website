@@ -337,7 +337,7 @@ for example long known that `canny`_ was bottlenecked by memory
 management - we also saw unexpected improvement in other benchmarks.
 Some, such as `lavaMD`_, we already felt we were handling quite well,
 but this new allocator still managed to obtain an extra 10%
-performance.  A surprise, but a welcome one.
+performance.  A surprise to be sure, but a welcome one.
 
 .. _`Futhark benchmark programs`: https://github.com/diku-dk/futhark-benchmarks/
 .. _`canny`: https://github.com/diku-dk/futhark-benchmarks/tree/master/accelerate/canny
@@ -373,4 +373,4 @@ but also a little miffed.  It turns out that a relatively little
 change to memory allocation had a greater impact on performance than
 most of our sophisticated optimisations, all of which took
 significantly more effort to implement.  But I suppose that such is
-the life the a compiler writer.
+the life of a compiler writer.
