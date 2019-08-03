@@ -86,7 +86,7 @@ explicitly typed identity function in Futhark:
 
 .. code-block:: Futhark
 
-  let id 'a (x: t) : a = x
+  let id 'a (x: a) : a = x
 
 This function is known to the type checker by the following *type scheme*:
 
