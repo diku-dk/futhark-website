@@ -13,14 +13,16 @@ let main (n: i32): i32 =
 --     -- compiled input {    1000000 } output {   584144992 }
 --     -- compiled input { 1000000000 } output { -2087553280 }
 --
--- The `output` parts are optional.  We then with `futhark bench`:
+-- The `output` parts are optional.  We then use `futhark bench`:
 --
---     $ futhark bench sumsquares.fut
---     Compiling src/sumsquares.fut...
---     Results for src/sumsquares.fut:
---     dataset #0 ("1000i32"):             0.20us (avg. of 10 runs; RSD: 2.00)
---     dataset #1 ("1000000i32"):        290.00us (avg. of 10 runs; RSD: 0.03)
---     dataset #2 ("1000000000i32"):  270154.20us (avg. of 10 runs; RSD: 0.01)
+-- ```
+-- $ futhark bench sumsquares.fut
+-- Compiling src/sumsquares.fut...
+-- Results for src/sumsquares.fut:
+-- dataset #0 ("1000i32"):             0.20us (avg. of 10 runs; RSD: 2.00)
+-- dataset #1 ("1000000i32"):        290.00us (avg. of 10 runs; RSD: 0.03)
+-- dataset #2 ("1000000000i32"):  270154.20us (avg. of 10 runs; RSD: 0.01)
+-- ```
 --
 -- ## See also
 --
