@@ -81,7 +81,7 @@ the *x*-axis.  Rendering the fractal to an image is not included in
 the runtime measurement, but the visualisation looks like `this
 <images/mandelbrot1000.png>`_.
 
-HotSpot (`Futhark <benchmarks/programs/hotspot.fut>`_, `Rodinia <https://www.cs.virginia.edu/~skadron/wiki/rodinia/index.php/HotSpot>`_)
+HotSpot (`Futhark <benchmarks/programs/hotspot.fut>`_, `Rodinia <http://rodinia.cs.virginia.edu/doku.php?id=hotspot>`_)
 ------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. image:: images/hotspot.svg
@@ -113,5 +113,5 @@ technique.
 .. _`benchmarks game`: https://benchmarksgame-team.pages.debian.net/benchmarksgame/
 .. _`Thrust`: https://github.com/thrust/thrust
 .. _`Accelerate`: https://github.com/AccelerateHS/accelerate
-.. _`Rodinia`: https://www.cs.virginia.edu/~skadron/wiki/rodinia/index.php/Rodinia:Accelerating_Compute-Intensive_Applications_with_Accelerators
+.. _`Rodinia`: http://rodinia.cs.virginia.edu/doku.php
 .. _`stencil example`: /examples.html#gaussian-blur-stencil
