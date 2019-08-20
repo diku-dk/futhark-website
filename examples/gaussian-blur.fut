@@ -164,19 +164,25 @@ let main [rows][cols]
 -- writing PNGs: [blur-png.py](/static/blur-png.py).  We must
 -- compile `blur.fut` using the PyOpenCL backend:
 --
---     $ futhark pyopencl --library blur.fut
+-- ```
+-- $ futhark pyopencl --library blur.fut
+-- ```
 --
 -- This produces a Python module `blur.py` which is then imported by
 -- `blur-png.py`.  We can try it out on any PNG image, say, this
 -- [illustration of the spirit of Futhark](/images/gottagofast.png):
 --
---     $ python blur-png.py gottagofast.png --output-file gottagofast-blurred.png
+-- ```
+-- $ python blur-png.py gottagofast.png --output-file gottagofast-blurred.png
+-- ```
 --
 -- Which produces [this slightly smushed
 -- image](/images/gottagofast-blurred.png).  We can also ask for a
 -- hundred iterations::
 --
---     $ python blur-png.py gottagofast.png --output-file gottagofast-blurred.png --iterations 100
+-- ```
+-- $ python blur-png.py gottagofast.png --output-file gottagofast-blurred.png --iterations 100
+-- ```
 --
 -- Which produces [this blurry
 -- mess](/images/gottagofast-veryblurred.png).  Notice the edges -

@@ -25,7 +25,9 @@ let main (n: i32): i32 = fact n
 -- If we put the above program in a file `fact.fut`, we can compile it
 -- using the OpenCL backend as such:
 --
---     $ futhark opencl fact.fut
+-- ```
+-- $ futhark opencl fact.fut
+-- ```
 --
 -- If all goes well, this produces an executable program `fact` in the
 -- current directory.  Similarly, we can compile to sequential C code
@@ -34,7 +36,9 @@ let main (n: i32): i32 = fact n
 -- and benchmarking.  A standalone program will expect to be given its
 -- arguments on standard input::
 --
---     $ echo 2000000000 | ./fact
+-- ```
+-- $ echo 2000000000 | ./fact
+-- ```
 --
 -- This will write the result on standard output (`0i32` - a 32-bit
 -- zero).
