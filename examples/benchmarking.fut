@@ -24,6 +24,18 @@ let main (n: i32): i32 =
 -- dataset #2 ("1000000000i32"):  270154.20us (avg. of 10 runs; RSD: 0.01)
 -- ```
 --
+-- This will use the default (`c`) backend.  Things are more
+-- interesting with `opencl`:
+--
+-- ```
+-- $ futhark bench --backend=opencl sumsquares.fut
+-- Compiling src/sumsquares.fut...
+-- Results for src/sumsquares.fut:
+-- dataset #0 ("1000i32"):            49.70us (avg. of 10 runs; RSD: 0.18)
+-- dataset #1 ("1000000i32"):         44.40us (avg. of 10 runs; RSD: 0.02)
+-- dataset #2 ("1000000000i32"):    1693.80us (avg. of 10 runs; RSD: 0.04)
+-- ```
+--
 -- ## See also
 --
 -- The [manpage for `futhark
