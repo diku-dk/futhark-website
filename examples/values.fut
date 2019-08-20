@@ -18,6 +18,6 @@ let a_double : f64 = 2.0
 
 -- ## See also
 --
--- [Arrays](arrays.html), [Tuples and records](tuples_records.html).
+-- [Arrays](arrays.html), [Tuples and records](tuples-and-records.html).
 --
 -- Reference manual: [Primitive types and values](https://futhark.readthedocs.io/en/latest/language-reference.html#primitive-types-and-values).
