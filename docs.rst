@@ -11,7 +11,7 @@ compilers, as well as the `language reference`_ and instructions on
 
 There is also automatically generated `documentation for the Futhark
 Basis Library`_.  The basis library is very small, so in most cases
-you will want to use `external packages <pkgs/>`_.
+you will want to use `external packages <https://futhark-lang.org/pkgs/>`_.
 
 If there is something you believe should be documented, but is not,
 you are very welcome to report the omission as a bug on our bug
@@ -24,9 +24,9 @@ internals`_ which is automatically updated every night.
 .. _`Futhark User's Guide`: https://futhark.readthedocs.io/
 .. _`language reference`: https://futhark.readthedocs.io/en/latest/language-reference.html
 .. _`how to install the Futhark compiler`: https://futhark.readthedocs.io/en/latest/installation.html
-.. _`documentation for the Futhark Basis Library`: /docs/
+.. _`documentation for the Futhark Basis Library`: https://futhark-lang.org/docs/
 .. _`Get Involved`: /getinvolved.html
-.. _`documentation of the compiler internals`: /haddock/
+.. _`documentation of the compiler internals`: https://futhark-lang.org/haddock/
 
 Tools
 *****

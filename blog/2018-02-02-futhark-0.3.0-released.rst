@@ -33,8 +33,9 @@ strategy, which got its `own blog post
 </blog/2018-01-28-how-futhark-manages-gpu-memory.html>`_.  There has
 also been a number of improvements to the included basis library
 ("futlib"), of which the most significant is probably the inclusion of
-a `Fast Fourier Transform </docs/doc/futlib/fft.html>`_, which was
-developed as part of a bachelors project at `DIKU <http://diku.dk>`_.
+a `Fast Fourier Transform
+<https://futhark-lang.org/docs/doc/futlib/fft.html>`_, which was
+developed as part of a bachelor's project at `DIKU <http://diku.dk>`_.
 
 Most of my development effort was actually spent on developing our
 upcoming technique of *incremental flattening*.  This is a technique

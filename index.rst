@@ -28,8 +28,8 @@ floating-point numbers:
    * `Tutorial <http://futhark-book.readthedocs.io/en/latest/>`_
    * `User's guide <https://futhark.readthedocs.io>`_
    * `Language reference <https://futhark.readthedocs.io/en/latest/language-reference.html>`_
-   * `Basis library <docs/>`_
-   * `More packages <pkgs/>`_
+   * `Basis library <https://futhark-lang.org/docs/>`_
+   * `More packages <https://futhark-lang.org/pkgs/>`_
 
 Futhark is not designed for graphics programming, but instead uses the
 compute power of the GPU to accelerate data-parallel array

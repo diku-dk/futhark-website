@@ -481,7 +481,7 @@ speedup of Futhark implementations of nine benchmarks ported from
 `Rodinia`_, running on both an NVIDIA GTX 780 Ti GPU and an AMD W8100
 GPU:
 
-.. _`Rodinia`: http://www.cs.virginia.edu/~skadron/wiki/rodinia/index.php/Rodinia:Accelerating_Compute-Intensive_Applications_with_Accelerators
+.. _`Rodinia`: http://rodinia.cs.virginia.edu/doku.php
 
 .. image:: /images/pldi-speedup0.svg
    :alt: Speedup graphs.
