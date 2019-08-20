@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE FlexibleContexts #-}
 module Main (main) where
-import qualified           Debug.Trace
+
 import           Control.Monad
 import           Data.Monoid ((<>))
 import           Data.List (isPrefixOf)
@@ -11,6 +11,7 @@ import           Hakyll
 import           Skylighting (Syntax, parseSyntaxDefinition)
 import           Text.Pandoc
 import           Text.Pandoc.Walk
+import qualified Data.Text as T
 
 postCtx :: Context String
 postCtx = mconcat
@@ -21,6 +22,13 @@ postCtx = mconcat
 
 static :: Rules ()
 static = void $ route idRoute >> compile copyFileCompiler
+
+-- Turn a Futhark program into Markdown.
+weave :: String -> String
+weave = unlines . map onLine . lines
+  where isText = isPrefixOf "--"
+        onLine l | isText l = drop 3 l
+                 | otherwise = "    " ++ l
 
 main :: IO ()
 main = do
@@ -52,17 +60,19 @@ main = do
         compile $ do
           menu <- contentContext
           pandocRstCompiler futhark_syntax
+            >>= loadAndApplyTemplate "templates/withtitle.html" menu
             >>= loadAndApplyTemplate "templates/default.html" menu
             >>= relativizeUrls
 
     match "blog/*" $ do
         route $ setExtension "html"
         compile $ do
-          postCtx <- postContext
+          postCtx' <- postContext
           pandocRstCompiler futhark_syntax
-            >>= loadAndApplyTemplate "templates/post.html"    postCtx
+            >>= loadAndApplyTemplate "templates/post.html"    postCtx'
             >>= saveSnapshot "content"
-            >>= loadAndApplyTemplate "templates/default.html" postCtx
+            >>= loadAndApplyTemplate "templates/withtitle.html" postCtx'
+            >>= loadAndApplyTemplate "templates/default.html" postCtx'
             >>= relativizeUrls
 
     -- Post list
@@ -77,8 +87,10 @@ main = do
                       defaultContext
             makeItem ""
                 >>= loadAndApplyTemplate "templates/posts.html" ctx
+                >>= loadAndApplyTemplate "templates/withtitle.html" ctx
                 >>= loadAndApplyTemplate "templates/default.html" ctx
                 >>= relativizeUrls
+
     -- Atom feed
     create ["atom.xml"] $ do
       route idRoute
@@ -87,6 +99,18 @@ main = do
         posts <- fmap (take 10) . recentFirst =<<
             loadAllSnapshots "blog/*" "content"
         renderAtom feedConfiguration feedCtx posts
+
+    -- Examples
+    match "examples/*.fut" $ do
+      route $ setExtension "html"
+      compile $ do
+        menu <- contentContext
+        (ctx, md) <- literateCompiler futhark_syntax
+        pure md
+          >>= saveSnapshot "content"
+          >>= loadAndApplyTemplate "templates/default.html" (ctx <> menu)
+          >>= relativizeUrls
+    match "examples/*.fut" $ version "source" static
 
     match "templates/*" $ compile templateCompiler
 
@@ -145,13 +169,32 @@ selfLinkHeader (Header n (ident, classes, kvs) b) =
   where b' = Link (ident <> "-link", ["titlelink"], []) b ('#' : ident, ident)
 selfLinkHeader x = x
 
-pandocRstCompiler :: Syntax -> Compiler (Item String)
-pandocRstCompiler futhark_syntax = pandocCompilerWithTransform
-                                   defaultHakyllReaderOptions { readerIndentedCodeClasses = ["Futhark"] }
-                                   defaultHakyllWriterOptions { writerSyntaxMap = syntaxmap }
-                                   (walk (selfLinkHeader . shiftHeaderUp))
+pandocOptions :: Syntax -> (ReaderOptions, WriterOptions)
+pandocOptions futhark_syntax =
+  (defaultHakyllReaderOptions { readerIndentedCodeClasses = ["Futhark"] },
+   defaultHakyllWriterOptions { writerSyntaxMap = syntaxmap })
   where syntaxmap = M.insert "Futhark" futhark_syntax $
                     writerSyntaxMap defaultHakyllWriterOptions
+
+pandocRstCompiler :: Syntax -> Compiler (Item String)
+pandocRstCompiler futhark_syntax =
+  pandocCompilerWithTransform ropts wopts $
+  walk (selfLinkHeader . shiftHeaderUp)
+  where (ropts, wopts) = pandocOptions futhark_syntax
+
+literateCompiler :: Syntax -> Compiler (Context String, Item String)
+literateCompiler futhark_syntax = do
+  s <- fmap (T.pack . weave) <$> getResourceBody
+  pandoc@(Item _ (Pandoc _ (Header _ _ title:_))) <-
+    case runPure $ traverse (readMarkdown ropts) s of
+      Left err -> error $ "literateCompiler: " ++ show err
+      Right s' -> return s'
+  case runPure $ writePlain wopts $ Pandoc mempty [Plain title] of
+    Left err -> error $ "literateCompiler: " ++ show err
+    Right title' ->
+      return (constField "title" $ T.unpack title',
+              writePandocWith wopts pandoc)
+  where (ropts, wopts) = pandocOptions futhark_syntax
 
 --------------------------------------------------------------------------------
 config :: Configuration
