@@ -9,7 +9,7 @@ place <https://github.com/diku-dk/futhark/releases/tag/v0.7.1>`_.
 This release was primarily motivated by `ICFP 2018
 <https://conf.researchr.org/home/icfp-2018>`_ which takes place next
 week, and where two members of the Futhark team—`Martin Elsman
-<http://www.elsman.com/>`_ and myself—will be giving presentations.
+<http://elsman.com/>`_ and myself—will be giving presentations.
 Functionality-wise, this is another big release, as this post will
 hopefully show.
 
