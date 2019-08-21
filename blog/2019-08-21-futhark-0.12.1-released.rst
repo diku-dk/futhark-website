@@ -1,0 +1,197 @@
+---
+title: Futhark 0.12.1 released
+author: Troels Henriksen
+description: Sum types!
+---
+
+Futhark 0.12.1 has just escaped (`full changelog
+<https://github.com/diku-dk/futhark/releases/tag/v0.12.1>`_).  It
+contains a handful of minor changes and fixes, and two major ones.
+The largest change is to the internal representation and is
+(hopefully) not user-visible.  Simply put, we rewrote the internal
+representation of kernel parallelism to closely resemble `the one we
+presented in our PPoPP'19 paper
+<https://futhark-lang.org/docs.html#incremental-flattening-for-nested-data-parallelism>`_.
+The intent is to make it easier to cleanly express sophisticated
+mapping of application parallelism to GPU parallelism.  I'd usually
+write in detail about this change, but I feel it's rather dwarfed by
+an addition to the source language that has me much more excited.
+So...
+
+Sum Types
+=========
+
+Futhark was originally an extremely austere language - fully
+monomorphic, barely any pattern matching, and fully first order
+(although with some syntactical sugar that tried to imitate
+second-order functions).  This was because our main compilation target
+(GPUs) is such a hostile environment, and we did not want to support
+any features that we could not compile efficiently.  Over time, the
+restrictions were lessened:
+
+  * We added a higher-order module system around late 2016.
+
+  * Records came about in early 2017, and gained their current form
+    `with the 0.2 release
+    <2017-11-11-dot-notation-for-records.html>`_.
+
+  * Higher-order functions and parametric polymorphism were `added in
+    0.4
+    <https://futhark-lang.org/blog/2018-04-10-futhark-0.4.0-released.html>`_.
+
+Apart from recursion, there was one feature common to functional
+languages that we were still missing: sum types (sometimes called
+`algebraic data types
+<https://en.wikipedia.org/wiki/Algebraic_data_type>`_, although that's
+a slightly broader term).  This meant that FP classics such as
+``option`` and ``either`` types could not be expressed in Futhark, and
+other kinds of enumerations had to be encoded using integers.  Most if
+not all functional languages implement sum types via pointer
+structures, which is a no-go for us.  As of Futhark 0.12.1, this
+omission has been rectified!  (But do read on for the fine print.)  I
+should note that most of the implementation work, particularly the
+type system details, was done by `Robert <https://github.com/zmlww>`_.
+
+Types and syntax
+----------------
+
+Futhark is structurally typed in both its records and module system.
+Structural typing means that names are just abbreviations, and that
+only the actual contents of types matter.  Structural sum types are
+fairly rare because they tend to be unwieldy when recursive (`although
+this has not deterred OCaml
+<https://v1.realworldocaml.org/v1/en/html/variants.html>`_).  However,
+Futhark's sum types do not support recursion, so we chose to keep full
+structural typing.  As an example, a sum type with two constructors
+can be written ``#foo i32 | #bar bool`` in Futhark.  It need not be
+given a name, although it is in most cases a good idea::
+
+  type bool_or_int = #foo i32 | #bar bool
+
+Constructors are ``#``-prefixed to disambiguate variable names from
+nullary constructors when pattern matching with ``match``::
+
+  type my_bool = #true | #false -- Nullary constructors.
+
+  ...
+
+  match x : my_bool
+  case #true -> ... -- Matches specific constructor
+  case true  -> ... -- Matches anything, and binds
+                    -- the variable 'true'.
+
+There are some limitations due to the structural typing.  Most
+notably, constructors must be fully applied to all their arguments
+whenever they appear.  Also, because constructors no longer uniquely
+identify a type, type annotations are sometimes necessary to
+disambiguate::
+
+  type my_bool = #true | #false
+  type another_bool = #true | #false | #maybe
+
+  let x = #true -- Error: ambiguous type.
+
+  let y : another_bool = #true -- OK!
+
+Structural sum types allow convenient use of ad-hoc types, much like
+tuples or records in other languages.  It remains to be seen whether
+this design is ultimately a good idea, though.
+
+Representation
+--------------
+
+For reasons of simplicity, we did not wish to add sum types to our
+core language, so the Futhark compiler front-end flattens sum types to
+tuples.  As a starting point, the constructor is turned into an 8-bit
+integer (``i8``), and the payload types are just concatenated.  For
+example, the type ``#foo i32 | #bar bool`` will be represented as
+``(i8, i32, bool)``.  A value ``#foo 2`` of this type is turned into
+``(0, 2, false)``.  The values for the unused payload (the ``bool`` in
+this case) is given an arbitrary value (I'll return to this, because
+it has some unsolved problems).  Pattern-matching is turned into
+chains of ``if-then-else`` expressions.
+
+This simple representation has some inefficiencies.  In the example
+above, it is wasteful to store both the ``i32`` and ``bool``, because
+we know only one of them will ever have a meaningful value.  Hence,
+the Futhark compiler performs a kind of *deduplication*, where payload
+values of the same type share the same tuple slot in the flattened
+representation.  For example, the type ``#foo i32 | #bar i32`` will be
+represented as ``(i8, i32)``.  Currently, this only works if the
+primitive types match exactly (but we do flatten out nested records
+and sum types first), but eventually we'd like to handle more complex
+cases.  A ``bool`` (8 bits) easily fits within an ``i32`` (32 bits),
+and our core language do support the bit-casts that we would need to
+pack it.  For that matter, it would be nice if we could pack four
+bools to an ``i32``, or two ``i32``s to an ``f64``.  However, this is
+a fiddly optimisation that sounds easy to get wrong, so I'd rather
+wait until we have some more test programs that make aggressive use of
+sum types.
+
+Even the current simple scheme gives good results.  I `wrote a ray
+tracer <https://github.com/athas/raytracinginoneweekendinfuthark>`_
+partly to try out this new feature, where I use the following sum
+type::
+
+  type vec3 = {x: f32, y: f32, z: f32}
+
+  type material = #lambertian {albedo: vec3}
+                | #metal {albedo: vec3, fuzz: f32}
+                | #dielectric {ref_idx: f32}
+
+Even our current simple deduplication managed to reduce the overall
+run-time of the ray tracer by a factor of two.  This is of course a
+best-case scenario, since all the primitives involved are ultimately
+of type ``f32``.
+
+The Problem
+-----------
+
+Apart from the lack of deduplication across types, which is an
+optimisation problem, there is also a correctness problem in the
+current implementation.  Consider the usual parametric option type::
+
+  type opt 'a = #some a | #none
+
+A value ``#some [1,2,3]`` is represented as ``(0, [1,2,3])``.  But
+what about ``#none`` (where we know the result must have type ``opt
+[]i32``)?  We need to come up with an arbitrary value of type
+``[]i32``.  Currently the compiler will just use an empty array,
+giving ``(1, [])``.  Now consider constructing an array of these
+option values::
+
+  [#some [1,2,3], #none]
+
+This is desugared to::
+
+  [(0, [1,2,3]), (1, [])]
+
+But this is not a valid Futhark array!  For this array to be valid it
+should be describable as ``[n](i8, [m]i32)`` for *some* ``n`` and
+``m``, but while ``n=2``, a proper ``m`` cannot exist, as it would
+need to be both 3 and 0.  Specifically, attempting to construct this
+array would fail at run-time.  This is a problem, and it will crop up
+in a number of other cases, like ``map``, where the Futhark compiler
+tries to predict the sizes of array elements using `slicing techniques
+<https://futhark-lang.org/docs.html#size-slicing---a-hybrid-approach-to-size-inference-in-futhark>`_.
+
+Fortunately, this issue is (hopefully) rare in practice, and only
+crops up in the specific case where we have an array of sum types with
+more than 1 constructor, where the payload of some constructor is
+itself an array.  For the moment, we merely document the issue and
+hope people can code their way around it.  In the future, `size types
+<https://futhark-lang.org/blog/2019-08-03-towards-size-types.html>`_
+will be used to assign the correct size to the "arbitrary" arrays.
+
+Future
+------
+
+While this release adds all the language support needed to support sum
+types, it does not extend the prelude at all.  You'll experience the
+pleasure of defining optional values, ``either`` types, and so on for
+your own programs.  I certainly intend to put together `a package
+<https://futhark-lang.org/pkgs/>`_ containing my idea of how things
+should work and how they should be named, but I don't currently intend
+to enforce my vision through the compiler itself.  Structural typing
+means it is less crucial to agree on a central type, since translation
+and adaptation is straightforward.
