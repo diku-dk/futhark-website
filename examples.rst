@@ -1,9 +1,9 @@
 ---
-title: Code Examples
+title: Futhark by Example
 ---
 
 The following is a hands-on introduction to Futhark through a
-collection of literate programs, listed in roughly increasing order of
+collection of commented programs, listed in roughly increasing order of
 complexity.  You can load the programs into `the interpreter
 <https://futhark.readthedocs.io/en/latest/man/futhark-repl.html>`_ to
 experiment with them.  For a conventional introduction to the
