@@ -24,6 +24,8 @@ maintain a list of `projects using Futhark`_.
 
 * `Tuples and records <examples/tuples-and-records.html>`_
 
+* `Sum types and pattern matching <examples/sum-types.html>`_
+
 * `Loops <examples/loops.html>`_
 
 * `Functions <examples/functions.html>`_
