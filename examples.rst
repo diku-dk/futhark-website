@@ -24,6 +24,8 @@ maintain a list of `projects using Futhark`_.
 
 * `Tuples and records <examples/tuples-and-records.html>`_
 
+* `Scans and reductions <examples/scan-reduce.html>`_
+
 * `Sum types and pattern matching <examples/sum-types.html>`_
 
 * `Loops <examples/loops.html>`_
@@ -37,6 +39,8 @@ maintain a list of `projects using Futhark`_.
 * `Parametric polymorphism <examples/parametric-polymorphism.html>`_
 
 * `Matrix multiplication <examples/matrix-multiplication.html>`_
+
+* `Computing histograms <examples/histograms.html>`_
 
 * `Gaussian blur (with Python integration) <examples/gaussian-blur.html>`_
 
