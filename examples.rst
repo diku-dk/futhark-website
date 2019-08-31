@@ -50,6 +50,8 @@ maintain a list of `projects using Futhark`_.
 
 * `Gaussian blur (with Python integration) <examples/gaussian-blur.html>`_
 
+* `Faking nominal types <examples/nominal-types.html>`_
+
 Projects using Futhark
 ----------------------
 
