@@ -20,6 +20,17 @@ let plus2_inferred x =
 let on_i32 (f: i32 -> i32) (x: i32) =
   f x
 
+-- When passing an argument to a higher-order function, it is often
+-- most practical to use an *anonymous function* (sometimes called a
+-- *lambda*), like this:
+
+let four = on_i32 (\x -> x + 2) 2
+
+-- A shortcut notation, called *operator sections*, allows partial
+-- application of infix operators:
+
+let another_four = on_i32 (+2) 2
+
 -- Function values are restricted as follows:
 --
 -- * Arrays of functions are not permitted.

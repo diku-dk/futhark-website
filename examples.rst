@@ -24,6 +24,8 @@ maintain a list of `projects using Futhark`_.
 
 * `Arrays <examples/arrays.html>`_
 
+* `Basic parallelism <examples/basic-parallelism.html>`_
+
 * `Tuples and records <examples/tuples-and-records.html>`_
 
 * `Scans and reductions <examples/scan-reduce.html>`_
