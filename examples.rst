@@ -20,27 +20,31 @@ maintain a list of `projects using Futhark`_.
 
 * `Primitive values <examples/values.html>`_
 
+* `Functions <examples/functions.html>`_
+
 * `Arrays <examples/arrays.html>`_
 
 * `Tuples and records <examples/tuples-and-records.html>`_
 
 * `Scans and reductions <examples/scan-reduce.html>`_
 
+* `Parametric polymorphism <examples/parametric-polymorphism.html>`_
+
+* `Gather and scatter <examples/gather-and-scatter.html>`_
+
 * `Sum types and pattern matching <examples/sum-types.html>`_
 
 * `Loops <examples/loops.html>`_
-
-* `Functions <examples/functions.html>`_
 
 * `Benchmarking <examples/benchmarking.html>`_
 
 * `Size parameters <examples/size-parameters.html>`_
 
-* `Parametric polymorphism <examples/parametric-polymorphism.html>`_
-
 * `Matrix multiplication <examples/matrix-multiplication.html>`_
 
 * `Computing histograms <examples/histograms.html>`_
+
+* `Radix sort <examples/radix-sort.html>`_
 
 * `Gaussian blur (with Python integration) <examples/gaussian-blur.html>`_
 
