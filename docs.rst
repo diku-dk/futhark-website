@@ -56,12 +56,31 @@ We have published a number of papers on Futhark, and hopefully more
 will follow in the future.  They are presented below in reverse
 chronological order.
 
+Compositional Deep Learning in Futhark
+-------------------------------------
+
+.. class:: papermetadata
+Presented at `FHPNC '19`_ (`pdf <publications/fhpnc19.pdf>`_)
+
+This paper presents a library for implementing neural networks in
+Futhark. The library functions are generically typed and the
+composition structure allows for networks to be trained (using
+back-propagation) and for trained networks to be used for predicting
+new results (using forward-propagation). Individual layers in a
+network can take different forms ranging over dense sigmoid layers to
+convolutional layers. We demonstrate that Futhark's elimination of
+higher-order functions and modules leads to efficient generated code,
+with comparison to to TensorFlow.
+
+The `code is available <https://github.com/HnimNart/deeplearning>`_
+and the paper itself is a distillation of Duc Minh Tran's `bachelor's
+thesis <student-projects/duc-bsc-thesis.pdf>`_.
 
 Data-Parallel Flattening by Expansion
 -------------------------------------
 
 .. class:: papermetadata
-To be presented at `ARRAY '19`_ (`pdf <publications/array19.pdf>`_)
+Presented at `ARRAY '19`_ (`pdf <publications/array19.pdf>`_)
 
 One of Futhark's main difficulties is its restriction to *regular*
 parallelism.  This paper presents a programming technique for
@@ -277,6 +296,7 @@ does it describe horisontal fusion.
 .. _`TFP '18`: http://www.cse.chalmers.se/~myreen/tfp2018/
 .. _`PPOPP '19`: https://ppopp19.sigplan.org/
 .. _`ARRAY '19`: https://pldi19.sigplan.org/home/ARRAY-2019
+.. _`FHPNC '19`: https://icfp19.sigplan.org/home/FHPNC-2019
 
 Selected Student Projects
 *************************
