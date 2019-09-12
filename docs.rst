@@ -57,7 +57,7 @@ will follow in the future.  They are presented below in reverse
 chronological order.
 
 Compositional Deep Learning in Futhark
--------------------------------------
+--------------------------------------
 
 .. class:: papermetadata
 Presented at `FHPNC '19`_ (`pdf <publications/fhpnc19.pdf>`_)
