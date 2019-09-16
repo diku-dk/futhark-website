@@ -301,6 +301,8 @@ does it describe horisontal fusion.
 Selected Student Projects
 *************************
 
+* Svend Lund Breddam: **Futhark Autotuners for Incremental Flattening**.  MSc thesis. Department of Computer Science, University of Copenhagen. SEptember, 2019. (`pdf <student-projects/svend-msc-thesis.pdf>`_)
+
 * Steffen Holst Larsen: **Futhark Vulkan Backend**.  MSc project. Department of Computer Science, University of Copenhagen. January, 2019. (`pdf <student-projects/steffen-msc-project.pdf>`_)
 
 * Jakob Stokholm Bertelsen: **Implementing a CUDA Backend for Futhark**.  BSc thesis. Department of Computer Science, University of Copenhagen. January, 2019. (`pdf <student-projects/jakob-bsc-thesis.pdf>`_)
