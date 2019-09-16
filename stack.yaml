@@ -10,3 +10,6 @@ extra-package-dbs: []
 
 ghc-options:
   hakyll: -threaded
+
+nix:
+    packages: [zlib.dev, zlib.out, pkgconfig, openssl]
