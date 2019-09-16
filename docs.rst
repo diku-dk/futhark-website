@@ -301,30 +301,30 @@ does it describe horisontal fusion.
 Selected Student Projects
 *************************
 
-* Svend Lund Breddam: **Futhark Autotuners for Incremental Flattening**.  MSc thesis. Department of Computer Science, University of Copenhagen. SEptember, 2019. (`pdf <student-projects/svend-msc-thesis.pdf>`_)
+* Svend Lund Breddam: **Futhark Autotuners for Incremental Flattening**.  MSc thesis. Department of Computer Science, University of Copenhagen. September 2019. (`pdf <student-projects/svend-msc-thesis.pdf>`_)
 
-* Steffen Holst Larsen: **Futhark Vulkan Backend**.  MSc project. Department of Computer Science, University of Copenhagen. January, 2019. (`pdf <student-projects/steffen-msc-project.pdf>`_)
+* Steffen Holst Larsen: **Futhark Vulkan Backend**.  MSc project. Department of Computer Science, University of Copenhagen. January 2019. (`pdf <student-projects/steffen-msc-project.pdf>`_)
 
-* Jakob Stokholm Bertelsen: **Implementing a CUDA Backend for Futhark**.  BSc thesis. Department of Computer Science, University of Copenhagen. January, 2019. (`pdf <student-projects/jakob-bsc-thesis.pdf>`_)
+* Jakob Stokholm Bertelsen: **Implementing a CUDA Backend for Futhark**.  BSc thesis. Department of Computer Science, University of Copenhagen. January 2019. (`pdf <student-projects/jakob-bsc-thesis.pdf>`_)
 
-* Sune Hellfritzsch: **Efficient Histogram Computation on GPGPUs**. MSc thesis. Department of Computer Science, University of Copenhagen. October, 2018. (`pdf <student-projects/hellfritzsch-msc-thesis.pdf>`_)
+* Sune Hellfritzsch: **Efficient Histogram Computation on GPGPUs**. MSc thesis. Department of Computer Science, University of Copenhagen. October 2018. (`pdf <student-projects/hellfritzsch-msc-thesis.pdf>`_)
 
 * Duc Minh Tran: **Implementation of a deep learning library in Futhark**.  BSc Thesis.  Department of Computer Science, University of Copenhagen.  August 2018. (`pdf <student-projects/duc-bsc-thesis.pdf>`_)
 
-* Mikkel Storgaard Knudsen: **FShark: Futhark programming in FSharp**. MSc thesis. Department of Computer Science, University of Copenhagen. August, 2018. (`pdf <student-projects/mikkel-msc-thesis.pdf>`_)
+* Mikkel Storgaard Knudsen: **FShark: Futhark programming in FSharp**. MSc thesis. Department of Computer Science, University of Copenhagen. August 2018. (`pdf <student-projects/mikkel-msc-thesis.pdf>`_)
 
-* Marek Hlava and Martin Metaksov: **Accelerated Interest Rate Option Pricing using Trinomial Trees**. MSc thesis. Department of Computer Science, University of Copenhagen. August, 2018. (`pdf <student-projects/marek-martin-msc-thesis.pdf>`_)
+* Marek Hlava and Martin Metaksov: **Accelerated Interest Rate Option Pricing using Trinomial Trees**. MSc thesis. Department of Computer Science, University of Copenhagen. August 2018. (`pdf <student-projects/marek-martin-msc-thesis.pdf>`_)
 
-* Kasper Abildtrup Hansen: **FFT Generator in Futhark: A prototype Futhark library using FFTW technniques**. MSc project. Department of Computer Science, University of Copenhagen. June, 2018. (`pdf <student-projects/kasper-hansen-genfft.pdf>`_)
+* Kasper Abildtrup Hansen: **FFT Generator in Futhark: A prototype Futhark library using FFTW technniques**. MSc project. Department of Computer Science, University of Copenhagen. June 2018. (`pdf <student-projects/kasper-hansen-genfft.pdf>`_)
 
-* Frederik Thorøe: **Auto-tuning of threshold-parameters in Futhark**.  BSc thesis.  Department of Computer Science, University of Copenhagen. June, 2018. (`pdf <student-projects/frederik-thoroe-bsc-thesis.pdf>`_)
+* Frederik Thorøe: **Auto-tuning of threshold-parameters in Futhark**.  BSc thesis.  Department of Computer Science, University of Copenhagen. June 2018. (`pdf <student-projects/frederik-thoroe-bsc-thesis.pdf>`_)
 
-* Mette Marie Kowalski: **Designing and Accelerating a Generic FFT Library in Futhark**. BSc thesis.  Department of Computer Science, University of Copenhagen. June, 2018. (`pdf <student-projects/mette-kowalski-bsc-thesis.pdf>`_)
+* Mette Marie Kowalski: **Designing and Accelerating a Generic FFT Library in Futhark**. BSc thesis.  Department of Computer Science, University of Copenhagen. June 2018. (`pdf <student-projects/mette-kowalski-bsc-thesis.pdf>`_)
 
-* Anders Kiel Hovgaard: **Higher-order functions for a high-performance programming language for GPUs**.  MSc project.  Department of Computer Science, University of Copenhagen. May, 2018. (`pdf <student-projects/hovgaard-msc-thesis.pdf>`_)
+* Anders Kiel Hovgaard: **Higher-order functions for a high-performance programming language for GPUs**.  MSc project.  Department of Computer Science, University of Copenhagen. May 2018. (`pdf <student-projects/hovgaard-msc-thesis.pdf>`_)
 
-* Niels G. W. Serup: **Memory Block Merging in Futhark**. MSc thesis. Department of Computer Science, University of Copenhagen. November, 2017. (`pdf <student-projects/niels-msc-thesis.pdf>`_)
+* Niels G. W. Serup: **Memory Block Merging in Futhark**. MSc thesis. Department of Computer Science, University of Copenhagen. November 2017. (`pdf <student-projects/niels-msc-thesis.pdf>`_)
 
-* Rasmus Wriedt Larsen: **Generating Efficient Code for Futhark’s Segmented Redomap**. MSc thesis. Department of Computer Science, University of Copenhagen. March, 2017. (`pdf <student-projects/rasmus-msc-thesis.pdf>`_)
+* Rasmus Wriedt Larsen: **Generating Efficient Code for Futhark’s Segmented Redomap**. MSc thesis. Department of Computer Science, University of Copenhagen. March 2017. (`pdf <student-projects/rasmus-msc-thesis.pdf>`_)
 
-* Niels G. W. Serup: **Extending Futhark with a write construct**. MSc project. Department of Computer Science, University of Copenhagen. June, 2016. (`pdf <student-projects/niels-write-construct.pdf>`_).
+* Niels G. W. Serup: **Extending Futhark with a write construct**. MSc project. Department of Computer Science, University of Copenhagen. June 2016. (`pdf <student-projects/niels-write-construct.pdf>`_).
