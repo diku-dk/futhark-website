@@ -44,6 +44,8 @@ maintain a list of `projects using Futhark`_.
 
 * `Matrix multiplication <examples/matrix-multiplication.html>`_
 
+* `Searching <examples/searching.html>`_
+
 * `Computing histograms <examples/histograms.html>`_
 
 * `Radix sort <examples/radix-sort.html>`_
