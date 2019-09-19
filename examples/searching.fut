@@ -61,9 +61,9 @@ let find_elem_chunked 'a [n] (k: i32) (p: a -> bool) (as: [n]a) : found a =
      case #found x -> (#found x, n)
      case #not_found -> (#not_found, chunk_offset+k)).1
 
--- In almost most cases, the original `find_index` and `find_elem`
--- will be fast enough, as these simple `map`-`reduce` compositions
--- are quire efficient.  While `find_elem_chunked` can in some cases
--- be faster, we now have the chunk size, `k`, as a tunable parameter
--- that we have to worry about, and the compiler cannot help us figure
--- out the best value.
+-- In most cases, the original `find_index` and `find_elem` will be
+-- fast enough, as these simple `map`-`reduce` compositions are quire
+-- efficient.  While `find_elem_chunked` can in some cases be faster,
+-- we now have the chunk size, `k`, as a tunable parameter that we
+-- have to worry about, and the compiler cannot help us figure out the
+-- best value.
