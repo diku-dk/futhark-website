@@ -22,7 +22,7 @@ let average (xs: []f64) =
 -- that we can move around the parantheses in an application:
 --
 -- ```
--- f (g x y) z == f x (g y)
+-- f (f x y) z == f x (f y z)
 -- ```
 --
 -- It's a bit easier to understand if we write the function as an
