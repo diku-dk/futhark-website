@@ -50,6 +50,8 @@ maintain a list of `projects using Futhark`_.
 
 * `Radix sort <examples/radix-sort.html>`_
 
+* `Testing for associativity <examples/testing-associativity.html>`_
+
 * `Gaussian blur (with Python integration) <examples/gaussian-blur.html>`_
 
 * `Faking nominal types <examples/nominal-types.html>`_

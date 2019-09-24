@@ -31,6 +31,16 @@ let four = on_i32 (\x -> x + 2) 2
 
 let another_four = on_i32 (+2) 2
 
+-- By enclosing an operator in parentheses we can treat it like any
+-- variable name:
+
+let plus = (+)
+
+-- And we can treat a variable as an infix operator by enclosing it in
+-- backticks:
+
+let yet_another_four = 2 `plus` 2
+
 -- Function values are restricted as follows:
 --
 -- * Arrays of functions are not permitted.
