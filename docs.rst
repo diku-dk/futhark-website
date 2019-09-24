@@ -301,6 +301,8 @@ does it describe horisontal fusion.
 Selected Student Projects
 *************************
 
+* Steffen Holst Larsen: **Multi-GPU Futhark Using Parallel Streams**.  MSc thesis. Department of Computer Science, University of Copenhagen. September 2019. (`pdf <student-projects/steffen-msc-thesis.pdf>`_)
+
 * Svend Lund Breddam: **Futhark Autotuners for Incremental Flattening**.  MSc thesis. Department of Computer Science, University of Copenhagen. September 2019. (`pdf <student-projects/svend-msc-thesis.pdf>`_)
 
 * Steffen Holst Larsen: **Futhark Vulkan Backend**.  MSc project. Department of Computer Science, University of Copenhagen. January 2019. (`pdf <student-projects/steffen-msc-project.pdf>`_)
