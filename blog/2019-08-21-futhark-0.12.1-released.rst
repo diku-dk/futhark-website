@@ -50,7 +50,7 @@ not all functional languages implement sum types via pointer
 structures, which is a no-go for us.  As of Futhark 0.12.1, this
 omission has been rectified!  (But do read on for the fine print.)  I
 should note that most of the implementation work, particularly the
-type system details, was done by `Robert <https://github.com/zmlww>`_.
+type system details, was done by `Robert <https://github.com/zfnmxt>`_.
 
 Types and syntax
 ----------------
