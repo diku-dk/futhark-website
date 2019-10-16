@@ -42,7 +42,7 @@ let average (xs: []f64) =
 -- As a simple example, 0 is the neutral element for addition, and 1
 -- for multiplication.
 --
--- If we pasa `reduce` a function that is not associative, or does not
+-- If we pass `reduce` a function that is not associative, or does not
 -- have the provided neutral element, we will get wrong results at
 -- run-time.  What's worse, the compiler will not be able to detect
 -- that we messed up (it's actually impossible in general), however
