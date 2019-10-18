@@ -114,7 +114,7 @@ database that can be corrupted, or must be periodically cleaned.
 This notion of zero-configurability is not some "obviously desirable"
 property whose inclusion should be a no-brainer in any language.  It
 requires a real trade-off in flexibility and ergonomics - a trade-off
-with costs that we believe are worth it for Futhark, but are likely to
+with costs that we believe are worth it for Futhark, but are likely too
 steep for other languages.
 
 As an example, let us consider how Futhark splits programs over
