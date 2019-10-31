@@ -60,7 +60,7 @@ Compositional Deep Learning in Futhark
 --------------------------------------
 
 .. class:: papermetadata
-Presented at `FHPNC '19`_ (`pdf <publications/fhpnc19.pdf>`_)
+Presented at `FHPNC '19`_ (`pdf <publications/fhpnc19.pdf>`_, `bib <publications/fhpnc19.bib>`_)
 
 This paper presents a library for implementing neural networks in
 Futhark. The library functions are generically typed and the
@@ -80,7 +80,7 @@ Data-Parallel Flattening by Expansion
 -------------------------------------
 
 .. class:: papermetadata
-Presented at `ARRAY '19`_ (`pdf <publications/array19.pdf>`_)
+Presented at `ARRAY '19`_ (`pdf <publications/array19.pdf>`_, `bib <publications/array19.bib>`_)
 
 One of Futhark's main difficulties is its restriction to *regular*
 parallelism.  This paper presents a programming technique for
@@ -113,7 +113,7 @@ High-Performance Defunctionalisation in Futhark
 -----------------------------------------------
 
 .. class:: papermetadata
-Presented at `TFP '18`_ (`preprint <publications/tfp18.pdf>`_)
+Presented at `TFP '18`_ (`pdf <publications/tfp18.pdf>`_, `bib <publications/tfp18.bib>`_)
 
 Futhark initially did not support higher-order functions, because the
 usual compilation strategy creates a great degree of indirection,

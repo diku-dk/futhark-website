@@ -1,0 +1,15 @@
+@InProceedings{10.1007/978-3-030-18506-0_7,
+author="Hovgaard, Anders Kiel
+and Henriksen, Troels
+and Elsman, Martin",
+editor="Pa{\l}ka, Micha{\l}
+and Myreen, Magnus",
+title="High-Performance Defunctionalisation in Futhark",
+booktitle="Trends in Functional Programming",
+year="2019",
+publisher="Springer International Publishing",
+address="Cham",
+pages="136--156",
+abstract="General-purpose massively parallel processors, such as GPUs, have become common, but are difficult to program. Pure functional programming can be a solution, as it guarantees referential transparency, and provides useful combinators for expressing data-parallel computations. Unfortunately, higher-order functions cannot be efficiently implemented on GPUs by the usual means. In this paper, we present a defunctionalisation transformation that relies on type-based restrictions on the use of expressions of functional type, such that we can completely eliminate higher-order functions in all cases, without introducing any branching. We prove the correctness of the transformation and discuss its implementation in Futhark, a data-parallel functional language that generates GPU code. The use of these restricted higher-order functions has no impact on run-time performance, and we argue that we gain many of the benefits of general higher-order functions, without in most practical cases being hindered by the restrictions.",
+isbn="978-3-030-18506-0"
+}
