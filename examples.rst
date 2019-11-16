@@ -80,6 +80,18 @@ stream.  Futhark is used to implement the filters.
 `Futracer <https://github.com/nqpz/futracer>`_ is a fairly slow
 brute-force ray tracer written in Futhark.
 
+`Futswirl <https://github.com/nqpz/futswirl>`_ is a fractal generator
+based on `iterated function systems
+<https://en.wikipedia.org/wiki/Iterated_function_system>`_.
+
+`Ray Tracing in One Weekend in Futhark
+<https://github.com/athas/raytracinginoneweekendinfuthark>`_ and `Ray
+Tracing: the Next Weekend in Futhark
+<https://github.com/athas/raytracingthenextweekinfuthark/>`_ are
+implementations based on Peter Shirley's book series.  These are by no
+means real-time ray tracers, but support advanced effects and make use
+of acceleration structures like BVH trees.
+
 `tail2futhark <https://github.com/henrikurms/tail2futhark>`_ is not
 written in Futhark itself, but is a code generator that produces
 Futhark, and serves as a component in an APL-to-GPU compilation
