@@ -47,7 +47,8 @@ let average (xs: []f64) =
 -- run-time.  What's worse, the compiler will not be able to detect
 -- that we messed up (it's actually impossible in general), however
 -- [techniques exist for testing associativity
--- empirically](testing-associativity.html).
+-- empirically](testing-associativity.html).  You can also [invent a
+-- neutral element if necessary](no-neutral-element.html).
 --
 -- Scans (also called [prefix
 -- sums](https://en.wikipedia.org/wiki/Prefix_sum)) are similar to
