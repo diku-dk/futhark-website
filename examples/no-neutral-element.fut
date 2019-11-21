@@ -42,7 +42,7 @@ let reduce1 't (f: t -> t -> t) (ts: []t) : with_neutral t =
 -- ```
 
 -- `reduce1` is less efficient than `reduce` due to the baggage of
--- carrying around `neutral`, as well as the extra control flow.  It
+-- carrying around `#neutral`, as well as the extra control flow.  It
 -- is always better if a neutral element is more naturally available,
 -- but this technique will do in a pinch.
 --
