@@ -32,6 +32,8 @@ let f_with_neutral 't (f: t -> t -> t)
 let reduce1 't (f: t -> t -> t) (ts: []t) : with_neutral t =
   reduce (f_with_neutral f) #neutral (map (\t -> #val t) ts)
 
+-- Try it out in the REPL:
+--
 -- ```
 -- > reduce1 (+) (iota 100)
 -- #val 4950i32
