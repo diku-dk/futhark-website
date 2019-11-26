@@ -66,10 +66,10 @@ vectors::
 
 We define the ``dotprod`` function with ``entry`` to indicate that it
 should be externally visible.  After saving this program as
-``dotprod.fut``, we can compile it with the ``futhark-opencl``
+``dotprod.fut``, we can compile it with the ``futhark opencl``
 compiler::
 
-  $ futhark-opencl --library dotprod.fut
+  $ futhark opencl --library dotprod.fut
 
 This produces two files in the current directory: ``dotprod.c`` and
 ``dotprod.h``.  We can compile ``dotprod.c`` to a shared library like
@@ -232,8 +232,8 @@ You may need to set ``LD_LIBRARY_PATH=.`` before the dynamic linker
 can find ``libdotprod.so``.  Also, this program will only work if the
 default OpenCL device is usable on your system, since we did not
 request any specific device.  For testing on a system that does not
-support OpenCL, simply use ``futhark-c`` instead of
-``futhark-opencl``.  The generated API will be the same.
+support OpenCL, simply use ``futhark c`` instead of
+``futhark opencl``.  The generated API will be the same.
 
 Calling the Futhark Library from Haskell
 ----------------------------------------
@@ -387,7 +387,7 @@ experience with the current limitations of the design, so we can
 improve it.
 
 Finally, it will likely be useful to make the API more flexible.  When
-compiling with ``futhark-opencl``, it would be useful if you could
+compiling with ``futhark opencl``, it would be useful if you could
 pass in an already existing OpenCL context and command queue when
 creating the ``futhark_context``.  And certainly it would be nice if
 the values of a Futhark array could be written not just to a CPU
