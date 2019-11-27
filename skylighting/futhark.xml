@@ -27,6 +27,8 @@
       <item>empty</item>
       <item>while</item>
       <item>unsafe</item>
+      <item>match</item>
+      <item>case</item>
     </list>
     <contexts>
       <context attribute="Normal" lineEndContext="#stay" name="code">
