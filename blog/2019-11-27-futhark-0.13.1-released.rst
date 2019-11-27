@@ -1,0 +1,133 @@
+---
+title: Futhark 0.13.1 released
+author: Troels Henriksen
+description: Very little changed, but many bugs fixed
+---
+
+Today I released version 0.13.1 of the Futhark compiler.  The true
+motivation was the fix of a few bugs that I worried would be
+encountered by the students currently taking our `course on Parallel
+Functional Programming <https://github.com/diku-dk/pfp-e2019-pub>`_ at
+`DIKU <https://diku.dk>`_.  Since the `last release announcement
+<2019-8-21-futhark-0.12.1-released.html>`_ there has actually been two
+unannounced releases - 0.12.2 and 0.12.3 - but they had so few
+interesting user-facing changes that I didn't feel like writing
+announcements for them.
+
+Since the new release is called 0.13.1 and not 0.12.4, there has been
+a breaking change.  Fortunately, it's a very trivial one that will not
+affect most users: when writing test cases for ``futhark test``, you
+no longer write ``empty(t)`` for an empty array of element type ``t``,
+instead you write ``empty([0]t)``.  The motivation for this change is
+that the `work on size types <2019-08-03-towards-size-types.html>`_
+requires a more principled handling of empty arrays.  In particular,
+even though *one* dimension of an array is empty, that does not mean
+*all* dimensions have to be empty.  ``[0][2]i32`` is a perfectly valid
+array type, and should be distinct from ``[2][0]i32``.
+
+Now, I *did* also add one interesting optimisation related to sum
+types.  It turned out to have pretty small impact on most programs,
+but I still think it's worth talking about, because I was unable to
+find anything like it in the literature.  I was also unable to come up
+with a good name for it, so it has a pretty stupid one.
+
+Load Sinking
+------------
+
+Recall `how sum types are represented at run-time in Futhark
+<2019-08-21-futhark-0.12.1-released.html#representation>`_: the
+constructor is turned into an 8-bit integer (``i8``), and the payload
+types are just concatenated.  For example, the type
+
+.. code-block:: Futhark
+
+   type sum = #foo i32 | #bar bool
+
+will be represented as ``(i8, i32, bool)``.  A pattern match
+
+.. code-block:: Futhark
+
+   match v
+   case #foo x -> f x
+   case #bar y -> g y
+
+is then compiled into ``if-then-else``:
+
+.. code-block:: Futhark
+
+   let (c, x, y) = v
+   in if c == 0
+      then f x
+      else g y
+
+So far, so good.  Now, what happens if we have an *array* of sum
+types?  Well, that will turn into an array of tuples, and in Futhark,
+an array-of-tuples are represented as a tuple-of-arrays `for low-level
+performance reasons <https://en.wikipedia.org/wiki/AoS_and_SoA>`_.
+Continuing the example, an array ``[]sum`` will be represented as
+``([]u8, []i32, []bool)``.  Let's say that the original source program
+has such an array, called ``sums``, and is indexing that array and
+performing a pattern match on the result:
+
+.. code-block:: Futhark
+
+   let v = sums[i]
+   in match v
+      case #foo x -> f x
+      case #bar y -> g y
+
+After turning sums into tuples and arrays-of-tuples into
+tuples-of-arrays, we obtain the following:
+
+.. code-block:: Futhark
+
+   let c = sums_cs[i]
+   let x = sums_xs[i]
+   let y = sums_ys[i]
+   in if c == 0
+      then f x
+      else g y
+
+So, what's the problem here?  We are always reading both ``x`` and
+``y``, even though only one of them will ever be used!  That means we
+have redundant accesses to memory, and `memory is slow
+<http://norvig.com/21-days.html#answers>`_.  It can become a
+significant problem when we have larger sum types with many
+constructors and large payloads, even taking into account the
+deduplication we do when constructors overlap in their payload type.
+In particular, this pattern is almost guaranteed to occur when
+``map``ing across an array of sum types.
+
+The solution I came up with is an optimisation I call "sinking"
+because it is the opposite of `hoisting
+<http://compileroptimizations.com/category/hoisting.htm>`_.
+Basically, for each instance of array indexing in the program, I check
+whether the result of the indexing is only used inside a later
+occurring ``if`` branch.  If so, I move the index operation inside the
+branch.  Applied to the program above, it produces:
+
+.. code-block:: Futhark
+
+   let c = sums_cs[i]
+   in if c == 0
+      then let x = sums_xs[i]
+           in f x
+      else let y = sums_ys[i]
+           in g y
+
+The program that motivated this optimisation was a `ray tracer I
+worked on <https://github.com/athas/raytracingthenextweekinfuthark/>`_
+that contains arrays of relatively large sum types (the objects in the
+scene) that each desugar to over a dozen values.  Unfortunately, while
+the optimisation had impact on contrived benchmarks, the ray tracer
+was mostly unaffected.  I suspect two reasons:
+
+1. Our deduplication is quite good, so most values (e.g. the bounding
+   box and material of the object) is used in all branches of the
+   ``case``.
+
+2. The ray tracer performs so many other memory accesses anyway, and
+   is bottlenecked by other things.
+
+Oh well.  Some day, someone may write a program that would have been
+slightly slower if not for this optimisation.
