@@ -60,7 +60,7 @@ widespread as in other languages, I'm not sure the cost is worth it.
 
 Code emitted by the Futhark compiler uses 32-bit integers track array
 sizes, do index calculations, and so on.  This has some obvious
-practical problems (arrays cannot be larger than *2³²-1* elements),
+practical problems (arrays cannot be larger than 2³²-1 elements),
 but can lead to substantially faster execution, as both CPUs GPUs have
 substantially lower 64-bit integer performance.  Some time ago, I
 experimentally changed the compiler to emit 64-bit index arithmetic
@@ -145,8 +145,8 @@ mechanism for generic programming.
    }
    module monoid_prod_f32 : monoid with t = f32 = {
      type t = f32
-     let op = (i32.*)
-     let zero = 0if2
+     let op = (f32.*)
+     let zero = 0f32
    }
 
    -- A parametric module that can generate a "sum" module given any
