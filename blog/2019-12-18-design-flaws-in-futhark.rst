@@ -163,7 +163,7 @@ mechanism for generic programming.
 Parametric modules can be seen as a restricted form of functions at
 the module level.  One obvious question is then to ask whether we can
 have *higher-order modules* in the same way that we have higher-order
-modules.  The answer is *no* for Standard ML, where modules are at
+functions.  The answer is *no* for Standard ML, where modules are at
 most first-order, but other languages in the ML family, including
 Futhark, *do* support higher-order modules.
 
