@@ -10,8 +10,8 @@ let gather 'a (xs: []a) (is: []i32) =
   map (\i -> xs[i]) is
 
 -- *Scatter* is an operation that writes `(index,value)`-pairs to some
--- *destination array.  This *is* a primitive in Futhark, `scatter`,
--- *which is of type
+-- *destination array*.  This *is* a primitive in Futhark, `scatter`,
+-- which is of type
 --
 -- ```
 -- val scatter 'a : (dest: *[]a) -> (is: []i32) -> (vs: []a) -> *[]a
