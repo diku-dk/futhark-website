@@ -103,7 +103,7 @@ functions like ``replicate``:
 
 .. code-block:: Futhark
 
-   let replicate 't (n: i32) (x: t): [n]t = ...
+   let replicate 't (n: i32) (x: t) : [n]t = ...
 
 This intermixing means that simply having a compile-time flag to
 switch the internal type of sizes is not viable.
