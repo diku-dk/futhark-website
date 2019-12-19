@@ -66,7 +66,7 @@ substantially lower 64-bit integer performance.  Some time ago, I
 experimentally changed the compiler to emit 64-bit index arithmetic
 instead, which resulted in a 50% slowdown on an NVIDIA GTX 780Ti GPU
 (a somewhat old model) on a `representative benchmark program
-<https://github.com/diku-dk/futhark-benchmarks/blob/master/finpar/OptionPricing.fut>`_).
+<https://github.com/diku-dk/futhark-benchmarks/blob/master/finpar/OptionPricing.fut>`_.
 
 At some point of course, this will stop being an acceptable
 constraint.  In principle, addressing this should be as simple as
