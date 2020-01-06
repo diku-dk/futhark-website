@@ -301,7 +301,7 @@ does it describe horisontal fusion.
 Selected Student Projects
 *************************
 
-* Robert Schenk: **Sum types in Futhark**.  MSc thesis.  Computer Science, University of Copenhagen. January 2020. (`pdf <student-projects/robert-msc-thesis.pdf>`_)
+* Robert Schenk: **Sum types in Futhark**.  MSc thesis.  Computer Science, University of Copenhagen. December 2019. (`pdf <student-projects/robert-msc-thesis.pdf>`_)
 
 * Henrik Urms, Anna Sofie Kiehn: **Refinement types in Futhark**.  MSc thesis.  Computer Science, University of Copenhagen. September 2019. (`pdf <student-projects/kiehn-urms-msc-thesis.pdf>`_)
 
