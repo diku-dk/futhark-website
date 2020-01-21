@@ -61,7 +61,7 @@ widespread as in other languages, I'm not sure the cost is worth it.
 Code emitted by the Futhark compiler uses 32-bit integers to track
 array sizes, do index calculations, and so on.  This has some obvious
 practical problems (arrays cannot be larger than 2³²-1 elements), but
-can lead to substantially faster execution, as both CPUs GPUs have
+can lead to substantially faster execution, as both CPUs and GPUs have
 substantially lower 64-bit integer performance.  Some time ago, I
 experimentally changed the compiler to emit 64-bit index arithmetic
 instead, which resulted in a 50% slowdown on an NVIDIA GTX 780Ti GPU
