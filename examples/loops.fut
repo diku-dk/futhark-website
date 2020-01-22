@@ -24,7 +24,7 @@ let xy =
 
 let xy' =
   loop p = (1,1) for i < 10 do
-    (p.2, p.1 + p.2)
+    (p.1, p.0 + p.1)
 
 -- Apart from `for` loops, Futhark also supports `for-in` loops:
 

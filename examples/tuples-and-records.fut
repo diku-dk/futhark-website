@@ -9,7 +9,7 @@ let a_tuple : (i32, bool) = (1, true)
 -- a pattern binding:
 
 let projection =
-  a_tuple.1
+  a_tuple.0
 
 let patmatch =
   let (a,b) = a_tuple
@@ -18,8 +18,7 @@ let patmatch =
 -- Pattern bindings are not allowed in top-level `let` declarations,
 -- but only inside `let` expressions (which are terminated with `in`).
 
--- Note that tuple projection is 1-indexed, as [opposed to
--- arrays](arrays.html), which are 0-indexed.
+-- Like [arrays](arrays.html), tuple projection is 1-indexed.
 --
 -- Records are written as fields enclosed by curly braces:
 
@@ -49,7 +48,7 @@ let another_record =
   a_record with bar = false
 
 -- Records and tuples are very similar.  In fact, a tuple is just a
--- record where all the fields look like numbers counted from 1:
+-- record where all the fields look like numbers counted from 0:
 
 let another_tuple : (i32, bool) =
-  {1 = 0, 2 = true}
+  {0 = 0, 1 = true}

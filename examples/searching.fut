@@ -19,7 +19,7 @@ let find_index 'a [n] (p: a -> bool) (as: [n]a): i32 =
                    else (y, j)
     else if y then (y, j)
     else (x, i)
-  in (reduce_comm op (false, -1) (zip (map p as) (iota n))).2
+  in (reduce_comm op (false, -1) (zip (map p as) (iota n))).1
 
 -- Note that if no element is acceptable, we return the index -1.  An
 -- alternative could be to use a [sum type](sum-types.html) to return
@@ -47,7 +47,7 @@ let find_elem_seq 'a [n] (p: a -> bool) (as: [n]a) : found a =
    while i < n do
      if p as[i]
      then (#found as[i], n)
-     else (#not_found, i+1)).1
+     else (#not_found, i+1)).0
 
 -- No parallelism here.  We can combine the sequential and the
 -- parallel approaches by writing a function that sequentially
@@ -59,7 +59,7 @@ let find_elem_chunked 'a [n] (k: i32) (p: a -> bool) (as: [n]a) : found a =
    while chunk_offset < n do
      match find_elem p as[chunk_offset: i32.min n (chunk_offset+k)]
      case #found x -> (#found x, n)
-     case #not_found -> (#not_found, chunk_offset+k)).1
+     case #not_found -> (#not_found, chunk_offset+k)).0
 
 -- In most cases, the original `find_index` and `find_elem` will be
 -- fast enough, as these simple `map`-`reduce` compositions are quire
