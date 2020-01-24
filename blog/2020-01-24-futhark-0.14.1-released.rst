@@ -1,0 +1,210 @@
+---
+title: Futhark 0.14.1 released
+author: Troels Henriksen
+description: First release of the decade.
+---
+
+Another release of Futhark is out (`full changelog
+<https://github.com/diku-dk/futhark/releases/tag/v0.14.1>`_).  This
+release has a large number of user-visible changes, but with one major
+exception, most are fiddly things intended to ease the eventual
+transition to `size types <2019-08-03-towards-size-types.html>`_.
+
+The exception is that tuples in Futhark are now 0-indexed rather than
+1-indexed.  This was one of the design flaws I discussed in a
+`previous blog post <2019-12-18-design-flaws-in-futhark.html>`_ and
+the resulting discussion gave me the confidence necessary to carry out
+the change.  My reasoning was helped along by the fact that tuples are
+also 0-indexed in Rust.  Generally, when in doubt about some
+relatively superficial syntactical or lexical detail, do what Rust
+does.  They've generally put significant thought into these details,
+and so will not have any hidden pitfalls.  (Similarly, think hard when
+deviating from the Standard ML type system!)  It will probably take
+some time to chase down all the old Futhark code and examples that
+still uses 1-indexed tuples, but it will happen eventually.
+
+Inching towards size types
+--------------------------
+
+Size types are all about statically ensuring that arrays that *should*
+have the same size (such as the inputs to a dot product) *will* have
+the same size.  Currently, this is done with dynamic checks.
+
+A design for size types could quickly decay into full dependent typing
+with arbitrary type-level arithmetic, which makes for a rather
+complicated language.  To keep Futhark simple, we restrict array sizes
+to being either *variable names* or *constants*.  For example,
+``[n]i32`` is an array type, as is ``[2]bool``, but ``[n+1]i32`` is
+not.  Whenever the result size of an operation cannot be expressed as
+a constant or variable name, e.g. when concatenating or filtering
+arrays, the type checker will invent an "unknowable size variable" to
+describe the size.  We are still working out the details of size
+typing, in particular with respect to making the errors
+understandable.  It will take some time to make the switch, so our
+plan is to make it possible to write code that is type-correct under
+both the current lax rules, and the new stricter rules.  This gives us
+the chance to experiment on real code, without having to set up an
+alternative universe of libraries and test programs.
+
+To a large extent, this has worked well.  Size types have not required
+any new language constructs or syntax (until now, as I'll get to
+later), as they were merely extra rules imposed by the type checker.
+However, some of the existing semantics of the language had to be
+tightened up.
+
+As an example, consider the range expression ``x..<y``.  This
+constructs an array of the integers ``x`` to ``y-1``.  In general, the
+size of this array is unknowable, but for the common case ``0..<y``,
+it will have size ``y``.  But what if ``y`` is a negative number at
+run-time?  In our previous semantics, invalid ranges just produced
+empty arrays, but an empty array has size ``0``, not ``y`` (which is
+negative).  Clearly this won't fly in a language where sizes actually
+matter.  Instead, invalid ranges now produce a run-time error, which
+makes the types not a lie.
+
+Changes to value specs
+......................
+
+Another thing we changed was *value specs*.  These are used in module
+types to describe interfaces.  For example, we can declare that a
+module provides a function ``reverse`` that given an
+array with elements ``t``, produces an array of the same size::
+
+  val reverse [n] : [n]t -> [n]t
+
+We use a *size parameter* ``[n]`` to give a name to the size of the
+input array.  Previously, such sizes were optional, and we could also
+have written::
+
+  val reverse : []t -> []t
+
+This has strictly less information, because it doesn't encode the fact
+that ``reverse`` is size-preserving.  However it's useful for
+functions where the return type does not mention the size::
+
+  val sum : []t -> t
+
+*Without* size types, we can have "anonymous" dimension sizes, since
+they don't really matter except for documentation.  *With* size types,
+it's important that every dimension has a size.  It's no technical
+problem for the compiler to find any empty dimensions and invent new
+names for them, and for value *definitions*, that is what we do.
+However, module types are supposed to be for describing interfaces, so
+we think it is cleaner to require that all sizes must be given a name
+(except for return types, where an anonymous dimension means that the
+size cannot be expressed statically).
+
+Size-lifted types
+.................
+
+An *irregular array* is a multidimensional array where the rows have different sizes::
+
+  [[1,2,3],
+   [4,5],
+   [6]]
+
+For various efficiency reasons, these are not supported in Futhark.
+Currently, this is enforced with dynamic checks.  One of the promises
+of size typing is to enforce this with static checks instead.
+
+Fortunately, we get this property almost for free.  By making sizes
+part of the type, an array expression ``[x, y]`` is regular if ``x``
+and ``y`` have the same type.  The only thing we have to make certain
+is that sizes cannot be "hidden" through abstract types.  There are
+two places in Futhark where the definition of a type can be hidden:
+through parametric polymorphism (type parameters), and via the module
+system.  The latter is the more interesting case.
+
+With a module type, we can declare that some module must define a
+type, and a few values of that type::
+
+  module type mt = {
+    type t
+    val x : t
+    val y : t
+  }
+
+With a *module type ascription* we can declare that a module
+implements ``mt``, but hide the specific definition of the type ``t``::
+
+  module m : mt = {
+    type t = i32
+    let x = 1
+    let y = 2
+  }
+
+Now we can construct an array ``[m.x, m.y]``, which will work fine,
+although it's not very useful.  But now consider this definition::
+
+  module m : mt = {
+    type t = []i32
+    let x = [1]
+    let y = [2,2]
+  }
+
+What happens when we do ``[m.x, m.y]``?  Since the definition of
+``m.t`` is abstract, the type checker has no reason to object, but we
+are really constructing an irregular array here!  That's a problem.
+The solution is to *forbid* type abbreviations that have anonymous
+sizes in their definition.  It is still possible to write
+size-parametric types, as this just propagates the inner sizes
+outwards::
+
+  type vector [n] = [n]i32
+
+Unfortunately, this solution is also a bit too restrictive.  Sometimes
+it is useful to have abstract type that can internally contain an
+arrays of hidden sizes.  That's what abstraction is all about!  To
+handle this case, we introduce the notion of *size-lifted types*::
+
+  module type mt = {
+    type~ t
+    val x : t
+    val y : t
+  }
+
+  module m : mt = {
+    type~ t = []i32
+    let x = [1]
+    let y = [2,2]
+  }
+
+When a type is declared with ``type~`` (rather than ``type``), it is
+permitted to have anonymous sizes in the definition.  On the other
+hand, size-lifted types cannot be put in arrays, so now ``[m.x, m.y]``
+will be a type error.
+
+Size-lifted types are similar to *fully lifted types* (defined with
+``type^``), which we previously used to handle higher-order functions.
+In fact, size-lifted types are a *subset* of fully lifted types, as
+fully lifted types also cannot be put in arrays.
+
+While I'm not terribly excited about adding another *kind* of types to
+the type system, it's the simplest solution we could think of, and the
+mechanism has precedent in Futhark, where it has worked well.
+
+Size coercion
+.............
+
+Since our size type system is so simple, there are many situations
+where the programmer will have to insert explicit coercions.  For
+example, if you *know* somehow that some ``filter`` expression will
+always produce an array of size ``k``, you'd write::
+
+  filter f xs : [k]i32
+
+This repurposes the *type ascription* operator to perform a kind of
+dynamic coercion on sizes, where a run-time check verifies that the
+result of ``filter`` is of length ``k``.
+
+While this has the advantage of not requiring any new syntax, it has
+the downside of changing type ascription from an operator that you
+insert to improve clarity or disambiguate a type, to one that might
+perform a dynamic check.  So instead, this version of the compiler
+introduces *size coercion*::
+
+  filter f xs :> [k]i32
+
+It currently means exactly the same thing as type ascription.  With
+size types, it will perform a dynamic coercion (and type ascription
+will go back to enforcing the type statically).
