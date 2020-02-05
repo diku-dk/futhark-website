@@ -93,10 +93,3 @@ Tracing: the Next Weekend in Futhark
 implementations based on Peter Shirley's book series.  These are by no
 means real-time ray tracers, but support advanced effects and make use
 of acceleration structures like BVH trees.
-
-`tail2futhark <https://github.com/henrikurms/tail2futhark>`_ is not
-written in Futhark itself, but is a code generator that produces
-Futhark, and serves as a component in an APL-to-GPU compilation
-pipeline.  There is a `blog post
-</blog/2016-06-20-futhark-as-an-apl-compiler-target.html>`_ with more
-details.
