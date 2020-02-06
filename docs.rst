@@ -70,7 +70,7 @@ new results (using forward-propagation). Individual layers in a
 network can take different forms ranging over dense sigmoid layers to
 convolutional layers. We demonstrate that Futhark's elimination of
 higher-order functions and modules leads to efficient generated code,
-with comparison to to TensorFlow.
+with comparison to TensorFlow.
 
 The `code is available <https://github.com/HnimNart/deeplearning>`_
 and the paper itself is a distillation of Duc Minh Tran's `bachelor's
