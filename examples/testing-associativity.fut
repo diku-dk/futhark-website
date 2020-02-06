@@ -17,7 +17,7 @@ let testassoc 'a [n] (eq: a -> a -> bool)
                      (op: a -> a -> a)
                      (ne: a)
                      (arr: [n]a) =
-  let hom = reduce op ne
+  let hom xs = reduce op ne xs
   let golden = hom arr
   in (.1) <| loop (ok, i) = (true, 0) while ok && i < n do
     let (bef, aft) = split i arr

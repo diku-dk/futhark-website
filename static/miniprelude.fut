@@ -73,8 +73,8 @@ let filter 'a (p: a -> bool) (as: []a): *[]a =
                        (zip offsets keep))
                   as
 
-let stream_map 'a 'b (f: []a -> []b) (as: []a): []b =
-  as |> unflatten (length as) 1 |> map f |> flatten
+let stream_map 'a 'b (f: (c: i32) -> [c]a -> [c]b) (as: []a): []b =
+  as |> unflatten (length as) 1 |> map (f 1) |> flatten
 
-let stream_red 'a 'b (op: b -> b -> b) (f: []a -> b) (as: []a): b =
-  as |> unflatten (length as) 1 |> map f |> reduce op (f [])
+let stream_red 'a 'b (op: b -> b -> b) (f: (c: i32) -> [c]a -> b) (as: []a): b =
+  as |> unflatten (length as) 1 |> map (f 1) |> reduce op (f 0 [])
