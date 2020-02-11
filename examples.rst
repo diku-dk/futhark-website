@@ -86,6 +86,9 @@ brute-force ray tracer written in Futhark.
 based on `iterated function systems
 <https://en.wikipedia.org/wiki/Iterated_function_system>`_.
 
+`Palathark <https://githepia.hesge.ch/orestis.malaspin/palathark>`_ is
+a Futhark implementation of the lattice Boltzmann method.
+
 `Ray Tracing in One Weekend in Futhark
 <https://github.com/athas/raytracinginoneweekendinfuthark>`_ and `Ray
 Tracing: the Next Weekend in Futhark
