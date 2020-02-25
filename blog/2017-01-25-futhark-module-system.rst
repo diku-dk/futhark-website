@@ -43,7 +43,7 @@ is merely a collection of declarations::
     let zero: t = 0
   }
 
-Now, ``AddI32.t`` is an alias for the type ``i32``, and ``Addi32.add``
+Now, ``AddI32.t`` is an alias for the type ``i32``, and ``AddI32.add``
 is a function that adds two values of type ``i32``.  The only peculiar
 thing about this notation is the equal sign before the opening brace.
 The declaration above is actually a combination of a *module
@@ -202,8 +202,8 @@ the parametric module.  We can instantiate ``Sum`` again with
 another module; this one anonymous::
 
   module Prod64s = Sum({
-    type t = 64
-    let (x: f64) (y: f64): f64 = x * y
+    type t = f64
+    let add (x: f64) (y: f64): f64 = x * y
     let zero: f64 = 1.0
   })
 
