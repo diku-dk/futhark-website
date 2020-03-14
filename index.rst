@@ -28,7 +28,7 @@ floating-point numbers:
    * `Tutorial <http://futhark-book.readthedocs.io/en/latest/>`_
    * `User's guide <https://futhark.readthedocs.io>`_
    * `Language reference <https://futhark.readthedocs.io/en/latest/language-reference.html>`_
-   * `Basis library <https://futhark-lang.org/docs/>`_
+   * `Prelude <https://futhark-lang.org/docs/prelude>`_
    * `More packages <https://futhark-lang.org/pkgs/>`_
 
 Futhark is not designed for graphics programming, but instead uses the
