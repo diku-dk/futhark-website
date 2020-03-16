@@ -1,0 +1,333 @@
+---
+title: Futhark 0.15.1 released
+author: Troels Henriksen
+description: Size types are here.
+---
+
+Being cloistered up has led to a new release of Futhark being out
+(`full changelog
+<https://github.com/diku-dk/futhark/releases/tag/v0.15.1>`_).  This is
+a very large release, in particular with respect to the user-visible
+source language, mostly because of the addition of size types to
+Futhark.  These have been the subject of `a previous blog post
+<2019-08-03-towards-size-types.html>`_, and I will get to them in a
+moment, but let me first mention two other major improvements.
+
+Parallel safety checking
+------------------------
+
+The parallel code generators can now handle bounds checking and
+similar safety checks in GPU code, including checking for integer
+division by zero!  Only the exceptional impact of size types keeps
+this from being the highlight of the release, as having to constantly
+use ``unsafe`` has been an embarrassment for years.
+
+The precise implementation technique is certainly going to be the
+subject of an upcoming blog post (and hopefully paper), but let me
+mention that the overhead of full safety checking seems to be about
+10% on average.  You can of course still use ``unsafe`` if 10% too
+much for you.  Considering how relatively easy this was to implement,
+we should have done it years ago.
+
+Better type errors
+------------------
+
+Type error messages are now a lot better.  Instead of emitting a
+mismatch from deep within `algorithm J
+<https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system>`_,
+the compiler can in most cases provide an error that is similar to
+what you'd expect in a language without type inference.  I still think
+Futhark has a way to go before it has *good* error messages, but they
+are a lot better than they used to be.  Some examples (without source
+locations):
+
+* .. code-block:: Futhark
+
+     let f (x: f32) (y: i32) = x + y
+
+     -- Before:
+     --
+     -- Types do not match.
+     -- When matching type
+     --   f32
+     -- with
+     --   i32
+
+     -- Now:
+     --
+     -- Cannot apply "+" to "y" (invalid type).
+     -- Expected: f32
+     -- Actual:   i32
+
+* .. code-block:: Futhark
+
+     let g (xs: []i32) = i32.maximum xs xs
+
+     -- Before:
+     --
+     -- Attempt to apply an expression of type i32 to an argument of type []i32.
+
+     -- Now:
+     --
+     -- Cannot apply "i32.maximum" to argument #2 "xs",
+     -- as "i32.maximum" only takes 1 argument.
+
+* .. code-block:: Futhark
+
+     let h (v: {a: i32, b: i32, c: i32}) : {a: i32, b: i32, d: i32} = v
+
+     -- Before:
+     --
+     -- Types do not match.
+     -- When matching type
+     --   {a: i32, b: i32, d: i32}
+     -- with
+     --   {a: i32, b: i32, c: i32}
+
+     -- Now:
+     --
+     -- Function body does not have expected type.
+     -- Expected: {a: i32, b: i32, d: i32}
+     -- Actual:   {a: i32, b: i32, c: i32}
+     --
+     -- Unshared fields: d, c.
+
+As with safety checking, we should have improved this years ago.  It
+was surprisingly pleasant to work on as well, although I found it hard
+to come up with precise principles to follow when generating type
+errors.  One thing I *did* do was stop considering unification as
+responsible for generating full type errors, and instead simply
+consider it a detector (and possibly elaborator when the precise error
+is obscure).  This can be seen in the ``f`` example above: if the
+error occurs while checking a function application, then the error
+message primarily talks about how the function cannot be applied to
+the given argument, and shows the actual (pre-inference) types
+involved.  If the actual type mismatch is more complex, for example
+deep inside nested records, then the actual unification error will
+also be shown.
+
+Size types
+----------
+
+Futhark now supports a simple system of size-dependent types that
+statically verifies that the sizes of arrays passed to a function are
+compatible.  The focus is on simplicity, not completeness.
+
+Whenever a pattern occurs (in ``let``, ``loop``, and function
+parameters), as well as in return types, *size annotations* may be
+used to express invariants about the shapes of arrays that are
+accepted or produced by the function.  For example::
+
+  let f [n] (a: [n]i32) (b: [n]i32): [n]i32 =
+    map (+) a b
+
+This says that ``f`` takes two arrays of the same size.  We use a
+*size parameter*, ``[n]``, to explicitly quantify the names of shapes.
+The ``[n]`` parameter is not explicitly passed when calling ``f``.
+Rather, its value is implicitly deduced from the arguments passed for
+the value parameters.  An array can contain *anonymous dimensions*,
+e.g. ``[]i32``, for which the type checker will invent fresh size
+parameters, which ensures that all sizes have a (symbolic) size.
+
+A size annotation can also be an integer constant (with no suffix).
+Size parameters can be used as ordinary variables within the scope of
+the parameters.  The type checker verifies that the program obeys any
+constraints imposed by size annotations.
+
+*Size-dependent types* are supported, as the names of parameters can
+be used in the return type of a function::
+
+  let replicate 't (n: i32) (x: t): [n]t = ...
+
+An application ``replicate 10 0`` will then have type ``[10]i32``.
+
+Unknown sizes
+~~~~~~~~~~~~~
+
+Since sizes must be constants or variables, there are many cases where
+the type checker cannot assign a precise size to the result of some
+operation.  For example, the type of ``concat`` should conceptually be::
+
+  val concat [n] [m] 't : [n]t -> [m]t -> [n+m]t
+
+But this is not presently allowed.  Instead, the return type contains
+an anonymous size::
+
+  val concat [n] [m] 't : [n]t -> [m]t -> []t
+
+When an application ``concat xs ys`` is found, the result will be of
+type ``[k]t``, where ``k`` is a fresh *unknown size* variable that is
+considered distinct from every other size in the program.  It is often
+necessary to perform a size coercion (covered below) to convert an
+unknown size to a known size.
+
+Generally, unknown sizes are constructed whenever the true size cannot
+be expressed.  The `language reference
+<https://futhark.readthedocs.io/en/latest/language-reference.html#size-types/>`_
+lists all such cases, but here are some of the most interesting ones:
+
+Size going out of scope
+.......................
+
+An unknown size is created when the proper size of an array refers to
+a name that has gone out of scope::
+
+  let c = a + b
+  in replicate c 0
+
+The type of ``replicate c 0`` is ``[c]i32``, but since ``c`` is
+locally bound, the type of the entire expression is ``[k]i32`` for
+some fresh ``k``.
+
+Compound expression passed as function argument
+...............................................
+
+Intuitively, the type of ``replicate (x+y) 0`` should be ``[x+y]i32``,
+but since sizes must be names or constants, this is not expressible.
+Therefore an unknown size variable is created and the size of the
+expression becomes ``[k]i32``.
+
+Complex slicing
+...............
+
+Most complex array slicing, such as ``a[i:j]``, will have an unknown
+size.  Exceptions are specially detected patterns such as ``a[0:j]``,
+which will have size ``j``.
+
+Complex ranges
+..............
+
+Most complex ranges, such as ``a..<b``, will have an known size.
+Again, a few patterns like ``0..1..<n`` are detected specially for
+convenience.
+
+Anonymous size in function return type
+......................................
+
+Whenever the result of a function application would have an anonymous
+size, that size is replaced with a fresh unknown size variable.
+
+For example, ``filter`` has the following type::
+
+  val filter [n] 'a : (p: a -> bool) -> (as: [n]a) -> []a
+
+Naively, an application ``filter f xs`` seems like it would have type
+``[]a``, but a fresh unknown size ``k`` will be created and the actual
+type will be ``[k]a``.
+
+Branches of ``if`` return arrays of different sizes
+...................................................
+
+When an ``if`` (or ``match``) expression has branches that returns
+array of different sizes, the differing sizes will be replaced with
+fresh unknown sizes.  For example::
+
+  if b then [[1,2], [3,4]]
+       else [[5,6]]
+
+This expression will have type ``[k][2]i32``, for some fresh ``k``.
+
+Size coercion
+~~~~~~~~~~~~~
+
+Size coercion, written with ``:>``, can be used to perform a
+runtime-checked coercion of one size to another.  Since size
+annotations can refer only to variables and constants, this is
+necessary when writing more complicated size functions::
+
+  let concat_to 'a (m: i32) (a: []a) (b: []a) : [m]a =
+    a ++ b :> [m]a
+
+Only expression-level type annotations give rise to run-time checks.
+Despite their similar syntax, parameter and return type annotations
+must be valid at compile-time, or type checking will fail.
+
+Causality restriction
+~~~~~~~~~~~~~~~~~~~~~
+
+Conceptually, size parameters are assigned their value by reading the
+sizes of concrete values passed along as parameters.  This means that
+any size parameter must be used as the size of some parameter.  This
+is an error::
+
+  let f [n] (x: i32) = n
+
+The following is not an error::
+
+  let f [n] (g: [n]i32 -> [n]i32) = ...
+
+However, using this function comes with a constraint: whenever an
+application ``f x`` occurs, the value of the size parameter must be
+inferable.  Specifically, this value must have been used as the size
+of an array *before* the ``f x`` application is encountered.  The
+notion of "before" is subtle, as there is no evaluation ordering of a
+Futhark expression, *except* that a ``let``-binding is always
+evaluated before its body, and the argument to a function is always
+evaluated before the function.
+
+The causality restriction only occurs when a function has size
+parameters whose first use is *not* as a concrete array size.  For
+example, it does not apply to uses of the following function::
+
+  let f [n] (arr: [n]i32) (g: [n]i32 -> [n]i32) = ...
+
+This is because the proper value of ``n`` can be read directly from
+the actual size of the array.
+
+In practice, this is implemented as a pass after size inference, where
+it is checked that all sizes are "created" before they are used as an
+implicit size parameter.
+
+Just as with size-polymorphic functions, when constructing an empty
+array, we must know the exact size of the (missing) elements.  For
+example, in the following proram we are forcing the elements of ``a``
+to be the same as the elements of ``b``, but the size of the elements
+of ``b`` are not known at the time ``a`` is constructed::
+
+  let main (b: bool) (xs: []i32) =
+    let a = [] : [][]i32
+    let b = [filter (>0) xs]
+    in a[0] == b[0]
+
+The result is a type error.
+
+Sizes and Higher-order functions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When a higher-order function takes a functional argument whose return
+type is a non-lifted type parameter, any instantiation of that type
+parameter must have a non-anonymous size.  If the return type is a
+lifted type parameter, then the instiation may contain anonymous
+sizes.  This is why the type of ``map`` guarantees regular arrays::
+
+  val map [n] 'a 'b : (a -> b) -> [n]a -> [n]b
+
+The type parameter ``b`` can only be replaced with a type that has
+non-anomymous sizes, which means they must be the same for every
+application of the function.  In contrast, this is the type of the
+pipeline operator::
+
+  val (|>) '^a -> '^b : a -> (a -> b) -> b
+
+The provided function can return something with an anonymous size
+(such as ``filter``).
+
+Are size types usable in practice?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When adding new type restrictions to a programming language, one has
+to be sure that the new, more restricted language is still useful for
+its intended purpose.  Size types are a potential problem in this
+regard, because they are a novel and exotic feature in a language that
+isn't supposed to be particularly difficult or advanced.  However,
+evaluating the impact on tens of thousands of lines of Futhark code,
+including `the benchmark suite
+<https://github.com/diku-dk/futhark-benchmarks>`_ and `many Lys
+programs
+<https://github.com/diku-dk/lys#examples-of-programs-using-lys>`_,
+shows that size types to a large extent just formalise what was
+already common and good programming practice.  There are still cases
+where the error messages are obscure, but a lot of the work on
+improving type errors was motivated by making size types friendlier to
+work with.  We have reasonable confidence that size types will be
+comprehensible to most Futhark programmers, including novices.
