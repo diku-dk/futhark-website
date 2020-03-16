@@ -197,7 +197,7 @@ which will have size ``j``.
 Complex ranges
 ..............
 
-Most complex ranges, such as ``a..<b``, will have an known size.
+Most complex ranges, such as ``a..<b``, will have an unknown size.
 Again, a few patterns like ``0..1..<n`` are detected specially for
 convenience.
 
