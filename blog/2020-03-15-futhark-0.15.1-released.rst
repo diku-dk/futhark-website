@@ -1,5 +1,5 @@
 ---
-title: Futhark 0.15.1 released
+title: Futhark 0.15.1 released - now with size types!
 author: Troels Henriksen
 description: Size types are here.
 ---
