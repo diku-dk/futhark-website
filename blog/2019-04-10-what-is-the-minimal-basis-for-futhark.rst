@@ -80,7 +80,7 @@ but for an interesting reason:
 
 Futhark has special syntax for ranges, but this feels a bit like
 cheating - ``iota`` is the primitive, and this syntax is just sugar.
-Can we express ``iota`` in any other way?  Sort of: it is possible to
+Can we express ``iota`` in any other way?  Sort of.  It is possible to
 express ``iota`` as a `prefix sum
 <https://en.wikipedia.org/wiki/Prefix_sum>`_ on a replicated array:
 
@@ -127,7 +127,7 @@ Or ``rotate``:
      map (\i -> xs[(i+r) % length xs])
          (iota (length xs))
 
-Here are are bending the rules a bit.  The builtin ``rotate`` is an
+Here we are bending the rules a bit.  The builtin ``rotate`` is an
 index transformation that does not have to copy its input - hence, it
 is in principle *O(1)* work, while ours is *O(n)*.  However, any
 non-pathological use will eventually require the rotated array to be
