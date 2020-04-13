@@ -76,7 +76,7 @@ not where you run) to get the static libraries.  I'd rather not make
 that the default for people who compile Futhark on their own.
 
 My solution was to write a `Nix derivation
-<https://github.com/diku-dk/futhark/blob/master/default.nix>`_ for
+<https://github.com/diku-dk/futhark/blob/08fe6b47c273311f4c595f59972418fce8194948/default.nix>`_ for
 building Futhark release tarballs.  It concisely encapsulates the
 environment and dependencies necessary for statically linking the
 ``futhark`` binary (as well as the man pages, for that matter).  The
