@@ -78,7 +78,6 @@ let combine_channels [rows][cols]
 
 let new_value [rows][cols]
              (image: [rows][cols]f32) (row: i32) (col: i32): f32 =
-  unsafe
   let sum =
     image[row-1,col-1] + image[row-1,col] + image[row-1,col+1] +
     image[row,  col-1] + image[row,  col] + image[row,  col+1] +
