@@ -32,7 +32,7 @@ Let's look at one recent release::
 Most of these dependencies are very standard - the C library, its math
 component, the Linux syscall interface, and so on.  The only remotely
 unusual parts are ``libtinfo.so.5`` (for terminal information),
-``libz.so.`` (unpacking zip files), and ``libgmp.so.10`` (`bignums
+``libz.so`` (unpacking zip files), and ``libgmp.so.10`` (`bignums
 <https://en.wikipedia.org/wiki/Arbitrary-precision_arithmetic>`_).
 All of these are pretty common libraries, but they are not truly
 universal, and there have been a few cases where the ``futhark``
