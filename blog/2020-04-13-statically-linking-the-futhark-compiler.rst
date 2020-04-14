@@ -37,9 +37,9 @@ unusual parts are ``libtinfo.so.5`` (for terminal information),
 All of these are pretty common libraries, but they are not truly
 universal, and there have been a few cases where the ``futhark``
 binary failed to run because of a missing dependency.  In particular,
-different distributions use have installed different versions of
-``libgmp.so`` by default.  Similarly, using ``libtinfo.so.5`` instead
-of ``libncursesw.so.6`` reflects that this binary was built on a
+different distributions have different versions of ``libgmp.so``
+installed by default.  Similarly, using ``libtinfo.so.5`` instead of
+``libncursesw.so.6`` reflects that this binary was built on a
 relatively old system (Ubuntu 14.04, running on Travis).  On newer
 systems, this may require users to install a package such as
 `ncurses5-compat-libs
