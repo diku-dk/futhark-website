@@ -43,10 +43,10 @@ installed by default.  Similarly, using ``libtinfo.so.5`` instead of
 relatively old system (Ubuntu 14.04, running on Travis).  On newer
 systems, this may require users to install a package such as
 `ncurses5-compat-libs
-<https://aur.archlinux.org/packages/ncurses5-compat-libs/>`_.  the CI
-systems is not a solution, because then the binaries might not run on
-older systems, and many scientific computing installations tend to run
-systems like `RHEL
+<https://aur.archlinux.org/packages/ncurses5-compat-libs/>`_.
+Updating the CI systems is not a solution, because then the binaries
+might not run on older systems, and many scientific computing
+installations tend to run systems like `RHEL
 <https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux>`_,
 which can stay unchanged for many years.  What to do?  I got into
 compilers so I didn't have to worry about all this systems
