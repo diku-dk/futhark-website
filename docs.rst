@@ -10,7 +10,7 @@ compilers, as well as the `language reference`_ and instructions on
 `how to install the Futhark compiler`_.
 
 There is also automatically generated `documentation for the Futhark
-Basis Library`_.  The basis library is very small, so in most cases
+prelude`_.  The prelude library is very small, so in most cases
 you will want to use `external packages <https://futhark-lang.org/pkgs/>`_.
 
 If there is something you believe should be documented, but is not,
@@ -21,7 +21,7 @@ tracker.  See the page `Get Involved`_ for more information.
 .. _`Futhark User's Guide`: https://futhark.readthedocs.io/
 .. _`language reference`: https://futhark.readthedocs.io/en/latest/language-reference.html
 .. _`how to install the Futhark compiler`: https://futhark.readthedocs.io/en/latest/installation.html
-.. _`documentation for the Futhark Basis Library`: https://futhark-lang.org/docs/
+.. _`documentation for the Futhark prelude`: https://futhark-lang.org/docs/prelude/
 .. _`Get Involved`: /getinvolved.html
 
 Tools
