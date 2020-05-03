@@ -5,7 +5,7 @@ description: An explanation of the higher-order parallel programming model used 
 ---
 
 Whenever I explain parallel functional programming, whether to
-students or the barista at a coffee shop, one thing I must content
+students or the barista at a coffee shop, one thing I must contend
 with is people's prior experience with parallel programming.  Quite
 often, these experiences are with low-level multi-threaded
 programming, fraught with race conditions and other hazards.  Their
