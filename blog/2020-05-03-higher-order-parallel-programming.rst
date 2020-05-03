@@ -244,17 +244,18 @@ fair, but I can implement the NumPy approach in Futhark:
            scatter z is inc)
      in unflatten n m output
 
-This is actually a bit more efficient than NumPy, as I'm eliding some
-expensive filters.  It sure looks nasty, but how fast is it?  On my
-AMD Vega 64 GPU and for a 300x300 array, ``numpy_mandelbrot`` runs in
-**7846 microseconds**, while ``mandelbrot`` runs in **110
-microseconds**.  That's approaching two orders of magnitude faster!
-This is entirely down to ``mandelbrot`` being able to keep all its
-intermediate results in registers, and GPUs are *ludicrously* fast
-when they never have to touch memory.  In contrast,
-``numpy_mandelbrot`` constantly has to shuffle data across the
-relatively slow memory bus (350GiB/s), not to mention a lot of extra
-synchronisation because many more discrete GPU kernels are involved.
+This is actually a bit more efficient than the original NumPy
+formulation, as I'm avoiding some expensive filters.  It sure looks
+nasty, but how fast is it?  On my AMD Vega 64 GPU and for a 300x300
+array, ``numpy_mandelbrot`` runs in **7846 microseconds**, while
+``mandelbrot`` runs in **110 microseconds**.  That's approaching two
+orders of magnitude faster!  This is entirely down to ``mandelbrot``
+being able to keep all its intermediate results in registers, and GPUs
+are *ludicrously* fast when they never have to touch memory.  In
+contrast, ``numpy_mandelbrot`` constantly has to shuffle data across
+the relatively slow memory bus (350GiB/s), not to mention a lot of
+extra synchronisation because many more discrete GPU kernels are
+involved.
 
 In conclusion, higher-order parallelism programming is just as easy as
 first-order parallel programming, because it is still race-free and
