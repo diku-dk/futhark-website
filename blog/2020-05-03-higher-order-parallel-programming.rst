@@ -7,7 +7,7 @@ description: An explanation of the higher-order parallel programming model used 
 Whenever I explain parallel functional programming, whether to
 students or the barista at a coffee shop, one thing I must contend
 with is people's prior experience with parallel programming.  Quite
-often, these experiences are with low-level multi-threaded
+often these experiences are with low-level multi-threaded
 programming, fraught with race conditions and other hazards.  Their
 experience is that parallel programming is difficult and frustrating.
 And who can blame them? Shared-state multi-threaded programming is
@@ -16,13 +16,13 @@ However, this style of programming is neither necessary nor sufficient
 for parallelism.  Concurrent programming can be useful with just a
 single processor, after all.
 
-But still, such preconceptions present a barrier when I have to
+But still such preconceptions present a barrier when I have to
 explain the kind of parallel programming we support in a language such
 as Futhark.  My strategy has become to point at `NumPy
 <https://numpy.org/>`_, the Python array library, as an example of a
 widely used parallel programming model; one that has shown that
 high-level parallel programming can be just as accessible as
-sequential programming.  In this post, I will elaborate on this theme,
+sequential programming.  In this post I will elaborate on this theme
 and show the limitations of NumPy's *first-order* model, compared to
 Futhark's *higher-order* model.
 
@@ -70,7 +70,7 @@ we have a sequentially consistent view of data *between* these
 operations, the NumPy implementation do whatever parallel tricks it
 wishes *inside* them.  We get the best of both worlds: sequential,
 fully deterministic, line-at-a-time semantics, but (potentially)
-efficient parallel execution.  As human programmers, we have to
+efficient parallel execution.  As human programmers we have to
 express our code in terms of bulk operations, but we *never* have to
 worry about race conditions or nondeterminism.
 
@@ -83,7 +83,7 @@ similar array programming models (such as the venerable `APL
 Ultimately, in these models, all you have available as a programmer is
 a large set of builtin array operations.  If you want your own code to
 be efficient, in must be expressible in terms of these primitives.  In
-some cases, they are insufficiently flexible.  In particular, it is
+some cases they are insufficiently flexible.  In particular, it is
 tricky to define bulk operations that require per-element control
 flow.
 
@@ -115,7 +115,7 @@ data:
        x[x_nonneg] = np.sqrt(x[x_nonneg])
        return x
 
-This is not great.  In particular, the original function ``f`` is
+This is not great.  In particular the original function ``f`` is
 completely gone, so there is not any code re-use going on.  Further,
 those indexings are rather complex to parallelise, so we probably want
 an even nastier formulation (which runs almost twice as fast, even
