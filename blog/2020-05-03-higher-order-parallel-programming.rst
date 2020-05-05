@@ -159,8 +159,7 @@ Handling ``if`` in the previous example was bad enough.  Handling a
      output = np.zeros(c.shape)
      z = np.zeros(c.shape, np.complex32)
      for i in range(d):
-         notdone =
-           (z.real*z.real + z.imag*z.imag) < 4.0
+         notdone = (z.real*z.real + z.imag*z.imag) < 4.0
          output[notdone] = i
          z[notdone] = z[notdone]**2 + c[notdone]
      return output
