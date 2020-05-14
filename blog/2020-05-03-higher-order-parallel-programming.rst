@@ -67,7 +67,7 @@ execution becomes an engineering problem that is well within reach.
 The thing that makes NumPy work as a parallel programming model is the
 emphasis on bulk operations that operate on entire arrays.  As long as
 we have a sequentially consistent view of data *between* these
-operations, the NumPy implementation do whatever parallel tricks it
+operations, the NumPy implementation can do whatever parallel tricks it
 wishes *inside* them.  We get the best of both worlds: sequential,
 fully deterministic, line-at-a-time semantics, but (potentially)
 efficient parallel execution.  As human programmers we have to
