@@ -36,10 +36,7 @@ let combineChannels [rows][cols]
 let newValue [rows][cols]
              (image: [rows][cols]f32) (row: i32) (col: i32): f32 =
   -- The Futhark compiler cannot prove that these accesses are safe,
-  -- and cannot perform dynamic bounds checks in parallel code.  We
-  -- use the 'unsafe' keyword to elide the bounds checks.  If we did
-  -- not do this, the code generator would fail with an error message.
-  unsafe
+  -- and cannot perform dynamic bounds checks in parallel code.
   let sum =
     image[row-1,col-1] + image[row-1,col] + image[row-1,col+1] +
     image[row,  col-1] + image[row,  col] + image[row,  col+1] +

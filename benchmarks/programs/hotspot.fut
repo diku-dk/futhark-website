@@ -46,7 +46,7 @@ let single_iteration [row][col]
                let delta =
                  (step / cap) *
                (power[r,c] +
-                unsafe
+                #[unsafe]
                   (if r == 0 && c == 0 then -- Corner 1
                      (temp[r,c+1] - temp_el) / rx +
                      (temp[r+1,c] - temp_el) / ry

@@ -89,13 +89,7 @@ let new_value [rows][cols]
 --
 -- The alert reader will have noticed that `new_value` cannot be applied
 -- to pixels on the edge of the image - doing so would result in
--- out-of-bounds accesses to the `image` array.  We will take care to
--- only call the `new_value` function with safe indices, but the Futhark
--- compiler is sadly not yet smart enough to realise this - thus we are
--- forced to use the `unsafe` keyword to prevent the insertion of
--- bounds checks that would otherwise hinder parallelisation.  If we did
--- not use `unsafe`, the Futhark compiler would fail with an error
--- message pointing at the problematic array access.
+-- out-of-bounds accesses to the `image` array.
 --
 -- Now we can write the actual stencil function, which applies
 -- `new_value` to every inner element of a colour channel array.  This

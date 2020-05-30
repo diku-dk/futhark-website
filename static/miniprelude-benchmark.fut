@@ -10,8 +10,8 @@ module miniprelude = import "miniprelude"
 -- compiled random input { [100000000]i32 } output { 655409313i32 }
 
 entry bench_sum = reduce (+) 0i32
-entry bench_sum_mini_tree xs = unsafe miniprelude.reduce_tree (+) 0i32 xs
-entry bench_sum_mini xs = unsafe miniprelude.reduce (+) 0i32 xs
+entry bench_sum_mini_tree xs = #[unsafe] miniprelude.reduce_tree (+) 0i32 xs
+entry bench_sum_mini xs = #[unsafe] miniprelude.reduce (+) 0i32 xs
 
 -- ==
 -- entry: bench_prefix_sum bench_prefix_sum_mini
@@ -23,7 +23,7 @@ entry bench_sum_mini xs = unsafe miniprelude.reduce (+) 0i32 xs
 -- compiled random input { [100000000]i32 }
 
 entry bench_prefix_sum = scan (+) 0i32
-entry bench_prefix_sum_mini xs = unsafe miniprelude.scan (+) 0i32 xs
+entry bench_prefix_sum_mini xs = #[unsafe] miniprelude.scan (+) 0i32 xs
 
 -- ==
 -- entry: bench_dotprod bench_dotprod_mini
@@ -38,4 +38,4 @@ entry bench_dotprod [n] (xs: [n]i32) (ys: [n]i32): i32 =
   reduce (+) 0 (map (\(x, y) -> x*y) (zip xs ys))
 
 entry bench_dotprod_mini [n] (xs: [n]i32) (ys: [n]i32): i32 =
-  unsafe miniprelude.(reduce (+) 0 (map (\(x, y) -> x*y) (zip xs ys)))
+  #[unsafe] miniprelude.(reduce (+) 0 (map (\(x, y) -> x*y) (zip xs ys)))
