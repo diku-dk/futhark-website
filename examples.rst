@@ -86,6 +86,13 @@ brute-force ray tracer written in Futhark.
 based on `iterated function systems
 <https://en.wikipedia.org/wiki/Iterated_function_system>`_.
 
+`Neptune <https://github.com/filecoin-project/neptune>`_ is an
+implementation of the `Poseidon hash function
+<https://www.poseidon-hash.info/>`_ tuned for `Filecoin
+<https://filecoin.io/>`_, where `the GPU parts
+<https://github.com/filecoin-project/neptune-triton>`_ have been
+implemented in Futhark.
+
 `Palathark <https://githepia.hesge.ch/orestis.malaspin/palathark>`_ is
 a Futhark implementation of the lattice Boltzmann method.
 
