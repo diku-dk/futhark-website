@@ -30,14 +30,15 @@ Bridges
 The Futhark compiler can generate C or Python code.  A bridge allows
 programs written in other languages to conveniently call this code.
 
-* **Rust**: `genfut <https://github.com/Erk-/genfut>`_
-  generates Rust bindings to the generated C code.
+* **Haskell**: `Futhask <https://gitlab.com/Gusten_Isfeldt/futhask>`_
 
 * **Python**: `futhark-pycffi
-  <https://github.com/pepijndevos/futhark-pycffi/>`_ generates Python
-  bindings to the generated C code.  This is faster but less
-  convenient than using the compiler's `Python backend
-  <https://futhark.readthedocs.io/en/latest/man/futhark-pyopencl.html>`_.
+  <https://github.com/pepijndevos/futhark-pycffi/>`_ (or the
+  compiler's `builtin Python backend
+  <https://futhark.readthedocs.io/en/latest/man/futhark-pyopencl.html>`_,
+  which is slower but more convenient)
+
+* **Rust**: `genfut <https://github.com/Erk-/genfut>`_
 
 Tools
 *****
