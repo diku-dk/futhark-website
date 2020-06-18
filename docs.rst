@@ -308,6 +308,10 @@ does it describe horisontal fusion.
 Selected Student Projects
 *************************
 
+* Mathias Friis Rasmussen, Jonas Kristensen, Jens Nissen-Juul Sørensen, Christian Dybdahl Troelsen: **FutSpace - A Parallelizable Implementation of the Voxel Space Rendering Algorithm**. BSc thesis.  Computer Science, University of Copenhagen. June 2020. (`pdf <student-projects/futspace-bsc-thesis.pdf>`_)
+
+* Ulrik Stuhr Larsen, Lotte Maria Bruun: **A Language for Parallel Generation of L-Systems**. BSc thesis.  Computer Science, University of Copenhagen. June 2020. (`pdf <student-projects/lotte-ulrik-bsc-thesis.pdf>`_)
+
 * Robert Schenck: **Sum types in Futhark**.  MSc thesis.  Computer Science, University of Copenhagen. December 2019. (`pdf <student-projects/robert-msc-thesis.pdf>`_)
 
 * Henrik Urms, Anna Sofie Kiehn: **Refinement types in Futhark**.  MSc thesis.  Computer Science, University of Copenhagen. September 2019. (`pdf <student-projects/kiehn-urms-msc-thesis.pdf>`_)
