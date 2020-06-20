@@ -43,18 +43,18 @@ programs written in other languages to conveniently call this code.
 Tools
 *****
 
-* `Futhark support for Sublime Text 3 <https://github.com/titouanc/sublime-futhark>`_.
+* `Futhark support for Sublime Text 3 <https://github.com/titouanc/sublime-futhark>`_
 
-* `futhark-mode <https://github.com/diku-dk/futhark-mode>`_ for Emacs.
+* `futhark-mode <https://github.com/diku-dk/futhark-mode>`_ for Emacs
 
-* `Syntax highlighting for Vim <https://github.com/BeneCollyridam/futhark-vim>`_.
+* `Syntax highlighting for Vim <https://github.com/BeneCollyridam/futhark-vim>`_
 
 * `Futhark language definition for Gedit
-  <https://github.com/diku-dk/futhark/blob/master/tools/futhark.lang>`_.
-  Simply place the linked file in
-  ``~/.local/share/gtksourceview-3.0/language-specs/``.
+  <https://github.com/diku-dk/futhark/blob/master/tools/futhark.lang>`_
+  (place the linked file in
+  ``~/.local/share/gtksourceview-3.0/language-specs/``)
 
-.. _`futhark-pycffi`: https://pypi.org/project/futhark-ffi/
+* `Property-based testing for Futhark <https://github.com/Unigurd/fucheck>`_
 
 Publications
 ************
