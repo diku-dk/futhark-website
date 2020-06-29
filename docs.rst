@@ -308,6 +308,8 @@ does it describe horisontal fusion.
 Selected Student Projects
 *************************
 
+* Ulrik Elmelund Petersen: **Optimizing the kNN algorithm for GPGPUs in Futhark**.  BSc thesis.  Computer Science, University of Copenhagen. June 2020. (`pdf <student-projects/ulrik-bsc-thesis.pdf>`_)
+
 * Mathias Friis Rasmussen, Jonas Kristensen, Jens Nissen-Juul Sørensen, Christian Dybdahl Troelsen: **FutSpace - A Parallelizable Implementation of the Voxel Space Rendering Algorithm**. BSc thesis.  Computer Science, University of Copenhagen. June 2020. (`pdf <student-projects/futspace-bsc-thesis.pdf>`_)
 
 * Ulrik Stuhr Larsen, Lotte Maria Bruun: **A Language for Parallel Generation of L-Systems**. BSc thesis.  Computer Science, University of Copenhagen. June 2020. (`pdf <student-projects/lotte-ulrik-bsc-thesis.pdf>`_)
