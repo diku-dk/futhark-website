@@ -55,9 +55,13 @@ this version 0.16.1 rather than 0.15.9:
   `attribute
   <2020-06-28-attributes-in-futhark.html>`_.
 
-* Futhark 0.15.8 added warnings for out-of-bounds literals such as
-  ``300i8``.  These warnings are now errors, since I cannot think of
-  any good reason to ever use an out-of-bounds literal.
+* Futhark 0.15.8 added warnings for literals that are inferred to have
+  a type for which they would be out-of-bounds, such as ``300 : i8``.
+  These warnings are now errors, since I cannot think of any good
+  reason to ever use an out-of-bounds literal.  (For technical
+  reasons, typed literals like ``300i8`` are still permitted, `as
+  pointed out by the person who actually implemented this
+  <https://www.reddit.com/r/ProgrammingLanguages/comments/hmri59/futhark_0161_released/fx8bvxy>`_.)
 
 * Type ascriptions on entry points now always result in opaque types
   in the C API when the underlying concrete type is a tuple.
