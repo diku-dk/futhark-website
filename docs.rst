@@ -308,6 +308,8 @@ does it describe horisontal fusion.
 Selected Student Projects
 *************************
 
+* Johan Johansson, Ari von Nordenskjöld: **Ray Tracing for Sensor Simulation using Parallel Functional Programming**.  MSc thesis.  Chalmers University of Technology.  June 2020. (`pdf <student-projects/johan-ari-msc-thesis.pdf>`_)
+
 * Ulrik Elmelund Petersen: **Optimizing the kNN algorithm for GPGPUs in Futhark**.  BSc thesis.  Computer Science, University of Copenhagen. June 2020. (`pdf <student-projects/ulrik-bsc-thesis.pdf>`_)
 
 * Mathias Friis Rasmussen, Jonas Kristensen, Jens Nissen-Juul Sørensen, Christian Dybdahl Troelsen: **FutSpace - A Parallelizable Implementation of the Voxel Space Rendering Algorithm**. BSc thesis.  Computer Science, University of Copenhagen. June 2020. (`pdf <student-projects/futspace-bsc-thesis.pdf>`_)
