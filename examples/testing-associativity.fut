@@ -27,7 +27,7 @@ let testassoc 'a [n] (eq: a -> a -> bool)
 -- It works by splitting the input `arr` at every possible point,
 -- reducing the two parts separately, combining these partial results
 -- with `f`, and then comparing them to reducing `arr` as a whole.  If
--- there is a difference (as determined with `eq`, then we have a
+-- there is a difference (as determined with `eq`), then we have a
 -- counterexample.
 --
 -- For example, we can use it to show that subtraction is not associative:
