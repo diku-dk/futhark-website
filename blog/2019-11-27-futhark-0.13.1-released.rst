@@ -9,7 +9,7 @@ motivation was the fix of a few bugs that I worried would be
 encountered by the students currently taking our `course on Parallel
 Functional Programming <https://github.com/diku-dk/pfp-e2019-pub>`_ at
 `DIKU <https://diku.dk>`_.  Since the `last release announcement
-<2019-8-21-futhark-0.12.1-released.html>`_ there has actually been two
+<2019-08-21-futhark-0.12.1-released.html>`_ there has actually been two
 unannounced releases - 0.12.2 and 0.12.3 - but they had so few
 interesting user-facing changes that I didn't feel like writing
 announcements for them.
