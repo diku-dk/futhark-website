@@ -63,6 +63,20 @@ We have published a number of papers on Futhark, and hopefully more
 will follow in the future.  They are presented below in reverse
 chronological order.
 
+Bounds Checking on GPU
+----------------------
+
+.. class:: papermetadata
+Presented at `HLPP '20`_ (`pdf <publications/hlpp20.pdf>`_)
+
+Few GPU-targeting languages perform bounds checking, because it is
+surprisingly tricky to do well on a GPU.  For years, Futhark would
+also refuse to compile code that required bounds checks (or similar
+safety checks) in parallel code, with the programmer having to resort
+do disabling bounds checks.  However, eventually we found a simple and
+efficient way to implement bounds checking, which we describe in this
+paper.
+
 Compositional Deep Learning in Futhark
 --------------------------------------
 
@@ -304,6 +318,7 @@ does it describe horisontal fusion.
 .. _`PPOPP '19`: https://ppopp19.sigplan.org/
 .. _`ARRAY '19`: https://pldi19.sigplan.org/home/ARRAY-2019
 .. _`FHPNC '19`: https://icfp19.sigplan.org/home/FHPNC-2019
+.. _`HLPP '20`: https://hlpp2020.dcc.fc.up.pt/
 
 Selected Student Projects
 *************************
