@@ -8,7 +8,7 @@ Futhark is supposed to be a safe programming language.  This implies
 that risky operations, such as ``a[i]`` which indexes an array at some
 arbitrary index, should be protected with a dynamic check.  While C
 programmers are famous for never making mistakes, and therefore C does
-not perform do such checking, the vast majority of programming
+not perform such checking, the vast majority of programming
 languages do check array indexes, usually by generating code like
 this::
 
