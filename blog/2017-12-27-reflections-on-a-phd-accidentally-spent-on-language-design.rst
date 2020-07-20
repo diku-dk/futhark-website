@@ -36,7 +36,7 @@ implemented a compiler skeleton in Standard ML.  I was not very happy
 with the design of the compiler - in particular, I found the mechanism
 by which the type checker inserted type information in the AST to be
 inelegant (basically, the AST had a bunch of ``option`` fields that
-started out as ``NONE``, and became ``SOME`` after the type checker -
+started out as ``NONE``, and became ``SOME`` after the type checker,
 but without any static guarantees).  At the conclusion of the course,
 Cosmin started looking for people to continue developing the language,
 then called L0 (but I'll just call it Futhark for the remainder of
@@ -46,7 +46,7 @@ was not particularly interested in parallel programming at the time,
 but I subsequently spent a few weeks putting together a compiler
 because I found it fun (using Haskell, because I like it better than
 Standard ML).  In fact, I found it so much fun that I eventually found
-me working on it all the time.
+myself working on it all the time.
 
 .. _`Cosmin Oancea`: http://www.diku.dk/~zgh600/
 
