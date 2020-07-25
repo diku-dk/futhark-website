@@ -25,10 +25,22 @@ static = void $ route idRoute >> compile copyFileCompiler
 
 -- Turn a Futhark program into Markdown.
 weave :: String -> String
-weave = unlines . map onLine . lines
-  where isText = isPrefixOf "--"
-        onLine l | isText l = drop 3 l
-                 | otherwise = "    " ++ l
+weave = unlines . f False . lines
+  where f _ [] = []
+        f b (l:ls)
+          | l == "-- ==" =
+              code l : f True ls
+          | isText l =
+              if b
+              then code l : f b ls
+              else text l : f b ls
+          | otherwise =
+              code l : f False ls
+
+        isText s = "--" `isPrefixOf` s &&
+                   not ("-- ==" `isPrefixOf` s)
+        code = ("    " ++)
+        text = drop 3
 
 main :: IO ()
 main = do

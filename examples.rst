@@ -58,6 +58,8 @@ maintain a list of `projects using Futhark`_.
 
 * `Faking nominal types <examples/nominal-types.html>`_
 
+* `Binary search <examples/binary-search.html>`_
+
 Projects using Futhark
 ----------------------
 
