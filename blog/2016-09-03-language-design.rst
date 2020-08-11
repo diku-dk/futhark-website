@@ -118,7 +118,7 @@ time permits, we plan to extend Futhark with:
 
 3. **Proper type inference, even for top-level functions**.  This is
    hopefully easy to implement, although our `uniqueness types
-   <http://futhark.readthedocs.io/en/latest/language-overview.html#uniqueness-types>`_
+   <https://futhark.readthedocs.io/en/stable/language-reference.html#in-place-updates>`_
    may make things interesting.
 
 These features would enable a style of modular programming that can
