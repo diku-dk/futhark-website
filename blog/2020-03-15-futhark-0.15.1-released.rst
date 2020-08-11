@@ -163,7 +163,7 @@ unknown size to a known size.
 
 Generally, unknown sizes are constructed whenever the true size cannot
 be expressed.  The `language reference
-<https://futhark.readthedocs.io/en/latest/language-reference.html#size-types/>`_
+<https://futhark.readthedocs.io/en/v0.15.1/language-reference.html#size-types>`_
 lists all such cases, but here are some of the most interesting ones:
 
 Size going out of scope

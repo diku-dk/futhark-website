@@ -39,4 +39,4 @@ let main (n: i32): i32 =
 -- ## See also
 --
 -- The [manpage for `futhark
--- bench`](https://futhark.readthedocs.io/en/latest/man/futhark-bench.html).
+-- bench`](https://futhark.readthedocs.io/en/stable/man/futhark-bench.html).

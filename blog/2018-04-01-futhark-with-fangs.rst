@@ -65,8 +65,8 @@ tricky to write in a shell, so we will generate some random data with
   $ futhark-dataset --binary -g [2][2]i32 | curl -X POST --data-binary @- localhost:8001/sumrows
   [-807407905i32, 1953530750i32]
 
-.. _`binary data format`: http://futhark.readthedocs.io/en/latest/binary-data-format.html
-.. _`futhark-dataset`: http://futhark.readthedocs.io/en/latest/man/futhark-dataset.html
+.. _`binary data format`: http://futhark.readthedocs.io/en/stable/binary-data-format.html
+.. _`futhark-dataset`: http://futhark.readthedocs.io/en/stable/man/futhark-dataset.html
 
 Transmitting large arrays over HTTP is of course rather slow.  A good
 idea would therefore be to use compression to cut the transmission

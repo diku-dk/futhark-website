@@ -17,7 +17,7 @@ good way for getting the *feel* of the language.
 
 By the standards of obscure academic programming languages, I think
 that Futhark is decently documented.  The `reference manual
-<https://futhark.readthedocs.io>`_ is terse but fairly comprehensive,
+<https://futhark.readthedocs.io/en/stable>`_ is terse but fairly comprehensive,
 and `the unfinished book <https://futhark-lang.org>`_ contains a good
 conventional language introduction, as well as some information about
 tooling.  However, while I never had much trouble updating the

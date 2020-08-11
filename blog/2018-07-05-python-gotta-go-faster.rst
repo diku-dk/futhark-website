@@ -20,7 +20,7 @@ The first proof of concept required quite a few fragile hacks (pattern matching 
 
 One interesting change suggested by Troels is to not automatically convert Futhark to Python types. For my use case I just wanted to take a Numpy array, pass it to Futhark, and get a Numpy array back. But for a lot of other programs, the Futhark types are passed between functions unchanged, so not copying them between the GPU and CPU saves *a lot* of time. There is even a compatibility shim that lets you use futhark-ffi with existing PyOpenCL code by merely changing the imports. An example of this can be seen `here <https://github.com/diku-dk/futhark-benchmarks/blob/e36913a4b76477526abc214488b38fa8466bda05/accelerate/fluid/fluid-gui.py#L13-L23>`_.
 
-After `installing Futhark <https://futhark.readthedocs.io/en/latest/installation.html>`_, you can simply get my library with ``pip``. (working OpenCL required)::
+After `installing Futhark <https://futhark.readthedocs.io/en/stable/installation.html>`_, you can simply get my library with ``pip``. (working OpenCL required)::
 
 
   pip install futhark-ffi

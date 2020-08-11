@@ -56,4 +56,4 @@ let strided = 1..3...7
 -- ## See also
 --
 -- Reference manual:
--- [slicing](https://futhark.readthedocs.io/en/latest/language-reference.html#a-i-j-s).
+-- [slicing](https://futhark.readthedocs.io/en/stable/language-reference.html#a-i-j-s).

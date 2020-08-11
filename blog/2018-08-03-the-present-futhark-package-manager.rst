@@ -11,14 +11,14 @@ it.  I concluded that of all existing package managers, `vgo
 <https://research.swtch.com/vgo>`_ comes closest to meeting our needs,
 so I set about writing a ``vgo``-inspired package manager.  This work
 is now done, and `futhark-pkg
-<http://futhark.readthedocs.io/en/latest/man/futhark-pkg.html>`_ is
+<http://futhark.readthedocs.io/en/stable/man/futhark-pkg.html>`_ is
 the result - which validates the goal that the design should be simple
 to implement.  In this post, I will show some examples of working with
 ``futhark-pkg``.  It has been an important objective that the package
 manager is operationally transparent, so I will also show exactly what
 modifications it makes to the file system.  Of course, this post does
 not contain the `full package manager documentation
-<http://futhark.readthedocs.io/en/latest/package-management.html>`_,
+<http://futhark.readthedocs.io/en/stable/package-management.html>`_,
 but it should be enough to get an idea of how it works in the common
 case.
 
@@ -302,7 +302,7 @@ it.  To this end, we have have written a handful of packages (mostly
 extracted from existing benchmark programs), and built `futhark-docbot
 <https://github.com/diku-dk/futhark-docbot>`_, which uses a
 combination of ``futhark-pkg`` and `futhark-doc
-<http://futhark.readthedocs.io/en/latest/man/futhark-doc.html>`_ to
+<http://futhark.readthedocs.io/en/stable/man/futhark-doc.html>`_ to
 automatically populate an `index of known Futhark packages along with
 hyperlinked documentation <https://futhark-lang.org/pkgs>`_.  It works
 quite well, and was easy to implement.  Hopefully more tooling will be

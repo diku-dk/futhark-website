@@ -132,7 +132,7 @@ let eytzinger_search [n] 't (lte: t -> t -> bool) (xs: [n]t) (x: t) : i32 =
 
 -- Alright, let's benchmark this.  Unfortunately, while Futhark's
 -- [benchmarking
--- tool](https://futhark.readthedocs.io/en/latest/man/futhark-bench.html)
+-- tool](https://futhark.readthedocs.io/en/stable/man/futhark-bench.html)
 -- supports randomly generated input of any desired size, it does
 -- *not* provide any way of generating *sorted* input, which we ned
 -- here.  We thus have to generate the input manually.  First, we need
@@ -157,7 +157,7 @@ entry sorted (xs: []i32) =
 --
 --
 -- Then we generate *2²⁵-1* with [futhark
--- dataset](https://futhark.readthedocs.io/en/latest/man/futhark-dataset.html),
+-- dataset](https://futhark.readthedocs.io/en/stable/man/futhark-dataset.html),
 -- pass it to the `sorted` function, and dump the resulting array to
 -- the file `input`.
 --

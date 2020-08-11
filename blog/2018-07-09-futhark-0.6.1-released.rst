@@ -7,7 +7,7 @@ description: Hot off the presses, get it while the cache is still warm!
 Futhark 0.6.1 has been released.  You can `read the full changelog
 <https://github.com/diku-dk/futhark/releases/tag/v0.6.1>`_ and install
 it the `usual ways
-<http://futhark.readthedocs.io/en/latest/installation.html>`_.
+<http://futhark.readthedocs.io/en/v0.6.1/installation.html>`_.
 
 This release was not supposed to be a significant one.  I only
 intended for it to remove a few obsolete constructs and fix some bugs.

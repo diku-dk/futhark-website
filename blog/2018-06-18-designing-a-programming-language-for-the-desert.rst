@@ -46,7 +46,7 @@ compiler.
 Another example of our design philosophy is the small number of
 configuration options exposed by the Futhark compiler.  Compare the
 ``futhark-opencl`` `manpage
-<http://futhark.readthedocs.io/en/latest/man/futhark-opencl.html>`_
+<http://futhark.readthedocs.io/en/stable/man/futhark-opencl.html>`_
 with the `one for GCC <https://linux.die.net/man/1/gcc>`_.  Also, none
 of the ``futhark-opencl`` options affect the compilation process
 itself.  This is partially a matter of aesthetics (I like programs
@@ -96,7 +96,7 @@ should be in the compiler, not in the language.  This means that prior
 experience in a common functional language is easily translated to
 knowledge of Futhark, although some of the restrictions and quirks
 `must of course be learnt
-<http://futhark.readthedocs.io/en/latest/versus-other-languages.html>`_.
+<http://futhark.readthedocs.io/en/stable/versus-other-languages.html>`_.
 
 As Futhark is not suitable for full application programming, a Futhark
 program will usually be a guest in a larger code base.  Polite guests

@@ -14,7 +14,7 @@ The two changes
 The first change is a tweak to the rules for aliasing, which are
 related to Futhark's support for `efficient in-place updates with
 uniqueness types
-<https://futhark.readthedocs.io/en/latest/language-reference.html#in-place-updates>`_.
+<https://futhark.readthedocs.io/en/v0.9.1/language-reference.html#in-place-updates>`_.
 The new rule is that a function may never return an array which
 aliases a global variable.  The point of this can be explained by
 looking at the type of the transposition function::
