@@ -58,7 +58,7 @@ unchanged over time, there have been a few changes to the names of
 some of the datasets.  So `another mapping was needed
 <https://github.com/diku-dk/futhark/blob/0f34151625debec10a2544ffe292396e89814d17/tools/bench-compilers.py#L91-L104>`_.
 Also, how you *run* the Futhark compiler, or its `benchmarking tool
-<https://futhark.readthedocs.io/en/latest/man/futhark-bench.html>`_
+<https://futhark.readthedocs.io/en/stable/man/futhark-bench.html>`_
 changed around version 0.9.1.  In older versions, you'd say
 ``futhark-bench --compiler=futhark-opencl``, while newer versions need
 ``futhark bench --backend=opencl``.  `Good thing Python supports

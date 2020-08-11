@@ -5,7 +5,7 @@ title: Futhark by Example
 The following is a hands-on introduction to Futhark through a
 collection of commented programs, listed in roughly increasing order of
 complexity.  You can load the programs into `the interpreter
-<https://futhark.readthedocs.io/en/latest/man/futhark-repl.html>`_ to
+<https://futhark.readthedocs.io/en/stable/man/futhark-repl.html>`_ to
 experiment with them.  For a conventional introduction to the
 language, `Parallel Programming in Futhark`_ may be a better choice.
 For more examples, you can check the `examples directory in the

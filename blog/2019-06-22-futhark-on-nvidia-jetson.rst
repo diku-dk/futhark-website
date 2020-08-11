@@ -57,7 +57,7 @@ compilation of ``foo`` will fail.  However, ``foo.c`` remains
 generated, so you can still copy it to the Jetson and finish
 compilation there.  It's not pretty, but it works.  If you use
 ``futhark cuda --library``, which you `likely will for real use
-<https://futhark.readthedocs.io/en/latest/usage.html#compiling-to-library>`_,
+<https://futhark.readthedocs.io/en/stable/usage.html#compiling-to-library>`_,
 then ``gcc`` is not invoked for you, so you will not see any error.
 
 Compiling the Futhark compiler on the Jetson
@@ -66,7 +66,7 @@ Compiling the Futhark compiler on the Jetson
 The Jetson uses an ARM CPU, and Futhark binary releases are currently
 only available for x86-64.  Hence, we'll have to recompile the Futhark
 compiler from scratch.  This is `normally a straightforward procedure
-<https://futhark.readthedocs.io/en/latest/installation.html#compiling-from-source>`_,
+<https://futhark.readthedocs.io/en/stable/installation.html#compiling-from-source>`_,
 but a little more tricky when using an exotic architecture (ARM) and a
 small machine (the Jetson).  Specifically, The Futhark compiler is
 written in `Haskell <https://www.haskell.org/>`_, and while the

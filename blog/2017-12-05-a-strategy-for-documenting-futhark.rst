@@ -75,7 +75,7 @@ reference, followed by a handful of chapters on the theory of data
 parallelism.  These chapters contain useful information, but they are
 currently too detached from the discussion about the language itself.
 
-.. _`user's guide`: http://futhark.readthedocs.io
+.. _`user's guide`: http://futhark.readthedocs.io/en/stable
 .. _`Parallel Programming in Futhark`: http://futhark-book.readthedocs.io
 .. _`Rust book`: https://doc.rust-lang.org/book/second-edition/
 

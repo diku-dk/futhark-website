@@ -299,7 +299,7 @@ observable* within the language itself.  There is no way, in a Futhark
 program, to handle that some array index has gone wrong.  That
 information is only propagated to the caller of the Futhark entry
 point (likely called through the `C API
-<https://futhark.readthedocs.io/en/latest/c-api.html>`_).  This is a
+<https://futhark.readthedocs.io/en/stable/c-api.html>`_).  This is a
 key part of why the asynchronous implementation is valid, as there is
 no "error handling" scope we have to respect.
 

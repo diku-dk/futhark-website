@@ -446,7 +446,7 @@ combinators, that closely resemble existing widely used higher-order
 functions, are enough to support a great many interesting programs.
 
 So, can you download the Futhark compiler and try it out right now?
-`Yes!  <https://futhark.readthedocs.io/en/latest/installation.html>`_
+`Yes!  <https://futhark.readthedocs.io/en/stable/installation.html>`_
 Although for boring technical reasons mostly related to our continuous
 integration setup, incremental flattening is still hidden behind a
 feature flag, so you'll have to set the environment variable

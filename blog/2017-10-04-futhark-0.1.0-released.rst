@@ -10,7 +10,7 @@ version 0.1.0 (`source tarballs here
 much has changed, given that the compiler source code has been freely
 available for over three years, and is not particularly `hard to
 compile
-<http://futhark.readthedocs.io/en/latest/installation.html#compiling-from-source>`_.
+<http://futhark.readthedocs.io/en/stable/installation.html#compiling-from-source>`_.
 Also, nightly binary builds have been `available
 <https://futhark-lang.org/releases/>`_ for a good while.
 

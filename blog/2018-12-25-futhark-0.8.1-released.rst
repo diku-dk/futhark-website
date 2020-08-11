@@ -93,7 +93,7 @@ saturate a modern GPU).  For the rest, it was nice to try to really
 exercise Futhark's capabilities for imperative programming.  Indeed, I
 was surprised to find that Futhark compiled to sequential C and
 written with intelligent use of `in-place updates
-<https://futhark.readthedocs.io/en/latest/language-reference.html#in-place-updates>`_
+<https://futhark.readthedocs.io/en/v0.8.1/language-reference.html#in-place-updates>`_
 is actually a really efficient functional language, often matching the
 hand-written C or Rust I saw other participants post.
 

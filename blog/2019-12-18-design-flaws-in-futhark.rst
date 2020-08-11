@@ -46,7 +46,7 @@ tuple, because they are used to thinking 0-indexed?  We are not even
 particularly consistent elsewhere: Futhark numbers OpenCL devices
 starting from 0 (because that's what OpenCL itself does), and `our
 test runner
-<https://futhark.readthedocs.io/en/latest/man/futhark-test.html>`_
+<https://futhark.readthedocs.io/en/stable/man/futhark-test.html>`_
 also numbers test cases from 0.
 
 The cost of changing this is obvious: every single Futhark program
