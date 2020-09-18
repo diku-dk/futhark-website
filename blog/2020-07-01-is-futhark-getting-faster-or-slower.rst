@@ -58,7 +58,7 @@ unchanged over time, there have been a few changes to the names of
 some of the datasets.  So `another mapping was needed
 <https://github.com/diku-dk/futhark/blob/0f34151625debec10a2544ffe292396e89814d17/tools/bench-compilers.py#L91-L104>`_.
 Also, how you *run* the Futhark compiler, or its `benchmarking tool
-<https://futhark.readthedocs.io/en/stable/man/futhark-bench.html>`_
+<https://futhark.readthedocs.io/en/stable/man/futhark-bench.html>`_,
 changed around version 0.9.1.  In older versions, you'd say
 ``futhark-bench --compiler=futhark-opencl``, while newer versions need
 ``futhark bench --backend=opencl``.  `Good thing Python supports
@@ -94,7 +94,7 @@ improving by an order of magnitude!  This is because we introduced
 rather than allocating directly from the driver.
 
 The yellowish benchmark that speeds up significantly for 0.6.1 is the
-elegantly named `Bk's_filt_padded_fused
+elegantly named `bfs_filt_padded_fused
 <https://github.com/diku-dk/futhark-benchmarks/blob/master/rodinia/bfs/bfs_filt_padded_fused.fut>`_.
 The speedup is not due to the Futhark compiler doing a much better
 job, but instead due to the benchmark *itself* being rewritten in a
