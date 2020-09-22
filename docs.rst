@@ -323,6 +323,8 @@ does it describe horisontal fusion.
 Selected Student Projects
 *************************
 
+* Emil Un Weihe: **Support Vector Machines in Futhark**.  MSc thesis.  Computer Science, University of Copenhagen.  September 2020. (`pdf <student-projects/emil-msc-thesis.pdf>`_)
+
 * Michaël El Kharroubi: **Highly parallel algorithms on GPU with Futhark: Practical case with block ciphers**. BSc thesis.  HEPIA.  August 2020. (`pdf <student-projects/michael-bsc-thesis.pdf>`_)
 
 * Johan Johansson, Ari von Nordenskjöld: **Ray Tracing for Sensor Simulation using Parallel Functional Programming**.  MSc thesis.  Chalmers University of Technology.  June 2020. (`pdf <student-projects/johan-ari-msc-thesis.pdf>`_)
