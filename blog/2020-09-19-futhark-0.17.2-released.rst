@@ -1,0 +1,89 @@
+---
+title: Futhark 0.17.2 released
+author: Troels Henriksen
+description: Inching towards doubling the number of bits in a size.
+---
+
+Since the `release announcement for Futhark 0.16.1
+<2020-07-07-futhark-0.16.1-released.html>`_, we have released three
+versions for which we did not write a blog post.  This is because the
+changes they contained were mostly bug fixes, small optimisations, and
+various other small additions.  We consider this a *good* sign.  We
+would like Futhark to be a fairly stable language that quietly
+improves behind the scenes, without users having to be made aware of
+the details.  However, in the near future, we plan to change the
+language such that *almost every Futhark program must be updated*, and
+the just released version 0.17.2 (`full changelog
+<https://github.com/diku-dk/futhark/releases/tag/v0.17.1>`_) more or
+less just prepares the ground.  (The version is 0.17.2 and not 0.17.1
+because I initially messed up the release process.)
+
+So what are we changing?  Some time ago I wrote a `blog post on four
+design flaws in Futhark
+<https://futhark-lang.org/blog/2019-12-18-design-flaws-in-futhark.html>`_.
+Since then, we have addressed one of the flaws (1-indexing of tuples),
+and are now ready to have a go at the big one: changing the type of
+array sizes from ``i32`` to ``i64``.  Specifically, the *next* major
+release of Futhark (0.18.1) will change all array sizes in Futhark to
+be of type ``i64``.  For reasons described in the previously linked
+post, this is not just an implementation detail.  It is in fact a
+fundamental language property, and changing it *will* break user code.
+To bring some numbers into the picture, about 400 of our 1500 test
+programs had to be modified.  Most test programs are however tiny, and
+a better case study is our `benchmark suite
+<https://github.com/diku-dk/futhark-benchmarks>`_, where *almost
+every* benchmark out of about 90 had to be modified.  In fact, even
+the example program on the front page of this very website will have
+to change:
+
+.. code-block:: Futhark
+
+   let average (xs: []f64) = reduce (+) 0.0 xs / r64 (length xs)
+
+The ``r64`` function converts a 32-bit integer to a 64-bit float, so
+changing the type of ``length`` to return a 64-bit integer will
+require us to use a different conversion function (``f64.i64``).
+Futhark programs are full of such cases.  Fortunately, the changes are
+mostly mechanical (although not enough to automate) and
+straightforward to do.  Still, we am well aware that this change will
+be painful to Futhark programmers, but this is a change that simply
+cannot be put off forever, and the longer we wait, the more painful it
+will be.
+
+The changes in *this* release
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+That was a lot of words about something that isn't even part of the
+release this post is ostensibly about.  So what did we incompatibly
+change for 0.17.2?  Fairly little:
+
+* The integer modules no longer contain ``iota`` and ``replicate``
+  functions.  These were essentially-unused functions that made it
+  possible to easily create integer arrays with nonstandard element
+  types.  Since `the addition of size types
+  <https://futhark-lang.org/blog/2020-03-15-futhark-0.15.1-released.html>`_,
+  these had dubious utility as they were unable to properly express
+  their return size, and they were unused in real programs anyway.
+  Since these definitions were the only difference between the
+  ``integral`` and ``size`` module types, the latter has been removed
+  entirely.
+
+* Range expressions, like ``0..<n``, no longer permit *unsigned*
+  integers.  The reasoning for this is a bit subtle, but comes down to
+  unsigned integers usually resulting in `zero extension
+  <https://www.cs.fsu.edu/~hawkes/cda3101lects/chap4/extension.htm>`_
+  operations in the generated code.  Futhark, like LLVM, in practice
+  considers all integers signed in its (internal) type system, which
+  creates the problem that zero-extension can turn a "negative" number
+  positive.  Zero-extension can therefore raises uncomfortable
+  questions when doing various optimisations, some of which are needed
+  to lessen the performance impact of 64-bit sizes.  Rather than
+  worrying about this, it seemed prudent to simply restrict the type
+  system.  And again, nobody used unsigned ranges outside the compiler
+  test suite.
+
+The intent is to smoothen out the incompatible changes over two
+releases, to lessen the shock.  In retrospect, removing a bunch of
+features that nobody used is not really going to soften the impact of
+changing such a fundamental thing as the type of sizes, but oh well.
+Anyway, that's 0.17.2.
