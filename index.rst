@@ -11,10 +11,9 @@ Futhark is a small programming language designed to be compiled to
 efficient parallel code.  It is a **statically typed, data-parallel,
 and purely functional array language** in the ML family, and comes
 with a **heavily optimising ahead-of-time compiler** that presently
-generates GPU code via CUDA_ and OpenCL_, although the language itself
-is hardware-agnostic and can also run on multicore CPUs.  As a simple
-example, this function computes the average of an array of 64-bit
-floating-point numbers:
+generates either GPU code via CUDA_ and OpenCL_, or multi-threaded CPU
+code.  As a simple example, this function computes the average of an
+array of 64-bit floating-point numbers:
 
 .. code-block:: Futhark
 
@@ -31,8 +30,8 @@ floating-point numbers:
    * `Prelude <https://futhark-lang.org/docs/prelude>`_
    * `More packages <https://futhark-lang.org/pkgs/>`_
 
-Futhark is not designed for graphics programming, but instead uses the
-compute power of the GPU to accelerate data-parallel array
+Futhark is not designed for graphics programming, but can instead use
+the compute power of the GPU to accelerate data-parallel array
 computations.  The language supports **regular *nested*
 data-parallelism**, as well as a form of imperative-style in-place
 modification of arrays, while still preserving the purity of the
@@ -40,7 +39,7 @@ language via the use of a **uniqueness type system**.
 
 While the Futhark language and compiler is an **ongoing research
 project**, it is quite usable for real programming, and can compile
-nontrivial programs which then run on real GPUs at high speed.
+nontrivial programs which then run on real machines at high speed.
 
 Futhark is a simple language and is designed to be easy to learn,
 although it omits some common features in order to generate
