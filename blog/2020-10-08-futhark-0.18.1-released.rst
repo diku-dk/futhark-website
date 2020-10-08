@@ -38,7 +38,7 @@ concrete case, I noticed that the library function `radix_sort_by_key
 <https://futhark-lang.org/pkgs/github.com/diku-dk/sorts/0.3.8/doc/lib/github.com/diku-dk/sorts/radix_sort.html#4097>`_
 has become slower after the 64-bit change.  This is because this
 function internally computes the keys just once ("`Schwartzian
-transform <https://en.wikipedia.org/wiki/Schwartzian_transform>`_),
+transform <https://en.wikipedia.org/wiki/Schwartzian_transform>`_"),
 and then essentially sorts an array of *indexes* into the original
 array, tagged with keys.  These indices are now twice as large as
 before, which results in more data movement.  It would not be
