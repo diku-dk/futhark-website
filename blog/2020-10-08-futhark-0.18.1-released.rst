@@ -1,0 +1,78 @@
+---
+title: Futhark 0.18.1 released
+author: Troels Henriksen
+description: All of your code is broken.
+---
+
+Have you ever written a Futhark program?  Then that program is
+probably broken now.  This is because we just released Futhark 0.18.1
+(`full changelog
+<https://github.com/diku-dk/futhark/releases/tag/v0.18.1>`_, but you
+might as well read this post), which breaks most Futhark programs ever
+written!  This is because we finally fixed a `very old design flaw in
+the language <2019-12-18-design-flaws-in-futhark.html#bit-sizes>`_, by
+changing all sizes to be 64-bit integers. I `wrote about initial work
+in this direction not long ago
+<2020-09-01-performance-regression.html>`_, and now it has finally
+been finished.  The `original GitHub issue
+<https://github.com/diku-dk/futhark/issues/134>`_ documenting this
+problem is over four years old, so this is a problem that had plagued
+Futhark for the majority of its life.  This is the last major
+incompatible change we had planned for the language, so things should
+become much more stable from now on.
+
+I won't beat around the bush: this is a change that makes Futhark
+programs slower.  In the best case, on modern GPUs, the slowdown can
+be negligible, but some programs will suffer.  This is unfortunately
+just a cost we will have to accept.  As with everything else in the
+language, we will of course always be looking for ways to make
+programs faster, but 64-bit sizes are simply just another language
+aspect now.
+
+There are some performance tricks Futhark programmers can pull, when
+they know that the arrays they work with will not be particularly
+large.  For example, while array *sizes* are always going to be 64-bit
+integers, there is nothing that prevents programs from doing index
+calculations with 32-bit integers whenever that is sufficient.  As a
+concrete case, I noticed that the library function `radix_sort_by_key
+<https://futhark-lang.org/pkgs/github.com/diku-dk/sorts/0.3.8/doc/lib/github.com/diku-dk/sorts/radix_sort.html#4097>`_
+has become slower after the 64-bit change.  This is because this
+function internally computes the keys just once ("`Schwartzian
+transform <https://en.wikipedia.org/wiki/Schwartzian_transform>`_),
+and then essentially sorts an array of *indexes* into the original
+array, tagged with keys.  These indices are now twice as large as
+before, which results in more data movement.  It would not be
+difficult to write a sorting function that represents these indexes as
+32-bit integers, and perhaps we should even change the user-visible
+function to automatically dispatch to such a function, if the input
+array has less than *2³¹* elements.
+
+New backend
+-----------
+
+This release is not all gloom and grim duty, though - in fact, I am
+much more excited than depressed.  This is because we have finally
+released the initial version of a brand new `multicore CPU backend
+<https://futhark.readthedocs.io/en/latest/man/futhark-multicore.html>`_,
+developed by `Minh Duc Tran <https://github.com/HnimNart/>`_.  Futhark
+was (almost) always intended as a high-level hardware-agnostic
+language, but until this release, GPUs were the only realistic
+execution target supported by our compiler.  Finally we have a fully
+operational backend for parallel execution on CPUs!
+
+Do be aware that the multicore backend is still young.  While it's
+design and implementation is fundamentally sound, it lacks the many
+specialised optimisation passes that the GPU backend has grown over
+the years.  Most noticeably, the compiler does not yet perform any
+cache optimisations, so some programs will not run very fast.  This is
+particularly acute for functions that resemble matrix multiplication,
+or any other program traverses a transposed array.  Improving this
+will be an interesting project, both research-wide and for the sheer
+joy of compiler hacking, and I'm looking forward to seeing how far we
+can take the multicore backend.  I do have a hope for using it as the
+basis for generating `ISPC <https://ispc.github.io/>`_ code...
+
+Still, despite its young age, the multicore backend already delivers
+good performance on many programs (`such as outperforming Rust on this
+parallel ray tracer <https://github.com/athas/raytracers>`_), and I am
+quite curious about whether people will find it useful in practice.
