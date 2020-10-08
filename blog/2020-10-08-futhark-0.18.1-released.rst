@@ -1,5 +1,5 @@
 ---
-title: Futhark 0.18.1 released
+title: Futhark 0.18.1 released, breaking all your code
 author: Troels Henriksen
 description: All of your code is broken.
 ---
