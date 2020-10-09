@@ -34,7 +34,7 @@ let combineChannels [rows][cols]
 -- pixel must not be located on the edges or an out-of-bounds access
 -- will occur.
 let newValue [rows][cols]
-             (image: [rows][cols]f32) (row: i32) (col: i32): f32 =
+             (image: [rows][cols]f32) (row: i64) (col: i64): f32 =
   -- The Futhark compiler cannot prove that these accesses are safe,
   -- and cannot perform dynamic bounds checks in parallel code.
   let sum =

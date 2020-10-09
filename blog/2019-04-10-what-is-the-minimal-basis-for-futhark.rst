@@ -3,6 +3,7 @@ title: What is the minimal basis for Futhark?
 author: Troels Henriksen
 description: An investigation into how much we can reduce the compiler intrinsics while still maintaining asymptotic guarantees.
 ---
+**Updated 2020-10-09 to incorporate language changes.**
 
 Futhark exposes data-parallel operations in the form of *functions*,
 both higher- and first-order.  In some cases, these are simply
@@ -75,7 +76,7 @@ but for an interesting reason:
 
 .. code-block:: Futhark
 
-   let iota (n: i32): [n]i32 =
+   let iota (n: i64): [n]i64 =
      0..1..<n
 
 Futhark has special syntax for ranges, but this feels a bit like
@@ -86,7 +87,7 @@ express ``iota`` as a `prefix sum
 
 .. code-block:: Futhark
 
-   let iota (n: i32): [n]i32 =
+   let iota (n: i64): [n]i64 =
      scan (+) 0 (replicate n 1)
 
 In some parallel languages (`NESL
@@ -106,7 +107,7 @@ like ``replicate``:
 
 .. code-block:: Futhark
 
-   let replicate 'a (n: i32) (x: a): [n]a =
+   let replicate 'a (n: i64) (x: a): [n]a =
      map (\_ -> x) (iota n)
 
 Or ``concat``:
@@ -123,7 +124,7 @@ Or ``rotate``:
 
 .. code-block:: Futhark
 
-   let rotate 't (r: i32) (xs: []t): []t =
+   let rotate 't (r: i64) (xs: []t): []t =
      map (\i -> xs[(i+r) % length xs])
          (iota (length xs))
 
@@ -201,7 +202,7 @@ on the idea, but we can also try to express it in Futhark:
 
 .. code-block:: Futhark
 
-   let num_threads : i32 = 128 * 256
+   let num_threads : i64 = 128 * 256
 
    let reduce [n] 'a (op: a -> a -> a) (ne: a) (as: []a): a =
      let chunk_size = n `div_rounding_up` num_threads
@@ -276,7 +277,7 @@ Guy Steele:
 .. code-block:: Futhark
 
    let scan [n] 'a (op: a -> a -> a) (_ne: a) (as: [n]a): [n]a =
-     let iters = t32 (f32.ceil (f32.log2 (r32 n)))
+     let iters = i64.f32 (f32.ceil (f32.log2 (f32.i64 n)))
      in loop as for i < iters do
           map (\j -> if j < 2**i
                      then as[j]
@@ -359,11 +360,11 @@ semantics are quite simple:
 
 .. code-block:: Futhark
 
-   let stream_map 'a 'b (f: []a -> []b) (as: []a): []b =
-     f as
+   let stream_map 'a 'b [n] (f: (c: i64) -> [c]a -> [c]b) (as: [n]a): [n]b =
+     f n as
 
-   let stream_red 'a 'b (op: b -> b -> b) (f: []a -> b) (as: []a): b =
-     f as
+   let stream_red 'a 'b [n] (op: b -> b -> b) (f: (c: i64) -> [c]a -> b) (as: [n]a): b =
+     f n as
 
 But this is too simple - the point of these combinators is permitting
 the per-chunk function (``f``) to be sequential (but more
@@ -375,11 +376,11 @@ the input arrays into size-1 chunks, and apply ``f`` to each of these:
 
 .. code-block:: Futhark
 
-   let stream_map 'a 'b (f: []a -> []b) (as: []a): []b =
-     as |> unflatten (length as) 1 |> map f |> flatten
+   let stream_map 'a 'b (f: (c: i64) -> [c]a -> [c]b) (as: []a): []b =
+     as |> unflatten (length as) 1 |> map (f 1) |> flatten
 
-   let stream_red 'a 'b (op: b -> b -> b) (f: []a -> b) (as: []a): b =
-     as |> unflatten (length as) 1 |> map f |> reduce op (f [])
+   let stream_red 'a 'b (op: b -> b -> b) (f: (c: i64) -> [c]a -> b) (as: []a): b =
+     as |> unflatten (length as) 1 |> map (f 1) |> reduce op (f 0 [])
 
 A *good* implementation, and what the compiler does, is more like our
 ``reduce``: split the input into as many chunks as necessary to

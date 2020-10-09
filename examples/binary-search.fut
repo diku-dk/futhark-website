@@ -14,7 +14,7 @@
 -- performs a binary search for an element in an (assumed) sorted
 -- array:
 
-let binary_search [n] 't (lte: t -> t -> bool) (xs: [n]t) (x: t) : i32 =
+let binary_search [n] 't (lte: t -> t -> bool) (xs: [n]t) (x: t) : i64 =
   let (l, _) =
     loop (l, r) = (0, n-1) while l < r do
     let t = l + (r - l) / 2
@@ -28,11 +28,11 @@ let binary_search [n] 't (lte: t -> t -> bool) (xs: [n]t) (x: t) : i32 =
 --
 -- ```
 -- > binary_search (<=) [1,3,5,7,9,11] 0
--- 0i32
+-- 0i64
 -- > binary_search (<=) [1,3,5,7,9,11] 9
--- 4i32
+-- 4i64
 -- > binary_search (<=) [1,3,5,7,9,11] 2
--- 1i32
+-- 1i64
 -- ```
 --
 -- Note that when we look for `2`, we return the index `1`, which
@@ -93,14 +93,14 @@ let binary_search [n] 't (lte: t -> t -> bool) (xs: [n]t) (x: t) : i32 =
 -- efficient integer binary logarithm function by using the *count
 -- leading zeroes* primitive function:
 
-let log2 x = 31 - i32.clz x
+let log2 x = 63 - i64.clz x
 
 -- Then we can define `eytzinger_index` itself:
 
-let eytzinger_index (n: i32) (i: i32) =
+let eytzinger_index (n: i64) (i: i64) =
   let lvl = log2 (i+1)
-  let offset = 1<<(log2 n-lvl)
-  let k = (1<<lvl)-1
+  let offset = i64.i32 (1<<(log2 n-lvl))
+  let k = i64.i32 ((1<<lvl)-1)
   in offset + (i-k) * offset * 2 - 1
 
 -- Finally, the `eytzinger` function applies `eytzinger_index` on
@@ -117,18 +117,18 @@ let eytzinger [n] 't (xs: [n]t) : [n]t =
 -- bit](https://man7.org/linux/man-pages/man3/ffs.3.html) function,
 -- since it's not a Futhark primitive:
 
-let ffs x = i32.ctz x + 1
+let ffs x = i64.ctz x + 1
 
 -- Now we can define `eytzinger_search`, where we assume `xs` is an
 -- Eytzinger array:
 
-let eytzinger_search [n] 't (lte: t -> t -> bool) (xs: [n]t) (x: t) : i32 =
+let eytzinger_search [n] 't (lte: t -> t -> bool) (xs: [n]t) (x: t) : i64 =
   let k =
     loop k = 1 while k <= n do
       if x `lte` xs[k-1]
       then 2*k
       else 2*k+1
-  in (k >> ffs (!k))-1
+  in (k >> i64.i32 (ffs (!k)))-1
 
 -- Alright, let's benchmark this.  Unfortunately, while Futhark's
 -- [benchmarking

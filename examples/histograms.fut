@@ -8,7 +8,7 @@
 -- fall into each bin (discarding invalid bins).  In Futhark,
 -- histogram-like computations can be done with `reduce_by_index`:
 
-let histogram [n] (k: i32) (is: [n]i32): [k]i32 =
+let histogram [n] (k: i64) (is: [n]i64): [k]i32 =
   let bins = replicate k 0
   in reduce_by_index bins (+) 0 is (replicate n 1)
 

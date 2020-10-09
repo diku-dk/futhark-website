@@ -15,15 +15,15 @@ let divergence (limit: i32) (radius: f32) (c0: complex): (complex,i32) =
     (c0 complex.+ c complex.* c,
      i + 1)
 
-let mandelbrot (screenX: i32) (screenY: i32) (limit: i32) (radius: f32)
+let mandelbrot (screenX: i64) (screenY: i64) (limit: i32) (radius: f32)
                ((xmin, ymin, xmax, ymax): (f32,f32,f32,f32))
     : [screenX][screenY](complex,i32) =
   let sizex = (xmax - xmin)
   let sizey = (ymax - ymin)
   in map (\x  ->
            map (\y  ->
-                  let c0 = complex.mk (xmin + (r32 x * sizex) / r32 screenX)
-                                      (ymin + (r32 y * sizey) / r32 screenY)
+                  let c0 = complex.mk (xmin + (f32.i64 x * sizex) / f32.i64 screenX)
+                                      (ymin + (f32.i64 y * sizey) / f32.i64 screenY)
                   in divergence limit radius c0)
                (iota screenY))
          (iota screenX)
@@ -99,17 +99,17 @@ let escape_to_colour (limit: i32) (points: i32)
        let ix = t32 (f32.sqrt (r32 n + 1.0 - smooth) * scale + shift)
        in mk_palette points (ix %% points)
 
-let mandelbrot_render (screenX: i32) (screenY: i32)
+let mandelbrot_render (screenX: i64) (screenY: i64)
                       (xcentre: f32) (ycentre: f32) (width: f32)
-                      (limit: i32) (radius: f32): [screenX][screenY]i32 =
-  let aspect_ratio = (r32 screenX / r32 screenY)
-  let (xmin,ymin) = ((xcentre - width/2.0),
+                      (limit: i32) (radius: f32): [screenX][screenY]u32 =
+  let aspect_ratio = (f32.i64 screenX / f32.i64 screenY)
+  let (xmin,ymin) = ((xcentre - width/2),
                      (ycentre - (1.0/aspect_ratio)*width/2.0))
-  let (xmax,ymax) = ((xcentre + width/r32 2),
+  let (xmax,ymax) = ((xcentre + width/2),
                      (ycentre + (1.0/aspect_ratio)*width/2.0))
   let escapes = mandelbrot screenX screenY limit radius (xmin, ymin, xmax, ymax)
   let points = 2048
   in map (\row -> map (escape_to_colour limit points) row) escapes
 
-let main (n: i32) =
+let main (n: i64) =
   mandelbrot_render n n (-0.7f32) 0f32 3.067f32 100 16f32

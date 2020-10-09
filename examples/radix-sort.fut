@@ -65,9 +65,10 @@ let radix_sort_step [n] (xs: [n]u32) (b: i32): [n]u32 =
 
 -- Finally, copy `xs` (just to have an array of the right size and
 -- type) and [scatter](gather-and-scatter.html) the elements of `xs`
--- with the indexes we computed.
+-- with the indexes we computed.  We also convert `idxs` to `i64`, as
+-- required by the type of `scatter`.
 
-  let xs' = scatter (copy xs) idxs xs
+  let xs' = scatter (copy xs) (map i64.i32 idxs) xs
   -- xs' = [0, 4, 1, 5, 9, 2, 2, 2]
   in xs'
 

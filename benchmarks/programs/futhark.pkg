@@ -1,4 +1,4 @@
 require {
-  github.com/diku-dk/complex 0.1.1 #4a0f92fbefaecfbb1473f9ad0c383b69260e3cdb
-  github.com/athas/matte 0.1.0 #51ff56afeec5e9b18ac6d428e1c6bcdf524bd9c2
+  github.com/diku-dk/complex 0.1.3 #6de81e642afe53306e04c3b38d59b7296e2dc0c5
+  github.com/athas/matte 0.1.2 #2ce1a39b29c329504cb2d849e305cbcc17f701d5
 }

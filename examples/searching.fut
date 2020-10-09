@@ -12,7 +12,7 @@
 -- `reduce_comm` to tell it explicitly.  This permits slightly more
 -- efficient code generation for the reduction.
 
-let find_index 'a [n] (p: a -> bool) (as: [n]a): i32 =
+let find_index 'a [n] (p: a -> bool) (as: [n]a): i64 =
   let op (x, i) (y, j) =
     if x && y then if i < j
                    then (x, i)
@@ -54,10 +54,10 @@ let find_elem_seq 'a [n] (p: a -> bool) (as: [n]a) : found a =
 -- iterates through large chunks of the input, searches each chunk in
 -- parallel, and stops at the first match.
 
-let find_elem_chunked 'a [n] (k: i32) (p: a -> bool) (as: [n]a) : found a =
+let find_elem_chunked 'a [n] (k: i64) (p: a -> bool) (as: [n]a) : found a =
   (loop (_res, chunk_offset) = (#not_found, 0)
    while chunk_offset < n do
-     match find_elem p as[chunk_offset: i32.min n (chunk_offset+k)]
+     match find_elem p as[chunk_offset: i64.min n (chunk_offset+k)]
      case #found x -> (#found x, n)
      case #not_found -> (#not_found, chunk_offset+k)).0
 

@@ -40,8 +40,8 @@ let single_iteration [row][col]
                     (temp: [row][col]f32, power: [row][col]f32,
                      cap: f32, rx: f32, ry: f32, rz: f32,
                      step: f32): [][]f32 =
-  map  (\(r: i32)  ->
-         map (\(c: i32)  ->
+  map  (\r  ->
+          map (\c  ->
                let temp_el = temp[r,c] in
                let delta =
                  (step / cap) *
@@ -85,8 +85,8 @@ let single_iteration [row][col]
 --
 -- Returns a new 'temp' array.
 let compute_tran_temp [row][col] (num_iterations: i32, temp: [row][col]f32, power: [row][col]f32): [row][col]f32 =
-  let grid_height = chip_height() / r32(row) in
-  let grid_width = chip_width() / r32(col) in
+  let grid_height = chip_height() / f32.i64(row) in
+  let grid_width = chip_width() / f32.i64(col) in
   let cap = factor_chip() * spec_heat_si() * t_chip() * grid_width * grid_height in
   let rx = grid_width / (2.0 * k_si() * t_chip() * grid_height) in
   let ry = grid_height / (2.0 * k_si() * t_chip() * grid_width) in

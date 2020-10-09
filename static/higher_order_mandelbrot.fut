@@ -44,14 +44,14 @@ let numpy_mandelbrot [n][m] (c: [n][m]complex) (d: i32) : [n][m]i32 =
         scatter z is inc)
   in unflatten n m output
 
-let complexes (screenX: i32) (screenY: i32)
+let complexes (screenX: i64) (screenY: i64)
               (xmin: f32) (ymin: f32) (xmax: f32) (ymax: f32) =
   let sizex = xmax - xmin
   let sizey = ymax - ymin
-  in map (\(y: i32) ->
+  in map (\y ->
             map (\x ->
-                   (xmin + (r32 x * sizex) / r32 screenX,
-                    ymin + (r32 y * sizey) / r32 screenY) )
+                   (xmin + (f32.i64 x * sizex) / f32.i64 screenX,
+                    ymin + (f32.i64 y * sizey) / f32.i64 screenY) )
                 (iota screenX))
             (iota screenY)
 

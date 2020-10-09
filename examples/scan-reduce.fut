@@ -13,7 +13,7 @@
 -- We can use them to define a function for computing averages:
 
 let average (xs: []f64) =
-  reduce (+) 0.0 xs / r64 (length xs)
+  reduce (+) 0.0 xs / f64.i64 (length xs)
 
 -- There are some restrictions to enable parallel execution.  In an
 -- expression `reduce f ne xs`, the function `f` must be

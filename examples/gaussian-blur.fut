@@ -77,7 +77,7 @@ let combine_channels [rows][cols]
 -- of its eight neighbors (nine values in total):
 
 let new_value [rows][cols]
-             (image: [rows][cols]f32) (row: i32) (col: i32): f32 =
+             (image: [rows][cols]f32) (row: i64) (col: i64): f32 =
   let sum =
     image[row-1,col-1] + image[row-1,col] + image[row-1,col+1] +
     image[row,  col-1] + image[row,  col] + image[row,  col+1] +
@@ -122,7 +122,7 @@ let blur [rows][cols]
 let main [rows][cols]
          (iterations: i32) (image: [rows][cols][3]u8): [rows][cols][3]u8 =
   let (rs, gs, bs) = split_channels image
-  let (rs, gs, bs) = loop (rs, gs, bs) for i < iterations do
+  let (rs, gs, bs) = loop (rs, gs, bs) for _i < iterations do
     let rs = blur rs
     let gs = blur gs
     let bs = blur bs
