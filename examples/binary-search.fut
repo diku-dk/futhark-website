@@ -37,7 +37,7 @@ let binary_search [n] 't (lte: t -> t -> bool) (xs: [n]t) (x: t) : i64 =
 --
 -- Note that when we look for `2`, we return the index `1`, which
 -- contains the value `3`.  Callers must look up the returned index
--- and check whether it is actually pointing to the element you were
+-- and check whether it is actually pointing to the element they were
 -- looking for.  That's perhaps a bit unwieldy, and we could use
 -- [Futhark's sum types](sum-types.html) to make this a bit nicer.
 --
@@ -65,7 +65,7 @@ let binary_search [n] 't (lte: t -> t -> bool) (xs: [n]t) (x: t) : i64 =
 -- unstructured as a binary search, but maybe using an Eytzinger
 -- representation can help a bit.
 --
--- First we ned to implement a function for constructing an Eytzinger
+-- First we need to implement a function for constructing an Eytzinger
 -- array (which models a search tree) from a sorted array.  The
 -- tutorial shows an elegant, but sequential, C function for doing
 -- this.  No good for Futhark.  Fortunately, for input sizes that are
@@ -134,7 +134,7 @@ let eytzinger_search [n] 't (lte: t -> t -> bool) (xs: [n]t) (x: t) : i64 =
 -- [benchmarking
 -- tool](https://futhark.readthedocs.io/en/stable/man/futhark-bench.html)
 -- supports randomly generated input of any desired size, it does
--- *not* provide any way of generating *sorted* input, which we ned
+-- *not* provide any way of generating *sorted* input, which we need
 -- here.  We thus have to generate the input manually.  First, we need
 -- a function for sorting.  We should of course use a [proper sorting
 -- library](https://github.com/diku-dk/sorts), but it's awfully
