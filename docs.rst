@@ -323,6 +323,8 @@ does it describe horisontal fusion.
 Selected Student Projects
 *************************
 
+* Duc Minh Tran: **Multicore backend for Futhark**.  MSc Thesis.  Department of Computer Science, University of Copenhagen.  September 2020. (`pdf <student-projects/duc-msc-thesis.pdf>`_)
+
 * Emil Un Weihe: **Support Vector Machines in Futhark**.  MSc thesis.  Computer Science, University of Copenhagen.  September 2020. (`pdf <student-projects/emil-msc-thesis.pdf>`_)
 
 * Michaël El Kharroubi: **Highly parallel algorithms on GPU with Futhark: Practical case with block ciphers**. BSc thesis.  HEPIA.  August 2020. (`pdf <student-projects/michael-bsc-thesis.pdf>`_)
