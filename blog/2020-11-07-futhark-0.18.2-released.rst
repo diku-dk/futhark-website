@@ -1,0 +1,46 @@
+---
+title: Futhark 0.18.2 released
+author: Troels Henriksen
+description: Lots of bugfixes, but not the ones we expected.
+---
+
+The previous release 0.18.1, had two large changes: the new multicore
+backend, and a switch to 64-bit sizes for arrays.  Due to the scope of
+these changes, I expected that programmers would rapidly find many
+critical bugs, and that we would have to issue many small bugfix
+releases, like when 0.15.1 added size-dependent typing.  Surprisingly,
+this didn't happen - while programmers did find several bugs, they
+were the usual fare of obscure edge cases, often in old code and
+unrelated to the big changes in 0.18.1.  The one exception was a few
+places in the multicore backend, which did not properly use 64-bit
+sizes when dealing with large arrays.
+
+Still, the `changes in the just released 0.18.2
+<https://github.com/diku-dk/futhark/releases/tag/v0.18.2>`_ show that
+it is still mostly a bugfix release.  Indeed, the only improvement to
+the optimiser is a loosening of certain restrictions in the
+implementation of `loop tiling
+<https://en.wikipedia.org/wiki/Loop_nest_optimization>`_.  The
+programmer-facing effect of this improvement is that code that
+resembles `matrix-vector multiplication
+<http://mlwiki.org/index.php/Matrix-Vector_Multiplication>`_ in its
+dataflow will now be tiled.  This can provide a substantial speedup,
+often in excess in 50%, but it is probably not many programs that are
+bottlenecked by this operation.
+
+My favourite fix in this release is one that addresses a `bug in our
+coverage checking for pattern matches
+<https://github.com/diku-dk/futhark/issues/1134>`_.  In Futhark,
+inexhaustive matching (where the patterns do not cover all possible
+values) is not allowed, so it was an actual soundness bug that the
+type checker was unable to properly detect incomplete matches.  Fixing
+this required a fundamental redesign of how we check for exhaustivity.
+Fortunately, Futhark is `fundamentally a rather conventional dialect
+of ML
+<https://futhark-lang.org/blog/2018-06-18-designing-a-programming-language-for-the-desert.html>`_,
+so I was able to implement a pre-existing algorithm presented by Luc
+Maranget in the paper `Warnings for pattern matching
+<http://moscova.inria.fr/~maranget/papers/warn/warn.pdf>`_.
+
+Oh, and to all US citizens reading this: congratulations on your own
+major bugfix.  Be careful to avoid future regressions.
