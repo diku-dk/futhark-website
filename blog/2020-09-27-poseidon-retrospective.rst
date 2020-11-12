@@ -243,7 +243,7 @@ I managed to identify two compensating factors:
 Finally, as Futhark is an *actually pure* language (with no escape
 hatches like Haskell), any malfunction in a Futhark program is
 realistically going to be limited to corrupting memory or computing
-incorrect results - it will not mistakenly files from the disk or
+incorrect results - it will not mistakenly delete files from the disk or
 anything of the sort.
 
 In summary
