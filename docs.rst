@@ -63,6 +63,20 @@ We have published a number of papers on Futhark, and hopefully more
 will follow in the future.  They are presented below in reverse
 chronological order.
 
+Compiling Generalized Histograms for GPU
+----------------------------------------
+
+.. class:: papermetadata
+Presented at `SC '20`_ (`pdf <publications/sc20.pdf>`_)
+
+An explanation of the implementation strategy behind Futhark's
+``reduce_by_index`` construct.  The paper mostly focuses on the
+low-level performance analysis needed to make this construct run fast,
+but is also some discussion of the language integration, and some of
+the compiler optimisations.  We have `made the research artifact
+available <https://github.com/diku-dk/futhark-sc20>`_, which also
+contains a CUDA library implementation of the ideas.
+
 Bounds Checking on GPU
 ----------------------
 
@@ -319,6 +333,7 @@ does it describe horisontal fusion.
 .. _`ARRAY '19`: https://pldi19.sigplan.org/home/ARRAY-2019
 .. _`FHPNC '19`: https://icfp19.sigplan.org/home/FHPNC-2019
 .. _`HLPP '20`: https://hlpp2020.dcc.fc.up.pt/
+.. _`SC '20`: https://sc20.supercomputing.org/
 
 Selected Student Projects
 *************************
