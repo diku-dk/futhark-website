@@ -6,6 +6,9 @@ We have published a number of research papers on Futhark, and
 hopefully more will follow in the future.  They are presented below in
 reverse chronological order.
 
+Papers on language design and implementation
+********************************************
+
 Compiling Generalized Histograms for GPU
 ----------------------------------------
 
