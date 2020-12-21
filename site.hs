@@ -71,6 +71,7 @@ main = do
       ( fromList
           [ "performance.rst",
             "docs.rst",
+            "publications.rst",
             "getinvolved.rst",
             "index.rst",
             "examples.rst"
@@ -156,6 +157,7 @@ menuContents =
   [ ("Overview", "index.html"),
     ("Examples", "examples.html"),
     ("Docs", "docs.html"),
+    ("Publications", "publications.html"),
     ("Gotta Go Fast!", "performance.html"),
     ("Get Involved", "getinvolved.html"),
     ("Blog", "blog.html")

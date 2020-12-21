@@ -70,7 +70,7 @@ repository on Github`_, or our repository of `benchmarks`_.
 .. _performance: /performance.html
 .. _devblog: /blog.html
 .. _docs: /docs.html
-.. _publications: /docs.html#publications
+.. _publications: /publiations.html
 .. _PyOpenCL: https://mathema.tician.de/software/pyopencl/
 .. _associative: https://en.wikipedia.org/wiki/Associative_property
 .. _commutative: https://en.wikipedia.org/wiki/Commutative_property
