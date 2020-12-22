@@ -52,6 +52,8 @@ maintain a list of `projects using Futhark`_.
 
 * `Radix sort <examples/radix-sort.html>`_
 
+* `Abstract data types <examples/abstract-data-types.html>`_
+
 * `Testing for associativity <examples/testing-associativity.html>`_
 
 * `Reducing or scanning without a neutral element <examples/no-neutral-element.html>`_
@@ -59,6 +61,8 @@ maintain a list of `projects using Futhark`_.
 * `Gaussian blur (with Python integration) <examples/gaussian-blur.html>`_
 
 * `Faking nominal types <examples/nominal-types.html>`_
+
+* `Triangular matrices <examples/triangular.html>`_
 
 * `Binary search <examples/binary-search.html>`_
 

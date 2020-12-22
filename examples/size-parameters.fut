@@ -25,4 +25,4 @@ let res = dotprod [1,2,3] [4,5,6]
 
 -- ## See also
 --
--- [Matrix multiplication](matrix-multiplication.html).
+-- [Matrix multiplication](matrix-multiplication.html), [triangular arrays](triangular.html).
