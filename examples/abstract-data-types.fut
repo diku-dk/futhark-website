@@ -83,7 +83,7 @@ module normvec : normvec = {
 --
 -- ## See also
 --
--- [Triangular arrays](triangular.html), [nominal types](nominal-types.html).
+-- [Triangular arrays](triangular.html), [Nominal types](nominal-types.html).
 --
 -- Reference manual:
 -- [module system](https://futhark.readthedocs.io/en/latest/language-reference.html#module-system).
