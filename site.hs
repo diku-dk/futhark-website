@@ -218,10 +218,25 @@ pandocRstCompiler futhark_syntax =
 literateCompiler :: Syntax -> Compiler (Context String, Item String)
 literateCompiler futhark_syntax = do
   s <- fmap (T.pack . weave) <$> getResourceBody
-  pandoc@(Item _ (Pandoc _ (Header _ _ title : _))) <-
+  (pandoc, title) <-
     case runPure $ traverse (readMarkdown ropts) s of
       Left err -> error $ "literateCompiler: " ++ show err
-      Right s' -> return s'
+      Right (Item foo (Pandoc meta (Header lvl attr title : rest))) -> do
+        source <- getResourceFilePath
+        let title' =
+              title
+                <> [ Str " (",
+                     Link mempty [Str "source"] ("/" <> T.pack source, "source"),
+                     Str ")"
+                   ]
+        pure
+          ( Item
+              foo
+              (Pandoc meta (Header lvl attr title' : rest)),
+            title
+          )
+      Right pandoc ->
+        error $ "literateCompiler: unexpected Pandoc: " ++ show pandoc
   case runPure $ writePlain wopts $ Pandoc mempty [Plain title] of
     Left err -> error $ "literateCompiler: " ++ show err
     Right title' ->
