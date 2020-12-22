@@ -48,6 +48,8 @@ maintain a list of `projects using Futhark`_.
 
 * `Computing histograms <examples/histograms.html>`_
 
+* `Moving average <examples/moving-average.html>`_
+
 * `Radix sort <examples/radix-sort.html>`_
 
 * `Testing for associativity <examples/testing-associativity.html>`_
