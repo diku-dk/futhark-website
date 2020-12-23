@@ -289,7 +289,7 @@ it to build or show something.
 
 * Cosmin Oancea, Ties Robroek, Fabian Gieseke: **Approximate
   Nearest-Neighbour Fields via Massively-Parallel Propagation-Assisted
-  K-D Trees**. MLDB'20. (`pdf <publications/mldb20.pdf>`_)
+  K-D Trees**. MLDB'20. (`pdf <publications/mlbd20.pdf>`_)
 
 * Fabian Geseke, Sabina Rosca, Troels Henriksen, Jan Verbesselt,
   Cosmin Oancea: **Massively-Parallel Change Detection for Satellite
@@ -298,7 +298,7 @@ it to build or show something.
 
 * Wojciech Michal Pawlak, Martin Elsman, Cosmin Eugen Oancea: **A
   Functional Approach to Accelerating Monte Carlo based American
-  Option Pricing**. IFL'19. (`pdf <publiations/ifl19.pdf>`_)
+  Option Pricing**. IFL'19. (`pdf <publications/ifl19.pdf>`_)
 
 Selected Student Projects
 *************************
