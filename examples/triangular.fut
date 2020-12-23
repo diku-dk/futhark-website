@@ -9,7 +9,7 @@
 -- elements.  Since Futhark only supports regular arrays, we must
 -- encode this as a one-dimensional array.  To hide the complexity of
 -- the encoding from the user, we define triangular matrices as an
--- [abstract data type](abstract-data-type.html).
+-- [abstract data type](abstract-data-types.html).
 
 -- We start out by defining a module type describing a minimal
 -- interface for lower triangular matrices.

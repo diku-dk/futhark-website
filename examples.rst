@@ -34,6 +34,8 @@ maintain a list of `projects using Futhark`_.
 
 * `Gather and scatter <examples/gather-and-scatter.html>`_
 
+* `Reducing the result of a filter <examples/filter-reduce.html>`_
+
 * `Sum types and pattern matching <examples/sum-types.html>`_
 
 * `Loops <examples/loops.html>`_
@@ -43,6 +45,10 @@ maintain a list of `projects using Futhark`_.
 * `Size parameters <examples/size-parameters.html>`_
 
 * `Matrix multiplication <examples/matrix-multiplication.html>`_
+
+* `Pipe operators <examples/piping.html>`_
+
+* `Pairwise L₁ distances <examples/pairwise-l1.html>`_
 
 * `Searching <examples/searching.html>`_
 
