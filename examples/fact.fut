@@ -19,7 +19,7 @@ let main (n: i32): i32 = fact n
 -- `1...n`, then computes the product of all elements in the array.
 -- The Futhark compiler employs *loop fusion* to remove the need for
 -- the intermediate array to be actually created.  Technically, `fact
--- n` does not compute *n!*, but rather *n! mod 2**32*, as `i32`s are
+-- n` does not compute *n!*, but rather *n! mod 2³²*, as `i32`s are
 -- 32 bit in size and will rapidly overflow for large *n*.
 --
 -- If we put the above program in a file `fact.fut`, we can compile it
@@ -42,3 +42,7 @@ let main (n: i32): i32 = fact n
 --
 -- This will write the result on standard output (`0i32` - a 32-bit
 -- zero).
+--
+-- ## See also
+--
+-- [Scans and reductions](scan-reduce.fut).
