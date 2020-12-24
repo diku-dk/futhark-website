@@ -57,12 +57,12 @@ let average (xs: []f64) =
 -- conceptually a reduction of a prefix of the array:
 --
 -- ```
---    scan (+) 0 [1, 2, 3, 4]
--- == [reduce (+) 0 [1],
---     reduce (+) 0 [1,2],
---     reduce (+) 0 [1,2,3],
---     reduce (+) 0 [1,2,3,4]]
--- == [1, 3, 6, 10]
+--     scan (+) 0 [1, 2, 3, 4]
+--  == [reduce (+) 0 [1],
+--      reduce (+) 0 [1,2],
+--      reduce (+) 0 [1,2,3],
+--      reduce (+) 0 [1,2,3,4]]
+--  == [1, 3, 6, 10]
 -- ```
 --
 -- Somewhat surprisingly, these can also be efficiently computed in
