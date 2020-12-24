@@ -8,7 +8,7 @@ let square_pos xs =
   f64.sum (map f64.sqrt (filter (>0) xs))
 
 -- Note that [this is not the best way to write this
--- function](filter-reduce.fut).  Also, These chains can become
+-- function](filter-reduce.html).  Also, These chains can become
 -- unwieldy as they grow.  Partly because of the parentheses, and
 -- partly because they have to be read right-to-left.  The *pipe
 -- forward operator* `|>` lets us write it like this instead:

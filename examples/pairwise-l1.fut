@@ -21,4 +21,4 @@ let pairwise_L1 [n][m] (xss: [n][m]f64) : [n][n]f64 =
 --
 -- ## See also
 --
--- [Matrix multiplication](matrix-multiplication.fut).
+-- [Matrix multiplication](matrix-multiplication.html).

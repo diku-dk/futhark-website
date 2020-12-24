@@ -45,4 +45,4 @@ let main (n: i32): i32 = fact n
 --
 -- ## See also
 --
--- [Scans and reductions](scan-reduce.fut).
+-- [Scans and reductions](scan-reduce.html).
