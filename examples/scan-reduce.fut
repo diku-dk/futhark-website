@@ -71,3 +71,7 @@ let average (xs: []f64) =
 -- may look a bit exotic, and they certainly are, but we'll return to
 -- them in other examples, as they are an important building block in
 -- advanced parallel algorithms.
+--
+-- ## See also
+--
+-- [Reducing the result of a filter](filter-reduce.html).
