@@ -5,9 +5,9 @@
 -- function) between each element.
 --
 -- ```
---    reduce (+) 0 [1, 2, 3, 4]
--- == [1 + 2 + 3 + 4]
--- == 10
+--     reduce (+) 0 [1, 2, 3, 4]
+--  == [1 + 2 + 3 + 4]
+--  == 10
 -- ```
 --
 -- We can use them to define a function for computing averages:
