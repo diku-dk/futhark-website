@@ -9,7 +9,7 @@ complexity.  You can load the programs into `the interpreter
 experiment with them.  For a conventional introduction to the
 language, `Parallel Programming in Futhark`_ may be a better choice.
 For more examples, you can check the `examples directory in the
-Futhark repository`_, or at our implemented benchmarks_.  We also
+Futhark repository`_, or our implemented benchmarks_.  We also
 maintain a list of `projects using Futhark`_.
 
 .. _`Parallel Programming in Futhark`: https://futhark-book.readthedocs.io
