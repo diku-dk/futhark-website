@@ -28,7 +28,7 @@ let number_pos_best (xs: []i32) =
 let count p xs =
   i64.sum (map (p >-> i64.bool) xs)
 
--- And now we can define our function as follows:
+-- And now we can define our original function as follows:
 
 let count_number_pos (xs: []i32) =
   count (>0) xs
