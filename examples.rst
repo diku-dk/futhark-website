@@ -74,6 +74,8 @@ maintain a list of `projects using Futhark`_.
 
 * `Binary search <examples/binary-search.html>`_
 
+* `AD with dual numbers <examples/dual-numbers.html>`_
+
 Projects using Futhark
 ----------------------
 
