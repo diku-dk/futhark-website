@@ -274,7 +274,7 @@ about inadvertently admitting unsound constructs (and more
 pragmatically, I was worried about bugs in the implementation).  I
 locked it down more than might strictly be necessary.  If we want to
 support this kind of result size inference, then we do need to figure
-out what to do with expressions like
+out what to do with expressions like:
 
 .. code-block:: Futhark
 
@@ -283,7 +283,7 @@ out what to do with expressions like
 Here the size of the ``tabulate`` must be the size of the array
 returned by ``filter``, which is existential.  As far as I can figure
 based on the paper, Dex wouldn't allow an expression like the above,
-as it handles existentials in an conventional and explicit manner::
+as it handles existentials in a conventional explicit manner::
 
   filter :: (a -> Bool) -> m=>a -> E n. n=>a
 
