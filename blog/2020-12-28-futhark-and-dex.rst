@@ -37,14 +37,17 @@ Dex::
 The ``n=>d=>Real`` is the type of an ``n`` by ``d`` array of
 ``Real``s.  Dex leans heavily on an analogy between arrays and
 functions, as arrays can be seen as merely functions from indexes to
-values.  In Futhark, we'd write this type as ``[n][d]Real``.  The real
-advantage of Dex's approach is that it permits a very lightweight
-notation for index spaces.  For example, ``for i j.e`` produces a
-two-dimensional array where each element is given by the expression
-``e``, and the type checker figures out the span of ``i`` and ``j``
-based on the context.  For example, in ``for k``, Dex figures out that
-``k`` must be part of the index set ``d``, because it is used to index
-the innermost dimension of ``x``.  Pretty cool!
+values.  In Futhark, we'd write this type as ``[n][d]Real``.  Note
+that in Dex, ``n`` and ``d`` are completely abstract type parameters,
+while in Futhark they are term-level variables.
+
+The real advantage of Dex's approach is that it permits a very
+lightweight notation for index spaces.  For example, ``for i j.e``
+produces a two-dimensional array where each element is given by the
+expression ``e``, and the type checker figures out the span of ``i``
+and ``j`` based on the context.  For example, in ``for k``, Dex
+figures out that ``k`` must be part of the index set ``d``, because it
+is used to index the innermost dimension of ``x``.  Pretty cool!
 
 A naive translation to Futhark would be this:
 
