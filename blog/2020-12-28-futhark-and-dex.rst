@@ -5,16 +5,16 @@ description: Dex is another interesting functional array language, and this post
 ---
 
 `Dex <https://github.com/google-research/dex-lang>`_ is a functional
-array programming language developed by Google researchers.  I
-recently re-read `their paper
+array programming language developed by a team of researchers at
+Google.  I recently re-read `their paper
 <https://openreview.net/pdf?id=rJxd7vsWPS>`_, which got me excited
 enough to want to take a closer look.  Dex and Futhark are more or
 less aimed at the same kinds of problems, so my interpretation of Dex
 is rooted in how it differs from Futhark.  In this post I will
 describe some of the interesting differences based on `translating
 five Dex example programs to Futhark
-<../examples.html#examples-from-dex>`_.  I'm not a
-Dex expert, so maybe I've missed a thing here or there.
+<../examples.html#examples-from-dex>`_.  I'm not a Dex expert, so
+maybe I've missed a thing here or there.
 
 Futhark wasn't originally designed to be a user-facing programming
 language.  We were doing research in compiler optimisations for
