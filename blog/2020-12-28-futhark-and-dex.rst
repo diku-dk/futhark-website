@@ -73,7 +73,7 @@ And then you'd apply it to all the pairs:
 
 .. code-block:: Futhark
 
-   let pairwise_L1 [n][m] (xss: [n][m]f64) : [n][n]f64 =
+   let pairwiseL1 [n][m] (xss: [n][m]f64) : [n][n]f64 =
      map (\a -> map (\b -> L1 a b) xss) xss
 
 I think this program illustrates the main difference in philosophy
