@@ -22,8 +22,8 @@ module type field = {
   -- | The field element type.
   type t
 
-  -- | Constructing an element from an integer.
-  val i64 : i64 -> t
+  -- | Constructing an element from a float.
+  val f64 : f64 -> t
 
   val + : t -> t -> t
   val - : t -> t -> t
@@ -68,7 +68,7 @@ module type ordered_field = {
 
 module mk_field_from_numeric (F: numeric) : ordered_field with t = F.t = {
   type t = F.t
-  let i64 = F.i64
+  let f64 = F.f64
   let (+) = (F.+)
   let (-) = (F.-)
   let (*) = (F.*)
@@ -131,14 +131,14 @@ module mk_dual (F: ordered_field) : (dual_field with underlying = F.t) = {
   type t = (underlying, underlying)
   let primal ((x, _) : t) = x
   let tangent ((_, x') : t) = x'
-  let dual0 x : t = (x, F.i64 0)
-  let dual1 x : t = (x, F.i64 1)
+  let dual0 x : t = (x, F.f64 0)
+  let dual1 x : t = (x, F.f64 1)
 
 -- A constant has tangent zero.
 
-  let i64 x = dual0 (F.i64 x)
-  let zero = i64 0
-  let one = i64 1
+  let f64 x = dual0 (F.f64 x)
+  let zero = f64 0
+  let one = f64 1
 
 -- Negation is defined in the obvious way.
 
@@ -226,15 +226,15 @@ module test_dual = mk_test dual_f64
 module mk_sqrt (F: ordered_field) = {
 
   let abs (x: F.t) =
-    if F.(x < i64 0)
+    if F.(x < f64 0)
     then F.negate x
     else x
 
   let sqrt (x: F.t) =
-    let difference = F.(i64 1 / i64 1000)
-    in loop guess = F.i64 1
+    let difference = F.f64 0.001
+    in loop guess = F.f64 1
        while F.(abs(guess * guess - x) >= difference) do
-         F.((x/guess + guess)/(i64 2))
+         F.((x/guess + guess)/(f64 2))
 }
 
 module sqrt_dual = mk_sqrt dual_f64

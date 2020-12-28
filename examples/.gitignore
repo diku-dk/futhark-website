@@ -1,3 +1,4 @@
 *
 !*.fut
 !.gitignore
+!*.png

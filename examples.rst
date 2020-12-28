@@ -66,7 +66,11 @@ maintain a list of `projects using Futhark`_.
 
 * `Reducing or scanning without a neutral element <examples/no-neutral-element.html>`_
 
+* `Random numbers <examples/random-numbers.html>`_
+
 * `Gaussian blur (with Python integration) <examples/gaussian-blur.html>`_
+
+* `Three-dimensional vectors <examples/3d-vectors.html>`_
 
 * `Faking nominal types <examples/nominal-types.html>`_
 
@@ -75,6 +79,27 @@ maintain a list of `projects using Futhark`_.
 * `Binary search <examples/binary-search.html>`_
 
 * `AD with dual numbers <examples/dual-numbers.html>`_
+
+Examples from Dex
+-----------------
+
+The following examples are ported from `Dex
+<https://github.com/google-research/dex-lang>`_, a dependently typed
+functional array language that uses a somewhat different approach to
+describing loop processing.  We've tried to keep the original naming
+scheme and programming style.
+
+* `Prelude <examples/dex-prelude.html>`_
+
+* `Mandelbrot set <examples/dex-mandelbrot.html>`_
+
+* `Multi-step ray tracer <examples/dex-raytrace.html>`_
+
+* `Monte Carlo estimates of pi <examples/dex-pi.html>`_
+
+* `Brownian motion <examples/dex-brownian-motion.html>`_
+
+* `Sierpinski triangle <examples/dex-sierpinski.html>`_
 
 Projects using Futhark
 ----------------------

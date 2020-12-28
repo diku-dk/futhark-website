@@ -135,6 +135,7 @@ main = do
           >>= loadAndApplyTemplate "templates/default.html" (ctx <> menu)
           >>= relativizeUrls
     match "examples/*.fut" $ version "source" static
+    match "examples/*.png" static
 
     match "templates/*" $ compile templateCompiler
 
