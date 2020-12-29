@@ -1,7 +1,7 @@
 -- # Dex: Multi-step ray tracer
 --
 -- The following is a port of
--- [raytrace.dx](https://google-research.github.io/dex-lang/mandelbrot.html),
+-- [raytrace.dx](https://google-research.github.io/dex-lang/raytrace.html),
 -- which is itself based on [this Jax
 -- program](https://github.com/ericjang/pt-jax/blob/master/jaxpt_vmap.ipynb)
 -- by Eric Jang.  See [this blog
