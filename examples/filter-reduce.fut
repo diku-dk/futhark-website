@@ -28,4 +28,6 @@ let sum_pos_best (xs: []i32) =
 
 -- ## See also
 --
--- [Reducing or scanning without a neutral element](no-neutral-element.html).
+-- [Reducing or scanning without a neutral
+-- element](no-neutral-element.html), [Scattering the result of a
+-- filter](filter-scatter.html).

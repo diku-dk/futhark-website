@@ -35,4 +35,5 @@ let count_number_pos (xs: []i32) =
 
 -- ## See also
 --
--- [Reducing the result of a filter](filter-reduce.html).
+-- [Reducing the result of a filter](filter-reduce.html), [Scattering
+-- the result of a filter](filter-scatter.html).

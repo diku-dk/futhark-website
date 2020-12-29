@@ -34,4 +34,7 @@ let xs = scatter (replicate 7 0) [0, 2, 4, 6] [1, 2, 3, 4]
 -- if the same value is being written.  For a related construct that
 -- can handle duplicate writes in other ways, see
 -- [`reduce_by_index`](histograms.html).
-
+--
+-- ## See also
+--
+-- [Scattering the result of a filter](filter-scatter.html).

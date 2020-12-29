@@ -46,6 +46,8 @@ maintain a list of `projects using Futhark`_.
 
 * `Reducing the result of a filter <examples/filter-reduce.html>`_
 
+* `Scattering the result of a filter <examples/filter-scatter.html>`_
+
 * `Size parameters <examples/size-parameters.html>`_
 
 * `Matrix multiplication <examples/matrix-multiplication.html>`_
