@@ -1,7 +1,7 @@
 -- # Triangular matrices
 --
 -- A triangular matrix is a kind of sparse square matrix where all
--- elements above or below the diagonal are zero.  In the former case,
+-- elements above or below the diagonal are zero.  In the latter case,
 -- we call it a *lower triangular matrix*.  While we can always
 -- represent an *n²* triangular matrix as an ordinary *n²* matrix
 -- where we store the zeroes, this is wasteful of memory.  Instead, we
