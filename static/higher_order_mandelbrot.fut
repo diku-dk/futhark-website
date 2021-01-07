@@ -4,7 +4,7 @@
 --
 -- ==
 -- entry: bench_mandelbrot bench_numpy_mandelbrot
--- input { 300 300 }
+-- input { 300i64 300i64 }
 
 type complex = (f32, f32)
 
