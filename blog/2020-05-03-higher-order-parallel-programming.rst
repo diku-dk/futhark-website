@@ -256,7 +256,7 @@ the relatively slow memory bus (350GiB/s), not to mention a lot of
 extra synchronisation because many more discrete GPU kernels are
 involved.
 
-In conclusion, higher-order parallelism programming is just as easy as
+In conclusion, higher-order parallel programming is just as easy as
 first-order parallel programming, because it is still race-free and
 fully deterministic.  But it allows us not just more powerful methods
 of abstraction, but also potentially much better performance.
