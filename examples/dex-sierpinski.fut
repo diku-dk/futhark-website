@@ -25,4 +25,6 @@ entry points = unzip (runChain 3000 (update trianglePoints) (newKey 0) (0.0, 0.0
 -- Let's give it a point plot.
 
 -- > :gnuplot {points=points};
--- plot points with points pt "o"
+-- unset xtics
+-- unset ytics
+-- plot points with points pt "o" notitle
