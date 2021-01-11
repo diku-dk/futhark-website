@@ -40,7 +40,7 @@ fleshed out the primitive type system, I agonised over how to name the
 new types.  Should 32-bit signed integers be ``Int32`` as in Haskell,
 or ``i32`` as in Rust?  I worried the latter was *too short*.  Yet in
 the end, that was the scheme we went with:
-``i8``/``i16``/``i32``/``i64`` for the signed types;
+``i8``/``i16``/``i32``/``i64`` for the signed types,
 ``u8``/``u16``/``u32``/``u64`` for the unsigned, and ``f32``/``f64``
 for floats.
 
