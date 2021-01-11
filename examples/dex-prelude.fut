@@ -26,7 +26,7 @@ let scan' n x0 f =
   (.0) <|
   loop (arr, acc) = (replicate n x0, x0) for i < n do
     let acc' = f i acc
-    in (arr with [i] = acc', acc)
+    in (arr with [i] = acc', acc')
 
 -- # Random numbers
 --

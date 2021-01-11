@@ -2,7 +2,9 @@
 -- title: "Dex: Sierpinski triangle"
 -- ---
 --
--- This one is fairly straightforward.
+-- The following is a port of
+-- [sierpinski.dx](https://google-research.github.io/dex-lang/examples/sierpinski.html)
+-- and is fairly straightforward.
 
 import "dex-prelude"
 
@@ -18,7 +20,9 @@ let runChain 'a (n: i64) (f: Key -> a -> a) (key: Key) (x0: a) : [n]a =
 let trianglePoints : [3]Point =
   [(0.0, 0.0), (1.0, 0.0), (0.5, f64.sqrt 0.75)]
 
-let points = runChain 3000 (update trianglePoints) (newKey 0) (0.0, 0.0)
+entry points = unzip (runChain 3000 (update trianglePoints) (newKey 0) (0.0, 0.0))
 
--- No plotting, though.  This Sierpinski triangle is rendered only in
--- our imagination.
+-- Let's give it a point plot.
+
+-- > :gnuplot {points=points};
+-- plot points with points pt "o"
