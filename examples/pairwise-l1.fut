@@ -1,4 +1,6 @@
--- # Pairwise L₁ distances
+-- ---
+-- title: Pairwise L₁ distances
+-- ---
 --
 -- First we define a function for computing the [L₁
 -- distance](https://en.wikipedia.org/wiki/Taxicab_geometry) between
@@ -19,6 +21,6 @@ let pairwise_L1 [n][m] (xss: [n][m]f64) : [n][n]f64 =
 
 -- This pattern is very similar to matrix multiplication.
 --
--- ## See also
+-- # See also
 --
 -- [Matrix multiplication](matrix-multiplication.html).

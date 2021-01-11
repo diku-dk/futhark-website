@@ -1,4 +1,6 @@
--- # Reducing the result of a filter
+-- ---
+-- title: Reducing the result of a filter
+-- ---
 --
 -- Suppose we wish to sum all the positive values of some array.  The
 -- obvious way to write it is as follows:
@@ -26,7 +28,7 @@ let reduce_some 'a (op: a -> a -> a) (ne: a) (p: a -> bool) (xs: []a) : a =
 let sum_pos_best (xs: []i32) =
   reduce_some (+) 0 (>0) xs
 
--- ## See also
+-- # See also
 --
 -- [Reducing or scanning without a neutral
 -- element](no-neutral-element.html), [Scattering the result of a

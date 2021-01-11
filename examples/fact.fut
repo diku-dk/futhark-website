@@ -1,4 +1,6 @@
--- # Basic usage with the factorial function
+-- ---
+-- title: Basic usage with the factorial function
+-- ---
 --
 -- The [factorial](https://en.wikipedia.org/wiki/Factorial) of a
 -- number *n*, written *n!*, is the product of all integers from 1 to
@@ -43,6 +45,6 @@ let main (n: i32): i32 = fact n
 -- This will write the result on standard output (`0i32` - a 32-bit
 -- zero).
 --
--- ## See also
+-- # See also
 --
 -- [Scans and reductions](scan-reduce.html).

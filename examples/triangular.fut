@@ -1,4 +1,6 @@
--- # Triangular matrices
+-- ---
+-- title: Triangular matrices
+-- ---
 --
 -- A triangular matrix is a kind of sparse square matrix where all
 -- elements above or below the diagonal are zero.  In the latter case,

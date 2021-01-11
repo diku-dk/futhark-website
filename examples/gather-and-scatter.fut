@@ -1,4 +1,6 @@
--- # Gather and scatter
+-- ---
+-- title: Gather and scatter
+-- ---
 --
 -- In vector programming, *gather* is an operation that takes a source
 -- array *xs* and an array of indexes *is*, and for each *i* in *is*
@@ -35,6 +37,6 @@ let xs = scatter (replicate 7 0) [0, 2, 4, 6] [1, 2, 3, 4]
 -- can handle duplicate writes in other ways, see
 -- [`reduce_by_index`](histograms.html).
 --
--- ## See also
+-- # See also
 --
 -- [Scattering the result of a filter](filter-scatter.html).

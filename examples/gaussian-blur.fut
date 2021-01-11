@@ -1,4 +1,6 @@
--- # Gaussian blur
+-- ---
+-- title: Gaussian blur
+-- ---
 --
 -- One common pattern of array computation is the so-called
 -- [stencil](https://en.wikipedia.org/wiki/Stencil_code), where we

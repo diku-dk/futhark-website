@@ -1,4 +1,6 @@
--- # Testing for associativity
+-- ---
+-- title: Testing for associativity
+-- ---
 --
 -- Recall that for [scans and reductions](scan-reduce.html), the
 -- operator given must be *associative*.  This means

@@ -1,4 +1,6 @@
--- # Scans and reductions
+-- ---
+-- title: Scans and reductions
+-- ---
 --
 -- The `reduce` function reduces an array to a single value by
 -- conceptually inserting a binary operator (or any two-parameter
@@ -72,6 +74,6 @@ let average (xs: []f64) =
 -- them in other examples, as they are an important building block in
 -- advanced parallel algorithms.
 --
--- ## See also
+-- # See also
 --
 -- [Reducing the result of a filter](filter-reduce.html).

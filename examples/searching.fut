@@ -1,4 +1,6 @@
--- # Searching
+-- ---
+-- title: Searching
+-- ---
 --
 -- Sometimes you need to find the first element of an array that
 -- satisfies some property.  This can be done with a

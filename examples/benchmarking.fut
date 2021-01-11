@@ -1,4 +1,6 @@
--- # Benchmarking
+-- ---
+-- title: Benchmarking
+-- ---
 --
 -- Suppose we write a simple program that sums the squares of some integers:
 
@@ -36,7 +38,7 @@ let main (n: i32): i32 =
 -- dataset #2 ("1000000000i32"):    1693.80us (avg. of 10 runs; RSD: 0.04)
 -- ```
 --
--- ## See also
+-- # See also
 --
 -- The [manpage for `futhark
 -- bench`](https://futhark.readthedocs.io/en/stable/man/futhark-bench.html).

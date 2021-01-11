@@ -24,27 +24,6 @@ postCtx =
 static :: Rules ()
 static = void $ route idRoute >> compile copyFileCompiler
 
--- Turn a Futhark program into Markdown.
-weave :: String -> String
-weave = unlines . f False . lines
-  where
-    f _ [] = []
-    f b (l : ls)
-      | l == "-- ==" =
-        code l : f True ls
-      | isText l =
-        if b
-          then code l : f b ls
-          else text l : f b ls
-      | otherwise =
-        code l : f False ls
-
-    isText s =
-      "--" `isPrefixOf` s
-        && not ("-- ==" `isPrefixOf` s)
-    code = ("    " ++)
-    text = drop 3
-
 main :: IO ()
 main = do
   futhark_syntax <-
@@ -125,17 +104,16 @@ main = do
         renderAtom feedConfiguration feedCtx posts
 
     -- Examples
-    match "examples/*.fut" $ do
+    match "examples/*.md" $ do
       route $ setExtension "html"
       compile $ do
         menu <- contentContext
-        (ctx, md) <- literateCompiler futhark_syntax
-        pure md
-          >>= saveSnapshot "content"
-          >>= loadAndApplyTemplate "templates/default.html" (ctx <> menu)
+        exampleCompiler futhark_syntax
+          >>= loadAndApplyTemplate "templates/withtitle.html" menu
+          >>= loadAndApplyTemplate "templates/default.html" menu
           >>= relativizeUrls
+    match "examples/*/*.png" static
     match "examples/*.fut" $ version "source" static
-    match "examples/*.png" static
 
     match "templates/*" $ compile templateCompiler
 
@@ -216,37 +194,22 @@ pandocRstCompiler futhark_syntax =
   where
     (ropts, wopts) = pandocOptions futhark_syntax
 
-literateCompiler :: Syntax -> Compiler (Context String, Item String)
-literateCompiler futhark_syntax = do
-  s <- fmap (T.pack . weave) <$> getResourceBody
-  (pandoc, title) <-
-    case runPure $ traverse (readMarkdown ropts) s of
-      Left err -> error $ "literateCompiler: " ++ show err
-      Right (Item foo (Pandoc meta (Header lvl attr title : rest))) -> do
-        source <- getResourceFilePath
-        let title' =
-              title
-                <> [ Str " (",
-                     Link mempty [Str "source"] ("/" <> T.pack source, "source"),
-                     Str ")"
-                   ]
-        pure
-          ( Item
-              foo
-              (Pandoc meta (Header lvl attr title' : rest)),
-            title
-          )
-      Right pandoc ->
-        error $ "literateCompiler: unexpected Pandoc: " ++ show pandoc
-  case runPure $ writePlain wopts $ Pandoc mempty [Plain title] of
-    Left err -> error $ "literateCompiler: " ++ show err
-    Right title' ->
-      return
-        ( constField "title" $ T.unpack title',
-          writePandocWith wopts pandoc
-        )
+exampleCompiler :: Syntax -> Compiler (Item String)
+exampleCompiler futhark_syntax = do
+  source <- (`replaceExtension` "fut") <$> getResourceFilePath
+  pandocCompilerWithTransform ropts wopts $
+    addSourceLink source . walk (selfLinkHeader . shiftHeaderUp)
   where
     (ropts, wopts) = pandocOptions futhark_syntax
+
+    addSourceLink source (Pandoc meta blocks) =
+      Pandoc meta $ Plain [srclink] : blocks
+      where
+        sourcename = T.pack $ takeFileName source
+        attr = ("", ["sourcelink"], [])
+        text = Str "Source file: "
+        link = Link mempty [Str sourcename] (T.pack ("/" </> source), sourcename)
+        srclink = Span attr [text, link]
 
 --------------------------------------------------------------------------------
 config :: Configuration

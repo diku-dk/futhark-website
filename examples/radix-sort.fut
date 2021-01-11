@@ -1,4 +1,6 @@
--- # Radix sort
+-- ---
+-- title: Radix sort
+-- ---
 --
 -- [Radix sort](https://en.wikipedia.org/wiki/Radix_sort) is a
 -- non-comparative sorting algorithm for sorting things that "behave"

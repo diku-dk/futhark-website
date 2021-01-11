@@ -1,4 +1,6 @@
--- # Dex: Multi-step ray tracer
+-- ---
+-- title: "Dex: Multi-step ray tracer"
+-- ---
 --
 -- The following is a port of
 -- [raytrace.dx](https://google-research.github.io/dex-lang/raytrace.html),
@@ -97,7 +99,7 @@ module f64_dual_field = {
   let one = f64 1
 }
 
--- ## Geometry
+-- # Geometry
 
 -- Sine we need the basic geometry functions of the ray tracer to work
 -- with both normal and dual numbers, we define it as a parametric
@@ -178,7 +180,7 @@ type Object
   -- position, half-width, intensity (assumed to point down)
   | #Light Position Float Radiance
 
--- ### The signed distance function
+-- ## The signed distance function
 --
 -- This function is the reason why the Futhark implementation is so
 -- convoluted, as we will need its derivative.
@@ -205,7 +207,7 @@ let sdObject (pos:Position) (obj:Object) : Distance =
 
 }
 
--- ## Working with the geometry
+-- # Working with the geometry
 --
 -- We'll need to instantiate the geometry module twice: once with
 -- ordinary floats, and once with dual numbers.
@@ -284,7 +286,7 @@ let calcNormal (obj: Object) (pos: Position) : Direction =
     in f64_dual_field.tangent (geometry_dual.sdObject pos' (dualObject obj))
   in geometry.normalize (vec (f 0) (f 1) (f 2))
 
--- ## Random sampling
+-- # Random sampling
 --
 -- Since [dex-prelude.fut](dex-prelude.html) defines the same random
 -- number generation interface as the Dex program, the sampling
@@ -319,7 +321,7 @@ let sampleCosineWeightedHemisphere (normal: Vec) (k: Key) : Vec =
   let rr = (rx *> uu) <+> (ry *> vv) <+> (rz *> normal)
   in normalize rr
 
--- ## Ray marching
+-- # Ray marching
 --
 -- The essence of ray marching is simple: move along a given vector
 -- and find the first object we collide with.  We do this the naive
@@ -395,7 +397,7 @@ let raymarch [n] (scene:Scene [n]) (ray:Ray) : RayMarchResult =
                    #HitLight radiance)
   in res
 
--- ## Light sampling
+-- # Light sampling
 --
 -- These definitions are pretty straightforward, and similar to those
 -- in Dex.
@@ -453,7 +455,7 @@ let sampleLightRadiance [n] (scene: Scene [n])
             let coeff = fracSolidAngle * probReflection osurf inRay outRay
             in radiance <+> (coeff *> rayDirectRadiance scene outRay)
 
--- ## Tracing
+-- # Tracing
 --
 -- Almost done.  Everything here is very similar to the Dex code.
 
@@ -500,7 +502,7 @@ let trace [n] (params: Params) (scene: Scene [n]) (init_ray: Ray) (k: Key) : Col
       let newRadiance = radiance <+> applyFilter newFilter lightRadiance
       in (i+1, newFilter, newRadiance, outRayHemisphere)
 
--- ## Camera
+-- # Camera
 --
 -- The camera controls how the initial rays are sent into the scene.
 
@@ -557,7 +559,7 @@ let takePicture [m] (params: Params) (scene: Scene [m]) (camera: Camera) =
   let mean = meanIntensity image
   in map (map ((1/mean)*>)) image
 
--- ## Scene definition
+-- # Scene definition
 --
 -- The only odd thing here is that apparently our vectors rotate
 -- opposite of the way Dex does it, so I had to give the block a
@@ -591,7 +593,7 @@ let defaultCamera : Camera = { numPix     = 250
                              , halfWidth  = 0.3
                              , sensorDist = 1.0 }
 
--- ## Entry point
+-- # Entry point
 --
 -- This is not part of the Dex program, but is needed if we want
 -- Futhark to produce anything for the outside world.
@@ -610,13 +612,4 @@ let main n =
   takePicture defaultParams theScene (defaultCamera with numPix = n)
   |> map (map pix)
 
--- As with [the Mandelbrot set](dex-mandelbrot.html), we use
--- [data2png.py](https://github.com/diku-dk/futhark/blob/master/tools/data2png.py)
--- to convert the output to an image:
---
--- ```
--- $ futhark c dex-raytrace.fut
--- $ echo 500 | ./dex-raytrace -b | data2png.py /dev/stdin dex-raytrace.png
--- ```
---
--- ![](dex-raytrace.png)
+-- > :img main 500i64

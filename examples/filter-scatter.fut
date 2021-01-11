@@ -1,4 +1,6 @@
--- # Scattering the result of a filter
+-- ---
+-- title: Scattering the result of a filter
+-- ---
 --
 -- Suppose we have a list of index/value pairs that we wish to
 -- [scatter](gather-and-scatter.html) into a target array, *except*
@@ -25,7 +27,7 @@ let scatter_some_better 'a (dest: *[]a) (p: a -> bool) (pairs: [](i64, a)) =
   let (is, vs) = unzip (map (\(i, v) -> if p v then (i,v) else (-1,v)) pairs)
   in scatter dest is vs
 
--- ## See also
+-- # See also
 --
 -- [Reducing the result of a filter](filter-reduce.html), [Reducing or
 -- scanning without a neutral element](no-neutral-element.html).

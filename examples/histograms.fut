@@ -1,4 +1,6 @@
--- # Computing histograms
+-- ---
+-- title: Computing histograms
+-- ---
 --
 -- Mathematically, a
 -- [histogram](https://en.wikipedia.org/wiki/Histogram#Mathematical_definition)

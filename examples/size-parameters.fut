@@ -1,4 +1,6 @@
--- # Size parameters
+-- ---
+-- title: Size parameters
+-- ---
 --
 -- Size annotations are used for expressing constraints on the size of
 -- array-typed function parameters, and guarantees on the result.  For
@@ -23,6 +25,6 @@ let dotprod [n] (xs: [n]i32) (ys: [n]i32): i32 =
 
 let res = dotprod [1,2,3] [4,5,6]
 
--- ## See also
+-- # See also
 --
 -- [Matrix multiplication](matrix-multiplication.html), [Triangular arrays](triangular.html).

@@ -1,4 +1,6 @@
--- # Three-dimensional vectors
+-- ---
+-- title: Three-dimensional vectors
+-- ---
 --
 -- This example shows how we might define a module type for
 -- programming with vectors in normal 3D space.
@@ -146,7 +148,7 @@ module f64_3d = mk_vspace_3d f64
 -- {x = -3.0f64, y = 6.0f64, z = -3.0f64}
 -- ```
 
--- ## See also
+-- # See also
 --
 -- [Dex: Multi-step ray tracer](dex-raytrace.html)
 --

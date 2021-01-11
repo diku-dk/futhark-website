@@ -1,4 +1,6 @@
--- # Random numbers
+-- ---
+-- title: Random numbers
+-- ---
 --
 -- Generating random numbers in a purely functional language requires
 -- us to manually track the state of the random number generator
@@ -130,6 +132,6 @@ let rand_f64 (rng: lcg.rng) =
 -- [cpprandom](https://github.com/diku-dk/cpprandom) package, which
 -- you should use for real Futhark programs.
 --
--- ## See also
+-- # See also
 --
 -- The [cpprandom](https://github.com/diku-dk/cpprandom) package.

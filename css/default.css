@@ -71,6 +71,11 @@ a:visited {
     color: black;
 }
 
+.sourcelink {
+    display: block;
+    text-align: center;
+}
+
 #header {
     margin-bottom: 4em;
     padding: 12px 0px 12px 0;

@@ -1,4 +1,6 @@
--- # Dex: Mandelbrot set
+-- ---
+-- title: "Dex: Mandelbrot set"
+-- ---
 --
 -- The following is a port of
 -- [mandelbrot.dx](https://google-research.github.io/dex-lang/mandelbrot.html).
@@ -28,9 +30,8 @@ let escapeTime (c: c64) =
 -- A more idiomatic Futhark implementation would use a `while`-loop
 -- ([as here](../static/mandelbrot.fut)).
 --
--- Futhark does not directly have anything like Dex's built-in
--- plotting support, but we can write a simple `main` function that
--- produces a two-dimensional array of floats.
+-- We finish up with a simple `main` function that produces a
+-- two-dimensional array of floats.
 
 let main h w =
   tabulate_2d h w
@@ -39,13 +40,4 @@ let main h w =
                  let y =   -1 + f64.i64 j * (2/f64.i64 h)
                  in 1-escapeTime (c64.mk x y) / 1000)
 
--- We can then compile the program and use the
--- [data2png.py](https://github.com/diku-dk/futhark/blob/master/tools/data2png.py)
--- script to convert its output to an image:
---
--- ```
--- $ futhark c dex-mandelbrot.fut
--- $ echo 200 300 | ./dex-mandelbrot -b | data2png.py /dev/stdin dex-mandelbrot.png
--- ```
---
--- ![](dex-mandelbrot.png)
+-- > :img main 200i64 300i64

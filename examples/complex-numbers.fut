@@ -1,4 +1,6 @@
--- # Complex numbers
+-- ---
+-- title: Complex numbers
+-- ---
 --
 -- Futhark does not have complex numbers, but they are fairly easy to
 -- implement as a module.  First we [define a module
@@ -106,6 +108,6 @@ module c64 = mk_complex f64
 -- package (which you should use in real programs rather than rolling
 -- your own) is implemented in exactly this way.
 --
--- ## See also
+-- # See also
 --
 -- [Dex: Mandelbrot set](dex-mandelbrot.html).

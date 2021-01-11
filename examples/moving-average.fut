@@ -1,4 +1,6 @@
--- # Moving average
+-- ---
+-- title: Moving average
+-- ---
 --
 -- We can compute the average value of an array by summing the
 -- elements, then dividing by the array size:

@@ -1,4 +1,6 @@
--- # Abstract data types
+-- ---
+-- title: Abstract data types
+-- ---
 --
 -- Sometimes we wish to define a data type that does not expose its
 -- representation.  Such data types are called *abstract* or *opaque*.
@@ -81,7 +83,7 @@ module normvec : normvec = {
 -- `normvec.vec` values.  To ease debugging, the interpreter does not
 -- respect abstraction boundaries when prettyprinting.
 --
--- ## See also
+-- # See also
 --
 -- [Complex numbers](complex-numbers.html), [Triangular
 -- arrays](triangular.html), [Nominal types](nominal-types.html), [AD

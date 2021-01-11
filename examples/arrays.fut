@@ -1,4 +1,6 @@
--- # Arrays
+-- ---
+-- title: Arrays
+-- ---
 --
 -- Futhark arrays are written as values enclosed in square brackets.
 
@@ -53,7 +55,7 @@ let strided = 1..3...7
 
 -- Now `strided` contains `[1, 3, 5, 7]`.
 
--- ## See also
+-- # See also
 --
 -- Reference manual:
 -- [slicing](https://futhark.readthedocs.io/en/stable/language-reference.html#a-i-j-s).

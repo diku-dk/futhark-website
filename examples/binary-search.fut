@@ -1,4 +1,6 @@
--- # Binary search
+-- ---
+-- title: Binary search
+-- ---
 --
 -- When we need to look for the position of an element in a sorted
 -- sequence, we can use a [binary
@@ -150,7 +152,7 @@ entry sorted (xs: []i32) =
 -- integers, so we need to convert back and forth.  This is fine as
 -- long as we are careful not to make our input too large.  Now we can
 -- compile the program:
----
+--
 -- ```
 -- $ futhark opencl binary-search.fut
 -- ```

@@ -1,4 +1,6 @@
--- # Dex: Monte Carlo estimates of pi
+-- ---
+-- title: "Dex: Monte Carlo estimates of pi"
+-- ---
 --
 -- The following is a port of
 -- [pi.dx](https://google-research.github.io/dex-lang/pi.html)
@@ -32,12 +34,14 @@ let meanAndStdDev (n: i64) (f: Key -> f64) (key: Key) : (f64, f64) =
   let samps = map f (split n key)
   in (mean samps, std samps)
 
--- The REPL interpreter is too slow for very many samples, but 10000 is
--- fine:
---
--- ```
--- > meanAndStdDev 10000 estimatePiArea (newKey 42)
--- (3.1444f64, 1.640228228021942f64)
--- > meanAndStdDev 10000 estimatePiAvgVal (newKey 42)
--- (3.142531101443501f64, 0.8906758806365033f64)
--- ```
+-- For Futhark, we do need some first-order entry points.
+
+entry piAreaMeanAndStdDev n seed = meanAndStdDev n estimatePiArea (newKey seed)
+
+entry piAvgValMeanAndStdDev n seed = meanAndStdDev n estimatePiAvgVal (newKey seed)
+
+-- And this is what it looks like:
+
+-- > piAreaMeanAndStdDev 1000000i64 42i32
+
+-- > piAvgValMeanAndStdDev 1000000i64 42i32

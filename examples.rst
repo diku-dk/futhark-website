@@ -16,6 +16,10 @@ maintain a list of `projects using Futhark`_.
 .. _`projects using Futhark`: #projects-using-futhark
 .. _`examples directory in the Futhark repository`: https://github.com/diku-dk/futhark/tree/master/examples
 
+Some of the example programs contain `script directives
+<https://futhark.readthedocs.io/en/latest/man/futhark-script.html>`_
+for plotting or rendering graphics.
+
 * `Basic usage with the factorial function <examples/fact.html>`_
 
 * `Primitive values <examples/values.html>`_

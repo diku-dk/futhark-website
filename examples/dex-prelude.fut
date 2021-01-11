@@ -1,4 +1,6 @@
--- # Dex: Prelude
+-- ---
+-- title: "Dex: Prelude"
+-- ---
 --
 -- Translation of various functions from
 -- [prelude.dx](https://google-research.github.io/dex-lang/prelude.html).
@@ -26,7 +28,7 @@ let scan' n x0 f =
     let acc' = f i acc
     in (arr with [i] = acc', acc)
 
--- ## Random numbers
+-- # Random numbers
 --
 -- The random numbers defined in
 -- [random-numbers.fut](random-numbers.html) are based on the idea of
@@ -89,7 +91,7 @@ let randIdx (n: i64) (k: Key) =
   let unif = rand k
   in i64.f64 (f64.floor (unif * f64.i64 n))
 
--- ## See also
+-- # See also
 --
 -- [The Futhark
 -- prelude](https://futhark-lang.org/docs/prelude/doc/prelude/prelude.html).

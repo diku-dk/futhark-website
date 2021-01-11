@@ -1,4 +1,6 @@
--- # Pipe operators
+-- ---
+-- title: Pipe operators
+-- ---
 --
 -- Futhark programs are typically written as chains of functions that
 -- each slightly massage the data somehow.  For example, to compute
@@ -34,7 +36,7 @@ let square_pos_pipe xs =
 -- limitations, and usually does not work with functions that return
 -- arrays of statically unknown size (such as `filter`).
 
--- ## See also
+-- # See also
 --
 -- Reference manual: [Size
 -- types](https://futhark.readthedocs.io/en/latest/language-reference.html#size-types)

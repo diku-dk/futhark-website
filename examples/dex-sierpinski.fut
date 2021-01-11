@@ -1,4 +1,6 @@
--- # Dex: Sierpinski triangle
+-- ---
+-- title: "Dex: Sierpinski triangle"
+-- ---
 --
 -- This one is fairly straightforward.
 

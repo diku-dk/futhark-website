@@ -1,4 +1,6 @@
--- # Counting elements that satisfy property
+-- ---
+-- title: Counting elements that satisfy property
+-- ---
 --
 -- Suppose we wish to count the number of positive integers in
 -- some array.  We might write the following:
@@ -33,7 +35,7 @@ let count p xs =
 let count_number_pos (xs: []i32) =
   count (>0) xs
 
--- ## See also
+-- # See also
 --
 -- [Reducing the result of a filter](filter-reduce.html), [Scattering
 -- the result of a filter](filter-scatter.html).

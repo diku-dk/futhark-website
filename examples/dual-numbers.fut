@@ -1,4 +1,6 @@
--- # AD with dual numbers
+-- ---
+-- title: AD with dual numbers
+-- ---
 --
 -- [AD](https://en.wikipedia.org/wiki/Automatic_differentiation) is
 -- the term for a family of techniques that compute the derivatives of

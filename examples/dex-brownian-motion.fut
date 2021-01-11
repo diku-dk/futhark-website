@@ -1,4 +1,6 @@
--- # Dex: Brownian motion
+-- ---
+-- title: "Dex: Brownian motion"
+-- ---
 --
 -- The following is a port of
 -- [brownian_motion.dx](https://google-research.github.io/dex-lang/brownian_motion.html).
@@ -20,8 +22,7 @@ let sampleBM (key: Key) (t: UnitInterval) : f64 =
   let (_, y, _, _) = iterate 10 bmIter (key, 0.0, 1.0, t)
   in y
 
-let xs = linspace 1000 0.0 1.0
-let ys = map (sampleBM (newKey 42)) xs
+entry xs = linspace 1000 0.0 1.0
+entry ys = map (sampleBM (newKey 42)) xs
 
--- But unfortunately Futhark does not have a simple way to plot those
--- results, so you'll have take our work on this one.
+-- > :plot2d (xs, ys)
