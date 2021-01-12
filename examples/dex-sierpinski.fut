@@ -20,7 +20,7 @@ let runChain 'a (n: i64) (f: Key -> a -> a) (key: Key) (x0: a) : [n]a =
 let trianglePoints : [3]Point =
   [(0.0, 0.0), (1.0, 0.0), (0.5, f64.sqrt 0.75)]
 
-entry points = unzip (runChain 3000 (update trianglePoints) (newKey 0) (0.0, 0.0))
+let points = unzip (runChain 3000 (update trianglePoints) (newKey 0) (0.0, 0.0))
 
 -- Let's give it a point plot.
 

@@ -36,9 +36,9 @@ let meanAndStdDev (n: i64) (f: Key -> f64) (key: Key) : (f64, f64) =
 
 -- For Futhark, we do need some first-order entry points.
 
-entry piAreaMeanAndStdDev n seed = meanAndStdDev n estimatePiArea (newKey seed)
+let piAreaMeanAndStdDev n seed = meanAndStdDev n estimatePiArea (newKey seed)
 
-entry piAvgValMeanAndStdDev n seed = meanAndStdDev n estimatePiAvgVal (newKey seed)
+let piAvgValMeanAndStdDev n seed = meanAndStdDev n estimatePiAvgVal (newKey seed)
 
 -- And this is what it looks like:
 

@@ -22,7 +22,7 @@ let sampleBM (key: Key) (t: UnitInterval) : f64 =
   let (_, y, _, _) = iterate 10 bmIter (key, 0.0, 1.0, t)
   in y
 
-entry xs = linspace 1000 0.0 1.0
-entry ys = map (sampleBM (newKey 42)) xs
+let xs = linspace 1000 0.0 1.0
+let ys = map (sampleBM (newKey 42)) xs
 
 -- > :plot2d (xs, ys)
