@@ -86,6 +86,11 @@ for plotting or rendering graphics.
 
 * `AD with dual numbers <examples/dual-numbers.html>`_
 
+FutharkScript
+-------------
+
+* `Basic use of scripts <examples/script-basics.html>`_
+
 Examples from Dex
 -----------------
 
