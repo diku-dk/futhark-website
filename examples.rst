@@ -16,8 +16,8 @@ maintain a list of `projects using Futhark`_.
 .. _`projects using Futhark`: #projects-using-futhark
 .. _`examples directory in the Futhark repository`: https://github.com/diku-dk/futhark/tree/master/examples
 
-Some of the example programs contain `script directives
-<https://futhark.readthedocs.io/en/latest/man/futhark-script.html>`_
+Some of the example programs use `directives
+<https://futhark.readthedocs.io/en/latest/man/futhark-literate.html>`_
 for plotting or rendering graphics.
 
 * `Basic usage with the factorial function <examples/fact.html>`_
@@ -86,10 +86,10 @@ for plotting or rendering graphics.
 
 * `AD with dual numbers <examples/dual-numbers.html>`_
 
-FutharkScript
--------------
+Literate Futhark
+----------------
 
-* `Basic use of scripts <examples/script-basics.html>`_
+* `Basic use of literate Futhark <examples/literate-basics.html>`_
 
 Examples from Dex
 -----------------

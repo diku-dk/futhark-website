@@ -3,7 +3,8 @@ FUTHARK_BACKEND ?= multicore
 all: $(patsubst %.fut, %.md, $(wildcard *.fut))
 
 %.md: %.fut
-	futhark script --backend=$(FUTHARK_BACKEND) --stop-on-error $<
+	rm -rf $*-img
+	futhark literate --backend=$(FUTHARK_BACKEND) --stop-on-error $<
 
 .PHONY: clean
 
