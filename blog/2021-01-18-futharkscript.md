@@ -4,37 +4,38 @@ description: This post introduces yet another half-baked scripting language desi
 ---
 
 Futhark is a purely functional language designed for numerical
-code, and without any capacity for IO.  This makes it impossible to
-write entire applications in Futhark.  You can compile a Futhark
-program to an executable that will read input from stdin and
-produce the result on stdout.  This is fine for small-scale
-testing, but not useful for entire applications.  A crucial
-limitation is that function parameters and arguments must be of
-types that have a well-defined external encoding. In practice, this
-means built-in primitive types and arrays of these, with no support
-for records and sum types.
+code.  It does not have the ability to do IO.  This makes it
+impossible to write entire applications in Futhark.  You can
+compile a Futhark program to an executable that will read input
+from stdin and produce the result on stdout.  This is fine for
+small-scale testing, but not useful for entire applications.  A
+crucial limitation is that function parameters and arguments must
+be of types that have a well-defined external encoding. In
+practice, this means built-in primitive types and arrays of these,
+with no support for records and sum types.
 
 Alternatively, you can [compile Futhark to library
 code](https://futhark.readthedocs.io/en/stable/usage.html#compiling-to-library),
 which can be invoked from any language with a C FFI.  This works
 well for real applications, and maps complex types to [opaque
 structs](https://futhark.readthedocs.io/en/latest/c-api.html#opaque-values),
-but is awkward when you just want to play around with quick
-visualisations.  In this post I will talk about recent work I did
-to bridge the gap, with an eye towards making it easier to write
-tools that make use of compiled Futhark code, without generating
-any custom C code.  I'll also show how I used this new technique to
-write a new tool for notebook-ish "literate" Futhark programming.
+but is tedious when you want to play around with visualisations or
+simple data analysis.  In this post I will talk about recent work I
+did to bridge the gap, with an eye towards making it easier to
+write tools that interact with compiled Futhark programs, but
+without generating any custom C code.  I'll also show how I used
+this new technique to write a new tool for notebook-ish "literate"
+Futhark programming.
 
 # Futhark server mode
 
-When you compile Futhark to a C library, the resulting code gets
-things right: interim data is kept in some internal format (and
-possibly on the GPU), and the API only exposes handles, and such
-data can be passed between entry points.  For those types where it
-makes sense (mostly arrays of primitives), there are functions for
-converting to and from ordinary C values.  The only downside is
-that if you have a program with two entry points:
+When you compile Futhark to a C library, the resulting code behaves
+like you'd expect: interim data is kept in some internal format
+(and possibly on the GPU), the API exposes handles to this data,
+and these can can be passed between entry points.  For those types
+where it makes sense (mostly arrays of primitives), there are
+functions for converting to and from ordinary C values.  The only
+downside is that if you have a program with two entry points:
 
 ```futhark
 entry foo (xs: []f32) = map (**2) xs
@@ -43,7 +44,7 @@ entry bar (xs: []f32) = map (+2) xs
 ```
 
 Then the only way to compose them without modifying the original
-program is to write C code that first calls the generated
+program is to write C code that first calls a generated
 `futhark_entry_foo()` function and then passes the result on to
 `futhark_entry_bar()`.
 
@@ -57,9 +58,9 @@ language itself
 (e.g. [QuickCheck](https://hackage.haskell.org/package/QuickCheck)
 for Haskell), but Futhark is intentionally not sufficiently
 expressive to do this - in particular, errors cannot be captured
-within the language itself.  However, it is really awkward to
-generate and compile custom C programs that link against the
-compiled Futhark library whenever the tools want to test a case.
+and handled.  However, it is really awkward to generate and compile
+custom C programs that link against the compiled Futhark library
+whenever the tools want to test a case.
 
 To enable these kinds of tools, I added a third way of compiling
 Futhark programs: *server mode*.  This mode produces an executable,
