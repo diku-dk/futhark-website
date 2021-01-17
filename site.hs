@@ -60,28 +60,33 @@ main = do
         route $ setExtension "html"
         compile $ do
           menu <- contentContext
-          pandocRstCompiler futhark_syntax
+          pandocFutCompiler futhark_syntax
             >>= loadAndApplyTemplate "templates/withtitle.html" menu
             >>= loadAndApplyTemplate "templates/default.html" menu
             >>= relativizeUrls
 
-    match "blog/*" $ do
-      route $ setExtension "html"
-      compile $ do
-        postCtx' <- postContext
-        pandocRstCompiler futhark_syntax
-          >>= loadAndApplyTemplate "templates/post.html" postCtx'
-          >>= saveSnapshot "content"
-          >>= loadAndApplyTemplate "templates/withtitle.html" postCtx'
-          >>= loadAndApplyTemplate "templates/default.html" postCtx'
-          >>= relativizeUrls
+    let blogCompiler = do
+          route $ setExtension "html"
+          compile $ do
+            postCtx' <- postContext
+            pandocFutCompiler futhark_syntax
+              >>= loadAndApplyTemplate "templates/post.html" postCtx'
+              >>= saveSnapshot "content"
+              >>= loadAndApplyTemplate "templates/withtitle.html" postCtx'
+              >>= loadAndApplyTemplate "templates/default.html" postCtx'
+              >>= relativizeUrls
+
+    match "blog/*.rst" blogCompiler
+    match "blog/*.md" blogCompiler
+    match "blog/*.fut" static
+    match "blog/*-img/*" static
 
     -- Post list
     create ["blog.html"] $ do
       route idRoute
       compile $ do
         menu <- getMenu
-        posts <- recentFirst =<< loadAll "blog/*"
+        posts <- recentFirst =<< loadAll (fromRegex "blog/.*\\.(rst|md)")
         let ctx =
               constField "title" "Developer Blog"
                 <> listField "posts" postCtx (return posts)
@@ -100,7 +105,7 @@ main = do
         let feedCtx = postCtx `mappend` bodyField "description"
         posts <-
           fmap (take 10) . recentFirst
-            =<< loadAllSnapshots "blog/*" "content"
+            =<< loadAllSnapshots (fromRegex "blog/.*\\.(rst|md)") "content"
         renderAtom feedConfiguration feedCtx posts
 
     -- Examples
@@ -112,7 +117,7 @@ main = do
           >>= loadAndApplyTemplate "templates/withtitle.html" menu
           >>= loadAndApplyTemplate "templates/default.html" menu
           >>= relativizeUrls
-    match "examples/*/*.png" static
+    match "examples/*-img/*" static
     match "examples/*.fut" $ version "source" static
 
     match "templates/*" $ compile templateCompiler
@@ -187,8 +192,8 @@ pandocOptions futhark_syntax =
       M.insert "Futhark" futhark_syntax $
         writerSyntaxMap defaultHakyllWriterOptions
 
-pandocRstCompiler :: Syntax -> Compiler (Item String)
-pandocRstCompiler futhark_syntax =
+pandocFutCompiler :: Syntax -> Compiler (Item String)
+pandocFutCompiler futhark_syntax =
   pandocCompilerWithTransform ropts wopts $
     walk (selfLinkHeader . shiftHeaderUp)
   where
