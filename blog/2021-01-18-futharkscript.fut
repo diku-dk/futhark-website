@@ -196,7 +196,7 @@ let fact (n: i32) = i32.product (1...n)
 --
 -- So how does this work in the absence of run-time compilation?
 -- Well, by cheating of course.  While the Futhark definitions (like
--- `fact`) are completely ordinary Futhark code that are processed by
+-- `fact`) are completely ordinary Futhark code and are processed by
 -- the Futhark compiler as normal, the *directives* only support a
 -- tiny subset of Futhark syntax called *FutharkScript*.  Considering
 -- FutharkScript a language is borderline: as of this writing, all it
