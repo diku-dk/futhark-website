@@ -58,11 +58,11 @@ tuples), are mapped to C.
 Compiling a Futhark Program to a C Library
 ------------------------------------------
 
-**Warning: some of the details of library compilation may have changed
-or been updated since this blog post was written in 2017.  Refer to
-the `library guide in the manual
+**Warning**: some of the details of library compilation may have
+changed or been updated since this blog post was written in 2017.
+Refer to the `library guide in the manual
 <https://futhark.readthedocs.io/en/stable/usage.html#compiling-to-library>`_
-for updated details.**
+for updated details.
 
 The following Futhark program computes the dot product of two integer
 vectors::
