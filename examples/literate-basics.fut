@@ -1,11 +1,11 @@
 -- ---
--- title: Basic use of scripts
+-- title: Basic use of literate Futhark
 -- ---
 
--- The ``futhark script`` command translates Futhark programs to
+-- The ``futhark literate`` command translates Futhark programs to
 -- Markdown files.  Specially formatted comments, called *directives*,
--- are replaced with executing parts of the program.  This program is
--- a Futhark script.  The purpose of scripts is to write small example
+-- are replaced with executing parts of the program.  The purpose of
+-- literate Futhark is to write small example
 -- programs with quick visualisations and such.
 --
 -- For example, let us define a function for generating a linearly
@@ -20,17 +20,17 @@ let linspace (n: i64) (start: f64) (end: f64) : [n]f64 =
 
 -- > linspace 10i64 5f64 10f64
 
--- If you look at the [source file](script-basics.fut), you'll see
+-- If you look at the [source file](literate-basics.fut), you'll see
 -- that that the results are not part of what I wrote.  Those are
--- automatically inserted by ``futhark script``.
+-- automatically inserted by ``futhark literate``.
 --
 -- The expressions in the directives are not full Futhark expressions.
 -- Rather, they are written in a tiny subset called FutharkScript,
 -- which supports little besides calling top-level functions in the
--- script file.  An important restriction is that all numeric literals
--- must have a type suffix, as above.  When we write script files, we
+-- literate file.  An important restriction is that all numeric literals
+-- must have a type suffix, as above.  When we write literate files, we
 -- must put all nontrivial code in ordinary Futhark definitions, which
--- support the full language.  The Futhark part of a script is
+-- support the full language.  The Futhark part of a a literate Futhark program is
 -- compiled like an ordinary Futhark program.
 --
 -- Some values are boring when viewed as arrays of numbers.
@@ -44,7 +44,7 @@ let spirals n v : [n][n]f64 =
     f64.sgn (f64.cos (f64.sqrt (x**2+y**2)))
   in map (map f) (linspace_2d n (-v) v)
 
--- For expressions with an appropriate type, ``futhark script`` can
+-- For expressions with an appropriate type, ``futhark literate`` can
 -- convert them to an image:
 
 -- > :img spirals 200i64 30f64
