@@ -71,7 +71,7 @@ module f64_dual_field = {
     (f64.sqrt x, x' / (2 * f64.sqrt x))
 
   let cos (x, x') =
-    (f64.cos x, f64.negate x' * f64.sin x)
+    (f64.cos x, f64.neg x' * f64.sin x)
 
   let sin (x, x') =
     (f64.sin x, x' * f64.cos x)
@@ -79,12 +79,12 @@ module f64_dual_field = {
   let abs (x,x') =
     (f64.abs x, f64.sgn x * x')
 
-  let negate (x,x') : t = (-x, -x')
+  let neg (x,x') : t = (-x, -x')
   let recip (x,x') : t = (1/x, -(x'/(x*x)))
 
   let (x,x') + (y,y') : t = f64.((x + y, x' + y'))
   let (x,x') * (y,y') : t = f64.((x * y, x' * y + x * y'))
-  let x - y = x + negate y
+  let x - y = x + neg y
   let x / y = x * recip y
 
   let (x,_) == (y,_) = f64.(x == y)

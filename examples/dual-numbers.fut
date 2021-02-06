@@ -39,7 +39,7 @@ module type field = {
   val one : t
 
   -- | Additive inverse.
-  val negate : t -> t
+  val neg : t -> t
 
   -- | Multiplicative inverse.
   val recip : t -> t
@@ -62,13 +62,13 @@ module type ordered_field = {
 
 -- We can define modules that implement `ordered_field` from scratch,
 -- but it is more convenient to define a parametric module that can
--- take any module `F` that implements the `numeric` module type, and
--- construct a corresponding `ordered_field`.  The `numeric` module
--- type is implemented by the built-in `f32` and `f64` modules.  Most
--- of the definitions are just forwarding those from the module
--- parameter `F`.
+-- take any module `F` that implements the `real` module type, and
+-- construct a corresponding `ordered_field`.  The `real` module type
+-- is implemented by the built-in `f32` and `f64` modules.  Most of
+-- the definitions are just forwarding those from the module parameter
+-- `F`.
 
-module mk_field_from_numeric (F: numeric) : ordered_field with t = F.t = {
+module mk_field_from_numeric (F: real) : ordered_field with t = F.t = {
   type t = F.t
   let f64 = F.f64
   let (+) = (F.+)
@@ -84,8 +84,8 @@ module mk_field_from_numeric (F: numeric) : ordered_field with t = F.t = {
 
   let zero = F.i64 0
   let one = F.i64 1
-  let negate x = zero - x
-  let recip x = one / x
+  let neg = F.neg
+  let recip = F.recip
 }
 
 -- We create a field module where the elements are `f64`:
@@ -144,13 +144,13 @@ module mk_dual (F: ordered_field) : (dual_field with underlying = F.t) = {
 
 -- Negation is defined in the obvious way.
 
-  let negate (x,x') = (F.negate x, F.negate x')
+  let neg (x,x') = (F.neg x, F.neg x')
 
 -- The reciprocal is a little more tricky, but you can look up the
 -- reciprocal rule in a calculus textbook (or more realistically, on
 -- Wikipedia).
 
-  let recip (x,x') = (F.recip x, F.(negate (x'/(x*x))))
+  let recip (x,x') = (F.recip x, F.(neg (x'/(x*x))))
 
 -- Then we get to the actual arithmetic operations.  These are also
 -- as you'd expect to find in a textbook.  We define subtraction and
@@ -159,7 +159,7 @@ module mk_dual (F: ordered_field) : (dual_field with underlying = F.t) = {
 
   let (x,x') + (y,y') = F.((x + y, x' + y'))
   let (x,x') * (y,y') = F.((x * y, x' * y + x * y'))
-  let x - y = x + negate y
+  let x - y = x + neg y
   let x / y = x * recip y
 
 -- Comparisons are straightforward and use only the primal parts.
@@ -229,7 +229,7 @@ module mk_sqrt (F: ordered_field) = {
 
   let abs (x: F.t) =
     if F.(x < f64 0)
-    then F.negate x
+    then F.neg x
     else x
 
   let sqrt (x: F.t) =
