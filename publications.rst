@@ -303,6 +303,10 @@ it to build or show something.
 Selected Student Projects
 *************************
 
+* Till Severin Grenzdörffer: **Accelerating Ocean Modelling: Adressing performance bottlenecks of the ocean modelling framework Veros**. MSc project, Department of Computer Science, University of Copenhagen.  January 2021. (`pdf <student-projects/till-msc-project.pdf>`_)
+
+* Kristian Høi: **Parallel implementations of machine learning algorithms: Gradient boosted decision trees**. MSc Thesis, Department of Computer Science, University of Copenhagen.  January 2021. (`pdf <student-projects/kristian-msc-thesis.pdf>`_)
+
 * Andreas Nicolaisen, Marco Aslak Persson: **Implementing Single-Pass Scan in the Futhark Compiler**.  MSc project.  Department of Computer Science, University of Copenhagen.  November 2020. (`pdf <student-projects/marco-andreas-scan.pdf>`_)
 
 * Duc Minh Tran: **Multicore backend for Futhark**.  MSc Thesis.  Department of Computer Science, University of Copenhagen.  September 2020. (`pdf <student-projects/duc-msc-thesis.pdf>`_)
