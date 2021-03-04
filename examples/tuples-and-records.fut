@@ -2,7 +2,7 @@
 -- title: Tuples and records
 -- ---
 --
--- A tuple is written a two or more comma-separated components
+-- A tuple is written as two or more comma-separated components
 -- enclosed by parentheses:
 
 let a_tuple : (i32, bool) = (1, true)
@@ -20,7 +20,7 @@ let patmatch =
 -- Pattern bindings are not allowed in top-level `let` declarations,
 -- but only inside `let` expressions (which are terminated with `in`).
 
--- Like [arrays](arrays.html), tuple projection is 1-indexed.
+-- Like [arrays](arrays.html), tuple projection is 0-indexed.
 --
 -- Records are written as fields enclosed by curly braces:
 
