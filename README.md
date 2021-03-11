@@ -3,7 +3,7 @@ The Futhark Website
 
 The website is built with Hakyll, which is a Haskell library for
 generating static sites.  The actual content is written in the
-ReStructured Text format.
+ReStructured Text and Markdown formats.
 
 We use the [Haskell Tool Stack](http://docs.haskellstack.org/) for
 managing compilation.  To build:
@@ -20,4 +20,6 @@ When you are ready to deploy to
     stack exec futhark-website deploy
 
 This requires `rsync` installed locally and your public SSH key added
-to the remote server.
+to the remote server.  You can also just push to the Git repository,
+where a GitHub Actions job will then take care of building and
+deploying to the server.
