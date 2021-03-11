@@ -33,3 +33,13 @@ jobs:
       run: |
         stack exec futhark-website clean
         stack exec futhark-website build
+
+    - name: Install SSH key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.SSHKEY }}
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+
+    - name: Deploy site
+      run: |
+        stack exec futhark-website deploy
