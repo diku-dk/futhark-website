@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y haskell-stack
+
+    - uses: actions/cache@v2
+      name: Cache ~/.stack and .stack-work
+      with:
+        path: |
+          ~/.stack
+          .stack-work
+        key: ${{ runner.os }}-stack
+
+    - name: Build Haskell
+      run: |
+        stack setup
+        stack install
+
+    - name: Build site
+      run: |
+        stack exec futhark-website clean
+        stack exec futhark-website build
