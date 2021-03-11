@@ -5,7 +5,7 @@ title: Gotta Go Fast!
 There is no good way to define what it means for a language to be
 *fast*.  While some benchmark suites exist, such as the `benchmarks
 game`_, they are typically designed for general-purpose CPU languages,
-and thus not a natural fit for Futhark.
+and not a natural fit for Futhark.
 
 This page will not try to quantitatively prove that Futhark is the
 *fastest language ever*.  Instead, it merely attempts to give an
