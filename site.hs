@@ -48,12 +48,12 @@ main = do
 
     match
       ( fromList
-          [ "performance.rst",
-            "docs.rst",
-            "publications.rst",
-            "getinvolved.rst",
-            "index.rst",
-            "examples.rst"
+          [ "performance.md",
+            "docs.md",
+            "publications.md",
+            "getinvolved.md",
+            "index.md",
+            "examples.md"
           ]
       )
       $ do

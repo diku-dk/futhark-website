@@ -240,6 +240,12 @@ p > img, p > video {
     border: 1px solid grey;
 }
 
+figcaption {
+    padding-top: 1em;
+    text-align: center;
+    font-style: italic;
+}
+
 li { margin-top: 1em; }
 
 li p:first-child { margin-top: 0; }
