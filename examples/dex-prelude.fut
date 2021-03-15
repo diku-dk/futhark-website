@@ -6,7 +6,7 @@
 -- [prelude.dx](https://google-research.github.io/dex-lang/prelude.html).
 -- Not all of them, but only what is needed to support the other Dex
 -- examples.  We also skip some functions that already exist in
--- Futhark, but other different names - we'll keep writing `f64.i32`
+-- Futhark, but under different names - we'll keep writing `f64.i32`
 -- instead of `FToI`.
 
 let sq (x: f64) = x * x
