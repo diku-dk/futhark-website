@@ -46,6 +46,7 @@ for plotting or rendering graphics.
 -   [Testing for associativity](examples/testing-associativity.html)
 -   [Reducing or scanning without a neutral
     element](examples/no-neutral-element.html)
+-   [Kahan summation](examples/kahan.html)
 -   [Random numbers](examples/random-numbers.html)
 -   [Gaussian blur (with Python
     integration)](examples/gaussian-blur.html)
