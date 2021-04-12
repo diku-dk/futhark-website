@@ -1,3 +1,7 @@
+-- ---
+-- title: Kahan summation
+-- ---
+--
 -- Summation of floating-point numbers is vulnerable to roundoff
 -- error.  The [Kahan summation
 -- algorithm](https://en.wikipedia.org/wiki/Kahan_summation_algorithm)
