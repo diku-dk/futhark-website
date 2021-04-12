@@ -114,7 +114,7 @@ Futhark implementation of the lattice Boltzmann method.
 
 [Ray Tracing in One Weekend in
 Futhark](https://github.com/athas/raytracinginoneweekendinfuthark) and
-[Ray Tracing: the Next Weekend in
+[Ray Tracing: the Next Week in
 Futhark](https://github.com/athas/raytracingthenextweekinfuthark/) are
 implementations based on Peter Shirley\'s book series. These are by no
 means real-time ray tracers, but support advanced effects and make use
