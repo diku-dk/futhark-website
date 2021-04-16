@@ -185,7 +185,7 @@ functions for the three different kinds of objects, so of course I
 instead used `forward-mode AD with dual numbers
 <../examples/dual-numbers.html>`_ implemented via the Futhark module
 system.  The resulting code finally convinced me that built-in AD is a
-necessity for a modern numerical languages.  I was on the fence
+necessity for a modern numerical language.  I was on the fence
 before, since I worry that doing it well will be invasive in both the
 language and compiler, but I never want to write this kind of
 boilerplate again.
