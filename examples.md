@@ -2,17 +2,19 @@
 title: Futhark by Example
 ---
 
-The following is a hands-on introduction to Futhark through a collection
-of commented programs, listed in roughly increasing order of complexity.
-You can load the programs into [the
+The following is a hands-on introduction to Futhark through a
+collection of commented programs, listed in roughly increasing order
+of complexity.  You can load the programs into [the
 interpreter](https://futhark.readthedocs.io/en/stable/man/futhark-repl.html)
 to experiment with them. For a conventional introduction to the
 language, [Parallel Programming in
 Futhark](https://futhark-book.readthedocs.io) may be a better choice.
-For more examples, you can check the [examples directory in the Futhark
-repository](https://github.com/diku-dk/futhark/tree/master/examples), or
-our implemented [benchmarks](). We also maintain a list of [projects
-using Futhark](#projects-using-futhark).
+For more examples, you can check the [examples directory in the
+Futhark
+repository](https://github.com/diku-dk/futhark/tree/master/examples),
+or our implemented
+[benchmarks](https://github.com/diku-dk/futhark-benchmarks). We also
+maintain a list of [projects using Futhark](#projects-using-futhark).
 
 Some of the example programs use
 [directives](https://futhark.readthedocs.io/en/latest/man/futhark-literate.html)
