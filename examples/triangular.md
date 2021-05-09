@@ -86,14 +86,14 @@ What we *need* is a one-dimensional array to store the elements
 (the `data` array).  However, whenever we have a type with a size
 parameter (the `[n]`), then we *must* also have an array of that
 size in the definition of type type.  The `data` array will not
-have the right size, so we add a size-`n` array of empty tuples.
-In effect, the `size` field acts acts as a "witness" for the size
-parameter.  Hopefully, the run-time representation for this array
-of empty values will be just its size.
+have the right size, so we add an `n`-by-zero array of empty
+tuples.  In effect, the `size` field acts acts as a "witness" for
+the size parameter.  By making the inner dimension empty, we ensure
+that the memory usage of this array will be just its size.
 
 ```futhark
   type~ triangular [n] 'a =
-    { size: [n](),
+    { size: [n][0](),
       data: []a
     }
 ```
@@ -173,7 +173,7 @@ straightforward.
 
 ```futhark
   let from_array arr =
-    { size = map (const ()) arr,
+    { size = map (const []) arr,
       data = map (\p -> let (i,j) = unrank p
                         in arr[i,j])
                  (iota (elements (length arr)))
