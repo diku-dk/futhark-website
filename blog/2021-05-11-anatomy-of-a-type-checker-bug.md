@@ -42,12 +42,12 @@ let B = A
 let C = A with [i] = X
 ```
 
-Since `B` is just another name `A`, we also must not use `B`
-afterwards.  By defining a variety of *aliasing rules*, the type
-checker can track how various variables may (potentially) refer to the
-same underlying "value", and when a value is then *consumed* in a
-`with`-expression, we mark all of the aliases as inaccessible.  This
-is necessarily conservative:
+Since `B` is just another name for `A`, we also must not use `B`
+afterwards.  By defining various *aliasing rules*, the type checker
+can track how different variables may (potentially) refer to the same
+underlying "value", and when a value is then *consumed* in a
+`with`-expression, we mark all of the aliases as similarly consumed
+and inaccessible.  This is necessarily conservative:
 
 ```Futhark
 let C = if p then A else B
@@ -101,11 +101,11 @@ A i x`, the array `A` will be considered *consumed*, and must not be
 used again - just in a `with`-expression.
 
 Once you get used to them, these rules provide a fairly simple way of
-writing code with an imperative feel, yet purely functional semantics.
-Importantly, they are *opt-in* - if you don't need this feature, you
-can mostly ignore these details (except that type inference may
-sometimes put mysterious asterisks on your return types, when it
-figures out that a function result will never have aliases).
+writing code with an imperative cost model, yet purely functional
+semantics.  Importantly, they are *opt-in* - if you don't need this
+feature, you can mostly ignore these details (except that type
+inference may sometimes put mysterious asterisks on your return types,
+when it figures out that a function result will never have aliases).
 
 ## The problem
 
