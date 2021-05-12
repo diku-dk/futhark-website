@@ -224,9 +224,9 @@ Consuming "internal_app_result", but this was previously consumed at 4:7-10.
 
 Compiler errors that just vomit out some internal name or data
 structure are not exactly *rare* in research compilers, but it is a
-rare programmer who likes to be faced with them (except from the
-compiler developeres themselves, who will be pleased to be shown
-exactly what is wrong!).
+rare programmer who likes to be faced with them (except the compiler
+developers themselves, who will be pleased to be shown exactly what is
+wrong!).
 
 To improve matters, I added [a
 table](https://github.com/diku-dk/futhark/blob/20d144e2f1b3ce8a587b98bf0110108ee2c12f07/src/Language/Futhark/TypeChecker/Terms.hs#L349)
