@@ -38,6 +38,6 @@ getting involved:
     room for improvement.
 
 Furthermore, there is a `#futhark` IRC channel on
-[Freenode](https://webchat.freenode.net/), and
+[Libera](https://libera.chat/), and
 [/r/futhark](https://www.reddit.com/r/futhark/) on Reddit, and a
 [channel on gitter.im](https://gitter.im/futhark-lang/Lobby).
