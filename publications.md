@@ -287,8 +287,8 @@ to build or show something.
 
 -   Wojciech Michal Pawlak: **Accelerated Financial Algorithms
     Derivative Pricing and Risk Management Applications**.  PhD
-    thesis.  May 2021 ([pdf](publications/wmp-thesis.pdf),
-    [bib](publications/wmp-thesis.bib)).
+    thesis.  May 2021 ([pdf](publications/wmp-phd-thesis.pdf),
+    [bib](publications/wmp-phd-thesis.bib)).
 -   Cosmin Oancea, Ties Robroek, Fabian Gieseke: **Approximate
     Nearest-Neighbour Fields via Massively-Parallel Propagation-Assisted
     K-D Trees**. MLDB\'20. ([pdf](publications/mlbd20.pdf)).
