@@ -285,9 +285,13 @@ describe horisontal fusion.
 These papers are not about Futhark as a language or compiler, but use it
 to build or show something.
 
+-   Wojciech Michal Pawlak: **Accelerated Financial Algorithms
+    Derivative Pricing and Risk Management Applications**.  PhD
+    thesis.  May 2021 ([pdf](publications/wmp-thesis.pdf),
+    [bib](publications/wmp-thesis.bib)).
 -   Cosmin Oancea, Ties Robroek, Fabian Gieseke: **Approximate
     Nearest-Neighbour Fields via Massively-Parallel Propagation-Assisted
-    K-D Trees**. MLDB\'20. ([pdf](publications/mlbd20.pdf))
+    K-D Trees**. MLDB\'20. ([pdf](publications/mlbd20.pdf)).
 -   Fabian Geseke, Sabina Rosca, Troels Henriksen, Jan Verbesselt,
     Cosmin Oancea: **Massively-Parallel Change Detection for Satellite
     Time Series Data with Missing Value**. ICDE\'20.
