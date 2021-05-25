@@ -12,7 +12,7 @@ chronological order.
 
 ::: {.papermetadata}
 Presented at [SC \'20](https://sc20.supercomputing.org/)
-([pdf](publications/sc20.pdf))
+([pdf](publications/sc20.pdf), [bib](publications/sc20.bib))
 :::
 
 An explanation of the implementation strategy behind Futhark\'s
@@ -27,7 +27,7 @@ a CUDA library implementation of the ideas.
 
 ::: {.papermetadata}
 Presented at [HLPP \'20](https://hlpp2020.dcc.fc.up.pt/)
-([pdf](publications/hlpp20.pdf))
+([pdf](publications/hlpp20.pdf), [bib](publications/hlpp20.bib))
 :::
 
 Few GPU-targeting languages perform bounds checking, because it is
