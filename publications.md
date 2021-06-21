@@ -302,6 +302,10 @@ to build or show something.
 
 # Selected Student Projects
 
+-   Kristian Bøjer Andreasen: **Data-Parallel Coherency Sensitive
+    Hashing for Approximate Nearest Neighbour Fields**.  MSc thesis.
+    Department of Computer Science, University of Copenhagen. June
+    2021. ([pdf](student-projects/kristian-bøjer-andreasen-msc-thesis.pdf))
 -   Christian Charlie Virt, Jonathan Wraa-Hansen: **Optimisation and
     GPU code generation of Stencils for Futhark**.  June 2021.
     ([pdf](student-projects/christian-jonathan-msc-thesis.pdf)).
