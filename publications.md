@@ -8,6 +8,11 @@ chronological order.
 
 # Papers on language design and implementation
 
+- **Towards Size-Dependent Types for Array programming**. Troels
+  Henriksen, Martin Elsman.  [ARRAY
+  '21](https://pldi21.sigplan.org/home/ARRAY-2021)
+  ([pdf](publications/array21.pdf), [bib](publications/array21.bib)).
+
 - **Compiling Generalized Histograms for GPU**. Troels Henriksen, Sune
   Hellfritzsch, Ponnuswamy Sadayappan, Cosmin Oancea.  [SC
   '20](https://sc20.supercomputing.org/)
@@ -15,22 +20,22 @@ chronological order.
   [artifact](https://github.com/diku-dk/futhark-sc20)).
 
 - **Bounds Checking on GPU**. Troels Henriksen.  [HLPP
-  \'20](https://hlpp2020.dcc.fc.up.pt/)
+  '20](https://hlpp2020.dcc.fc.up.pt/)
   ([pdf](publications/hlpp20.pdf), [bib](publications/hlpp20.bib)).
 
-- **Compositional Deep Learning in Futhark**. Duc Minh Tran, Troels Henriksen, Martin Elsman. [FHPNC \'19](https://icfp19.sigplan.org/home/FHPNC-2019)
+- **Compositional Deep Learning in Futhark**. Duc Minh Tran, Troels Henriksen, Martin Elsman. [FHPNC '19](https://icfp19.sigplan.org/home/FHPNC-2019)
 ([pdf](publications/fhpnc19.pdf), [bib](publications/fhpnc19.bib), [code](https://github.com/HnimNart/deeplearning)).
 
-- **Data-Parallel Flattening by Expansion**. Martin Elsman, Troels Henriksen, Niels G. W. Serup.  [ARRAY \'19](https://pldi19.sigplan.org/home/ARRAY-2019)
+- **Data-Parallel Flattening by Expansion**. Martin Elsman, Troels Henriksen, Niels G. W. Serup.  [ARRAY '19](https://pldi19.sigplan.org/home/ARRAY-2019)
 ([pdf](publications/array19.pdf), [bib](publications/array19.bib)).
 
-- **Incremental Flattening for Nested Data Parallelism**. Troels Henriksen, Frederik Thorøe, Martin Elsman, Cosmin Oancea. [PPOPP \'19](https://ppopp19.sigplan.org/)
+- **Incremental Flattening for Nested Data Parallelism**. Troels Henriksen, Frederik Thorøe, Martin Elsman, Cosmin Oancea. [PPOPP '19](https://ppopp19.sigplan.org/)
 ([pdf](publications/ppopp19.pdf), [bib](publications/ppopp19.bib), [artifact](https://github.com/diku-dk/futhark-ppopp19), [blog](/blog/2019-02-18-futhark-at-ppopp.html)).
 
 - **High-Performance Defunctionalisation in Futhark**. Anders Kiel Hovgaard, Troels Henriksen, Martin Elsman. [TFP '18](http://www.cse.chalmers.se/~myreen/tfp2018/)
 ([pdf](publications/tfp18.pdf), [bib](publications/tfp18.bib))
 
-- **Static Interpretation of Higher-Order Modules in Futhark**. Martin Elsman, Troels Henriksen, Danil Annenkov, Cosmin Oancea. [ICFP \'18](https://conf.researchr.org/home/icfp-2018)
+- **Static Interpretation of Higher-Order Modules in Futhark**. Martin Elsman, Troels Henriksen, Danil Annenkov, Cosmin Oancea. [ICFP '18](https://conf.researchr.org/home/icfp-2018)
 ([pdf](publications/icfp18.pdf), [bib](publications/icfp18.bib))
 
 - **Modular Acceleration: Tricky Cases of Functional High-Performance
@@ -58,7 +63,7 @@ Martin Elsman, Fritz Henglein, Cosmin Oancea.  [PLDI
 - **APL on GPUs - A TAIL from the Past, Scribbled in Futhark**. Troels
 Henriksen, Martin Dybdal, Henrik Urms, Anna Sofie Kiehn, Danil Gavin,
 Hjalte Abelskov, Martin Elsman, Cosmin Oancea.  [FHPC
-\'16](https://sites.google.com/site/fhpcworkshops/fhpc-2016)
+'16](https://sites.google.com/site/fhpcworkshops/fhpc-2016)
 ([pdf](publications/fhpc16.pdf), [bib](publications/fhpc16.bib),
 [artifact](https://github.com/diku-dk/futhark-fhpc16)).
 
@@ -93,14 +98,14 @@ to build or show something.
     [bib](publications/wmp-phd-thesis.bib)).
 -   Cosmin Oancea, Ties Robroek, Fabian Gieseke: **Approximate
     Nearest-Neighbour Fields via Massively-Parallel Propagation-Assisted
-    K-D Trees**. MLDB\'20. ([pdf](publications/mlbd20.pdf)).
+    K-D Trees**. MLDB'20. ([pdf](publications/mlbd20.pdf)).
 -   Fabian Geseke, Sabina Rosca, Troels Henriksen, Jan Verbesselt,
     Cosmin Oancea: **Massively-Parallel Change Detection for Satellite
-    Time Series Data with Missing Value**. ICDE\'20.
+    Time Series Data with Missing Value**. ICDE'20.
     ([pdf](publications/icde20.pdf))
 -   Wojciech Michal Pawlak, Martin Elsman, Cosmin Eugen Oancea: **A
     Functional Approach to Accelerating Monte Carlo based American
-    Option Pricing**. IFL\'19. ([pdf](publications/ifl19.pdf))
+    Option Pricing**. IFL'19. ([pdf](publications/ifl19.pdf))
 
 # Selected Student Projects
 

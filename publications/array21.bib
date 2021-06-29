@@ -1,0 +1,17 @@
+@inproceedings{10.1145/3460944.3464310,
+author = {Henriksen, Troels and Elsman, Martin},
+title = {Towards Size-Dependent Types for Array Programming},
+year = {2021},
+isbn = {9781450384667},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3460944.3464310},
+doi = {10.1145/3460944.3464310},
+abstract = {We present a type system for expressing size constraints on array types in an ML-style type system. The goal is to detect shape mismatches at compile-time, while being simpler than full dependent types. The main restrictions is that the only terms that can occur in types are array sizes, and syntactically they must be variables or constants. For those programs where this is not sufficient, we support a form of existential types, with the type system automatically managing the requisite book-keeping. We formalise a large subset of the type system in a small core language, which we prove sound. We also present an integration of the type system in the high-performance parallel functional language Futhark, and show on a collection of 44 representative programs that the restrictions in the type system are not too problematic in practice.},
+booktitle = {Proceedings of the 7th ACM SIGPLAN International Workshop on Libraries, Languages and Compilers for Array Programming},
+pages = {1–14},
+numpages = {14},
+keywords = {type systems, parallel programming, functional programming},
+location = {Virtual, Canada},
+series = {ARRAY 2021}
+}
