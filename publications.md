@@ -8,6 +8,11 @@ chronological order.
 
 # Papers on language design and implementation
 
+- **Dataset Sensitive Autotuning of Multi-Versioned Code based on Monotonic
+  Properties**. Philip Munksgaard, Svend Lund Breddam, Troels Henriksen, Fabian
+  Cristian Gieseke, Cosmin Oancea.  [TFP '21](http://tfp2021.org/)
+  ([pdf](publications/tfp21.pdf), [bib](publications/tfp21.bib), best paper award).
+
 - **Towards Size-Dependent Types for Array programming**. Troels
   Henriksen, Martin Elsman.  [ARRAY
   '21](https://pldi21.sigplan.org/home/ARRAY-2021)
