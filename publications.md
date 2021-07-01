@@ -121,6 +121,8 @@ to build or show something.
 -   Christian Charlie Virt, Jonathan Wraa-Hansen: **Optimisation and
     GPU code generation of Stencils for Futhark**.  June 2021.
     ([pdf](student-projects/christian-jonathan-msc-thesis.pdf)).
+-   Maya Saietz: **Code Generation for Stencils in Futhark**.  June 2021.
+    ([pdf](student-projects/maya-msc-thesis.pdf)).
 -   Morten Tychsen Clausen: **Regular Segmented Single-pass Scan in
     Futhark**.  June 2021. ([pdf](student-projects/morten-msc-thesis.pdf))
 -   Kasper Unn Weihe, Kristian Quirin Hansen, Peter Kanstrup Larsen:
