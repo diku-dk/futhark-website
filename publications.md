@@ -106,7 +106,7 @@ to build or show something.
     K-D Trees**. MLDB'20. ([pdf](publications/mlbd20.pdf)).
 -   Fabian Geseke, Sabina Rosca, Troels Henriksen, Jan Verbesselt,
     Cosmin Oancea: **Massively-Parallel Change Detection for Satellite
-    Time Series Data with Missing Value**. ICDE'20.
+    Time Series Data with Missing Values**. ICDE'20.
     ([pdf](publications/icde20.pdf))
 -   Wojciech Michal Pawlak, Martin Elsman, Cosmin Eugen Oancea: **A
     Functional Approach to Accelerating Monte Carlo based American
