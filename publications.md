@@ -114,6 +114,11 @@ to build or show something.
 
 # Selected Student Projects
 
+-   Nikolaj Hey Hinnerskov: **Massively Parallel Selection of Stable
+    History Period in Change Detection for Time Series Data with
+    Missing Values**.  BSc thesis.  Department of Computer Science,
+    University of
+    Copenhagen. June 2021. ([pdf](student-projects/nikolaj-bsd-thesis.pdf))
 -   Kristian Bøjer Andreasen: **Data-Parallel Coherency Sensitive
     Hashing for Approximate Nearest Neighbour Fields**.  MSc thesis.
     Department of Computer Science, University of
