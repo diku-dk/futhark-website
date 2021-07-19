@@ -114,11 +114,14 @@ to build or show something.
 
 # Selected Student Projects
 
+-   Philip Rajani Lassen: **WebAssembly Backends for Futhark**.  MSc
+    thesis. Department of Computer Science, University of
+    Copenhagen. July 2021. ([pdf](student-projects/philip-msc-thesis.pdf))
 -   Nikolaj Hey Hinnerskov: **Massively Parallel Selection of Stable
     History Period in Change Detection for Time Series Data with
     Missing Values**.  BSc thesis.  Department of Computer Science,
     University of
-    Copenhagen. June 2021. ([pdf](student-projects/nikolaj-bsd-thesis.pdf))
+    Copenhagen. June 2021. ([pdf](student-projects/nikolaj-bsc-thesis.pdf))
 -   Kristian Bøjer Andreasen: **Data-Parallel Coherency Sensitive
     Hashing for Approximate Nearest Neighbour Fields**.  MSc thesis.
     Department of Computer Science, University of
