@@ -19,7 +19,7 @@ let scatter_some 'a (dest: *[]a) (p: a -> bool) (pairs: [](i64, a)) =
 -- ```
 --
 -- But it is suboptimal, because `filter` is a costly operation.  It
--- is better to exploit the detail that `scatter` ignores indexes that
+-- is better to exploit the property that `scatter` ignores indexes that
 -- are out of bounds, and map the "removed" elements to an invalid
 -- index, such as -1:
 
