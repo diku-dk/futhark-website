@@ -10,29 +10,24 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-
-    - name: Install dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y haskell-stack
-
+    - uses: haskell/actions/setup@v1
     - uses: actions/cache@v2
-      name: Cache ~/.stack and .stack-work
+      name: Caching
       with:
         path: |
-          ~/.stack
-          .stack-work
-        key: ${{ runner.os }}-stack
+          ~/.cabal/store
+          dist-newstyle
+        key: ${{ runner.os }}
 
     - name: Build Haskell
       run: |
-        stack setup
-        stack install
+        cabal setup
+        cabal install
 
     - name: Build site
       run: |
-        stack exec futhark-website clean
-        stack exec futhark-website build
+        cabal exec futhark-website clean
+        cabal exec futhark-website build
 
     - name: Install SSH key
       uses: shimataro/ssh-key-action@v2
@@ -42,4 +37,4 @@ jobs:
 
     - name: Deploy site
       run: |
-        stack exec futhark-website deploy
+        cabal exec futhark-website deploy
