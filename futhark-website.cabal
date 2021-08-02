@@ -17,7 +17,7 @@ executable futhark-website
                        filepath,
                        pandoc,
                        pandoc-types,
-                       hakyll,
+                       hakyll >= 4,
                        skylighting,
                        containers,
                        text
