@@ -98,7 +98,7 @@ the
 [`cl_khr_fp16`](https://www.khronos.org/registry/OpenCL/sdk/1.0/docs/man/xhtml/cl_khr_fp16.html)
 extension (and you enable it).  OpenCL platforms are loaded
 dynamically followed by run-time compilation at kernels, so the
-Futhark compiler does not at compile-time whether the target platform
+Futhark compiler does not know at compile-time whether the target platform
 supports half-precision.  Therefore we generate [kernel code with
 plenty of
 #ifdefs](https://github.com/diku-dk/futhark/blob/23956cc4e432e1cfbff9d3908fd8863dfaed6640/rts/c/scalar_f16.h#L11-L34)
