@@ -47,7 +47,7 @@ because computation on them is actually faster.
 ## How
 
 Half-precision floats are standardised in IEEE 754-2008, but they are
-*not* a universally supported a type in common programming languages.
+*not* a universally supported type in common programming languages.
 In particular, ISO C does not support them.  Other languages have
 unusual restrictions where `half` is supported as a "storage type"
 (meaning you can put them in memory), but you need to convert them to
