@@ -203,7 +203,7 @@ wrong?  Two things:
    own, but I doubt it - especially for a reduction.
 
 2. The analysis above is valid, but it's not actually what is
-   happening here.  This summation *completely* bandwidth-bound, so
+   happening here.  This summation is *completely* bandwidth-bound, so
    the only thing that matters is how efficiently we access memory.
    In `f16.sum`, each thread reads a 16-bit value at a time.  While
    the Futhark compiler arranges things so that the accesses are fully
