@@ -1,5 +1,6 @@
 ---
 title: Supporting half-precision floats is really annoying
+author: Troels Henriksen
 description: I just added support for half-precision floats to Futhark, and it was much more annoying than expected.
 ---
 

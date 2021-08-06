@@ -1,5 +1,6 @@
 ---
 title: How Futhark represents values at runtime
+author: Troels Henriksen
 description: Futhark doesn't do it how most other functional languages do it.
 ---
 

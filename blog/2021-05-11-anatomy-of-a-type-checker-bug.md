@@ -1,5 +1,6 @@
 ---
 title: Anatomy of a type checker bug
+author: Troels Henriksen
 description: The type checker had a soundness bug and here is how I solved it.
 ---
 
