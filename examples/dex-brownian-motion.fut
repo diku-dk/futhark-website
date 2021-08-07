@@ -1,6 +1,4 @@
--- ---
--- title: "Dex: Brownian motion"
--- ---
+-- # Dex: Brownian motion
 --
 -- The following is a port of
 -- [brownian_motion.dx](https://google-research.github.io/dex-lang/brownian_motion.html).

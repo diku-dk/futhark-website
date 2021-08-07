@@ -3,5 +3,4 @@
 !*.fut
 !.gitignore
 !*.png
-!*.md
 !Makefile

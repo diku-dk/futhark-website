@@ -1,6 +1,4 @@
--- ---
--- title: Scans and reductions
--- ---
+-- # Scans and reductions
 --
 -- The `reduce` function reduces an array to a single value by
 -- conceptually inserting a binary operator (or any two-parameter

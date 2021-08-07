@@ -1,6 +1,4 @@
--- ---
--- title: Pairwise L₁ distances
--- ---
+-- # Pairwise L₁ distances
 --
 -- First we define a function for computing the [L₁
 -- distance](https://en.wikipedia.org/wiki/Taxicab_geometry) between

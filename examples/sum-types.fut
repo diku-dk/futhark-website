@@ -1,6 +1,4 @@
--- ---
--- title: Sum types and pattern matching
--- ---
+-- # Sum types and pattern matching
 --
 -- Futhark supports nonrecursive sum types (sometimes called variants
 -- or tagged unions).  A sum type indicates one or more `#`-prefixed

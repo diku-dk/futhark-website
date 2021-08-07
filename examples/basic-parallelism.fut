@@ -1,6 +1,4 @@
--- ---
--- title: Basic parallelism
--- ---
+-- # Basic parallelism
 --
 -- Futhark is a parallel language, but the Futhark compiler is not a
 -- *parallelising* compiler.  What this means is that parallelism in

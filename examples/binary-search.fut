@@ -1,6 +1,4 @@
--- ---
--- title: Binary search
--- ---
+-- # Binary search
 --
 -- When we need to look for the position of an element in a sorted
 -- sequence, we can use a [binary

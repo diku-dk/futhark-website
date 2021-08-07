@@ -1,6 +1,4 @@
--- ---
--- title: Abstract data types
--- ---
+-- # Abstract data types
 --
 -- Sometimes we wish to define a data type that does not expose its
 -- representation.  Such data types are called *abstract* or *opaque*.

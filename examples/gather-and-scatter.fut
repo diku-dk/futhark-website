@@ -1,6 +1,4 @@
--- ---
--- title: Gather and scatter
--- ---
+-- # Gather and scatter
 --
 -- In vector programming, *gather* is an operation that takes a source
 -- array *xs* and an array of indexes *is*, and for each *i* in *is*

@@ -1,6 +1,4 @@
--- ---
--- title: Random numbers
--- ---
+-- # Random numbers
 --
 -- Generating random numbers in a purely functional language requires
 -- us to manually track the state of the random number generator

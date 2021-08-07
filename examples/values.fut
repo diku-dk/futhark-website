@@ -1,6 +1,4 @@
--- ---
--- title: Values
--- ---
+-- # Values
 --
 -- Futhark has various primitive types: eight different types of
 -- integers (8 to 64 bit, both signed and unsigned), single and double

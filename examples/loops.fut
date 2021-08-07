@@ -1,6 +1,4 @@
--- ---
--- title: Loops
--- ---
+-- # Loops
 --
 -- Futhark does not directly support recursive functions, but instead
 -- provides syntax for expressing sequential loops.

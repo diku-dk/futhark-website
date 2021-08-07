@@ -1,6 +1,4 @@
--- ---
--- title: Matrix multiplication
--- ---
+-- # Matrix multiplication
 --
 -- Futhark has no builtin operator or function for multiplying
 -- matrices.  Indeed, it does not have matrices as a distinct type at

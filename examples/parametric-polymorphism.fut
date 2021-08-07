@@ -1,6 +1,4 @@
--- ---
--- title: Parametric polymorphism
--- ---
+-- # Parametric polymorphism
 --
 -- A polymorphic function is one in which one of the arguments can be
 -- of any type.  We write a polymorphic function by first listing

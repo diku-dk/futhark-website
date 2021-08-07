@@ -1,6 +1,4 @@
--- ---
--- title: Scattering the result of a filter
--- ---
+-- # Scattering the result of a filter
 --
 -- Suppose we have a list of index/value pairs that we wish to
 -- [scatter](gather-and-scatter.html) into a target array, *except*

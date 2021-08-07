@@ -1,6 +1,4 @@
--- ---
--- title: "Dex: Multi-step ray tracer"
--- ---
+-- # Dex: Multi-step ray tracer
 --
 -- The following is a port of
 -- [raytrace.dx](https://google-research.github.io/dex-lang/raytrace.html),

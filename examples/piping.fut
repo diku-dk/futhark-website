@@ -1,6 +1,4 @@
--- ---
--- title: Pipe operators
--- ---
+-- # Pipe operators
 --
 -- Futhark programs are typically written as chains of functions that
 -- each slightly massage the data somehow.  For example, to compute

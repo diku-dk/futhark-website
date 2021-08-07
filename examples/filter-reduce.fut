@@ -1,6 +1,4 @@
--- ---
--- title: Reducing the result of a filter
--- ---
+-- # Reducing the result of a filter
 --
 -- Suppose we wish to sum all the positive values of some array.  The
 -- obvious way to write it is as follows:

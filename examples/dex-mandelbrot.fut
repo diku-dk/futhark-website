@@ -1,6 +1,4 @@
--- ---
--- title: "Dex: Mandelbrot set"
--- ---
+-- # Dex: Mandelbrot set
 --
 -- The following is a port of
 -- [mandelbrot.dx](https://google-research.github.io/dex-lang/mandelbrot.html).

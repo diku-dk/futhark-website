@@ -1,6 +1,4 @@
--- ---
--- title: "Dex: Sierpinski triangle"
--- ---
+-- # Dex: Sierpinski triangle
 --
 -- The following is a port of
 -- [sierpinski.dx](https://google-research.github.io/dex-lang/examples/sierpinski.html)

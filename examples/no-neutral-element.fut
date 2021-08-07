@@ -1,6 +1,4 @@
--- ---
--- title: Reducing or scanning without a neutral element
--- ---
+-- # Reducing or scanning without a neutral element
 --
 -- The `reduce` and `scan` functions expect you to provide a neutral
 -- element, such as `0` for addition or `1` for multiplication.  But

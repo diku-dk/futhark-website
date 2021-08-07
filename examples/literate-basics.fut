@@ -1,7 +1,5 @@
--- ---
--- title: Basic use of literate Futhark
--- ---
-
+-- # Basic use of literate Futhark
+--
 -- The ``futhark literate`` command translates Futhark programs to
 -- Markdown files.  Specially formatted comments, called *directives*,
 -- are replaced with executing parts of the program.  The purpose of

@@ -1,6 +1,4 @@
--- ---
--- title: Faking nominal types
--- ---
+-- # Faking nominal types
 --
 -- Futhark's type system is entirely structural.  If we want to
 -- maintain values of the same representation but of different

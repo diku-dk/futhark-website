@@ -1,6 +1,4 @@
--- ---
--- title: Size parameters
--- ---
+-- # Size parameters
 --
 -- Size annotations are used for expressing constraints on the size of
 -- array-typed function parameters, and guarantees on the result.  For

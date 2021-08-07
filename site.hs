@@ -9,6 +9,7 @@ import qualified Data.Map as M
 import qualified Data.Text as T
 import Hakyll
 import Skylighting (Syntax, parseSyntaxDefinition)
+import System.Directory (removeFile)
 import System.FilePath
 import Text.Pandoc
 import Text.Pandoc.Walk
@@ -109,16 +110,14 @@ main = do
         renderAtom feedConfiguration feedCtx posts
 
     -- Examples
-    match "examples/*.md" $ do
+    match "examples/*-img/*" static
+    match "examples/*.fut" $ do
       route $ setExtension "html"
       compile $ do
         menu <- contentContext
-        exampleCompiler futhark_syntax
-          >>= loadAndApplyTemplate "templates/withtitle.html" menu
+        futCompiler futhark_syntax
           >>= loadAndApplyTemplate "templates/default.html" menu
           >>= relativizeUrls
-    match "examples/*-img/*" static
-    match "examples/*.fut" $ version "source" static
 
     match "templates/*" $ compile templateCompiler
 
@@ -199,11 +198,21 @@ pandocFutCompiler futhark_syntax =
   where
     (ropts, wopts) = pandocOptions futhark_syntax
 
-exampleCompiler :: Syntax -> Compiler (Item String)
-exampleCompiler futhark_syntax = do
-  source <- (`replaceExtension` "fut") <$> getResourceFilePath
-  pandocCompilerWithTransform ropts wopts $
-    addSourceLink source . walk (selfLinkHeader . shiftHeaderUp)
+futCompiler :: Syntax -> Compiler (Item String)
+futCompiler futhark_syntax = do
+  source <- getResourceFilePath
+  void $ unixFilter "futhark" ["literate", "-v", source] mempty
+  let mdfile = source `replaceExtension` "md"
+  item <- makeItem =<< unsafeCompiler (readFile mdfile)
+  let oldident = itemIdentifier item
+  unsafeCompiler $ removeFile mdfile
+  item' <-
+    renderPandocWithTransform
+      ropts
+      wopts
+      (addSourceLink source . walk selfLinkHeader)
+      item {itemIdentifier = fromFilePath mdfile}
+  pure item' {itemIdentifier = oldident}
   where
     (ropts, wopts) = pandocOptions futhark_syntax
 

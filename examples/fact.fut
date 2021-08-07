@@ -1,6 +1,4 @@
--- ---
--- title: Basic usage with the factorial function
--- ---
+-- # Basic usage with the factorial function
 --
 -- The [factorial](https://en.wikipedia.org/wiki/Factorial) of a
 -- number *n*, written *n!*, is the product of all integers from 1 to

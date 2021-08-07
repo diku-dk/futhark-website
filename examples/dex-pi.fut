@@ -1,6 +1,4 @@
--- ---
--- title: "Dex: Monte Carlo estimates of pi"
--- ---
+-- # Dex: Monte Carlo estimates of pi
 --
 -- The following is a port of
 -- [pi.dx](https://google-research.github.io/dex-lang/pi.html)

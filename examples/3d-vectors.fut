@@ -1,6 +1,4 @@
--- ---
--- title: Three-dimensional vectors
--- ---
+-- # Three-dimensional vectors
 --
 -- This example shows how we might define a module type for
 -- programming with vectors in normal 3D space.

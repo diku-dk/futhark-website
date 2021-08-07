@@ -1,6 +1,4 @@
--- ---
--- title: Functions
--- ---
+-- # Functions
 --
 -- Functions are defined with `let`, where we can also annotate both
 -- the parameter and return types.

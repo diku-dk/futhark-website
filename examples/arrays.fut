@@ -1,6 +1,4 @@
--- ---
--- title: Arrays
--- ---
+-- # Arrays
 --
 -- Futhark arrays are written as values enclosed in square brackets.
 

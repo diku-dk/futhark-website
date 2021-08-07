@@ -1,6 +1,4 @@
--- ---
--- title: Complex numbers
--- ---
+-- # Complex numbers
 --
 -- Futhark does not have complex numbers, but they are fairly easy to
 -- implement as a module.  First we [define a module

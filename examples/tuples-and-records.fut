@@ -1,6 +1,4 @@
--- ---
--- title: Tuples and records
--- ---
+-- # Tuples and records
 --
 -- A tuple is written as two or more comma-separated components
 -- enclosed by parentheses:

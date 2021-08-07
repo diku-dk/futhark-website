@@ -1,6 +1,4 @@
--- ---
--- title: Counting elements that satisfy property
--- ---
+-- # Counting elements that satisfy property
 --
 -- Suppose we wish to count the number of positive integers in
 -- some array.  We might write the following:

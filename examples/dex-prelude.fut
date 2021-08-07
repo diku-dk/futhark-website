@@ -1,6 +1,4 @@
--- ---
--- title: "Dex: Prelude"
--- ---
+-- # Dex: Prelude
 --
 -- Translation of various functions from
 -- [prelude.dx](https://google-research.github.io/dex-lang/prelude.html).

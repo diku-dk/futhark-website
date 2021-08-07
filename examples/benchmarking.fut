@@ -1,6 +1,4 @@
--- ---
--- title: Benchmarking
--- ---
+-- # Benchmarking
 --
 -- Suppose we write a simple program that sums the squares of some integers:
 
