@@ -10,10 +10,10 @@
 -- (x `f` y) `f` z == x `f` (y `f` z)
 -- ```
 --
--- While it is formally undecidable for any compiler to determine
--- statically whether an arbitrary function `f` is associative.  it's
--- not so hard to write a test program that looks for a counterexample
--- to associativity by brute force.
+-- While it is undecidable for any compiler to determine statically
+-- whether an arbitrary function `f` is associative, it's not so hard
+-- to write a test program that looks for a counterexample to
+-- associativity by brute force.
 
 let testassoc 'a [n] (eq: a -> a -> bool)
                      (op: a -> a -> a)
