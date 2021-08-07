@@ -19,7 +19,9 @@ jobs:
         path: |
           ~/.cabal/store
           dist-newstyle
-        key: ${{ runner.os }}
+        key: ${{ runner.os }}-${{ hashFiles('cabal.project.freeze') }}
+        restore-keys: |
+          ${{ runner.os }}-
 
     - name: Build Haskell
       run: |
