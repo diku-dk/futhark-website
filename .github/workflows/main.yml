@@ -23,6 +23,11 @@ jobs:
         restore-keys: |
           ${{ runner.os }}
 
+    - name: Install Debian dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y gnuplot imagemagick
+
     - name: Install Futhark
       run: |
           wget http://futhark-lang.org/releases/futhark-nightly-linux-x86_64.tar.xz
