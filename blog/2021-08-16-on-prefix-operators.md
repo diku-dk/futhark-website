@@ -15,7 +15,7 @@ expressions such as `-2²` - should it be interpreted as `(-2)²` or
 `-(2²)`?  In programming we could of course avoid such confusion if we
 were smart enough to just use Lisp, but we're not.  So quick quiz: in
 C, should `- 2+2` be interpreted as `-(2+2)` or `(-2)+2` Turns out it's
-the former.  Generally, the rule is that prefix operators bind more
+the latter.  Generally, the rule is that prefix operators bind more
 tightly than binary infix operators. (Except `->`, if you consider
 that to be an infix operator.)
 
