@@ -103,6 +103,6 @@ but it is certainly something we hope to add in the future.  In
 Haskell, the `-` prefix operator is translated to a call to the
 `negate` method in the `Num` type class, which is then resolved using
 the normal instance resolution mechanisms.  We would presumably do it
-the same way in FUthark.  While it is a bit magical that `-` becomes
+the same way in Futhark.  While it is a bit magical that `-` becomes
 `negate`, such are the compromises needed when you are neither smart
 enough to just use Lisp, nor brave enough to just use Standard ML.
