@@ -121,7 +121,7 @@ terrifying, but let's leave that aside.  There are two low-level APIs
 for GPU programming in the browser:
 
 * [WebGL](https://www.khronos.org/webgl/) is basically OpenGL ES in a
-  ~trenchcoat~ straightjacket.  It's quite widely supported, but the
+  ~~trenchcoat~~ straightjacket.  It's quite widely supported, but the
   API (like OpenGL) is fairly old-fashioned, and not a great fit for
   modern GPUs.  Shaders are written in a variant of GLSL.
 
