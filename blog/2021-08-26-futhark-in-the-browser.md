@@ -54,7 +54,7 @@ for the compiled Futhark program.
 
 For example, a Futhark program `futlib.fut` can be compiled with
 
-    $ futhark wasm futlib.fut
+    $ futhark wasm --lib futlib.fut
 
 which produces the files `futlib.wasm` and `futlib.mjs`.  The latter
 can be imported from JavaScript with:
