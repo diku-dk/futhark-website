@@ -4,7 +4,7 @@ author: Troels Henriksen
 description: The design of the record system in Futhark, with some notes on the design space and why we chose what we did.
 ---
 
-**Note: the syntax for record access changed later, see [this post](2017-11-11-dot-notation-for-records.html).**
+**Note: the syntax for record access changed later, see `this post <2017-11-11-dot-notation-for-records.html>`_.**
 
 Most programming languages, except perhaps for the most bare-bones,
 support some mechanism for creating *records*, although rarely using
