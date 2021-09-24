@@ -3,12 +3,12 @@
 -- Sometimes you need to find the first element of an array that
 -- satisfies some property.  This can be done with a
 -- [`map`](basic-parallelism.html)-[`reduce`](scan-reduce.html)
--- composition, where the `map` tags each element with its index and
--- whether it is the element we are looking for, and then a reduction
--- operator `op` that picks the match with the lowest index one.
--- While I know that `op` is
+-- composition, where the `map` tags each element with its index and a
+-- boolean indicating whether it is a match, and then a reduction
+-- operator `op` that picks the match with the lowest index.  While we
+-- may know that `op` is
 -- [commutative](https://en.wikipedia.org/wiki/Commutative_property),
--- the compiler cannot figure this out on its own, so I use
+-- the compiler cannot figure this out on its own, so we use
 -- `reduce_comm` to tell it explicitly.  This permits slightly more
 -- efficient code generation for the reduction.
 
