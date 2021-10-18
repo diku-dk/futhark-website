@@ -51,7 +51,7 @@ terms from predicate logic, `filter` has an *existential size*:
 (Note the use of Unicode to indicate that this is not a Futhark type.)
 Under this interpretation, there *exists some `k`* that is the size of
 the array that `filter` returns.  In a dependently typed language,
-`filter` would be return a [dependent
+`filter` would return a [dependent
 pair](https://en.wikipedia.org/wiki/Dependent_type#%CE%A0_type).  For
 example, this is the type of the `Data.Vect.filter` function in the
 dependently typed language [Idris](https://idris-lang.org):
