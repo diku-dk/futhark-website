@@ -114,6 +114,10 @@ to build or show something.
 
 # Selected Student Projects
 
+-   Till Severin Grenzdörffer: **Unsupervised Clustering of Sparse
+    Data in Futhark**. MSc thesis.  Department of Computer Science,
+    University of
+    Copenhagen. September 2021. ([pdf](student-projects/till-msc-thesis.pdf))
 -   Philip Rajani Lassen: **WebAssembly Backends for Futhark**.  MSc
     thesis. Department of Computer Science, University of
     Copenhagen. July 2021. ([pdf](student-projects/philip-msc-thesis.pdf))
