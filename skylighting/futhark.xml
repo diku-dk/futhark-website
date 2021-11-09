@@ -64,7 +64,6 @@
     <folding indentationsensitive="1"/>
     <comments>
       <comment name="singleLine" start="--" />
-      <comment name="multiLine" start="{-" end="-}" />
     </comments>
     <keywords casesensitive="1" />
   </general>
