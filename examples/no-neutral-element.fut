@@ -9,7 +9,7 @@
 -- [monoids](https://en.wikipedia.org/wiki/Monoid).
 --
 -- We can always
--- turn any monoid into a semigroup, simply by adding a distinct new
+-- turn any semigroup into a monoid, simply by adding a distinct new
 -- value to serve as the neutral element.
 
 type with_neutral 't = #neutral | #val t
