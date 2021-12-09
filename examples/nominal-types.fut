@@ -27,20 +27,20 @@ type height = #height f32
 -- higher-order module.  We define the parametric module `nominal` as
 -- thus:
 
-module nominal (T: { type def }) : {
+module nominal (T: { type raw }) : {
   type t
-  val name : T.def -> t
-  val shame : t -> T.def
+  val name : T.raw -> t
+  val shame : t -> T.raw
 } = {
-  type t = T.def
+  type t = T.raw
   let name = id
   let shame = id
 }
 
 -- We can then apply it like this:
 
-module temperature = nominal { type def = temperature }
-module height = nominal { type def = height }
+module temperature = nominal { type raw = temperature }
+module height = nominal { type raw = height }
 
 -- There is now an abstract type `temperature.t` whose definition is
 -- completely hidden.  However, the two inverse functions
