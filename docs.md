@@ -48,3 +48,11 @@ programs written in other languages to conveniently call this code.
     `~/.local/share/gtksourceview-3.0/language-specs/`)
 -   [Property-based testing for
     Futhark](https://github.com/Unigurd/fucheck)
+
+# Syntax highlighters that support Futhark
+
+- [Linguist](https://github.com/github/linguist/) (through [language-etc](https://github.com/Alhadis/language-etc)).
+
+- [Pygments](https://pygments.org/)
+
+- [Kate Highlighting XML](skylighting/futhark.xml), compatible with [Skylighting](https://hackage.haskell.org/package/skylighting) which is used by [Pandoc](https://pandoc.org/).
