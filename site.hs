@@ -33,6 +33,8 @@ main = do
   hakyllWith config $ do
     match "images/*" static
 
+    match "skylighting/*" static
+
     match "robots.txt" static
 
     match "static/*" static
