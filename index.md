@@ -16,7 +16,7 @@ code. As a simple example, this function computes the average of an
 array of 64-bit floating-point numbers:
 
 ```Futhark
-let average (xs: []f64) = reduce (+) 0 xs / f64.i64 (length xs)
+def average (xs: []f64) = reduce (+) 0 xs / f64.i64 (length xs)
 ```
 
 ::: {.container .quicklinks}
