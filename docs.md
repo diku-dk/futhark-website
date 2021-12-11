@@ -56,3 +56,5 @@ programs written in other languages to conveniently call this code.
 - [Pygments](https://pygments.org/)
 
 - [Kate Highlighting XML](skylighting/futhark.xml), compatible with [Skylighting](https://hackage.haskell.org/package/skylighting) which is used by [Pandoc](https://pandoc.org/).
+
+- [LaTeX `listings`](https://github.com/diku-dk/futhark/blob/master/tools/futhark-listings.tex)
