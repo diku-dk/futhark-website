@@ -4,13 +4,13 @@
 -- integers (8 to 64 bit, both signed and unsigned), single and double
 -- precision floats, and booleans. Here are some examples.
 
-let an_integer : i32 = 2
+def an_integer : i32 = 2
 
-let an_unsigned_byte : u8 = 2
+def an_unsigned_byte : u8 = 2
 
-let a_boolean = true
+def a_boolean = true
 
-let a_double : f64 = 2.0
+def a_double : f64 = 2.0
 
 -- Numeric literals are overloaded, such that `2` can be any numeric
 -- type, and decimal literals like `2.0` must be either `f32` or

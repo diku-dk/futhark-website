@@ -7,7 +7,7 @@
 -- can write a function for multiplying integer matrices via the usual
 -- `map`/`reduce` constructs:
 
-let matmul_i32 [n][m][p] (A: [n][m]i32) (B: [m][p]i32) : [n][p]i32 =
+def matmul_i32 [n][m][p] (A: [n][m]i32) (B: [m][p]i32) : [n][p]i32 =
   map (\A_row ->
          map (\B_col ->
                 reduce (+) 0 (map2 (*) A_row B_col))
@@ -18,7 +18,7 @@ let matmul_i32 [n][m][p] (A: [n][m]i32) (B: [m][p]i32) : [n][p]i32 =
 -- function](parametric-polymorphism.html) that encapsulates the
 -- general pattern:
 
-let matmul [n][m][p] 'a
+def matmul [n][m][p] 'a
            (add: a -> a -> a) (mul: a -> a -> a) (zero: a)
            (A: [n][m]a) (B: [m][p]a) : [n][p]a =
   map (\A_row ->
@@ -30,4 +30,4 @@ let matmul [n][m][p] 'a
 -- We can then partially apply `matmul` to obtain a matrix
 -- multiplication function for a specific type.
 
-let matmul_f32 = matmul (+) (*) 0f32
+def matmul_f32 = matmul (+) (*) 0f32

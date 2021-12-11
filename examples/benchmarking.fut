@@ -2,7 +2,7 @@
 --
 -- Suppose we write a simple program that sums the squares of some integers:
 
-let main (n: i32): i32 =
+def main (n: i32): i32 =
   reduce (+) 0 (map (**2) (0..<n))
 
 -- We can benchmark this program by adding a test stanza to the source

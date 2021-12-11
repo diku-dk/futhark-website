@@ -33,8 +33,8 @@ module nominal (T: { type raw }) : {
   val shame : t -> T.raw
 } = {
   type t = T.raw
-  let name = id
-  let shame = id
+  def name = id
+  def shame = id
 }
 
 -- We can then apply it like this:
@@ -47,8 +47,8 @@ module height = nominal { type raw = height }
 -- `temperature.name` and `temperature.shame` allow us to convert
 -- between `temperature.t` and the `temperature` type:
 
-let x : temperature.t = temperature.name (#temperature 2)
+def x : temperature.t = temperature.name (#temperature 2)
 
-let y : temperature = temperature.shame x
+def y : temperature = temperature.shame x
 
 -- It's certainly awkward, but it may come in handy from time to time.

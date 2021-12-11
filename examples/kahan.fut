@@ -9,7 +9,7 @@
 
 type kahan = (f64, f64)
 
-let kahan_add ((s1, c1) : kahan) ((s2, c2) : kahan) : kahan =
+def kahan_add ((s1, c1) : kahan) ((s2, c2) : kahan) : kahan =
   let s = s1 + s2
   let d  = if f64.abs s1 >= f64.abs s2 then (s1 - s) + s2
            else (s2 - s) + s1
@@ -22,7 +22,7 @@ let kahan_add ((s1, c1) : kahan) ((s2, c2) : kahan) : kahan =
 -- than the running sum.  We can pack it up as a `map`-`reduce`
 -- composition for summing an entire array.
 
-let kahan_sum (xs: []f64) : f64 =
+def kahan_sum (xs: []f64) : f64 =
   let (s,c) = reduce kahan_add (0,0) (map (\x -> (x,0)) xs)
   in s + c
 
@@ -31,7 +31,7 @@ let kahan_sum (xs: []f64) : f64 =
 
 -- > kahan_sum [1e100, 1.0, -1e100, 1.0]
 
-let normal_sum = f64.sum
+def normal_sum = f64.sum
 
 -- > normal_sum [1e100, 1.0, -1e100, 1.0]
 

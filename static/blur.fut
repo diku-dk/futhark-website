@@ -1,7 +1,7 @@
 -- Split the original three-dimensional array into three
 -- two-dimensional arrays of floats: one per colour channel.  The
 -- elements of the arrays will have a value from 0 to 1.0.
-let splitIntoChannels [rows][cols]
+def splitIntoChannels [rows][cols]
                       (image: [rows][cols][3]u8): ([rows][cols]f32,
                                                    [rows][cols]f32,
                                                    [rows][cols]f32) =
@@ -18,7 +18,7 @@ let splitIntoChannels [rows][cols]
               image)
 
 -- The inverse of splitIntoChannels.
-let combineChannels [rows][cols]
+def combineChannels [rows][cols]
                     (rs: [rows][cols]f32)
                     (gs: [rows][cols]f32)
                     (bs: [rows][cols]f32): [rows][cols][3]u8 =
@@ -33,7 +33,7 @@ let combineChannels [rows][cols]
 -- Compute the new value for the pixel at the given position.  The
 -- pixel must not be located on the edges or an out-of-bounds access
 -- will occur.
-let newValue [rows][cols]
+def newValue [rows][cols]
              (image: [rows][cols]f32) (row: i64) (col: i64): f32 =
   -- The Futhark compiler cannot prove that these accesses are safe,
   -- and cannot perform dynamic bounds checks in parallel code.
@@ -45,7 +45,7 @@ let newValue [rows][cols]
 
 -- The actual stencil: call newValue on every pixel in the interior,
 -- leaving the edges unchanged.
-let blurChannel [rows][cols]
+def blurChannel [rows][cols]
                 (channel: [rows][cols]f32): [rows][cols]f32 =
   map (\row ->
         map(\col ->
@@ -56,7 +56,7 @@ let blurChannel [rows][cols]
       (iota rows)
 
 -- Perform the specified number of blurring operations on the image.
-let main [rows][cols]
+def main [rows][cols]
          (iterations: i32) (image: [rows][cols][3]u8): [rows][cols][3]u8 =
   -- First we split the image apart into component channels.
   let (rs, gs, bs) = splitIntoChannels image

@@ -3,7 +3,7 @@
 -- We can compute the average value of an array by summing the
 -- elements, then dividing by the array size:
 
-let avg [n] (xs: [n]f64) : f64 =
+def avg [n] (xs: [n]f64) : f64 =
   f64.sum xs / f64.i64 n
 
 -- This is specialised to arrays with `f64` elements.  We could use
@@ -18,7 +18,7 @@ let avg [n] (xs: [n]f64) : f64 =
 -- careful near the edges of the array, where a full window may not be
 -- available:
 
-let movavg [n] (m: i64) (xs: [n]f64) : [n]f64 =
+def movavg [n] (m: i64) (xs: [n]f64) : [n]f64 =
   tabulate n (\i ->
                 let start = i64.max 0 (i-m)
                 let end = i64.min n (i+m+1)
@@ -33,7 +33,7 @@ let movavg [n] (m: i64) (xs: [n]f64) : [n]f64 =
 -- completeness, here's how you'd implement it with only regular
 -- nested parallelism:
 
-let movavg_regular [n] (m: i64) (xs: [n]f64) : [n]f64 =
+def movavg_regular [n] (m: i64) (xs: [n]f64) : [n]f64 =
   let full_wsize = 2*m+1
   let in_bounds i = i >= 0 && i < n
   in tabulate n (\i ->

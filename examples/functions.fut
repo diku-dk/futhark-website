@@ -3,43 +3,43 @@
 -- Functions are defined with `let`, where we can also annotate both
 -- the parameter and return types.
 
-let plus2 (x: i32) : i32 =
+def plus2 (x: i32) : i32 =
   x + 2
 
 -- Type inference is supported, so in many cases the types can be left
 -- off, in which case the correct type will be inferred from the
 -- definition.
 
-let plus2_inferred x =
+def plus2_inferred x =
   x + 2
 
 -- Functions are (almost) first-class values, with the type of a
 -- function from type `a` to type `b` written as `a -> b`.  This means
 -- we can write higher-order functions:
 
-let on_i32 (f: i32 -> i32) (x: i32) =
+def on_i32 (f: i32 -> i32) (x: i32) =
   f x
 
 -- When passing an argument to a higher-order function, it is often
 -- most practical to use an *anonymous function* (sometimes called a
 -- *lambda*), like this:
 
-let four = on_i32 (\x -> x + 2) 2
+def four = on_i32 (\x -> x + 2) 2
 
 -- A shortcut notation, called *operator sections*, allows partial
 -- application of infix operators:
 
-let another_four = on_i32 (+2) 2
+def another_four = on_i32 (+2) 2
 
 -- By enclosing an operator in parentheses we can treat it like any
 -- variable name:
 
-let plus = (+)
+def plus = (+)
 
 -- And we can treat a variable as an infix operator by enclosing it in
 -- backticks:
 
-let yet_another_four = 2 `plus` 2
+def yet_another_four = 2 `plus` 2
 
 -- Function values are restricted as follows:
 --
@@ -51,7 +51,7 @@ let yet_another_four = 2 `plus` 2
 --
 -- However, it is fine to collect functions in tuples or records.
 
-let fun_tuple : (i32 -> i32, i32 -> i32) =
+def fun_tuple : (i32 -> i32, i32 -> i32) =
   (plus2, plus2_inferred)
 
 -- [Polymorphic functions are also

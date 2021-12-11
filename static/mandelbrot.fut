@@ -1,21 +1,21 @@
-let dot (r: f32, i: f32): f32 =
+def dot (r: f32, i: f32): f32 =
   r * r + i * i
 
-let multComplex (a: f32, b: f32) (c: f32, d: f32): (f32,f32) =
+def multComplex (a: f32, b: f32) (c: f32, d: f32): (f32,f32) =
   (a*c - b * d,
    a*d + b * c)
 
-let addComplex (a: f32, b: f32) (c: f32, d: f32): (f32,f32) =
+def addComplex (a: f32, b: f32) (c: f32, d: f32): (f32,f32) =
   (a + c,
    b + d)
 
-let divergence (depth: i32) (c0: (f32,f32)): i32 =
+def divergence (depth: i32) (c0: (f32,f32)): i32 =
   let (_, i) = loop (c, i) = (c0, 0) while (i < depth) && (dot c < 4.0) do
     (addComplex c0 (multComplex c c),
      i + 1)
   in i
 
-let mandelbrot (screenX: i64) (screenY: i64) (depth: i32)
+def mandelbrot (screenX: i64) (screenY: i64) (depth: i32)
                (xmin: f32) (ymin: f32) (xmax: f32) (ymax: f32): [screenY][screenX]i32 =
   let sizex = xmax - xmin
   let sizey = ymax - ymin
@@ -27,7 +27,7 @@ let mandelbrot (screenX: i64) (screenY: i64) (depth: i32)
                 (iota screenX))
             (iota screenY)
 
-let escapeToColour (depth: i32) (divergence: i32): i32 =
+def escapeToColour (depth: i32) (divergence: i32): i32 =
   if depth == divergence
   then 0
   else
@@ -36,7 +36,7 @@ let escapeToColour (depth: i32) (divergence: i32): i32 =
     let b = 7 * divergence
     in (r<<16 | g<<8 | b)
 
-let main (screenX: i64) (screenY: i64) (depth: i32)
+def main (screenX: i64) (screenY: i64) (depth: i32)
          (xmin: f32) (ymin: f32) (xmax: f32) (ymax: f32): [screenY][screenX]i32 =
   let escapes = mandelbrot screenX screenY depth xmin ymin xmax ymax
   in map (\row ->

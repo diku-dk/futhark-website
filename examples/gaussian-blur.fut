@@ -24,7 +24,7 @@
 -- `[rows][cols]f32` each.  The result is that we have one array for
 -- each of the three colour channels:
 --
-let split_channels [rows][cols]
+def split_channels [rows][cols]
                    (image: [rows][cols][3]u8): ([rows][cols]f32,
                                                 [rows][cols]f32,
                                                 [rows][cols]f32) =
@@ -59,7 +59,7 @@ let split_channels [rows][cols]
 -- We will also need to re-combine the colour channel arrays into a
 -- single array.  That function looks like this:
 
-let combine_channels [rows][cols]
+def combine_channels [rows][cols]
                      (rs: [rows][cols]f32)
                      (gs: [rows][cols]f32)
                      (bs: [rows][cols]f32): [rows][cols][3]u8 =
@@ -76,7 +76,7 @@ let combine_channels [rows][cols]
 -- blurring, we will take the average value of the pixel itself plus each
 -- of its eight neighbors (nine values in total):
 
-let new_value [rows][cols]
+def new_value [rows][cols]
              (image: [rows][cols]f32) (row: i64) (col: i64): f32 =
   let sum =
     image[row-1,col-1] + image[row-1,col] + image[row-1,col+1] +
@@ -97,7 +97,7 @@ let new_value [rows][cols]
 -- ranging from *0* to the provided argument (the latter not inclusive).
 -- The edges are left unchanged:
 
-let blur [rows][cols]
+def blur [rows][cols]
          (channel: [rows][cols]f32): [rows][cols]f32 =
   map (\row ->
          map(\col ->
@@ -119,7 +119,7 @@ let blur [rows][cols]
 -- will apply the blurring transformation a user-defined number of times.
 -- The more iterations we run, the more blurred the image will become:
 
-let main [rows][cols]
+def main [rows][cols]
          (iterations: i32) (image: [rows][cols][3]u8): [rows][cols][3]u8 =
   let (rs, gs, bs) = split_channels image
   let (rs, gs, bs) = loop (rs, gs, bs) for _i < iterations do

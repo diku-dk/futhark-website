@@ -9,7 +9,7 @@
 -- For example, let us define a function for generating a linearly
 -- spaced vector:
 
-let linspace (n: i64) (start: f64) (end: f64) : [n]f64 =
+def linspace (n: i64) (start: f64) (end: f64) : [n]f64 =
   tabulate n (\i -> start + f64.i64 i * ((end-start)/f64.i64 n))
 
 -- With an evaluation directive, we can show what it evaluates to:
@@ -33,11 +33,11 @@ let linspace (n: i64) (start: f64) (end: f64) : [n]f64 =
 --
 -- Some values are boring when viewed as arrays of numbers.
 
-let linspace_2d n start end : [n][n](f64,f64) =
+def linspace_2d n start end : [n][n](f64,f64) =
   map (\x -> map (\y -> (x,y)) (linspace n start end))
       (linspace n start end)
 
-let spirals n v : [n][n]f64 =
+def spirals n v : [n][n]f64 =
   let f (x, y) =
     f64.sgn (f64.cos (f64.sqrt (x**2+y**2)))
   in map (map f) (linspace_2d n (-v) v)
@@ -51,7 +51,7 @@ let spirals n v : [n][n]f64 =
 -- two-dimensional array of 32-bit integers is interpreted in RGB
 -- format.
 
-let colours n v : [n][n]u32 =
+def colours n v : [n][n]u32 =
   let f (x, y) =
     (u32.f64 (x*y) & 0xFF) << 16 |
     (u32.f64 (x+y) & 0xFF) << 8 |
@@ -66,13 +66,13 @@ let colours n v : [n][n]u32 =
 -- However, if we just want to plot the value of some function, it
 -- would be pretty awkward to implement graphing every time.
 
-let xys f n start end : ([n]f64, [n]f64) =
+def xys f n start end : ([n]f64, [n]f64) =
   unzip (map (\x -> (x, f x)) (linspace n start end))
 
-let plot_sqrt = xys f64.sqrt
-let plot_sin = xys f64.sin
-let plot_cos = xys f64.cos
-let plot_inv = xys (1/)
+def plot_sqrt = xys f64.sqrt
+def plot_sin = xys f64.sin
+def plot_cos = xys f64.cos
+def plot_inv = xys (1/)
 
 -- The `:plot2d` directive lets us to a quick plot of pairs of *x* and
 -- *y* value arrays.
@@ -91,7 +91,7 @@ let plot_inv = xys (1/)
 -- [Gnuplot](http://www.gnuplot.info/).  For advanced needs, such as
 -- 3D plotting, we can write the Gnuplot commands ourselves.
 
-let plot3d n start end : ([]f64, []f64, []f64) =
+def plot3d n start end : ([]f64, []f64, []f64) =
   let f (x, y) =
     let z = f64.sin(5*x) *f64.cos(5*y)/5
     in (x, y, z)

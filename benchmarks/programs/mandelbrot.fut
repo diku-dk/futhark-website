@@ -6,16 +6,16 @@ import "lib/github.com/athas/matte/colour"
 module complex = mk_complex f32
 type complex = complex.complex
 
-let dot (c: complex): f32 =
+def dot (c: complex): f32 =
   let (r, i) = (complex.re c, complex.im c)
   in (r * r + i * i)
 
-let divergence (limit: i32) (radius: f32) (c0: complex): (complex,i32) =
+def divergence (limit: i32) (radius: f32) (c0: complex): (complex,i32) =
   loop (c, i) = (c0, 0) while i < limit && dot c < radius do
     (c0 complex.+ c complex.* c,
      i + 1)
 
-let mandelbrot (screenX: i64) (screenY: i64) (limit: i32) (radius: f32)
+def mandelbrot (screenX: i64) (screenY: i64) (limit: i32) (radius: f32)
                ((xmin, ymin, xmax, ymax): (f32,f32,f32,f32))
     : [screenX][screenY](complex,i32) =
   let sizex = (xmax - xmin)
@@ -32,7 +32,7 @@ let mandelbrot (screenX: i64) (screenY: i64) (limit: i32) (radius: f32)
 -- colour.  That is, the most important part!
 
 -- | Cubic interpolation.
-let cubic (x0:f32,x1:f32) (y0:f32,y1:f32) (m0:f32,m1:f32) (x:f32) =
+def cubic (x0:f32,x1:f32) (y0:f32,y1:f32) (m0:f32,m1:f32) (x:f32) =
   let h    = x1 - x0
   let t    = (x - x0) / h
   let h_00 = (1.0 + 2.0*t) * (1.0 - t) ** 2.0
@@ -41,7 +41,7 @@ let cubic (x0:f32,x1:f32) (y0:f32,y1:f32) (m0:f32,m1:f32) (x:f32) =
   let h_11 = t ** 2.0 * (t - 1.0)
   in y0 * h_00 + h * m0 * h_10 + y1 * h_01 + h * m1 * h_11
 
-let interp (x0:f32, x1:f32)
+def interp (x0:f32, x1:f32)
            (y0:argb.colour, y1:argb.colour)
            ((mr0,mg0,mb0):(f32,f32,f32),
             (mr1,mg1,mb1):(f32,f32,f32))
@@ -54,7 +54,7 @@ let interp (x0:f32, x1:f32)
                     0.0
 
 -- the ultraPalette from Accelerate.
-let mk_palette (points: i32) (ix: i32): argb.colour =
+def mk_palette (points: i32) (ix: i32): argb.colour =
   let p = r32 ix / r32 points
 
   let p0 = 0.0
@@ -88,9 +88,9 @@ let mk_palette (points: i32) (ix: i32): argb.colour =
   if p <= p4 then interp (p3,p4) (c3,c4) (m3,m4) p else
                   interp (p4,p5) (c4,c5) (m4,m5) p
 
-let log2 (x: f32) = f32.log x / f32.log 2.0
+def log2 (x: f32) = f32.log x / f32.log 2.0
 
-let escape_to_colour (limit: i32) (points: i32)
+def escape_to_colour (limit: i32) (points: i32)
                      (z: complex, n: i32): argb.colour =
   if limit == n then argb.black
   else let smooth = log2 (log2 (complex.mag z))
@@ -99,7 +99,7 @@ let escape_to_colour (limit: i32) (points: i32)
        let ix = t32 (f32.sqrt (r32 n + 1.0 - smooth) * scale + shift)
        in mk_palette points (ix %% points)
 
-let mandelbrot_render (screenX: i64) (screenY: i64)
+def mandelbrot_render (screenX: i64) (screenY: i64)
                       (xcentre: f32) (ycentre: f32) (width: f32)
                       (limit: i32) (radius: f32): [screenX][screenY]u32 =
   let aspect_ratio = (f32.i64 screenX / f32.i64 screenY)
@@ -111,5 +111,5 @@ let mandelbrot_render (screenX: i64) (screenY: i64)
   let points = 2048
   in map (\row -> map (escape_to_colour limit points) row) escapes
 
-let main (n: i64) =
+def main (n: i64) =
   mandelbrot_render n n (-0.7f32) 0f32 3.067f32 100 16f32

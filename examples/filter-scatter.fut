@@ -5,7 +5,7 @@
 -- for those values that fail some property.  We might write it
 -- like this:
 
-let scatter_some 'a (dest: *[]a) (p: a -> bool) (pairs: [](i64, a)) =
+def scatter_some 'a (dest: *[]a) (p: a -> bool) (pairs: [](i64, a)) =
   let (is, vs) = unzip (filter (\(_, v) -> p v) pairs)
   in scatter dest is vs
 
@@ -21,7 +21,7 @@ let scatter_some 'a (dest: *[]a) (p: a -> bool) (pairs: [](i64, a)) =
 -- are out of bounds, and map the "removed" elements to an invalid
 -- index, such as -1:
 
-let scatter_some_better 'a (dest: *[]a) (p: a -> bool) (pairs: [](i64, a)) =
+def scatter_some_better 'a (dest: *[]a) (p: a -> bool) (pairs: [](i64, a)) =
   let (is, vs) = unzip (map (\(i, v) -> if p v then (i,v) else (-1,v)) pairs)
   in scatter dest is vs
 

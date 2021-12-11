@@ -6,12 +6,12 @@
 
 type int_or_float = #int i32 | #float f32
 
-let an_int : int_or_float = #int 2
+def an_int : int_or_float = #int 2
 
 -- Given a value of a sum type, we use a `match` expression to handle
 -- each possible case.
 
-let increment (v: int_or_float): int_or_float =
+def increment (v: int_or_float): int_or_float =
   match v
   case #int x -> #int (x+1)
   case #float x -> #float (x+1)
@@ -32,7 +32,7 @@ type dir = #left | #right
 type point = #one_d {x: f32, y: f32}
            | #two_d {x: f32, y: f32, z: f32}
 
-let scale (p: point) (d: f32) : point =
+def scale (p: point) (d: f32) : point =
   match p
   case #one_d {x,y}   -> #one_d {x=x*d, y=y*d}
   case #two_d {x,y,z} -> #two_d {x=x*d, y=y*d, z=z*d}
@@ -41,12 +41,12 @@ let scale (p: point) (d: f32) : point =
 -- This means that naming with `type` is optional, and we can just
 -- inline the type instead:
 
-let fast (c: #hedgehog | #train) =
+def fast (c: #hedgehog | #train) =
   match c
   case #hedgehog -> true
   case #train -> false
 
-let is_fast = fast #hedgehog
+def is_fast = fast #hedgehog
 
 -- In practice, this means that we often need to add type annotations
 -- to disambiguate which type we mean, as there are an infinite number

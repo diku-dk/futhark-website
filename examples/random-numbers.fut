@@ -57,14 +57,14 @@ module lcg : rand = {
 -- An LCG is defined by the three constants *a*, *c*, and *m*.  We use
 -- the following values, which are the same that are used by glibc:
 
-  let a : u32 = 1103515245
-  let c : u32 = 12345
-  let m : u32 = 1<<31
+  def a : u32 = 1103515245
+  def c : u32 = 12345
+  def m : u32 = 1<<31
 
 -- Note that with these constants, we will never generate a negative
 -- random integer.
 
-  let rand rng =
+  def rand rng =
     let rng' = (a * rng + c) % m
     in (rng', i32.u32 rng')
 
@@ -73,7 +73,7 @@ module lcg : rand = {
 -- StackOverflow](https://stackoverflow.com/questions/664014/what-integer-hash-function-are-good-that-accepts-an-integer-hash-key/12996028#12996028),
 -- as is tradition.
 
-  let init (x: i32): u32 =
+  def init (x: i32): u32 =
     let x = u32.i32 x
     let x = ((x >> 16) ^ x) * 0x45d9f3b
     let x = ((x >> 16) ^ x) * 0x45d9f3b
@@ -87,17 +87,17 @@ module lcg : rand = {
 -- The splitting functions creates RNG states by slightly twiddling
 -- the states.
 
-  let split (rng: rng) =
+  def split (rng: rng) =
     (init (i32.u32 (rand rng).0),
      init (i32.u32 rng))
 
-  let split_n n rng =
+  def split_n n rng =
     tabulate n (\i -> init (i32.u32 rng ^ i32.i64 i))
 }
 
 -- This is how we might use it:
 
-let test seed =
+def test seed =
   let rng = lcg.init seed
   let (rng, x) = lcg.rand rng
   let (_, y) = lcg.rand rng
@@ -107,7 +107,7 @@ let test seed =
 -- define a handy function for generating integers in the range `[0,
 -- bound-1]`:
 
-let rand_i32 (rng: lcg.rng) (bound: i32) =
+def rand_i32 (rng: lcg.rng) (bound: i32) =
   let (rng, x) = lcg.rand rng
   in (rng, x % bound)
 
@@ -119,7 +119,7 @@ let rand_i32 (rng: lcg.rng) (bound: i32) =
 -- We can also define a function that gives us a random `f64` in the
 -- interval `[0,1]`:
 
-let rand_f64 (rng: lcg.rng) =
+def rand_f64 (rng: lcg.rng) =
   let (rng, x) = lcg.rand rng
   in (rng, f64.i32 x / f64.i32 i32.highest)
 

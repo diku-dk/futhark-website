@@ -48,18 +48,18 @@ module normvec : normvec = {
 
 -- The `mk` function normalises the given coordinates.
 
-  let mk {x, y} : vec =
+  def mk {x, y} : vec =
     let norm = f64.sqrt (x**2+y**2)
     in {x = x / norm, y = y / norm}
 
 -- The `unmk` function just returns the coordinates.
 
-  let unmk {x, y} = {x, y}
+  def unmk {x, y} = {x, y}
 
 -- Finally, the `add` function adds the components, then re-normalises
 -- the vector.
 
-  let add (a: vec) (b: vec) : vec =
+  def add (a: vec) (b: vec) : vec =
     {x = (a.x+b.x)/2, y = (a.y+b.y)/2}
 
 }

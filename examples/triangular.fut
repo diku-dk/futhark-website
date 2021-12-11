@@ -80,7 +80,7 @@ module triangular : triangular = {
 
 -- The size of the `data` array given `n` is given by this formula:
 
-  let elements (n: i64) =
+  def elements (n: i64) =
     (n * (1+n))/2
 
 -- We now define a handful of utility functions for converting between
@@ -101,7 +101,7 @@ module triangular : triangular = {
 -- second-degree equation (I'll admit it's a bit odd to see square
 -- roots in index calculations).
 
-  let row (i: i64) =
+  def row (i: i64) =
     i64.f64 (f64.ceil ((f64.sqrt(f64.i64(9+8*i))-1)/2))-1
 
 -- It behaves like this:
@@ -120,12 +120,12 @@ module triangular : triangular = {
 -- Now can define *ranking*, which turns a two-dimensional index
 -- *(i,j)* into a flat index:
 
-  let rank i j =
+  def rank i j =
     elements i + j
 
 -- And the other way around:
 
-  let unrank (p: i64) =
+  def unrank (p: i64) =
     let i = row p
     let j = p - elements i
     in (i,j)
@@ -135,20 +135,20 @@ module triangular : triangular = {
 -- are trying to index above the diagonal, and return the zero value
 -- if so:
 
-  let get [n] 'a zero (i,j) (tri: triangular [n] a) =
+  def get [n] 'a zero (i,j) (tri: triangular [n] a) =
     if j > i then zero else tri.data[rank i j]
 
 -- Converting between ordinary arrays and triangular arrays is also
 -- straightforward.
 
-  let from_array arr =
+  def from_array arr =
     { size = map (const []) arr,
       data = map (\p -> let (i,j) = unrank p
                         in arr[i,j])
                  (iota (elements (length arr)))
     }
 
-  let to_array [n] 'a zero (tri: triangular [n] a) =
+  def to_array [n] 'a zero (tri: triangular [n] a) =
     tabulate_2d n n (\i j -> get zero (i,j) tri)
 
 -- In fact, `to_array` does not have to be part of the module, as it
@@ -158,7 +158,7 @@ module triangular : triangular = {
 -- Finally, defining `map` is very simple, as it doesn't have to care
 -- about the sizes at all.
 
-  let map f {size, data} =
+  def map f {size, data} =
     {size, data = map f data}
 
 -- And we're done!

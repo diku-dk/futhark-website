@@ -35,11 +35,11 @@ module type expanded_field = {
 }
 
 module f64_field : (expanded_field with t = f64) = {
-  let max = f64.max
-  let sqrt = f64.sqrt
-  let cos = f64.cos
-  let sin = f64.sin
-  let abs = f64.abs
+  def max = f64.max
+  def sqrt = f64.sqrt
+  def cos = f64.cos
+  def sin = f64.sin
+  def abs = f64.abs
 
 -- We expose all the definitions from `f64_field` rather than
 -- repeating them.
@@ -56,45 +56,45 @@ module f64_dual_field = {
   type underlying = f64
   type t = (underlying, underlying)
 
-  let primal ((x, _) : t) = x
-  let tangent ((_, x') : t) = x'
-  let dual0 x : t = (x, 0)
-  let dual1 x : t = (x, 1)
+  def primal ((x, _) : t) = x
+  def tangent ((_, x') : t) = x'
+  def dual0 x : t = (x, 0)
+  def dual1 x : t = (x, 1)
 
-  let max (x,x' : f64) (y,y') =
+  def max (x,x' : f64) (y,y') =
     (f64.max x y,
      if x >= y then x' else y')
 
-  let sqrt (x,x') =
+  def sqrt (x,x') =
     (f64.sqrt x, x' / (2 * f64.sqrt x))
 
-  let cos (x, x') =
+  def cos (x, x') =
     (f64.cos x, f64.neg x' * f64.sin x)
 
-  let sin (x, x') =
+  def sin (x, x') =
     (f64.sin x, x' * f64.cos x)
 
-  let abs (x,x') =
+  def abs (x,x') =
     (f64.abs x, f64.sgn x * x')
 
-  let neg (x,x') : t = (-x, -x')
-  let recip (x,x') : t = (1/x, -(x'/(x*x)))
+  def neg (x,x') : t = (-x, -x')
+  def recip (x,x') : t = (1/x, -(x'/(x*x)))
 
-  let (x,x') + (y,y') : t = f64.((x + y, x' + y'))
-  let (x,x') * (y,y') : t = f64.((x * y, x' * y + x * y'))
-  let x - y = x + neg y
-  let x / y = x * recip y
+  def (x,x') + (y,y') : t = f64.((x + y, x' + y'))
+  def (x,x') * (y,y') : t = f64.((x * y, x' * y + x * y'))
+  def x - y = x + neg y
+  def x / y = x * recip y
 
-  let (x,_) == (y,_) = f64.(x == y)
-  let (x,_) < (y,_) = f64.(x < y)
-  let (x,_) > (y,_) = f64.(x > y)
-  let (x,_) <= (y,_) = f64.(x <= y)
-  let (x,_) >= (y,_) = f64.(x >= y)
-  let (x,_) != (y,_) = f64.(x != y)
+  def (x,_) == (y,_) = f64.(x == y)
+  def (x,_) < (y,_) = f64.(x < y)
+  def (x,_) > (y,_) = f64.(x > y)
+  def (x,_) <= (y,_) = f64.(x <= y)
+  def (x,_) >= (y,_) = f64.(x >= y)
+  def (x,_) != (y,_) = f64.(x != y)
 
-  let f64 x = dual0 x
-  let zero = f64 0
-  let one = f64 1
+  def f64 x = dual0 x
+  def zero = f64 0
+  def one = f64 1
 }
 
 -- # Geometry
@@ -123,20 +123,20 @@ module vspace = threed.mk_vspace_3d Float
 -- Convenient shorthands for various vector types and operations:
 
 type Vec = vspace.vector
-let (*>) = vspace.scale
-let (<+>) = (vspace.+)
-let (<->) = (vspace.-)
-let (<*>) = (vspace.*)
-let dot = vspace.dot
-let length = vspace.length
-let normalize = vspace.normalise
-let cross = vspace.cross
-let rotateY = flip vspace.rot_y
+def (*>) = vspace.scale
+def (<+>) = (vspace.+)
+def (<->) = (vspace.-)
+def (<*>) = (vspace.*)
+def dot = vspace.dot
+def length = vspace.length
+def normalize = vspace.normalise
+def cross = vspace.cross
+def rotateY = flip vspace.rot_y
 
 -- These vectors are not arrays and we cannot `map` them, but we can
 -- define our own mapping function.
 
-let vmap (f: Float -> Float) (v : Vec) =
+def vmap (f: Float -> Float) (v : Vec) =
   {x = f v.x, y = f v.y, z = f v.z}
 
 -- Dex calls the scaling operator `.*`, but that name is not valid in
@@ -183,7 +183,7 @@ type Object
 -- This function is the reason why the Futhark implementation is so
 -- convoluted, as we will need its derivative.
 
-let sdObject (pos:Position) (obj:Object) : Distance =
+def sdObject (pos:Position) (obj:Object) : Distance =
   match obj
   case #PassiveObject geom _ ->
     (match geom
@@ -217,13 +217,13 @@ module geometry_dual = mk_geometry f64_dual_field
 -- objects-with-dual-numbers.  For this, we'll first define some
 -- utility functions.
 
-let dual0 = f64_dual_field.dual0
-let dual1 = f64_dual_field.dual1
-let dualVec {x,y,z} = {x=dual0 x, y=dual0 y, z=dual0 z}
+def dual0 = f64_dual_field.dual0
+def dual1 = f64_dual_field.dual1
+def dualVec {x,y,z} = {x=dual0 x, y=dual0 y, z=dual0 z}
 
 -- And then a bunch of boilerplate definitions.
 
-let dualGeom (geom: geometry.ObjectGeom) : geometry_dual.ObjectGeom =
+def dualGeom (geom: geometry.ObjectGeom) : geometry_dual.ObjectGeom =
   match geom
   case #Wall nor d ->
     #Wall (dualVec nor) (dual0 d)
@@ -232,12 +232,12 @@ let dualGeom (geom: geometry.ObjectGeom) : geometry_dual.ObjectGeom =
   case #Sphere spherePos r ->
     #Sphere (dualVec spherePos) (dual0 r)
 
-let dualSurface (surf: geometry.Surface) : geometry_dual.Surface =
+def dualSurface (surf: geometry.Surface) : geometry_dual.Surface =
   match surf
   case #Matte c -> #Matte (dualVec c)
   case #Mirror -> #Mirror
 
-let dualObject (obj: geometry.Object) : geometry_dual.Object =
+def dualObject (obj: geometry.Object) : geometry_dual.Object =
   match obj
   case #PassiveObject geom surface ->
     #PassiveObject (dualGeom geom) (dualSurface surface)
@@ -260,23 +260,23 @@ type Vec = geometry.Vec
 
 -- We also need some of the geometry functions:
 
-let dot = geometry.dot
-let (<+>) = (geometry.<+>)
-let (<->) = (geometry.<->)
-let (<*>) = (geometry.<*>)
-let (*>) = (geometry.*>)
-let normalize = geometry.normalize
-let length = geometry.length
+def dot = geometry.dot
+def (<+>) = (geometry.<+>)
+def (<->) = (geometry.<->)
+def (<*>) = (geometry.<*>)
+def (*>) = (geometry.*>)
+def normalize = geometry.normalize
+def length = geometry.length
 
 -- And a few more shorthands:
 
-let vec x y z : Vec = {x,y,z}
+def vec x y z : Vec = {x,y,z}
 
 -- Finally we can define the function that computes surface normals at
 -- a given position.  This function is the reason we went to all that
 -- trouble with dual numbers.
 
-let calcNormal (obj: Object) (pos: Position) : Direction =
+def calcNormal (obj: Object) (pos: Position) : Direction =
   let f i =
     let pos' = {x = if i == 0 then dual1 pos.x else dual0 pos.x,
                 y = if i == 1 then dual1 pos.y else dual0 pos.y,
@@ -292,13 +292,13 @@ let calcNormal (obj: Object) (pos: Position) : Direction =
 --
 -- First, a function for generating a number in a range:
 
-let randuniform (lower: f64) (upper: f64) (k: Key) =
+def randuniform (lower: f64) (upper: f64) (k: Key) =
   let x = rand k
   in (lower + x * (upper-lower))
 
 -- Sample within a square with side length *2\*hw*:
 
-let sampleSquare (hw: f64) (k: Key) : Position =
+def sampleSquare (hw: f64) (k: Key) : Position =
   let (kx, kz) = splitKey k
   let x = randuniform (- hw) hw kx
   let z = randuniform (- hw) hw kz
@@ -306,7 +306,7 @@ let sampleSquare (hw: f64) (k: Key) : Position =
 
 -- Sample within a hemisphere in the direction of the normal vector:
 
-let sampleCosineWeightedHemisphere (normal: Vec) (k: Key) : Vec =
+def sampleCosineWeightedHemisphere (normal: Vec) (k: Key) : Vec =
   let (k1, k2) = splitKey k
   let u1 = rand k1
   let u2 = rand k2
@@ -332,10 +332,10 @@ let sampleCosineWeightedHemisphere (normal: Vec) (k: Key) : Vec =
 -- up passing in the less-than operator, it doesn't end up looking
 -- *too* bad.
 
-let minBy 'a 'o (lt: o -> o -> bool) (f: a->o) (x:a) (y:a) : a =
+def minBy 'a 'o (lt: o -> o -> bool) (f: a->o) (x:a) (y:a) : a =
   if f x `lt` f y then x else y
 
-let minimumBy [n] 'a 'o (lt: o -> o -> bool) (f: a->o) (xs: [n]a) : a =
+def minimumBy [n] 'a 'o (lt: o -> o -> bool) (f: a->o) (xs: [n]a) : a =
   reduce (minBy lt f) xs[0] xs
 
 -- A scene is a collection of objects.
@@ -345,7 +345,7 @@ type Scene [n] = [n]Object
 -- We can now define a function for finding the closest object, given
 -- a position.
 
-let sdScene (objs: Scene []) (pos: Position) : (Object, Distance) =
+def sdScene (objs: Scene []) (pos: Position) : (Object, Distance) =
   let i =
     minimumBy (<) (\i -> geometry.sdObject pos objs[i])
               (indices objs)
@@ -367,10 +367,10 @@ type RayMarchResult
 -- Dex.  In Futhark, a `while` loop can express it in an equally
 -- natural way.
 
-let positiveProjection (x: Vec) (y: Vec) =
+def positiveProjection (x: Vec) (y: Vec) =
   dot x y > 0
 
-let raymarch [n] (scene:Scene [n]) (ray:Ray) : RayMarchResult =
+def raymarch [n] (scene:Scene [n]) (ray:Ray) : RayMarchResult =
   let max_iters = 100
   let tol = 0.01
   let (rayOrigin, rayDir) = ray
@@ -404,7 +404,7 @@ let raymarch [n] (scene:Scene [n]) (ray:Ray) : RayMarchResult =
 -- we just march along that path and see if we hit a light.  If we do,
 -- the radiance is that light.
 
-let rayDirectRadiance [n] (scene: Scene [n]) (ray: Ray) : Radiance =
+def rayDirectRadiance [n] (scene: Scene [n]) (ray: Ray) : Radiance =
   match raymarch scene ray
   case #HitLight intensity -> intensity
   case #HitNothing -> vec 0 0 0
@@ -413,18 +413,18 @@ let rayDirectRadiance [n] (scene: Scene [n]) (ray: Ray) : Radiance =
 -- Shorthands for vectors along the cardinal axes will become useful
 -- in the following.
 
-let xHat : Vec = vec 1 0 0
-let yHat : Vec = vec 0 1 0
-let zHat : Vec = vec 0 0 1
+def xHat : Vec = vec 1 0 0
+def yHat : Vec = vec 0 1 0
+def zHat : Vec = vec 0 0 1
 
-let relu (x: f64) = f64.max x 0
+def relu (x: f64) = f64.max x 0
 
-let probReflection ((nor, surf): OrientedSurface) (_:Ray) ((_, outRayDir):Ray) : f64 =
+def probReflection ((nor, surf): OrientedSurface) (_:Ray) ((_, outRayDir):Ray) : f64 =
   match surf
   case #Matte _ -> relu (dot nor outRayDir)
   case #Mirror  -> 0
 
-let directionAndLength (x: Vec) =
+def directionAndLength (x: Vec) =
   (normalize x, length x)
 
 -- The following function determines how much light is shining on a
@@ -432,7 +432,7 @@ let directionAndLength (x: Vec) =
 -- explicit accumulator that is updated via effects, but I don't think
 -- it makes it much more readable in this case.
 
-let sampleLightRadiance [n] (scene: Scene [n])
+def sampleLightRadiance [n] (scene: Scene [n])
                             (osurf: OrientedSurface)
                             (inRay: Ray)
                             (k: Key) : Radiance =
@@ -459,15 +459,15 @@ let sampleLightRadiance [n] (scene: Scene [n])
 
 type Filter = Color
 
-let applyFilter (filter:Filter) (radiance:Radiance) : Radiance =
+def applyFilter (filter:Filter) (radiance:Radiance) : Radiance =
   filter <*> radiance
 
-let surfaceFilter (filter:Filter) (surf:Surface) : Filter =
+def surfaceFilter (filter:Filter) (surf:Surface) : Filter =
   match surf
   case #Matte color -> filter <*> color
   case #Mirror      -> filter
 
-let sampleReflection ((nor, surf): OrientedSurface) ((pos, dir): Ray) (k: Key) : Ray =
+def sampleReflection ((nor, surf): OrientedSurface) ((pos, dir): Ray) (k: Key) : Ray =
   let newDir = match surf
                case #Matte _ -> sampleCosineWeightedHemisphere nor k
                case #Mirror  -> dir <-> 2 * dot dir nor *> nor
@@ -480,7 +480,7 @@ let sampleReflection ((nor, surf): OrientedSurface) ((pos, dir): Ray) (k: Key) :
 type Params = { numSamples : i32,
                 maxBounces : i32 }
 
-let trace [n] (params: Params) (scene: Scene [n]) (init_ray: Ray) (k: Key) : Color =
+def trace [n] (params: Params) (scene: Scene [n]) (init_ray: Ray) (k: Key) : Color =
   (.2) <|
   loop
     (i, filter, radiance, ray) = (0, (vec 1 1 1), (vec 0 0 0), init_ray)
@@ -513,7 +513,7 @@ type Camera =
 -- And now we're ready to produce the *n\*n* array of initial rays and
 -- RNG states.
 
-let cameraRays (n: i64) (camera: Camera) : [n][n](Ray, Key) =
+def cameraRays (n: i64) (camera: Camera) : [n][n](Ray, Key) =
   let halfWidth = camera.halfWidth
   let pixHalfWidth = halfWidth / f64.i64 n
   let ys = reverse (linspace n (-halfWidth) halfWidth)
@@ -533,7 +533,7 @@ let cameraRays (n: i64) (camera: Camera) : [n][n](Ray, Key) =
 -- exploited anyway, so we define it as a sequential loop, mostly to
 -- make the random number state management simpler.
 
-let sampleAveraged (sample: Key -> Vec) (n: i32) (k: Key) : Vec =
+def sampleAveraged (sample: Key -> Vec) (n: i32) (k: Key) : Vec =
   (loop acc = vec 0 0 0 for i < n do
    (acc <+> sample (ixkey k (i64.i32 i))))
   |> ((1/f64.i32 n) *>)
@@ -543,12 +543,12 @@ let sampleAveraged (sample: Key -> Vec) (n: i32) (k: Key) : Vec =
 -- average intensity.  This is likely so we won't have to fiddle with
 -- the light intensities to avoid very bright or very dark images.
 
-let meanIntensity image =
+def meanIntensity image =
   image |> flatten |> map (\{x,y,z} -> (x+y+z)/3) |> mean
 
 -- Smile for the camera!
 
-let takePicture [m] (params: Params) (scene: Scene [m]) (camera: Camera) =
+def takePicture [m] (params: Params) (scene: Scene [m]) (camera: Camera) =
   let n = camera.numPix
   let rays = cameraRays n camera
   let sample (r, k) =
@@ -563,15 +563,15 @@ let takePicture [m] (params: Params) (scene: Scene [m]) (camera: Camera) =
 -- opposite of the way Dex does it, so I had to give the block a
 -- rotation of *-0.5* instead of *0.5*.
 
-let lightColor = vec 0.2 0.2 0.2
-let leftWallColor  = 1.5 *> vec 0.611 0.0555 0.062
-let rightWallColor = 1.5 *> vec 0.117 0.4125 0.115
-let whiteWallColor = (1/255) *> vec 255.0 239.0 196.0
-let blockColor     = (1/255) *> vec 200.0 200.0 255.0
+def lightColor = vec 0.2 0.2 0.2
+def leftWallColor  = 1.5 *> vec 0.611 0.0555 0.062
+def rightWallColor = 1.5 *> vec 0.117 0.4125 0.115
+def whiteWallColor = (1/255) *> vec 255.0 239.0 196.0
+def blockColor     = (1/255) *> vec 200.0 200.0 255.0
 
-let neg = ((-1)*>)
+def neg = ((-1)*>)
 
-let theScene : Scene [] =
+def theScene : Scene [] =
     [ #Light (1.9 *> yHat) 0.5 lightColor
     , #PassiveObject (#Wall      xHat  2.0) (#Matte leftWallColor)
     , #PassiveObject (#Wall (neg xHat) 2.0) (#Matte rightWallColor)
@@ -583,10 +583,10 @@ let theScene : Scene [] =
     , #PassiveObject (#Sphere (vec 2 2 (-2)) 1.5) #Mirror
     ]
 
-let defaultParams : Params = { numSamples = 50
+def defaultParams : Params = { numSamples = 50
                              , maxBounces = 10 }
 
-let defaultCamera : Camera = { numPix     = 250
+def defaultCamera : Camera = { numPix     = 250
                              , pos        = 10.0 *> zHat
                              , halfWidth  = 0.3
                              , sensorDist = 1.0 }
@@ -601,12 +601,12 @@ let defaultCamera : Camera = { numPix     = 250
 -- channel, since there is no guarantee that the color components
 -- produced by the ray tracer cannot exceed *1.0*.
 
-let pix (c: Color) =
+def pix (c: Color) =
   (u32.f64 (f64.min 255 (c.x * 255)) << 16) |
   (u32.f64 (f64.min 255 (c.y * 255)) << 8) |
   (u32.f64 (f64.min 255 (c.z * 255)))
 
-let main n =
+def main n =
   takePicture defaultParams theScene (defaultCamera with numPix = n)
   |> map (map pix)
 

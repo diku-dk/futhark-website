@@ -7,13 +7,13 @@
 -- but Futhark does not support recursion, so instead we use
 -- `reduce`:
 
-let fact (n: i32): i32 = reduce (*) 1 (1...n)
+def fact (n: i32): i32 = reduce (*) 1 (1...n)
 
 -- If we want this function to be usable from the outside world, we
 -- need to define an entry point that calls it.  By default, any
 -- function by the name `main` is an entry point:
 
-let main (n: i32): i32 = fact n
+def main (n: i32): i32 = fact n
 
 -- The function call `fact n` creates an array of the integers
 -- `1...n`, then computes the product of all elements in the array.

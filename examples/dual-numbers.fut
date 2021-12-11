@@ -68,22 +68,22 @@ module type ordered_field = {
 
 module mk_field_from_numeric (F: real) : ordered_field with t = F.t = {
   type t = F.t
-  let f64 = F.f64
-  let (+) = (F.+)
-  let (-) = (F.-)
-  let (*) = (F.*)
-  let (/) = (F./)
-  let (==) = (F.==)
-  let (<) = (F.<)
-  let (>) = (F.>)
-  let (<=) = (F.<=)
-  let (>=) = (F.>=)
-  let (!=) = (F.!=)
+  def f64 = F.f64
+  def (+) = (F.+)
+  def (-) = (F.-)
+  def (*) = (F.*)
+  def (/) = (F./)
+  def (==) = (F.==)
+  def (<) = (F.<)
+  def (>) = (F.>)
+  def (<=) = (F.<=)
+  def (>=) = (F.>=)
+  def (!=) = (F.!=)
 
-  let zero = F.i64 0
-  let one = F.i64 1
-  let neg = F.neg
-  let recip = F.recip
+  def zero = F.i64 0
+  def one = F.i64 1
+  def neg = F.neg
+  def recip = F.recip
 }
 
 -- We create a field module where the elements are `f64`:
@@ -129,46 +129,46 @@ module mk_dual (F: ordered_field) : (dual_field with underlying = F.t) = {
 -- parts.
 
   type t = (underlying, underlying)
-  let primal ((x, _) : t) = x
-  let tangent ((_, x') : t) = x'
-  let dual0 x : t = (x, F.f64 0)
-  let dual1 x : t = (x, F.f64 1)
+  def primal ((x, _) : t) = x
+  def tangent ((_, x') : t) = x'
+  def dual0 x : t = (x, F.f64 0)
+  def dual1 x : t = (x, F.f64 1)
 
 -- A constant has tangent zero.
 
-  let f64 x = dual0 (F.f64 x)
-  let zero = f64 0
-  let one = f64 1
+  def f64 x = dual0 (F.f64 x)
+  def zero = f64 0
+  def one = f64 1
 
 -- Negation is defined in the obvious way.
 
-  let neg (x,x') = (F.neg x, F.neg x')
+  def neg (x,x') = (F.neg x, F.neg x')
 
 -- The reciprocal is a little more tricky, but you can look up the
 -- reciprocal rule in a calculus textbook (or more realistically, on
 -- Wikipedia).
 
-  let recip (x,x') = (F.recip x, F.(neg (x'/(x*x))))
+  def recip (x,x') = (F.recip x, F.(neg (x'/(x*x))))
 
 -- Then we get to the actual arithmetic operations.  These are also
 -- as you'd expect to find in a textbook.  We define subtraction and
 -- division via the inverse elements, so we have fewer things
 -- written from scratch.
 
-  let (x,x') + (y,y') = F.((x + y, x' + y'))
-  let (x,x') * (y,y') = F.((x * y, x' * y + x * y'))
-  let x - y = x + neg y
-  let x / y = x * recip y
+  def (x,x') + (y,y') = F.((x + y, x' + y'))
+  def (x,x') * (y,y') = F.((x * y, x' * y + x * y'))
+  def x - y = x + neg y
+  def x / y = x * recip y
 
 -- Comparisons are straightforward and use only the primal parts.
 -- Since we produce booleans here, the result has no tangent.
 
-  let (x,_) == (y,_) = F.(x == y)
-  let (x,_) < (y,_) = F.(x < y)
-  let (x,_) > (y,_) = F.(x > y)
-  let (x,_) <= (y,_) = F.(x <= y)
-  let (x,_) >= (y,_) = F.(x >= y)
-  let (x,_) != (y,_) = F.(x != y)
+  def (x,_) == (y,_) = F.(x == y)
+  def (x,_) < (y,_) = F.(x < y)
+  def (x,_) > (y,_) = F.(x > y)
+  def (x,_) <= (y,_) = F.(x <= y)
+  def (x,_) >= (y,_) = F.(x >= y)
+  def (x,_) != (y,_) = F.(x != y)
 }
 
 -- We instantiate it with the `f64_field` module defined above:
@@ -183,7 +183,7 @@ module dual_f64 = mk_dual f64_field
 -- overhead, unfortunately.
 
 module mk_test (F: ordered_field) = {
-  let test (x: F.t) (y: F.t) =
+  def test (x: F.t) (y: F.t) =
     F.((x*x) + (x*y))
 }
 
@@ -225,12 +225,12 @@ module test_dual = mk_test dual_f64
 
 module mk_sqrt (F: ordered_field) = {
 
-  let abs (x: F.t) =
+  def abs (x: F.t) =
     if F.(x < f64 0)
     then F.neg x
     else x
 
-  let sqrt (x: F.t) =
+  def sqrt (x: F.t) =
     let difference = F.f64 0.001
     in loop guess = F.f64 1
        while F.(abs(guess * guess - x) >= difference) do

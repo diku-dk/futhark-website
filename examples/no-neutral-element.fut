@@ -16,7 +16,7 @@ type with_neutral 't = #neutral | #val t
 
 -- The operator must also be augmented to handle the neutral element:
 
-let f_with_neutral 't (f: t -> t -> t)
+def f_with_neutral 't (f: t -> t -> t)
                       (x: with_neutral t)
                       (y: with_neutral t)
                       : with_neutral t =
@@ -29,7 +29,7 @@ let f_with_neutral 't (f: t -> t -> t)
 -- neutral element to be provided.  If the input array is empty, it
 -- will return the `#neutral` value.
 
-let reduce1 't (f: t -> t -> t) (ts: []t) : with_neutral t =
+def reduce1 't (f: t -> t -> t) (ts: []t) : with_neutral t =
   reduce (f_with_neutral f) #neutral (map (\t -> #val t) ts)
 
 -- Try it out in the REPL:

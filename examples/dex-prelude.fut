@@ -7,20 +7,20 @@
 -- Futhark, but under different names - we'll keep writing `f64.i32`
 -- instead of `FToI`.
 
-let sq (x: f64) = x * x
+def sq (x: f64) = x * x
 
-let mean [n] (xs: [n]f64) : f64 =
+def mean [n] (xs: [n]f64) : f64 =
   f64.sum xs / f64.i64 n
 
-let std [n] (xs: [n]f64) =
+def std [n] (xs: [n]f64) =
   f64.sqrt (mean (map sq xs) - sq (mean xs))
 
-let linspace (n: i64) (start: f64) (end: f64) : [n]f64 =
+def linspace (n: i64) (start: f64) (end: f64) : [n]f64 =
   tabulate n (\i -> start + f64.i64 i * ((end-start)/f64.i64 n))
 
 -- Some Dex programs use this sequential scan.
 
-let scan' n x0 f =
+def scan' n x0 f =
   (.0) <|
   loop (arr, acc) = (replicate n x0, x0) for i < n do
     let acc' = f i acc
@@ -40,7 +40,7 @@ let scan' n x0 f =
 
 type Key = #Key u32
 
-let hash (k : Key)  (y: i32): Key =
+def hash (k : Key)  (y: i32): Key =
   match k case #Key x ->
     let x = x ^ u32.i32 y
     let x = ((x >> 16) ^ x) * 0x45d9f3b
@@ -48,34 +48,34 @@ let hash (k : Key)  (y: i32): Key =
     let x = ((x >> 16) ^ x)
     in #Key x
 
-let newKey = hash (#Key 0)
-let splitKey k = (hash k 1, hash k 2)
+def newKey = hash (#Key 0)
+def splitKey k = (hash k 1, hash k 2)
 
-let splitKey3 k =
+def splitKey3 k =
   let (a, k') = splitKey k
   let (b, c) = splitKey k'
   in (a,b,c)
 
-let many '^a (f: Key -> a) (k: Key) (i: i64) = f (hash k (i32.i64 i))
+def many '^a (f: Key -> a) (k: Key) (i: i64) = f (hash k (i32.i64 i))
 
-let ixkey (k: Key) (i: i64) : Key = hash k (i32.i64 i)
-let ixkey2 (k: Key) (i: i64) (j: i64) : Key =
+def ixkey (k: Key) (i: i64) : Key = hash k (i32.i64 i)
+def ixkey2 (k: Key) (i: i64) (j: i64) : Key =
   hash (hash k (i32.i64 i)) (i32.i64 j)
-let rand (k: Key) : f64 =
+def rand (k: Key) : f64 =
   match k case #Key x ->
     f64.u32 x / f64.u32 u32.highest
-let randVec 'a (n: i64) (f: Key -> a) (k: Key) : [n]a =
+def randVec 'a (n: i64) (f: Key -> a) (k: Key) : [n]a =
   tabulate n (\i -> f (ixkey k i))
 
-let randn (k: Key) : f64 =
+def randn (k: Key) : f64 =
   let (k1, k2) = splitKey k
   let u1 = rand k1
   let u2 = rand k2
   in f64.sqrt ((-2.0) * f64.log u1) * f64.cos (2.0 * f64.pi * u2)
 
-let bern (p: f64) (k: Key) = rand k < p
+def bern (p: f64) (k: Key) = rand k < p
 
-let randnVec (n: i64) (k: Key) : [n]f64 =
+def randnVec (n: i64) (k: Key) : [n]f64 =
   tabulate n (ixkey k >-> randn)
 
 -- The `randIdx` function computes a random index into an array.  In
@@ -85,7 +85,7 @@ let randnVec (n: i64) (k: Key) : [n]f64 =
 -- `randIdx` is just an elaborate way of generating an integer up to
 -- an explicitly given bound.
 
-let randIdx (n: i64) (k: Key) =
+def randIdx (n: i64) (k: Key) =
   let unif = rand k
   in i64.f64 (f64.floor (unif * f64.i64 n))
 

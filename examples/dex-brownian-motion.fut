@@ -8,7 +8,7 @@ import "dex-prelude"
 
 type UnitInterval = f64
 
-let bmIter ((key, y, sigma, t): (Key, f64, f64, UnitInterval))
+def bmIter ((key, y, sigma, t): (Key, f64, f64, UnitInterval))
          : (Key, f64, f64, UnitInterval) =
   let (kDraw, kL, kR) = splitKey3 key
   let t' = f64.abs (t - 0.5)
@@ -16,11 +16,11 @@ let bmIter ((key, y, sigma, t): (Key, f64, f64, UnitInterval))
   let key' = if t > 0.5 then kL else kR
   in (key', y + y', sigma / f64.sqrt 2.0, t' * 2.0)
 
-let sampleBM (key: Key) (t: UnitInterval) : f64 =
+def sampleBM (key: Key) (t: UnitInterval) : f64 =
   let (_, y, _, _) = iterate 10 bmIter (key, 0.0, 1.0, t)
   in y
 
-let xs = linspace 1000 0.0 1.0
-let ys = map (sampleBM (newKey 42)) xs
+def xs = linspace 1000 0.0 1.0
+def ys = map (sampleBM (newKey 42)) xs
 
 -- > :plot2d (xs, ys)

@@ -14,7 +14,7 @@
 -- `radix_sort_step`, where `radix_sort_step xs b` returns `xs` with
 -- the elements sorted with respect to bit `b`.
 
-let radix_sort_step [n] (xs: [n]u32) (b: i32): [n]u32 =
+def radix_sort_step [n] (xs: [n]u32) (b: i32): [n]u32 =
 
 -- To demonstrate how it works, suppose
 -- ```
@@ -75,7 +75,7 @@ let radix_sort_step [n] (xs: [n]u32) (b: i32): [n]u32 =
 -- A full radix sort is then just sequentially looping through each
 -- bit position and apply the step function for each.
 
-let radix_sort [n] (xs: [n]u32): [n]u32 =
+def radix_sort [n] (xs: [n]u32): [n]u32 =
   loop xs for i < 32 do radix_sort_step xs i
 
 --  A useful optimisation is to first check the position of the most

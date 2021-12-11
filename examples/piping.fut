@@ -4,7 +4,7 @@
 -- each slightly massage the data somehow.  For example, to compute
 -- the sum of square roots of all positive numbers in an array:
 
-let square_pos xs =
+def square_pos xs =
   f64.sum (map f64.sqrt (filter (>0) xs))
 
 -- Note that [this is not the best way to write this
@@ -13,7 +13,7 @@ let square_pos xs =
 -- partly because they have to be read right-to-left.  The *pipe
 -- forward operator* `|>` lets us write it like this instead:
 
-let square_pos_pipe xs =
+def square_pos_pipe xs =
   xs |> filter (>0) |> map f64.sqrt |> f64.sum
 
 -- Now the dataflow is purely left-to-right and we can easily add more

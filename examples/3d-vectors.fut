@@ -75,8 +75,8 @@ module mk_vspace_3d(P: scalar): vspace_3d with scalar = P.t = {
 
   type vector = {x: scalar, y: scalar, z: scalar}
 
-  let zero = {x = P.f64 0, y = P.f64 0, z = P.f64 0}
-  let one  = P.f64 1
+  def zero = {x = P.f64 0, y = P.f64 0, z = P.f64 0}
+  def one  = P.f64 1
 
 -- Most of the definitions are straight out of a textbook, and so we
 -- won't be providing much commentary.
@@ -84,50 +84,50 @@ module mk_vspace_3d(P: scalar): vspace_3d with scalar = P.t = {
 -- We start out by defining two helper functions for doing operations
 -- on the components of a vector.
 
-  let map (f: scalar -> scalar) (v : vector) =
+  def map (f: scalar -> scalar) (v : vector) =
     {x = f v.x, y = f v.y, z = f v.z}
 
-  let map2 (f: scalar -> scalar -> scalar) (a : vector) (b : vector) =
+  def map2 (f: scalar -> scalar -> scalar) (a : vector) (b : vector) =
     {x = f a.x b.x, y = f a.y b.y, z = f a.z b.z}
 
 -- This allows us to conveniently define vector arithmetic and scaling.
 
-  let (+) = map2 (P.+)
-  let (-) = map2 (P.-)
-  let (*) = map2 (P.*)
-  let (/) = map2 (P./)
-  let scale (s: scalar) = map (s P.*)
+  def (+) = map2 (P.+)
+  def (-) = map2 (P.-)
+  def (*) = map2 (P.*)
+  def (/) = map2 (P./)
+  def scale (s: scalar) = map (s P.*)
 
 -- The remaining operations are defined explicitly.
 
-  let dot (a: vector) (b: vector) =
+  def dot (a: vector) (b: vector) =
     P.(a.x*b.x + a.y*b.y + a.z*b.z)
 
-  let cross ({x=ax,y=ay,z=az}: vector)
+  def cross ({x=ax,y=ay,z=az}: vector)
             ({x=bx,y=by,z=bz}: vector): vector =
     P.({x=ay*bz-az*by, y=az*bx-ax*bz, z=ax*by-ay*bx})
 
-  let length v = P.sqrt (dot v v)
+  def length v = P.sqrt (dot v v)
 
-  let normalise (v: vector): vector =
+  def normalise (v: vector): vector =
     let l = length v
     in scale (one P./ l) v
 
-  let rot_x (theta: scalar) ({x,y,z} : vector) =
+  def rot_x (theta: scalar) ({x,y,z} : vector) =
     let cos_theta = P.cos theta
     let sin_theta = P.sin theta
     in { x
        , y = P.(cos_theta * y - sin_theta * z)
        , z = P.(sin_theta * y + cos_theta * z)}
 
-  let rot_y (theta: scalar) ({x,y,z} : vector) =
+  def rot_y (theta: scalar) ({x,y,z} : vector) =
     let cos_theta = P.cos theta
     let sin_theta = P.sin theta
     in { x = P.(cos_theta * x - sin_theta * z)
        , y
        , z = P.(sin_theta * x + cos_theta * z)}
 
-  let rot_z (theta: scalar) ({x,y,z} : vector) =
+  def rot_z (theta: scalar) ({x,y,z} : vector) =
     let cos_theta = P.cos theta
     let sin_theta = P.sin theta
     in { x = P.(cos_theta * x - sin_theta * y)

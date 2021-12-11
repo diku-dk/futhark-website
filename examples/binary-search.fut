@@ -14,7 +14,7 @@
 -- performs a binary search for an element in an (assumed) sorted
 -- array:
 
-let binary_search [n] 't (lte: t -> t -> bool) (xs: [n]t) (x: t) : i64 =
+def binary_search [n] 't (lte: t -> t -> bool) (xs: [n]t) (x: t) : i64 =
   let (l, _) =
     loop (l, r) = (0, n-1) while l < r do
     let t = l + (r - l) / 2
@@ -93,11 +93,11 @@ let binary_search [n] 't (lte: t -> t -> bool) (xs: [n]t) (x: t) : i64 =
 -- efficient integer binary logarithm function by using the *count
 -- leading zeroes* primitive function:
 
-let log2 x = 63 - i64.clz x
+def log2 x = 63 - i64.clz x
 
 -- Then we can define `eytzinger_index` itself:
 
-let eytzinger_index (n: i64) (i: i64) =
+def eytzinger_index (n: i64) (i: i64) =
   let lvl = log2 (i+1)
   let offset = i64.i32 (1<<(log2 n-lvl))
   let k = i64.i32 ((1<<lvl)-1)
@@ -107,7 +107,7 @@ let eytzinger_index (n: i64) (i: i64) =
 -- every integer from *0* to *n-1*, and reads the corresponding
 -- element from the sorted array `xs`.
 
-let eytzinger [n] 't (xs: [n]t) : [n]t =
+def eytzinger [n] 't (xs: [n]t) : [n]t =
   let f i = xs[eytzinger_index n i]
   in tabulate n f
 
@@ -117,12 +117,12 @@ let eytzinger [n] 't (xs: [n]t) : [n]t =
 -- bit](https://man7.org/linux/man-pages/man3/ffs.3.html) function,
 -- since it's not a Futhark primitive:
 
-let ffs x = i64.ctz x + 1
+def ffs x = i64.ctz x + 1
 
 -- Now we can define `eytzinger_search`, where we assume `xs` is an
 -- Eytzinger array:
 
-let eytzinger_search [n] 't (lte: t -> t -> bool) (xs: [n]t) (x: t) : i64 =
+def eytzinger_search [n] 't (lte: t -> t -> bool) (xs: [n]t) (x: t) : i64 =
   let k =
     loop k = 1 while k <= n do
       if x `lte` xs[k-1]

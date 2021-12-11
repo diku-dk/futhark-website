@@ -6,7 +6,7 @@
 -- `gather` function, but we can use a combination of `map` and array
 -- indexing to write our own.
 
-let gather 'a (xs: []a) (is: []i32) =
+def gather 'a (xs: []a) (is: []i32) =
   map (\i -> xs[i]) is
 
 -- *Scatter* is an operation that writes `(index,value)`-pairs to some
@@ -22,7 +22,7 @@ let gather 'a (xs: []a) (is: []i32) =
 -- `scatter` is always a fresh array created with `replicate` or
 -- `copy`:
 
-let xs = scatter (replicate 7 0) [0, 2, 4, 6] [1, 2, 3, 4]
+def xs = scatter (replicate 7 0) [0, 2, 4, 6] [1, 2, 3, 4]
 
 -- `xs` now has the value `[1i32, 0i32, 2i32, 0i32, 3i32, 0i32,
 -- 4i32]`.  Of course, this particular value is better constructed

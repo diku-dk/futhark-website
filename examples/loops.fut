@@ -3,7 +3,7 @@
 -- Futhark does not directly support recursive functions, but instead
 -- provides syntax for expressing sequential loops.
 
-let x =
+def x =
   loop acc = 0 for i < 10 do
     acc * 2 + i
 
@@ -15,26 +15,26 @@ let x =
 --
 -- The loop parameter can be any pattern:
 
-let xy =
+def xy =
   loop (x, y) = (1,1) for i < 10 do
     (y, x + y)
 
 -- The result of this loop is a pair.  We could also have written it
 -- as follows:
 
-let xy' =
+def xy' =
   loop p = (1,1) for i < 10 do
     (p.1, p.0 + p.1)
 
 -- Apart from `for` loops, Futhark also supports `for-in` loops:
 
-let max =
+def max =
   loop cur = 0 for x in [4,7,4,8,2,6,4,5] do
     if x > cur then x else cur
 
 -- And `while` loops:
 
-let res =
+def res =
   loop (i, acc) = (0, 53) while acc > 0 do
     (i + 1, acc / 2)
 

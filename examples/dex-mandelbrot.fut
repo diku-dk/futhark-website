@@ -10,17 +10,17 @@ module complex = import "complex-numbers"
 module c64 = complex.c64
 type c64 = c64.complex
 
-let update (c: c64) (z: c64) = c64.(c + z * z)
+def update (c: c64) (z: c64) = c64.(c + z * z)
 
-let tol : f64 = 2.0
+def tol : f64 = 2.0
 
-let inBounds (z: c64) = c64.mag z < tol
+def inBounds (z: c64) = c64.mag z < tol
 
 -- In Dex, type trickery (the `Fin 1000` type) is used to implicitly
 -- fold across an imaginary 1000-element array.  In Futhark, we use an
 -- old-fashioned `for`-loop.
 
-let escapeTime (c: c64) =
+def escapeTime (c: c64) =
   (loop (n, z) = (0, c64.mk 0 0) for _i < 1000 do
    let z' = update c z
    in (n + f64.bool (inBounds z'), z')).0
@@ -31,7 +31,7 @@ let escapeTime (c: c64) =
 -- We finish up with a simple `main` function that produces a
 -- two-dimensional array of floats.
 
-let main h w =
+def main h w =
   tabulate_2d h w
               (\j i ->
                  let x = -2.0 + f64.i64 i * (3/f64.i64 w)

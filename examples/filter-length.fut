@@ -3,7 +3,7 @@
 -- Suppose we wish to count the number of positive integers in
 -- some array.  We might write the following:
 
-let number_pos (xs: []i32) =
+def number_pos (xs: []i32) =
   length (filter (>0) xs)
 
 -- This is inefficient, because the program will manifest the result
@@ -11,7 +11,7 @@ let number_pos (xs: []i32) =
 -- `map`-`reduce` composition, where we turn positive integers into
 -- `1` and others into `0`:
 
-let number_pos_better (xs: []i32) =
+def number_pos_better (xs: []i32) =
   i64.sum (map (\x -> if x > 0 then 1 else 0) xs)
 
 -- This is much more efficient, because the `map` can be fused into
@@ -20,17 +20,17 @@ let number_pos_better (xs: []i32) =
 -- We can write it more concisely by using a built-in function to
 -- convert booleans to integers:
 
-let number_pos_best (xs: []i32) =
+def number_pos_best (xs: []i32) =
   i64.sum (map ((>0) >-> i64.bool) xs)
 
 -- And of course, we can factor all of this into a handy function:
 
-let count p xs =
+def count p xs =
   i64.sum (map (p >-> i64.bool) xs)
 
 -- And now we can define our original function as follows:
 
-let count_number_pos (xs: []i32) =
+def count_number_pos (xs: []i32) =
   count (>0) xs
 
 -- # See also

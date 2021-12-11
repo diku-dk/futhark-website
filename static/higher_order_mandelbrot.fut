@@ -8,18 +8,18 @@
 
 type complex = (f32, f32)
 
-let dot (r: f32, i: f32): f32 =
+def dot (r: f32, i: f32): f32 =
   r * r + i * i
 
-let mult_complex (a: f32, b: f32) (c: f32, d: f32): (f32,f32) =
+def mult_complex (a: f32, b: f32) (c: f32, d: f32): (f32,f32) =
   (a*c - b * d,
    a*d + b * c)
 
-let add_complex (a: f32, b: f32) (c: f32, d: f32): (f32,f32) =
+def add_complex (a: f32, b: f32) (c: f32, d: f32): (f32,f32) =
   (a + c,
    b + d)
 
-let divergence (c: complex) (d: i32): i32 =
+def divergence (c: complex) (d: i32): i32 =
   let (_, i') =
     loop (z, i) = (c, 0)
     while i < d && dot(z) < 4.0 do
@@ -27,10 +27,10 @@ let divergence (c: complex) (d: i32): i32 =
        i + 1)
   in i'
 
-let mandelbrot [n][m] (c: [n][m]complex) (d: i32) : [n][m]i32 =
+def mandelbrot [n][m] (c: [n][m]complex) (d: i32) : [n][m]i32 =
   map (map (\x -> divergence x d)) c
 
-let numpy_mandelbrot [n][m] (c: [n][m]complex) (d: i32) : [n][m]i32 =
+def numpy_mandelbrot [n][m] (c: [n][m]complex) (d: i32) : [n][m]i32 =
   let nm = n*m
   let c' = flatten_to nm c
   let output = replicate nm 0
@@ -44,7 +44,7 @@ let numpy_mandelbrot [n][m] (c: [n][m]complex) (d: i32) : [n][m]i32 =
         scatter z is inc)
   in unflatten n m output
 
-let complexes (screenX: i64) (screenY: i64)
+def complexes (screenX: i64) (screenY: i64)
               (xmin: f32) (ymin: f32) (xmax: f32) (ymax: f32) =
   let sizex = xmax - xmin
   let sizey = ymax - ymin

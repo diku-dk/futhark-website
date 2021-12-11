@@ -164,7 +164,7 @@ entry bar (xs: []f32) = map (+2) xs
 --
 -- For example, suppose I have this function:
 
-let fact (n: i32) = i32.product (1...n)
+def fact (n: i32) = i32.product (1...n)
 
 -- Cool, right?
 --
@@ -234,10 +234,10 @@ entry mkimg (h: i64) (w: i64) =
 
 -- Now suppose we need to do advanced data analysis.
 
-let linspace (n: i64) (start: f64) (end: f64) : [n]f64 =
+def linspace (n: i64) (start: f64) (end: f64) : [n]f64 =
   tabulate n (\i -> start + f64.i64 i * ((end-start)/f64.i64 n))
 
-let xys f n start end =
+def xys f n start end =
   unzip (map (\x -> (x, f x)) (linspace n start end))
 
 entry plot_sqrt = xys f64.sqrt
@@ -273,7 +273,7 @@ entry plot_inv = xys (1/)
 
 -- We can also do moving pictures!
 
-let frames n h w =
+def frames n h w =
   let pix l i j : u32 =
     let x = f32.i64 (-w/2+j)
     let y = f32.i64 (-h/2+i)
