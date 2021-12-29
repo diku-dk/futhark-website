@@ -22,6 +22,7 @@ for plotting or rendering graphics.
 
 -   [Basic usage with the factorial function](examples/fact.html)
 -   [Primitive values](examples/values.html)
+-   [Converting a value to a different type](examples/converting.html)
 -   [Functions](examples/functions.html)
 -   [Arrays](examples/arrays.html)
 -   [Basic parallelism](examples/basic-parallelism.html)
