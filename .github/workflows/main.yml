@@ -4,6 +4,10 @@ on:
   push:
     branches: [ master ]
 
+  # Run weekly to keep cache alive.
+  schedule:
+    - cron: "0 0 * * 0"
+
 jobs:
   build:
     runs-on: ubuntu-20.04
