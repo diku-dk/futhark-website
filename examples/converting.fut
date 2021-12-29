@@ -24,7 +24,7 @@ let z : bool = bool.i64 x
 -- Converting an integer type to a larger signed integer type
 -- will perform sign extension.
 --
--- Converting an integer type to a larger signed integer type
+-- Converting an integer type to a larger unsigned integer type
 -- will perform zero extension.
 --
 -- # See also
