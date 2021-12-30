@@ -192,7 +192,7 @@ val vjp 'a 'b : (f: a -> b) -> (x: a) -> (y': b) -> a
 ```
 
 This is the "ideal interface" of [Barak
-Pearlmutter](http://www.bcl.hamilton.ie/~barak/) and are surprisingly
+Pearlmutter](http://www.bcl.hamilton.ie/~barak/) and it is surprisingly
 flexible.  To the compiler, these are of course deeply magical, and
 trigger AD transformation of the provided function.  While a language
 such as Haskell is powerful enough to implement [AD as a
