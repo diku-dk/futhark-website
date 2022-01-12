@@ -114,6 +114,10 @@ to build or show something.
 
 # Selected Student Projects
 
+-   Kristian Knudsen Olesen: **Extracting Certified Futhark Code from
+    Coq**.  BSc thesis.  Department of Computer Science, University of
+    Copenhagen. November 2020. ([pdf](student-projects/kristian-bsc-thesis.pdf))
+
 -   Till Severin Grenzdörffer: **Unsupervised Clustering of Sparse
     Data in Futhark**. MSc thesis.  Department of Computer Science,
     University of
