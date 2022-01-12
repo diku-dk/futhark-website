@@ -233,7 +233,7 @@ config =
   defaultConfiguration
     { deployCommand =
         "rsync --chmod=Do+rx,Fo+r --checksum -ave 'ssh -p 22' \
-        \_site/* --exclude pub futhark@sigkill.dk:/var/www/htdocs/futhark-lang.org"
+        \_site/* --exclude pub futhark@futhark-lang.org:/var/www/htdocs/futhark-lang.org"
     }
 
 feedConfiguration :: FeedConfiguration
