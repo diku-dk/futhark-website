@@ -116,12 +116,14 @@ to build or show something.
 
 -   Kristian Knudsen Olesen: **Extracting Certified Futhark Code from
     Coq**.  BSc thesis.  Department of Computer Science, University of
-    Copenhagen. November 2020. ([pdf](student-projects/kristian-bsc-thesis.pdf))
-
+    Copenhagen. November 2021. ([pdf](student-projects/kristian-bsc-thesis.pdf))
 -   Till Severin Grenzdörffer: **Unsupervised Clustering of Sparse
     Data in Futhark**. MSc thesis.  Department of Computer Science,
     University of
     Copenhagen. September 2021. ([pdf](student-projects/till-msc-thesis.pdf))
+-   Baptiste Coudray: **MPI-Futhark: Distributed High-Performance
+    Computing For People**. BSc thesis. HEPIA.
+    August 2021. ([pdf](student-projects/coudray-bsc-thesis.pdf))
 -   Philip Rajani Lassen: **WebAssembly Backends for Futhark**.  MSc
     thesis. Department of Computer Science, University of
     Copenhagen. July 2021. ([pdf](student-projects/philip-msc-thesis.pdf))
