@@ -5,7 +5,11 @@ The website is built with Hakyll, which is a Haskell library for
 generating static sites.  The actual content is written in the
 ReStructured Text and Markdown formats.
 
-To build:
+Install `futhark-website` package first:
+
+    cabal install futhark-website.cabal
+
+To build the website:
 
     cabal exec futhark-website build
 
