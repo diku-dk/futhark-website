@@ -1,6 +1,6 @@
 -- # Functions
 --
--- Functions are defined with `let`, where we can also annotate both
+-- Functions are defined with `def`, where we can also annotate both
 -- the parameter and return types.
 
 def plus2 (x: i32) : i32 =
