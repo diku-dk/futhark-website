@@ -1,4 +1,4 @@
--- $ Kahan summation
+-- # Kahan summation
 --
 -- Summation of floating-point numbers is vulnerable to roundoff
 -- error.  The [Kahan summation
