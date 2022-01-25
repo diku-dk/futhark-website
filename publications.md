@@ -114,6 +114,10 @@ to build or show something.
 
 # Selected Student Projects
 
+-   Andreas Nicolaisen: **Using Automatic Differentiation to Find
+    Gradients for Recurrent Neural Networks in Futhark**.  MSc thesis.
+    Department of Computer Science, University of Copenhagen.
+    January 2022. ([pdf](student-projects/andreas-msc-thesis.pdf))
 -   Kristian Knudsen Olesen: **Extracting Certified Futhark Code from
     Coq**.  BSc thesis.  Department of Computer Science, University of
     Copenhagen. November 2021. ([pdf](student-projects/kristian-bsc-thesis.pdf))
