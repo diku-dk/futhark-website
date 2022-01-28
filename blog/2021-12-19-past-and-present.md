@@ -23,7 +23,7 @@ Oancea](http://hjemmesider.diku.dk/~zgh600/) was hired by the
 [HIPERFIT](https://hiperfit.dk) project.  HIPERFIT was a research
 project that investigated the use of high-performance functional
 programming to solve financial problems.  As a postdoc, Cosmin had
-done a lot of work on automatic and speculative of parallelisation of
+done a lot of work on automatic and speculative parallelisation of
 Fortran programs at Texas A&M and Cambridge, for example on the
 [Polaris
 compiler](http://polaris.cs.uiuc.edu/polaris/polaris-old.html).  The
@@ -121,7 +121,7 @@ expression `div xss yss` is ill-typed, but it becomes well-typed
 simply by wrapping `div` in two `map2`s:
 
 ```
-map2 (map2 div) xss yss>
+map2 (map2 div) xss yss
 ```
 
 Intuitively, this wrapping "lifts" a function to operate on values of
@@ -203,7 +203,7 @@ support will fare compared to languages such as
 co-designed with an optimising compiler, and so optimises well, but AD
 was never part of its original design.  In contrast, Dex is designed
 by AD experts and specifically with AD in mind.  It will be
-interesting to see we will ultimately be hindered by our language
+interesting to see whether we will ultimately be hindered by our language
 design.  But so far, it actually works surprisingly well, and our
 [embryonic AD benchmark suite](https://github.com/diku-dk/futhark-ad)
 shows both excellent run-time performance and a rather pleasant
