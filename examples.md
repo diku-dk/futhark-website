@@ -41,6 +41,7 @@ for plotting or rendering graphics.
 -   [Size parameters](examples/size-parameters.html)
 -   [Matrix multiplication](examples/matrix-multiplication.html)
 -   [Pairwise L₁ distances](examples/pairwise-l1.html)
+-   [Outer product](examples/outer-product.html)
 -   [Searching](examples/searching.html)
 -   [Computing histograms](examples/histograms.html)
 -   [Moving average](examples/moving-average.html)

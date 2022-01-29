@@ -31,3 +31,7 @@ def matmul [n][m][p] 'a
 -- multiplication function for a specific type.
 
 def matmul_f32 = matmul (+) (*) 0f32
+
+-- # See also
+--
+-- [Outer product](outer-product.html).
