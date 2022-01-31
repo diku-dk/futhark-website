@@ -245,7 +245,7 @@ applying the function to every element of `x`.  Then we define the
 work of `map f x`:
 
 ```
-W(map f x) = W(f) + W(s) + sum({W(f x[i]) for x[i] in x})
+W(map f x) = W(f) + W(x) + sum({W(f x[i]) for x[i] in x})
 ```
 
 This is not too bad, since we can precisely specify exactly which
