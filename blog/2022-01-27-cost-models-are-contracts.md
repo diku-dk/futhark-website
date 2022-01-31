@@ -257,7 +257,7 @@ otherwise interesting.
 Now let's consider the span:
 
 ```
-S(map f x) = S(f) + S(s) + max({S(f x[i]) for x[i] in x})
+S(map f x) = S(f) + S(x) + max({S(f x[i]) for x[i] in x})
 ```
 
 This suggests an implementation strategy: Launch a thread for every
