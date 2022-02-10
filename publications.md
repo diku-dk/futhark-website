@@ -114,6 +114,10 @@ to build or show something.
 
 # Selected Student Projects
 
+-   Amar Topalovic, Walter Restelli-Nielsen, Kristian Olesen:
+    **Multiple-precision Integer Arithmetic**.
+    [DPP](https://github.com/diku-dk/dpp-e2021-pub) final project.
+    January 2022. ([pdf](student-projects/dpp21-mpint.pdf))
 -   Andreas Nicolaisen: **Using Automatic Differentiation to Find
     Gradients for Recurrent Neural Networks in Futhark**.  MSc thesis.
     Department of Computer Science, University of Copenhagen.
