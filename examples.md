@@ -123,3 +123,6 @@ Futhark](https://github.com/athas/raytracingthenextweekinfuthark/) are
 implementations based on Peter Shirley\'s book series. These are by no
 means real-time ray tracers, but support advanced effects and make use
 of acceleration structures like BVH trees.
+
+[Pareas](https://github.com/Snektron/pareas) is a compiler implemented
+in Futhark and C++.
