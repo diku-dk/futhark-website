@@ -113,6 +113,7 @@ main = do
 
     -- Examples
     match "examples/*-img/*" static
+    match "examples/*.fut" $ version "source" static
     match "examples/*.fut" $ do
       route $ setExtension "html"
       compile $ do
