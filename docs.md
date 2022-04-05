@@ -42,6 +42,7 @@ programs written in other languages to conveniently call this code.
 -   [futhark-mode](https://github.com/diku-dk/futhark-mode) for Emacs
 -   [Syntax highlighting for
     Vim](https://github.com/BeneCollyridam/futhark-vim)
+-   [Language Extension for VS Code](https://github.com/diku-dk/futhark-vscode)
 -   [Futhark language definition for
     Gedit](https://github.com/diku-dk/futhark/blob/master/tools/futhark.lang)
     (place the linked file in
