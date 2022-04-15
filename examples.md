@@ -9,10 +9,7 @@ interpreter](https://futhark.readthedocs.io/en/stable/man/futhark-repl.html)
 to experiment with them. For a conventional introduction to the
 language, [Parallel Programming in
 Futhark](https://futhark-book.readthedocs.io) may be a better choice.
-For more examples, you can check the [examples directory in the
-Futhark
-repository](https://github.com/diku-dk/futhark/tree/master/examples),
-or our implemented
+For more examples, you can check our implemented
 [benchmarks](https://github.com/diku-dk/futhark-benchmarks). We also
 maintain a list of [projects using Futhark](#projects-using-futhark).
 
