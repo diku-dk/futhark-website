@@ -25,6 +25,7 @@ for plotting or rendering graphics.
 -   [Converting a value to a different type](examples/converting.html)
 -   [Functions](examples/functions.html)
 -   [Arrays](examples/arrays.html)
+-   [Type ascriptions](examples/type-ascriptions.html)
 -   [Basic parallelism](examples/basic-parallelism.html)
 -   [Tuples and records](examples/tuples-and-records.html)
 -   [Shape coercions](examples/shape-coercions.html)
@@ -53,6 +54,7 @@ for plotting or rendering graphics.
 -   [Testing for associativity](examples/testing-associativity.html)
 -   [Reducing or scanning without a neutral
     element](examples/no-neutral-element.html)
+-   [Holes](examples/holes.html)
 -   [Kahan summation](examples/kahan.html)
 -   [Random numbers](examples/random-numbers.html)
 -   [Gaussian blur (with Python

@@ -1,6 +1,4 @@
--- ---
--- title: Converting a value to a different type
--- ---
+-- # Converting a value to a different type
 --
 -- To convert a value of type `i64` to `f32`, use the function `f32.i64`:
 
