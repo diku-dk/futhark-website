@@ -20,6 +20,8 @@ Some of the example programs use
 [directives](https://futhark.readthedocs.io/en/latest/man/futhark-literate.html)
 for plotting or rendering graphics.
 
+# Basic language features
+
 -   [Basic usage with the factorial function](examples/fact.html)
 -   [Primitive values](examples/values.html)
 -   [Converting a value to a different type](examples/converting.html)
@@ -37,6 +39,9 @@ for plotting or rendering graphics.
 -   [Complex ranges](examples/complex-ranges.html)
 -   [Sum types and pattern matching](examples/sum-types.html)
 -   [Loops](examples/loops.html)
+
+# Programming techniques
+
 -   [Benchmarking](examples/benchmarking.html)
 -   [Counting elements that satisfy
     property](examples/filter-length.html)
