@@ -2,7 +2,7 @@
 
 set -e
 
-cabal exec futhark-website clean
-cabal exec futhark-website build
-cabal exec futhark-website deploy
+cabal run futhark-website clean
+cabal run futhark-website build
+cabal run futhark-website deploy
 git push

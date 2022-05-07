@@ -70,6 +70,7 @@ for plotting or rendering graphics.
 # Literate Futhark
 
 -   [Basic use of literate Futhark](examples/literate-basics.html)
+-   [Generating videos with literate Futhark](examples/literate-video.html)
 
 # Examples from Dex
 

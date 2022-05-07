@@ -6,7 +6,8 @@
        pkgs.curl
        pkgs.file
        pkgs.git
-       pkgs.haskell.compiler.ghc8107
+       pkgs.cabal-install
+       pkgs.ghc
        pkgs.pkgconfig
        pkgs.zlib
        pkgs.zlib.out
