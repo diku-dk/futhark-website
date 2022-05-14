@@ -67,6 +67,12 @@ for plotting or rendering graphics.
 -   [Binary search](examples/binary-search.html)
 -   [AD with dual numbers](examples/dual-numbers.html)
 
+# Automatic differentiation
+
+-   [Forward-mode automatic differentiation](examples/forward-ad.html)
+-   [Reverse-mode automatic differentiation](examples/reverse-ad.html)
+-   [Newton's Method](examples/newton-ad.html)
+
 # Literate Futhark
 
 -   [Basic use of literate Futhark](examples/literate-basics.html)
