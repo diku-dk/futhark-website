@@ -61,9 +61,9 @@ def binary_search [n] 't (lte: t -> t -> bool) (xs: [n]t) (x: t) : i64 =
 -- roughly about ensuring that neighbouring threads access
 -- neighbouring memory addresses in the same clock cycle, as this
 -- allows full utilisation of the very wide memory bus of the GPU.  We
--- probably can't get coalescing when executing something as
--- unstructured as a binary search, but maybe using an Eytzinger
--- representation can help a bit.
+-- can't expect coalescing when executing something as unstructured as
+-- a binary search, but maybe using an Eytzinger representation can
+-- help a bit.
 --
 -- First we need to implement a function for constructing an Eytzinger
 -- array (which models a search tree) from a sorted array.  The
