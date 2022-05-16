@@ -113,7 +113,7 @@ def eytzinger [n] 't (xs: [n]t) : [n]t =
 
 -- Constructing the Eytzinger array is the only really fiddly part of
 -- this.  The search function can be ported fairly directly from the C
--- function,although we do have to implement our own [find first
+-- function, although we do have to implement our own [find first
 -- bit](https://man7.org/linux/man-pages/man3/ffs.3.html) function,
 -- since it's not a Futhark primitive:
 
@@ -156,7 +156,7 @@ entry sorted (xs: []i32) =
 -- ```
 --
 --
--- Then we generate *2²⁵-1* with [futhark
+-- Then we generate a *2²⁵-1*-element array with [futhark
 -- dataset](https://futhark.readthedocs.io/en/stable/man/futhark-dataset.html),
 -- pass it to the `sorted` function, and dump the resulting array to
 -- the file `input`.
@@ -165,7 +165,7 @@ entry sorted (xs: []i32) =
 -- $ futhark dataset -b --i32-bounds=0:33554430 -g '[33554431]i32' | ./binary-search -b -e sorted >input
 -- ```
 
--- I am rather curious about how long it takes to compute the
+-- I am rather curious about how long it takes to construct the
 -- Eytzinger array, so we define an entry point that calls
 -- `eytzinger`, and also provide an input block that will be picked up
 -- by `futhark bench`:
