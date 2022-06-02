@@ -2,17 +2,23 @@
 
 import blur
 import numpy
-from scipy import misc
 import argparse
+
+import imageio
 
 def main(infile, outfile, iterations):
     b = blur.blur()
-    img = misc.imread(infile, mode='RGB')
-    (height, width, channels) = img.shape
+    img = imageio.v2.imread(infile, pilmode="RGB")
+    img = imageio.core.asarray(img)
+    img = img / 2
+    img = img.astype(numpy.uint8)
+    
     blurred = b.main(iterations, img)
+    blurred = blurred * 2
+    
     # The .get() is to retrieve a Numpy array from the PyOpenCL array
     # being returned.
-    misc.imsave(outfile, blurred.get().astype(numpy.uint8))
+    imageio.imwrite(outfile, blurred.get().astype(numpy.uint8))
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Simple Gaussian blur of a PNG file.')
