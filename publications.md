@@ -114,6 +114,14 @@ to build or show something.
 
 # Selected Student Projects
 
+-   W. Pema N. H. Malling, Louis Marott Normann, Oliver
+    B. K. Petersen, Kristoffer A. Kortbæk: **Extending Futhark’s
+    multicore C backend to utilize SIMD using ISPC**.  BSc thesis.  Department of
+    Computer Science, University of Copenhagen.
+    June 2022. ([pdf](student-projects/ispc-bsc-thesis.pdf))
+-   Aleksander Junge: **Reactive Benchmarks**.  BSc thesis.
+    Department of Computer Science, University of Copenhagen.
+    June 2022. ([pdf](student-projects/aleksander-bsc-thesis.pdf))
 -   Amar Topalovic, Walter Restelli-Nielsen, Kristian Olesen:
     **Multiple-precision Integer Arithmetic**.
     [DPP](https://github.com/diku-dk/dpp-e2021-pub) final project.
