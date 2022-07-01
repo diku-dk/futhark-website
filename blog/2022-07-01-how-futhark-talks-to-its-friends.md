@@ -155,6 +155,8 @@ type bar = i32
 entry f (x: foo) : bar = x
 ```
 
+Which produces this C:
+
 ```C
 int futhark_entry_f(struct futhark_context *ctx,
                     int32_t *out0,
