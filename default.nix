@@ -3,4 +3,5 @@ let
 in
   pkgs.haskellPackages.developPackage {
     root = ./.;
+    returnShellEnv = false;
   }

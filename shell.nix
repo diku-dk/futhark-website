@@ -1,6 +1,6 @@
 {pkgs ? import <nixpkgs> {}}:
    pkgs.stdenv.mkDerivation {
-     name = "sigkill";
+     name = "futhark-website";
      buildInputs = [
        pkgs.cacert
        pkgs.curl
