@@ -114,6 +114,10 @@ to build or show something.
 
 # Selected Student Projects
 
+-   Philip Jon Børgesen: **Reducing Synchronous GPU Memory
+    Transfers**.  MSc thesis.  Department of Computer Science,
+    University of Copenhagen.
+    July 2022. ([pdf](student-projects/philip-børgesen-msc-thesis.pdf))
 -   W. Pema N. H. Malling, Louis Marott Normann, Oliver
     B. K. Petersen, Kristoffer A. Kortbæk: **Extending Futhark’s
     multicore C backend to utilize SIMD using ISPC**.  BSc thesis.  Department of

@@ -1,0 +1,65 @@
+<html><head>
+<title></title>
+<link rel="icon" href="data:,">
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<style>
+input {
+    margin-top: 25px;
+    font-size: 21px;
+    text-align: center;
+
+    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 2s; /* Firefox < 16 */
+        -ms-animation: fadein 2s; /* Internet Explorer */
+         -o-animation: fadein 2s; /* Opera < 12.1 */
+            animation: fadein 2s;
+}
+
+@keyframes fadein {
+    0% { opacity: 0; }
+    66% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    0% { opacity: 0; }
+    66% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    0% { opacity: 0; }
+    66% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    0% { opacity: 0; }
+    66% { opacity: 0; }
+    100% { opacity: 1; }
+}
+body {
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #666;
+}
+</style>
+</head>
+<body onload="document.querySelector('input[type=submit]').click()">
+<form id="form1" name="form1" method="post" action="https://eksamen.ku.dk/login">
+<input type="hidden" name="urlList[0].Text" value="Employee / Internal co-examiner">
+<input type="hidden" name="urlList[0].Url" value="https://eksamen.ku.dk/bedoemmer/DownloadFil?authReference=KuId%2fIntern">
+<input type="hidden" name="urlList[0].Label" value="KU ID">
+<input type="hidden" name="urlList[0].ConfigurationName" value="IdKuBedoemmer">
+<input type="hidden" name="urlList[1].Text" value="Co-examiner">
+<input type="hidden" name="urlList[1].Url" value="https://eksamen.ku.dk/bedoemmer/DownloadFil?authReference=KuId%2fEkstern">
+<input type="hidden" name="urlList[1].Label" value="KU ID">
+<input type="hidden" name="urlList[1].ConfigurationName" value="IdKuBedoemmer">
+<input type="hidden" name="advarOmImpersonation" value="False">
+<input type="hidden" name="rolle" value="Bedoemmer">
+<br><br>You are being redirected. Please wait...<br><br>
+<input type="submit" value="Please click here if you are not redirected automatically">
+</body></html>
