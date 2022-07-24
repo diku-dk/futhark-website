@@ -9,103 +9,11 @@
 -- the algorithm - this example won't be getting into those details.
 -- We've tried to maintain the naming scheme of the original program,
 -- but we've re-ordered most definitions bring them closer to their
--- first usage.  This is mostly necessary due to the somewhat
--- convoluted program structure forced by the use of modules for AD.
+-- first usage.
 
 import "dex-prelude"
 
--- The biggest issue is that the Dex program uses the `grad` operator
--- to convert distance functions into [normal
--- functions](https://en.wikipedia.org/wiki/Normal_(geometry)).
--- Futhark does not (yet) support anything like this as a language
--- construct.  Instead, we use forward-mode AD with dual numbers,
--- which can be [implemented as a library in
--- Futhark](dual-numbers.html).  It works, and is reasonably efficient
--- in this case, but it is certainly *not* as concise.
-
-module ad = import "dual-numbers"
-
-module type expanded_field = {
-  include ad.ordered_field
-  val max : t -> t -> t
-  val sqrt : t -> t
-  val cos : t -> t
-  val sin : t -> t
-  val abs : t -> t
-}
-
-module f64_field : (expanded_field with t = f64) = {
-  def max = f64.max
-  def sqrt = f64.sqrt
-  def cos = f64.cos
-  def sin = f64.sin
-  def abs = f64.abs
-
--- We expose all the definitions from `f64_field` rather than
--- repeating them.
-
-  open ad.f64_field
-}
-
--- The field implementation for dual numbers is mostly boilerplate.
--- We cannot reuse the `mk_dual` parametric module from
--- [dual-numbers.fut](dual-numbers.html), because that module chose to
--- make the representation abstract.
-
-module f64_dual_field = {
-  type underlying = f64
-  type t = (underlying, underlying)
-
-  def primal ((x, _) : t) = x
-  def tangent ((_, x') : t) = x'
-  def dual0 x : t = (x, 0)
-  def dual1 x : t = (x, 1)
-
-  def max (x,x' : f64) (y,y') =
-    (f64.max x y,
-     if x >= y then x' else y')
-
-  def sqrt (x,x') =
-    (f64.sqrt x, x' / (2 * f64.sqrt x))
-
-  def cos (x, x') =
-    (f64.cos x, f64.neg x' * f64.sin x)
-
-  def sin (x, x') =
-    (f64.sin x, x' * f64.cos x)
-
-  def abs (x,x') =
-    (f64.abs x, f64.sgn x * x')
-
-  def neg (x,x') : t = (-x, -x')
-  def recip (x,x') : t = (1/x, -(x'/(x*x)))
-
-  def (x,x') + (y,y') : t = f64.((x + y, x' + y'))
-  def (x,x') * (y,y') : t = f64.((x * y, x' * y + x * y'))
-  def x - y = x + neg y
-  def x / y = x * recip y
-
-  def (x,_) == (y,_) = f64.(x == y)
-  def (x,_) < (y,_) = f64.(x < y)
-  def (x,_) > (y,_) = f64.(x > y)
-  def (x,_) <= (y,_) = f64.(x <= y)
-  def (x,_) >= (y,_) = f64.(x >= y)
-  def (x,_) != (y,_) = f64.(x != y)
-
-  def f64 x = dual0 x
-  def zero = f64 0
-  def one = f64 1
-}
-
 -- # Geometry
-
--- Sine we need the basic geometry functions of the ray tracer to work
--- with both normal and dual numbers, we define it as a parametric
--- module.
-
-module mk_geometry(Float: expanded_field) = {
-
-type Float = Float.t
 
 -- The original Dex program implements vectors in three-dimensional
 -- space with three-element arrays.  This is not optimal in Futhark
@@ -116,9 +24,9 @@ type Float = Float.t
 
 module threed = import "3d-vectors"
 
--- And instantiate it with whatever `Float` type we have at hand:
+-- And instantiate it with double precision floats.
 
-module vspace = threed.mk_vspace_3d Float
+module vspace = threed.mk_vspace_3d f64
 
 -- Convenient shorthands for various vector types and operations:
 
@@ -136,7 +44,7 @@ def rotateY = flip vspace.rot_y
 -- These vectors are not arrays and we cannot `map` them, but we can
 -- define our own mapping function.
 
-def vmap (f: Float -> Float) (v : Vec) =
+def vmap (f: f64 -> f64) (v : Vec) =
   {x = f v.x, y = f v.y, z = f v.z}
 
 -- Dex calls the scaling operator `.*`, but that name is not valid in
@@ -151,15 +59,15 @@ def vmap (f: Float -> Float) (v : Vec) =
 -- Dex, and so will not have much commentary.
 
 type Color = Vec
-type Angle = Float -- angle in radians
+type Angle = f64 -- angle in radians
 
-type Distance = Float
+type Distance = f64
 
 type Position = Vec
 type Direction = Vec  -- Should be normalized.
 
 type BlockHalfWidths = Vec
-type Radius = Float
+type Radius = f64
 type Radiance = Color
 
 type ObjectGeom
@@ -176,7 +84,9 @@ type OrientedSurface = (Direction, Surface)
 type Object
   = #PassiveObject ObjectGeom Surface
   -- position, half-width, intensity (assumed to point down)
-  | #Light Position Float Radiance
+  | #Light Position f64 Radiance
+
+def vec x y z : Vec = {x,y,z}
 
 -- ## The signed distance function
 --
@@ -187,102 +97,30 @@ def sdObject (pos:Position) (obj:Object) : Distance =
   match obj
   case #PassiveObject geom _ ->
     (match geom
-     case #Wall nor d -> Float.(d + dot nor pos)
+     case #Wall nor d -> f64.(d + dot nor pos)
      case #Block blockPos halfWidths angle ->
        let pos' = rotateY (pos <-> blockPos) angle
-       in length (vmap (Float.max Float.zero) (vmap Float.abs pos' <-> halfWidths))
+       in length (vmap (f64.max 0) (vmap f64.abs pos' <-> halfWidths))
      case #Sphere spherePos r ->
        let pos' = pos <-> spherePos
-       in Float.(max (length pos' - r) (f64 0)))
+       in f64.(max (length pos' - r) (f64 0)))
   case #Light squarePos hw _ ->
     let pos' = pos <-> squarePos
-    let halfWidths = {x=hw, y=Float.f64 0.1, z=hw}
-    in length (vmap (Float.max Float.zero)
-                    (vmap Float.abs pos' <-> halfWidths))
-
--- With that done, the rest of the ray tracer can be written in a
--- non-modularised way, using just floating-point numbers.
-
-}
+    let halfWidths = {x=hw, y=f64.f64 0.1, z=hw}
+    in length (vmap (f64.max 0)
+                    (vmap f64.abs pos' <-> halfWidths))
 
 -- # Working with the geometry
 --
--- We'll need to instantiate the geometry module twice: once with
--- ordinary floats, and once with dual numbers.
-
-module geometry = mk_geometry f64_field
-module geometry_dual = mk_geometry f64_dual_field
-
--- To use `geometry_dual.sdObject`, we'll need to convert objects to
--- objects-with-dual-numbers.  For this, we'll first define some
--- utility functions.
-
-def dual0 = f64_dual_field.dual0
-def dual1 = f64_dual_field.dual1
-def dualVec {x,y,z} = {x=dual0 x, y=dual0 y, z=dual0 z}
-
--- And then a bunch of boilerplate definitions.
-
-def dualGeom (geom: geometry.ObjectGeom) : geometry_dual.ObjectGeom =
-  match geom
-  case #Wall nor d ->
-    #Wall (dualVec nor) (dual0 d)
-  case #Block blockPos halfWidths angle ->
-    #Block (dualVec blockPos) (dualVec halfWidths) (dual0 angle)
-  case #Sphere spherePos r ->
-    #Sphere (dualVec spherePos) (dual0 r)
-
-def dualSurface (surf: geometry.Surface) : geometry_dual.Surface =
-  match surf
-  case #Matte c -> #Matte (dualVec c)
-  case #Mirror -> #Mirror
-
-def dualObject (obj: geometry.Object) : geometry_dual.Object =
-  match obj
-  case #PassiveObject geom surface ->
-    #PassiveObject (dualGeom geom) (dualSurface surface)
-  case #Light squarePos hw r ->
-    #Light (dualVec squarePos) (dual0 hw) (dualVec r)
-
--- The non-dual-number geometry module contains various useful type
--- definitions.  Instead of replicating their definitions, we make
--- abbreviations.
-
-type Object = geometry.Object
-type Position = geometry.Position
-type Direction = geometry.Direction
-type Distance = geometry.Distance
-type Radiance = geometry.Radiance
-type Color = geometry.Color
-type Surface = geometry.Surface
-type OrientedSurface = geometry.OrientedSurface
-type Vec = geometry.Vec
-
--- We also need some of the geometry functions:
-
-def dot = geometry.dot
-def (<+>) = (geometry.<+>)
-def (<->) = (geometry.<->)
-def (<*>) = (geometry.<*>)
-def (*>) = (geometry.*>)
-def normalize = geometry.normalize
-def length = geometry.length
-
--- And a few more shorthands:
-
-def vec x y z : Vec = {x,y,z}
-
 -- Finally we can define the function that computes surface normals at
--- a given position.  This function is the reason we went to all that
--- trouble with dual numbers.
+-- a given position.  This is where we use AD.  Specifically, we
+-- define a `grad` operator to convert distance functions into [normal
+-- functions](https://en.wikipedia.org/wiki/Normal_(geometry)).
+
+def grad 'a (f: a -> f64) (x: a) : a = vjp f x 1
 
 def calcNormal (obj: Object) (pos: Position) : Direction =
-  let f i =
-    let pos' = {x = if i == 0 then dual1 pos.x else dual0 pos.x,
-                y = if i == 1 then dual1 pos.y else dual0 pos.y,
-                z = if i == 2 then dual1 pos.z else dual0 pos.z}
-    in f64_dual_field.tangent (geometry_dual.sdObject pos' (dualObject obj))
-  in geometry.normalize (vec (f 0) (f 1) (f 2))
+  normalize (grad (flip sdObject obj) pos)
 
 -- # Random sampling
 --
@@ -310,8 +148,8 @@ def sampleCosineWeightedHemisphere (normal: Vec) (k: Key) : Vec =
   let (k1, k2) = splitKey k
   let u1 = rand k1
   let u2 = rand k2
-  let uu = geometry.normalize (geometry.cross normal (vec 0.0 1.1 1.1))
-  let vv = geometry.cross uu normal
+  let uu = normalize (cross normal (vec 0.0 1.1 1.1))
+  let vv = cross uu normal
   let ra = f64.sqrt u2
   let rx = ra * f64.cos (2 * f64.pi * u1)
   let ry = ra * f64.sin (2 * f64.pi * u1)
@@ -347,9 +185,9 @@ type Scene [n] = [n]Object
 
 def sdScene (objs: Scene []) (pos: Position) : (Object, Distance) =
   let i =
-    minimumBy (<) (\i -> geometry.sdObject pos objs[i])
+    minimumBy (<) (\i -> sdObject pos objs[i])
               (indices objs)
-  in (objs[i], geometry.sdObject pos objs[i])
+  in (objs[i], sdObject pos objs[i])
 
 -- When we ray march, we either collide with nothing and disappear
 -- into the aether, hit a light, or hit an object, in which case we
