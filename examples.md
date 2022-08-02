@@ -93,9 +93,15 @@ scheme and programming style.
 -   [Brownian motion](examples/dex-brownian-motion.html)
 -   [Sierpinski triangle](examples/dex-sierpinski.html)
 
+# External examples
+
+- [OCaml-GPU wordcount
+  example](https://github.com/ArulselvanMadhavan/ocaml_gpu_wordcount)
+  by calling Futhark.
+
 # Projects using Futhark
 
-The majority of written Futhark code is probably still Futhark\'s own
+The majority of written Futhark code is probably still Futhark's own
 test and benchmark suites. However, there are some programs that have
 been written in Futhark because it was a good tool for the job, and not
 just to test the compiler. A possibly incomplete list:
