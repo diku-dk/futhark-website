@@ -233,11 +233,12 @@ a:visited {
     max-width: 80%;
 }
 
-p > img, p > video {
+img, video {
     display: block;
     margin-left: auto;
     margin-right: auto;
     border: 1px solid grey;
+    max-width: 80%;
 }
 
 figcaption {
