@@ -30,7 +30,7 @@ about which of them are strictly
 *necessary*](2019-04-10-what-is-the-minimal-basis-for-futhark.html)
 from a semantic and cost model perspective.
 
-Bu to get to the point: we recently removed some of the array
+But to get to the point: we recently removed some of the array
 combinators from the language.  Futhark has become fairly stable
 recently, and it is rare that we break programs.  In this post I will
 justify why we saw fit to do so anyway, and why it probably does not
