@@ -7,14 +7,14 @@
 def mean [n] (vs: [n]f64) =
   f64.sum vs / f64.i64 n
 
--- > mean [1,2,3,4]
+-- > mean [1.0,2.0,3.0,4.0]
 
 -- The geometric mean is likewise simple:
 
 def gmean [n] (xs: [n]f64) =
   f64.product xs ** (1/f64.i64 n)
 
--- > gmean [1,2,3,4]
+-- > gmean [1.0,2.0,3.0,4.0]
 
 -- # See also
 --
