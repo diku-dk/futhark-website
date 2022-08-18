@@ -14,8 +14,8 @@ def variance [n] (vs: [n]f64) =
   in f64.sum xs / (f64.i64 n)
 
 -- Unfortunately, sums of squares can lead to numerical instability.
--- A parallel adaptation of
--- [https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm]
+-- A parallel adaptation of [Welford's Online
+-- Algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
 -- can be used to obtain a more stable variance.  The basic idea is a
 -- divide-and-conquer parallel algorithm where a subsequence of the
 -- data is described by a triple containing:
