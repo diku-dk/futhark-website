@@ -75,3 +75,5 @@ def average (xs: []f64) =
 -- # See also
 --
 -- [Reducing the result of a filter](filter-reduce.html).
+--
+-- [Means](means.html).

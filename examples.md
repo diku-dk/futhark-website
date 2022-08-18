@@ -51,6 +51,7 @@ for plotting or rendering graphics.
 -   [Searching](examples/searching.html)
 -   [Computing histograms](examples/histograms.html)
 -   [Moving average](examples/moving-average.html)
+-   [Means](examples/means.html)
 -   [Radix sort](examples/radix-sort.html)
 -   [Abstract data types](examples/abstract-data-types.html)
 -   [Testing for associativity](examples/testing-associativity.html)
@@ -66,6 +67,7 @@ for plotting or rendering graphics.
 -   [Triangular matrices](examples/triangular.html)
 -   [Binary search](examples/binary-search.html)
 -   [AD with dual numbers](examples/dual-numbers.html)
+-   [Variance](examples/variance.html)
 
 # Automatic differentiation
 
