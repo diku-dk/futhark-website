@@ -171,7 +171,7 @@ the compiler to generate fully sequential code (by setting the chunk
 size to *n*), maximally parallel code (by using *n* chunks of 1
 element each), or anything in between.
 
-Some properties must hold for thus to make sense.  Intuitively, no
+Some properties must hold for this to make sense.  Intuitively, no
 matter how the input array is split, we must obtain the same result.
 Formally, the function must be a [list
 homomorphism](https://sigkill.dk/writings/par/lhomo.html) under
