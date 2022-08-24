@@ -56,7 +56,8 @@ main = do
             "publications.md",
             "getinvolved.md",
             "index.md",
-            "examples.md"
+            "examples.md",
+            "license.md"
           ]
       )
       $ do
