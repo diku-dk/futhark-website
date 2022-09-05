@@ -114,6 +114,13 @@ to build or show something.
 
 # Selected Student Projects
 
+- Søren Brix: **Reverse mode automatic differentiation of histograms
+  in Futhark**, MSc thesis, DIKU, University of Copenhagen, July 2022. ([pdf](student-projects/søren-msc-thesis.pdf))
+- Gilli Reynstind Fjallstein: **Extending automatic differentiation
+  for an array language with nested parallelism**, Msc thesis, DIKU,
+  University of Copenhagen, July 2022. ([pdf](student-projects/gilli-msc-thesis.pdf))
+- Lotte Bruun and Ulrik Larsen: **Reverse Automatic Differentiation in
+  Futhark**, MSc thesis, DIKU, University of Copenhagen, July 2022. ([pdf](student-projects/lotte-ulrik-msc-thesis.pdf))
 -   Philip Jon Børgesen: **Reducing Synchronous GPU Memory
     Transfers**.  MSc thesis.  Department of Computer Science,
     University of Copenhagen.
