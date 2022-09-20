@@ -13,7 +13,7 @@ let std_outer_prod = outer_prod (f64.*)
 
 -- > std_outer_prod [1.0,2.0,3.0] [4.0,5.0,6.0]
 
--- But we can also use to define matrix multiplication:
+-- But we can also use `outer_prod` to define matrix multiplication:
 
 def dotprod A B =
   f64.sum (map2 (*) A B)
@@ -21,4 +21,5 @@ def dotprod A B =
 def matmul A B =
   outer_prod dotprod A (transpose B)
 
--- > matmul [[1.0,2.0],[3.0,4.0],[5.0,6.0]] [[7.0,8.0,9.0],[10.0,11.0,12.0]]
+-- > matmul [[1.0,2.0],[3.0,4.0],[5.0,6.0]]
+--          [[7.0,8.0,9.0],[10.0,11.0,12.0]]
