@@ -8,6 +8,10 @@ chronological order.
 
 # Papers on language design and implementation
 
+- **Memory Optimizations in an Array Language**. Philip Munksgaard, Troels Henriksen, Ponnuswamy Sadayappan, Cosmin Oancea.  [SC 22](https://sc22.supercomputing.org/) ([pdf](publications/sc22-mem.pdf))
+
+- **AD for an Array Language with Nested Parallelism**. Robert Schenck, Ola Rønning, Troels Henriksen, Cosmin Oancea.  [SC 22](https://sc22.supercomputing.org/) ([pdf](publications/sc22-ad.pdf))
+
 - **Dataset Sensitive Autotuning of Multi-Versioned Code based on Monotonic
   Properties**. Philip Munksgaard, Svend Lund Breddam, Troels Henriksen, Fabian
   Cristian Gieseke, Cosmin Oancea.  [TFP '21](http://tfp2021.org/)
