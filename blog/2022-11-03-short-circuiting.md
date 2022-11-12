@@ -150,9 +150,9 @@ Futhark. However, we are hoping to extend the Futhark-compiler with an
 relatively simple symbolic algebra engine that will enable us to apply
 short-circuiting to more programs.
 
-[The paper](https://futhark-lang.org/publications/sc22-mem.pdf), published and
-presented at SC22 contain more details of this analysis and benchmark results,
-and the implementation is available in the master branch of Futhark.
+[The paper](https://futhark-lang.org/publications/sc22-mem.pdf) contains more
+details of this analysis and more benchmark results, and the implementation is
+available in the master branch of Futhark.
 
 [^1]: To be clear, this is not something that users ever have to write, but
 something that the Futhark compiler generates based on its input. For instance,
