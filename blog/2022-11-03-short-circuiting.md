@@ -1,7 +1,7 @@
 ---
 title: Array short-circuiting
 author: Philip Munksgaard
-description: In-place updates without overhead
+description: In-place updates without overhead.
 ---
 
 Hi, Philip Munksgaard here! I'm a PhD student working on Futhark, and I'm here
