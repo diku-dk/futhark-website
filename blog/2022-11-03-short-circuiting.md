@@ -61,7 +61,7 @@ While it may seem easy to get rid of the intermediate allocations in the example
 above. After all, there are no free values in the function being mapped. But
 more complex cases can make it hard for the compiler to verify that there are no
 data-dependencies.  For instance, in our [NW
-benchmark](https://github.com/diku-dk/futhark-benchmarks/blob/master/rodinia/nw/nw.fut),
+benchmark](https://github.com/diku-dk/futhark-mem-sc22/blob/master/benchmarks/nw/futhark/nw.fut),
 the main loop boils down to a call like the following:
 
 ```
