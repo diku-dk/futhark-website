@@ -6,7 +6,9 @@ description: In-place updates without overhead
 
 Hi, Philip Munksgaard here! I'm a PhD student working on Futhark, and I'm here
 to talk about some of the stuff I've been working on for the past couple of
-years. Hope you enjoy it!
+years. This blog post is a condensed version of a
+[paper](https://futhark-lang.org/publications/sc22-mem.pdf) that we're headed
+off to present at SC22 next week. Hope you enjoy it!
 
 Futhark is a parallel high-level array-oriented language.  Parallelism is explicitly
 expressed by the user in terms of the second-order array combinators such as
