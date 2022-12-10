@@ -1,5 +1,5 @@
 ---
-title: "A case study in parallelisation: Advent of Code 2020, day 9"
+title: "A case study in parallelisation: Advent of Code 2022, day 9"
 description: This problem does not look very parallel at first glance, but actually allows a quite elegant implementation.
 ---
 
