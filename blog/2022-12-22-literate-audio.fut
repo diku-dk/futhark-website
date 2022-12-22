@@ -138,3 +138,7 @@ def seasonal_song =
 -- Nevertheless, I hope you've enjoyed this blog post; I look forward to seeing
 -- what kind of things people come up with using the new audio support.  Happy
 -- holidays to everyone!
+
+-- _Update:_ Futhark now supports both higher bit-rates, changing the sampling
+-- frequency and outputting different codecs:
+-- [#1811](https://github.com/diku-dk/futhark/pull/1811#event-8098128503)
