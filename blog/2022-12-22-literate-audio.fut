@@ -43,9 +43,9 @@ def standard_pitch = 440.0f32
 -- All other notes in the 12-tone chromatic scale can be defined in terms of the
 -- A₄ note. Notes are divided into octaves, which is why the standard pitch has
 -- that four in it: It is the A-note of the fourth octave.  Each octave has 12
--- tones or notes in it, named A, A#, B, C, C#, D, D#, E, F, F#, G, G#, and the
--- each note of an octave is exactly double or half that of the corresponding note
--- in the previous or next octave, so the A₅-note has the frequency 880 Hz.  The
+-- tones or notes in it, named A, A#, B, C, C#, D, D#, E, F, F#, G, G#, and each
+-- note in an octave is exactly double or half that of the corresponding note in
+-- the previous or next octave, so the A₅-note has the frequency 880 Hz.  The
 -- 12-notes in each octave are distributed in such a way that this invariant is
 -- always true.
 
