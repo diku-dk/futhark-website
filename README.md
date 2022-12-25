@@ -1,9 +1,18 @@
-The Futhark Website
-==
+# The Futhark Website
 
 The website is built with Hakyll, which is a Haskell library for
 generating static sites.  The actual content is written in the
 ReStructured Text and Markdown formats.
+
+## Building with [Nix](https://nixos.org/)
+
+This is much faster than using Cabal.
+
+Use `sh watch.sh` to run a local test of the site.
+
+Use `sh deploy.sh` to push it to the web server.
+
+## Building with Cabal
 
 Install `futhark-website` package first:
 
