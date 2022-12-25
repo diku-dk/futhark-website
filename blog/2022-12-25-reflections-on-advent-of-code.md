@@ -20,7 +20,7 @@ I [also did Advent of Code in Futhark in
 2018](2018-12-25-futhark-0.8.1-released.html#advent-of-code).
 However, because Futhark is not a very good language for string
 processing, I wrote Python programs to parse the text input and
-generate values in Futhark's native data format.  But then in 2012,
+generate values in Futhark's native data format.  But then in 2021,
 Snektron did [Advent of Code in Futhark *including*
 parsing](https://github.com/Snektron/aoc21) (probably because this was
 not nearly as difficult as [implementing a compiler in
