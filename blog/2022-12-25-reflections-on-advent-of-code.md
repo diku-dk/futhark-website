@@ -77,7 +77,7 @@ Here follows a brief summary of my observations for each problem.
   problem (simulating a crane moving around stacks of crates,
   [Hanoi](https://en.wikipedia.org/wiki/Tower_of_Hanoi)-style) is
   completely sequential.  I do know of [one
-  person](https://github.com/namibj/advent_of_code_2022/blob/a3e43c93fa7840a4ff52cbb4a8888ad373d86a80/src/day5_fut.fut)
+  person](https://github.com/namibj/advent_of_code_2022/blob/a3e43c93fa7840a4ff52cbb4a8888ad373d86a80/src/day5_fut.fut#L203-L474)
   who managed to come up with a [list
   homomorphism](https://sigkill.dk/writings/par/lhomo.html)
   formulation of the problem, but it is very complicated.
