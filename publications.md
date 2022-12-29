@@ -8,7 +8,7 @@ chronological order.
 
 # Papers on language design and implementation
 
-- **Memory Optimizations in an Array Language**. Philip Munksgaard, Troels Henriksen, Ponnuswamy Sadayappan, Cosmin Oancea.  [SC 22](https://sc22.supercomputing.org/) ([pdf](publications/sc22-mem.pdf), [bib](publications/sc22-mem.bib), [artifact](https://github.com/diku-dk/futhark-mem-sc22))
+- **Memory Optimizations in an Array Language**. Philip Munksgaard, Troels Henriksen, Ponnuswamy Sadayappan, Cosmin Oancea.  [SC 22](https://sc22.supercomputing.org/) ([pdf](publications/sc22-mem.pdf), [bib](publications/sc22-mem.bib), [artifact](https://github.com/diku-dk/futhark-mem-sc22), [blog (1)](/blog/2022-11-03-short-circuiting.html), [blog (2)](/blog/2022-12-06-in-place-map.html))
 
 - **AD for an Array Language with Nested Parallelism**. Robert Schenck, Ola Rønning, Troels Henriksen, Cosmin Oancea.  [SC 22](https://sc22.supercomputing.org/) ([pdf](publications/sc22-ad.pdf), [bib](publications/sc22-ad.bib), [artifact](https://github.com/diku-dk/futhark-ad-sc22))
 
