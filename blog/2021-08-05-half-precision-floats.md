@@ -36,7 +36,7 @@ exponent.  The one we support in Futhark is [the *binary16* format
 from IEEE
 754-2008](https://en.wikipedia.org/wiki/Half-precision_floating-point_format#ARM_alternative_half-precision),
 but Google has also developed the
-[bfloat16](https://en.wikipedia.org/wiki/Bfloat16_floating-point_format)
+[bfloat16 format](https://en.wikipedia.org/wiki/Bfloat16_floating-point_format)
 for use in AI accelerators.  ARM apparently also supports a
 nonstandard variation of binary16, but I'm hoping I will never have to
 learn the details.
