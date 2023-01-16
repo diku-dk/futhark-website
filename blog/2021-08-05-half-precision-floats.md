@@ -72,7 +72,7 @@ element in memory, so we distinguish between the *scalar type* used
 for operations, which is `float`, and the *storage type* used for
 arrays, which is `uint16_t`.  When reading an `f16` from an array, we
 must use a function to convert from the storage type to the scalar
-type - fortunately, the library linked above contained such a function
+type - fortunately, the library linked above contains such a function
 and its inverse.  This means that `f16` operations might produce
 different results depending on whether they are emulated or not, as
 emulation only performs the rounding at the end, while true `f16`
@@ -98,7 +98,7 @@ not perform any arithmetic, unless the platform in question supports
 the
 [`cl_khr_fp16`](https://www.khronos.org/registry/OpenCL/sdk/1.0/docs/man/xhtml/cl_khr_fp16.html)
 extension (and you enable it).  OpenCL platforms are loaded
-dynamically followed by run-time compilation at kernels, so the
+dynamically, followed by run-time compilation of kernels, so the
 Futhark compiler does not know at compile-time whether the target platform
 supports half-precision.  Therefore we generate [kernel code with
 plenty of
@@ -110,7 +110,7 @@ single-precision and half-precision floats stored in
 memory](https://www.khronos.org/registry/OpenCL/sdk/1.2/docs/man/xhtml/vload_half.html),
 even for those platforms that don't have `cl_khr_fp16`.  This lets us
 load half-precision floats into single-precision scalars at quite high
-speed.  I noticed about an order of magnitude difference compared to
+speed.  I observed about an order of magnitude difference compared to
 the hand-written conversion function.  This is quite important, since
 for some reason, NVIDIA's OpenCL implementation does *not* support
 `cl_khr_fp16`, despite their GPUs being fully capable.
@@ -145,10 +145,11 @@ OpenCL?
 I *suspect* the reason is that CUDA is mostly a "single source"
 programming model where the same program contains both CPU and GPU
 code, where the CPU code is ultimately compiled with the system
-compiler - which does not support half-precision floats.  In contrast,
-OpenCL C is specifically for "device" code (read: GPU code), and the
-"host" (CPU) is completely out of its purview.  Futhark does not use
-CUDA in a "single source" manner, but instead uses
+compiler - which does not support half-precision floats, and so needs
+compatibility shims.  In contrast, OpenCL C is specifically for
+"device" code (read: GPU code), and the "host" (CPU) is completely out
+of its purview.  Futhark does not use CUDA in a "single source"
+manner, but instead uses
 [NVRTC](https://docs.nvidia.com/cuda/nvrtc/index.html) to do run-time
 compilation of CUDA kernels, very similar to how OpenCL works.
 
