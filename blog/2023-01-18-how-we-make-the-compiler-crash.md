@@ -88,7 +88,10 @@ impact to be that significant.  We have not added costly new analyses
 to the type checker, so I suspect that the main difference is that we
 have added a lot more small passes - and while they are perhaps
 individually small and fast, they do force a full round of type
-checking.  I'll have to look at whether we can optimise this a bit.
+checking.  I'll have to look at whether we can optimise this a
+bit. *Update from a few days later: this turned out to be a recent
+regression due to misplaced strictness annotations.  After fixing
+this, overhead is about 10%.*
 
 No matter how much we optimise internal type checking, there will of
 course still be a cost, and switching it off will certainly speed up
