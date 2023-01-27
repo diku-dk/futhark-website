@@ -28,7 +28,7 @@ sensitive thing, barely alive, such that the slightest disturbance
 leads to a fatal and noisy death.  The ideal compiler is only *just*
 able to keep running.
 
-So how do we instill such Freudian Thanathos in the Futhark compiler?
+So how do we instill such Freudian Thanatos in the Futhark compiler?
 As most compilers, the Futhark compiler is structured as a composition
 of *passes*, and the GPU compilation pipeline easily contains more
 than 40 passes.  A pass can be seen as a pure function from program to
