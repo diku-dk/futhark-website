@@ -90,9 +90,9 @@ split in two at the blank space:
 ATCA>AT CATTG
 ```
 
-The summary for the first chunk is `{cg=1,total=4}`, because the two
+The summary for the first chunk is `{gc=1,total=4}`, because the two
 characters following the comment are ignored.  The summary for the
-second chunk is `{cg=2,total=5}`, because it has no way of knowing
+second chunk is `{gc=2,total=5}`, because it has no way of knowing
 that it is part of a comment begun in the first chunk.  This kind of
 non-local information can only be propagated when we combine the
 summaries, but in this case that it is impossible.  There is nothing
@@ -106,8 +106,8 @@ type summary = {c: count, comment: bool}
 For the example above, the two chunks now have these summaries:
 
 ```
-{c={cg=1,total=4}, comment=true}
-{c={cg=2,total=5}, comment=false}
+{c={gc=1,total=4}, comment=true}
+{c={gc=2,total=5}, comment=false}
 ```
 
 Now we can define a function for combining two summaries:
@@ -119,7 +119,7 @@ def redop (x: summary) (y: summary) =
 ```
 
 This computes the correct summary for the example above:
-`{c={cg=1,total=4}, comment=true}`.  Unfortunately, it is still not
+`{c={gc=1,total=4}, comment=true}`.  Unfortunately, it is still not
 fully correct.  The `>` comments are *line comments* [as is
 proper](2017-10-10-block-comments-are-a-bad-idea.html) and should
 extend only to the next newline.  Ponder a new example, where we write
@@ -156,8 +156,8 @@ type summary = { befnl: count,
 For the most recent example we have these summaries:
 
 ```
-{befnl={cg=1,total=4}, aftnl={cg=0,total=0}, hasnl=false, comment=true}
-{befnl={cg=1,total=3}, aftnl={cg=1,total=4}, hasnl=true,  comment=false}
+{befnl={gc=1,total=4}, aftnl={gc=0,total=0}, hasnl=false, comment=true}
+{befnl={gc=1,total=3}, aftnl={gc=1,total=4}, hasnl=true,  comment=false}
 
 ```
 
