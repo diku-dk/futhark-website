@@ -165,11 +165,11 @@ Out combination function is now:
 
 ```Futhark
 def redop (x: summary) (y: summary) =
-  {befnl = x.befnl,
-   aftnl = if x.comment then x.aftnl `count_add` y.aftnl
-           else x.aftnl `count_add ` y.befnl `count_add` y.aftnl,
-   hasnl = x.hasnl || y.hasnl,
-   comment = y.comment || x.comment && (!y.hasnl)}
+  let join = if x.comment then x.aftnl else x.aftnl `count_add` y.befnl
+  in {befnl = if x.hasnl then x.befnl else x.befnl `count_add` join,
+      aftnl = if x.hasnl then join `count_add` y.aftnl else y.aftnl,
+      hasnl = x.hasnl || y.hasnl,
+      comment = y.comment || x.comment && (!y.hasnl)}
 ```
 
 Note how we use the `hasnl` field of the second chunk to decide
