@@ -217,6 +217,10 @@ to build or show something.
     Generation of L-Systems**. BSc thesis. Computer Science, University
     of Copenhagen. June 2020.
     ([pdf](student-projects/lotte-ulrik-bsc-thesis.pdf))
+-   Æmilie Cholewa-Madsen, Anders Lietzen Holst: **Teaching the
+    Futhark compiler block and register tiled matrix multiplication**.
+    BSc thesis.  Computer Science, University of Copenhagen. June
+    2020.
 -   Robert Schenck: **Sum types in Futhark**. MSc thesis. Computer
     Science, University of Copenhagen. December 2019.
     ([pdf](student-projects/robert-msc-thesis.pdf))
