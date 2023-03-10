@@ -370,7 +370,7 @@ each of the two inner SOACs to their own map nest::
   let ys = map (\xs -> reduce (+) 0 xs) xss
   in map (\xs y -> map (+y) xs) xss ys
 
-Note how the intermediate result ``y`` has now been lift to an array
+Note how the intermediate result ``y`` has now been lifted to an array
 of intermediate results ``ys``, which is passed into the second map
 nest.  This form corresponds to two GPU kernels, each providing more
 parallelism than the single one from before.  Since a GPU typically
