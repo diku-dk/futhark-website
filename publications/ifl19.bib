@@ -1,0 +1,31 @@
+@inproceedings{10.1145/3412932.3412937,
+author = {Pawlak, Wojciech Michal and Elsman, Martin and Oancea, Cosmin Eugen},
+title = {A Functional Approach to Accelerating Monte Carlo Based American Option Pricing},
+year = {2021},
+isbn = {9781450375627},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3412932.3412937},
+doi = {10.1145/3412932.3412937},
+abstract = {We study the feasibility and performance efficiency of
+expressing a complex financial numerical algorithm with high-level
+functional parallel constructs. The algorithm we investigate is a
+least-square regression-based Monte-Carlo simulation for pricing
+American options. We propose an accelerated parallel implementation in
+Futhark, a high-level functional data-parallel language. The Futhark
+language targets GPUs as the compute platform and we achieve a
+performance comparable to, and in particular cases up to 2.5X better
+than, an implementation optimised by NVIDIA CUDA engineers. In
+absolute terms, we can price a put option with 1 million simulation
+paths and 100 time steps in 17 ms on a NVIDIA Tesla V100
+GPU. Furthermore, the high-level functional specification is much more
+accessible to the financial-domain experts than the low-level CUDA
+code, thus promoting code maintainability and facilitating algorithmic
+changes.},
+booktitle = {Proceedings of the 31st Symposium on Implementation and Application of Functional Languages},
+articleno = {5},
+numpages = {12},
+keywords = {high-performance computing, computational finance, parallel (GPU) programming, functional programming},
+location = {Singapore, Singapore},
+series = {IFL '19}
+}

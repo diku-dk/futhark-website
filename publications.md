@@ -107,17 +107,19 @@ to build or show something.
     [bib](publications/wmp-phd-thesis.bib)).
 -   Cosmin Oancea, Ties Robroek, Fabian Gieseke: **Approximate
     Nearest-Neighbour Fields via Massively-Parallel Propagation-Assisted
-    K-D Trees**. MLDB'20. ([pdf](publications/mlbd20.pdf)).
+    K-D Trees**. MLDB'20. ([pdf](publications/mlbd20.pdf), [bib](publications/mlbd20.bib)).
 -   Fabian Geseke, Sabina Rosca, Troels Henriksen, Jan Verbesselt,
     Cosmin Oancea: **Massively-Parallel Change Detection for Satellite
     Time Series Data with Missing Values**. ICDE'20.
-    ([pdf](publications/icde20.pdf))
+    ([pdf](publications/icde20.pdf), [bib](publications/icde20.bib))
 -   Wojciech Michal Pawlak, Martin Elsman, Cosmin Eugen Oancea: **A
     Functional Approach to Accelerating Monte Carlo based American
-    Option Pricing**. IFL'19. ([pdf](publications/ifl19.pdf))
+    Option Pricing**. IFL'19. ([pdf](publications/ifl19.pdf), [bib](publications/ifl19.bib))
 
 # Selected Student Projects
 
+- Peter Kanstrup Larsen: **Benchmarking Futhark-AD using MINPACK-2**,
+  7.5 ECTS Project, DIKU, University of Copenhagen, January 2023. ([pdf](student-projects/peter-msc-project.pdf))
 - Søren Brix: **Reverse mode automatic differentiation of histograms
   in Futhark**, MSc thesis, DIKU, University of Copenhagen, July 2022. ([pdf](student-projects/søren-msc-thesis.pdf))
 - Gilli Reynstind Fjallstein: **Extending automatic differentiation
