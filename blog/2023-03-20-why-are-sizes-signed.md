@@ -72,7 +72,7 @@ arithmetic.  For example, the subtraction `x-y` might not be
 representable as an unsigned integers, even if `x` and `y` are quite
 small integers.  Overflow can of course also happen for signed
 numbers, but it tends only to happen for very large numbers (which are
-rare), while unsigned underflow can happen for numbers close to zero
+rare), while unsigned overflow can happen for numbers close to zero
 (which are common).
 
 Another annoyance is that unsigned numbers have no value that is
