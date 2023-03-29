@@ -53,6 +53,8 @@ for plotting or rendering graphics.
 -   [Moving average](examples/moving-average.html)
 -   [Means](examples/means.html)
 -   [Radix sort](examples/radix-sort.html)
+-   [Merge sort](examples/merge-sort.html)
+-   [Removing duplicates](examples/removing-duplicates.html)
 -   [Abstract data types](examples/abstract-data-types.html)
 -   [Testing for associativity](examples/testing-associativity.html)
 -   [Reducing or scanning without a neutral

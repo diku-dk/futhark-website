@@ -43,6 +43,11 @@ pre {
     display: inline-block;
 }
 
+.sourceCode {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
 .quicklinks {
     float: right;
     margin: 1ex;

@@ -81,3 +81,7 @@ def radix_sort [n] (xs: [n]u32): [n]u32 =
 --  A useful optimisation is to first check the position of the most
 -- significant bit in each array element, and cap the number of
 -- iterations to that.
+--
+-- # See also
+--
+-- [Merge sort](merge-sort.html)
