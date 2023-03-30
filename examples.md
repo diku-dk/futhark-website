@@ -27,7 +27,7 @@ for plotting or rendering graphics.
 -   [Type ascriptions](examples/type-ascriptions.html)
 -   [Basic parallelism](examples/basic-parallelism.html)
 -   [Tuples and records](examples/tuples-and-records.html)
--   [Shape coercions](examples/shape-coercions.html)
+-   [Size coercions](examples/size-coercions.html)
 -   [Ranges](examples/ranges.html)
 -   [Scans and reductions](examples/scan-reduce.html)
 -   [Parametric polymorphism](examples/parametric-polymorphism.html)
