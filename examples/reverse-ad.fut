@@ -11,7 +11,7 @@ def f' x = vjp f x 1
 
 -- > f' 2f64
 
--- `jvp` corresponds to differentiation by [reverse
+-- `vjp` corresponds to differentiation by [reverse
 -- accumulation](https://en.wikipedia.org/wiki/Automatic_differentiation#Reverse_accumulation),
 -- and is most efficient for functions that have more inputs than
 -- outputs.  A particularly important special case of these are [loss
