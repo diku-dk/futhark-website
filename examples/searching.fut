@@ -62,7 +62,7 @@ def find_elem_chunked 'a [n] (k: i64) (p: a -> bool) (as: [n]a) : found a =
      case #not_found -> (#not_found, chunk_offset+k)).0
 
 -- In most cases, the original `find_index` and `find_elem` will be
--- fast enough, as these simple `map`-`reduce` compositions are quire
+-- fast enough, as these simple `map`-`reduce` compositions are quite
 -- efficient.  While `find_elem_chunked` can in some cases be faster,
 -- we now have the chunk size, `k`, as a tunable parameter that we
 -- have to worry about, and the compiler cannot help us figure out the
