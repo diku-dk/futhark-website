@@ -189,8 +189,8 @@ the ``map``.
 "Cannot compile assertion inside parallel kernel"
 -------------------------------------------------
 
-The allocation issue are rooted deeply in performance concerns
-(allocation *is* an expensive notion), reflected in the GPU hardware
+The allocation issue is rooted deeply in performance concerns
+(allocation *is* an expensive operation), reflected in the GPU hardware
 architecture, awkward to work around, and require both trickery and
 subtlety in the compiler to work around.  The other issue I will talk
 about has none of these properties.  It is only mildly related to
