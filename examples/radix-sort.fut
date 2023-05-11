@@ -85,3 +85,5 @@ def radix_sort [n] (xs: [n]u32): [n]u32 =
 -- # See also
 --
 -- [Merge sort](merge-sort.html)
+--
+-- The [sorts](https://github.com/diku-dk/sorts) library.

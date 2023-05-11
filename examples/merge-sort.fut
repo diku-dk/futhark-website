@@ -60,3 +60,5 @@ def sort [n] 't (lte: t -> t -> bool) (xs: [n]t): [n]t =
 -- # See also
 --
 -- [Radix sort](radix-sort.html)
+--
+-- The [sorts](https://github.com/diku-dk/sorts) library.
