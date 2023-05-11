@@ -53,6 +53,7 @@ for plotting or rendering graphics.
 -   [Moving average](examples/moving-average.html)
 -   [Means](examples/means.html)
 -   [Radix sort](examples/radix-sort.html)
+-   [Radix sort by key](examples/radix-sort-key.html)
 -   [Merge sort](examples/merge-sort.html)
 -   [Removing duplicates](examples/removing-duplicates.html)
 -   [Abstract data types](examples/abstract-data-types.html)
@@ -70,6 +71,7 @@ for plotting or rendering graphics.
 -   [Binary search](examples/binary-search.html)
 -   [AD with dual numbers](examples/dual-numbers.html)
 -   [Variance](examples/variance.html)
+-   [Matching parentheses](examples/parens.html)
 
 # Automatic differentiation
 
