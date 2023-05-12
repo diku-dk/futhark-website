@@ -7,7 +7,7 @@ description: The type system is growing again.
 When we first designed Futhark, array sizes were not part of the type
 system.  A function such as ``map`` had this type:
 
-```
+```Futhark
 val map 'a 'b : (a -> b) -> []a -> []b
 ```
 
@@ -20,7 +20,7 @@ types](2019-08-03-towards-size-types.html), which lets functions
 express how the size of their result depends on the size of their
 parameters:
 
-```
+```Futhark
 val map 'a 'b [n] : (a -> b) -> [n]a -> [n]b
 
 val transpose 'a [n] [m] : [n][m]a -> [m][n]a
@@ -31,7 +31,7 @@ functions that return arrays whose sizes cannot be straightforwardly
 known from the sizes of the arguments.  An example of such a function
 is `filter`:
 
-```
+```Futhark
 val filter 'a [n] : (a -> bool) -> [n]a -> []a
 ```
 
@@ -137,7 +137,7 @@ quantification of sizes in function return types.  Because I prefer
 ASCII syntax, the notation is with `?` instead of `∃`, and the
 quantified names must be enclosed in brackets:
 
-```
+```Futhark
 val filter [n] 'a : (a -> bool) -> [n]a -> ?[k].[k]a
 ```
 
@@ -147,13 +147,13 @@ syntactic sugar for inserting an existential quantifier at the
 
 Now we can give a type for the `square` function:
 
-```
+```Futhark
 val square : f32 -> ?[k].[k][k]f32
 ```
 
 And we can express complex relationships:
 
-```
+```Futhark
 val f : f32 -> ?[k]([k]f32, [k]f32 -> bool)
 ```
 
@@ -186,7 +186,7 @@ solution is to return an array of `(index,length)` pairs for
 representing each word.  Also, Futhark does not have a character type,
 so our strings will actually be byte strings:
 
-```
+```Futhark
 type char = u8
 val words [n] : [n]char -> ?[k].[k](i64,i64)
 ```
@@ -197,7 +197,7 @@ manually slice the string to actually extract the words.  We could
 accidentally slice the wrong string, perhaps resulting in
 out-of-bounds accesses!  So let us add a bit more type safety:
 
-```
+```Futhark
 type word [n] = ([n](), i64, i64)
 val words [n] : [n]char -> ?[k].[k](word [n])
 val get [n] : [n]char -> word [n] -> ?[m].[m]char
@@ -217,7 +217,7 @@ extracting "words" from a *different* string of the same size - and
 that string might have word breaks in different positions!  To avoid
 this, we can make `words` not just return an array, but also the `get` function:
 
-```
+```Futhark
 type word [p] -- abstract, but similar definition to above
 val words [n] : [n]char -> ?[p].(word [p] -> ?[m].[m]char,
                                  ?[k].[k](word [p]))
