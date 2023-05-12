@@ -476,7 +476,7 @@ result.  If we allow the type checker to do arithmetic, what should
 this return?
 
 ```Futhark
-tricky (concat (iota n) (iota m)) (concat (iota m) (iota n))
+tricky (zip (concat (iota n) (iota m)) (concat (iota m) (iota n)))
 ```
 
 Truly the [full employment
