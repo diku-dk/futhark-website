@@ -97,7 +97,7 @@ flattens arrays of shape `[n*m]` - and we get a type error if we pass
 it an array whose size does not have that exact structure.  This can
 lead to slightly verbose programming, sometimes.  For example,
 expression `unflatten 3 3 (iota 9)` is ill-typed, as `9` cannot unify
-with `n*m`.  Instead we could write it as `unflatten 3 (iota (3*3))`.
+with `n*m`.  Instead we could write it as `unflatten 3 3 (iota (3*3))`.
 More generally, we may need a size coercion to massage the
 shape of the array before unflattening it: `unflatten n m (xs :>
 [n*m]t)`.  There is still a dynamic check, but now it has been made
@@ -149,7 +149,7 @@ arguments.  It is similar to [Dex's typed
 indexes](2020-12-28-futhark-and-dex.html), although not as powerful.
 I've experimentally ported the [Futhark benchmark
 suite](https://github.com/diku-dk/futhark-benchmarks) to use these new
-definitions of `flatten`, `unflatten`, and `split`, and it quite
-painless and in my subjective opinion, a minor improvement in clarity.
+definitions of `flatten`, `unflatten`, and `split`, and it was quite
+painless and, in my subjective opinion, a minor improvement in clarity.
 I'm really curious whether even more interesting things can be done,
 though.
