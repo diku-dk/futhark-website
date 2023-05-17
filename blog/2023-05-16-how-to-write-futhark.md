@@ -43,7 +43,7 @@ val unflatten 't : i64 -> i64 -> []t -> [][]t
 
 To use `flatten` we would say `flatten xss` and receive back a
 one-dimensional array.  This could not fail.  To use `unflatten` we
-would say `flatten n m xs` and receive a two-dimensional array.  This
+would say `unflatten n m xs` and receive a two-dimensional array.  This
 would fail at run-time if `xs` did not have exactly `n*m` elements at
 runtime.
 
