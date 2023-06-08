@@ -1,0 +1,16 @@
+@inproceedings{10.1145/3587216.3587218,
+author = {Munksgaard, Philip and Oancea, Cosmin and Henriksen, Troels},
+title = {Compiling a Functional Array Language with Non-Semantic Memory Information},
+year = {2023},
+isbn = {9781450398312},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3587216.3587218},
+doi = {10.1145/3587216.3587218},
+abstract = {We present a technique for introducing a notion of memory in the compiler representation for a parallel functional array language, in a way that allows for transformation and optimization of memory access patterns and uses, while preserving value-based semantics. Functional languages expose no notion of memory to the user. There is no explicit allocation or deallocation of memory, nor any mapping from arrays to memory locations. Instead, the compiler must infer when and where to perform allocations as well as how values should be represented in memory. Because this affects performance, an optimizing compiler will need freedom to express various memory optimizations. Typically this is done by lowering the functional language to an imperative intermediate representation with a direct notion of memory, losing the ability to use high-level functional reasoning while performing said optimizations. We present a compiler representation where memory information is non-semantic, in the sense that it does not affect the program result, but only the operational details. We start by defining a simple functional language without memory, Fun, and give it static and dynamic semantics. Next, we define an extended language, FunMem, which is Fun with non-semantic memory information in the form of lmads and an allocation statement. We give the extended language static and dynamic semantics and we provide an algorithm for transforming a Fun program into FunMem. We likewise introduce a simple imperative language Imp, which we use to illustrate how one might translate FunMem into lower-level code. Finally, we show an example of a useful transformation in FunMem, memory expansion, which is used to hoist allocations from parallel GPU kernels.},
+booktitle = {Proceedings of the 34th Symposium on Implementation and Application of Functional Languages},
+articleno = {2},
+numpages = {13},
+location = {Copenhagen, Denmark},
+series = {IFL '22}
+}
