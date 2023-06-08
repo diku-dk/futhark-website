@@ -22,6 +22,8 @@ def average (xs: []f64) = reduce (+) 0 xs / f64.i64 (length xs)
 ::: {.container .quicklinks}
 **Quick links**
 
+-   [Playground](http://playground.futhark-lang.org/)
+-   [REPL](http://repl.futhark-lang.org/)
 -   [Installation](https://futhark.readthedocs.io/en/stable/installation.html)
 -   [Tutorial](http://futhark-book.readthedocs.io/en/latest/)
 -   [User\'s guide](https://futhark.readthedocs.io/en/stable)
