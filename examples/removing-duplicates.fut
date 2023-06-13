@@ -87,7 +87,7 @@ def nub_hist_i32 n is xs : []i32 = nub_hist n is xs
 
 -- > nub_hist_i32 4 [3,0,0,1,1,1,2,2,3,1] [0,1,2,3,4,5,6,7,8,9]
 
--- This prefers the first occurence of an element.  It's
+-- This prefers the first occurrence of an element.  It's
 -- straightforward to change it to prefer the last occurrence instead.
 -- One particularly crucial aspect of this definition is that the
 -- operator we use for the histogram, `i64.min`, is likely to be
