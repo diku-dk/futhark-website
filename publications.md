@@ -120,6 +120,16 @@ to build or show something.
 
 # Selected Student Projects
 
+- Tjørn Lynghus: **Data-parallel Implementation of Randomized Approximate Nearest Neighbours**, BSc thesis, DIKU, June 2023. ([pdf](student-projects/Tjorn-BSc-Approx-kNN.pdf))
+
+- Jóhann Utne and Henriette Naledi Winther Hansen: **Solving TSP on the GPU based on heuristic algorithms**, BSc thesis, DIKU, June 2023.  ([pdf](student-projects/BSc-Henriette-Johann-TSP.pdf))
+
+- Peter Kanstrup Larsen:  **Application of Probabilistic Machine Learning Methods for Protein Generation**, MSc thesis, DIKU, June 2023.  ([pdf](student-projects/peter-larsen-msc-var-enc.pdf))
+
+- Emil Vilandt Rasmussen: **Sparse Approximate Inverse - A Massively Parallel Implementation**, BSc thesis, DIKU, June 2023. ([pdf](student-projects/Emil-Rasmussen-BSc-SPAI.pdf))
+
+- Caroline Amalie Kierkegaard and Mikkel Willen: **Parallel Implementation of the SPAI algorithm**, BSc thesis, DIKU, June 2023.  ([pdf](student-projects/Caroline-Mikkel-BSc-SPAI.pdf))
+
 - Peter Kanstrup Larsen: **Benchmarking Futhark-AD using MINPACK-2**,
   7.5 ECTS Project, DIKU, University of Copenhagen, January 2023. ([pdf](student-projects/peter-msc-project.pdf))
 - Søren Brix: **Reverse mode automatic differentiation of histograms
