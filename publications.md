@@ -120,6 +120,10 @@ to build or show something.
 
 # Selected Student Projects
 
+- Kasper Unn Weihe: **Convex Optimization and Parallel Computing for
+  Portfolio Optimization**, MSc thesis, DIKU,
+  June 2023. ([pdf](student-projects/kasper-msc-thesis.pdf))
+
 - Tjørn Lynghus: **Data-parallel Implementation of Randomized Approximate Nearest Neighbours**, BSc thesis, DIKU, June 2023. ([pdf](student-projects/Tjorn-BSc-Approx-kNN.pdf))
 
 - Jóhann Utne and Henriette Naledi Winther Hansen: **Solving TSP on the GPU based on heuristic algorithms**, BSc thesis, DIKU, June 2023.  ([pdf](student-projects/BSc-Henriette-Johann-TSP.pdf))
