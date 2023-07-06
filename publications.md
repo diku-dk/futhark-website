@@ -120,6 +120,17 @@ to build or show something.
 
 # Selected Student Projects
 
+- William Heinrich Due: **Parallel Parsing using Futhark**, BSc
+thesis, DIKU, June 2023
+([pdf](student-projects/william-bsc-thesis.pdf))
+
+- Rune Nielsen: **Implementation of Graph Algorithms in Futhark**, BSc
+thesis, DIKU, June 2023 ([pdf](student-projects/rune-bsc-thesis.pdf))
+
+- Cornelius Sevald-Krause: **Flattening Irregular Nested Parallelism
+in Futhark**, BSc thesis, DIKU, June 2023
+([pdf](student-projects/cornelius-bsc-thesis.pdf))
+
 - Kasper Unn Weihe: **Convex Optimization and Parallel Computing for
   Portfolio Optimization**, MSc thesis, DIKU,
   June 2023. ([pdf](student-projects/kasper-msc-thesis.pdf))
