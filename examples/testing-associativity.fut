@@ -20,7 +20,7 @@ def testassoc 'a [n] (eq: a -> a -> bool)
   let hom xs = reduce op ne xs
   let golden = hom arr
   in (.1) <| loop (ok, i) = (true, 0) while ok && i < n do
-    let (bef, aft) = split i arr
+    let (bef, aft) = (take i arr, drop i arr)
     in if hom bef `op` hom aft `eq` golden
        then (ok, i + 1) else (false, i)
 
