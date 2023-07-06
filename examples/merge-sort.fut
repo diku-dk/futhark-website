@@ -26,7 +26,7 @@ def ilog2 (n: i64) : i64 = i64.i32 (63 - i64.clz n)
 -- Then we can create a function that pads an array with the largest
 -- element, up till the next power of two.
 
-def pad_to k x xs = concat_to k xs (replicate (k - length xs) x)
+def pad_to k x xs = sized k (xs ++ replicate (k - length xs) x)
 
 def padpow2 lte xs =
   let d = ilog2 (length xs) in
