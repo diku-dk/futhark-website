@@ -120,7 +120,7 @@ to build or show something.
 
 # Selected Student Projects
 
-- William Heinrich Due: **Parallel Parsing using Futhark**, BSc
+- William Henrich Due: **Parallel Parsing using Futhark**, BSc
 thesis, DIKU, June 2023
 ([pdf](student-projects/william-bsc-thesis.pdf))
 
