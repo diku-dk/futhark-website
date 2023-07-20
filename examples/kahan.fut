@@ -38,7 +38,7 @@ def normal_sum = f64.sum
 -- Is `kahan_add` actually associative, as required by `reduce`?  No,
 -- it's not, but neither is floating-point addition in the first
 -- place.  Passing a non-associative operator to `reduce` doesn't mean
--- the result can be arbitrary, it just means it the result is
+-- the result can be arbitrary, it just means the result is
 -- nondeterministic, based on how the compiler or runtime decides to
 -- "parenthesise" the application of the operator.  We're already
 -- implicitly accepting this when we parallelise a floating-point
