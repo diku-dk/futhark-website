@@ -92,7 +92,7 @@ ML, while Dex is `higher-order dependently typed Einstein summation
 I also suspect this focus on indexes is because the Dex authors have a
 background of being frustrated with NumPy-style programming, where the
 absence of efficient indexing can be quite restrictive.  They even
-even use this NumPy implementation of L₁ distances as motivation in
+use this NumPy implementation of L₁ distances as motivation in
 their paper::
 
   def pairwiseL1(x):
