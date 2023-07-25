@@ -120,6 +120,10 @@ to build or show something.
 
 # Selected Student Projects
 
+- Nina Andrup Pedersen, Jakob Schneider Villumsen: **ZKBoo on the GPU:
+Better soundness errors for a little extra**, BSc thesis, AU, July
+2023 ([pdf](student-projects/zkboo-bsc-thesis.pdf)).
+
 - William Henrich Due: **Parallel Parsing using Futhark**, BSc
 thesis, DIKU, June 2023
 ([pdf](student-projects/william-bsc-thesis.pdf))
