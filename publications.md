@@ -124,9 +124,13 @@ to build or show something.
 Better soundness errors for a little extra**, BSc thesis, AU, July
 2023 ([pdf](student-projects/zkboo-bsc-thesis.pdf)).
 
-- William Henrich Due: **Parallel Parsing using Futhark**, BSc
-thesis, DIKU, June 2023
-([pdf](student-projects/william-bsc-thesis.pdf))
+- Lars Jensen, Chris Oliver Paulsen, Julian Jørgensen Teule:
+  **Translating Concepts of the Futhark Programming Language into an
+  Extended π-Calculus**, MSc thesis, AAU, June 2023.
+  ([pdf](student-projects/pi-msc-thesis.pdf))
+
+- William Henrich Due: **Parallel Parsing using Futhark**, BSc thesis,
+DIKU, June 2023 ([pdf](student-projects/william-bsc-thesis.pdf))
 
 - Rune Nielsen: **Implementation of Graph Algorithms in Futhark**, BSc
 thesis, DIKU, June 2023 ([pdf](student-projects/rune-bsc-thesis.pdf))
