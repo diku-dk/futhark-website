@@ -1,0 +1,17 @@
+@inproceedings{10.1145/3609024.3609412,
+author = {Bailly, Lubin and Henriksen, Troels and Elsman, Martin},
+title = {Shape-Constrained Array Programming with Size-Dependent Types},
+year = {2023},
+isbn = {9798400702969},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3609024.3609412},
+doi = {10.1145/3609024.3609412},
+abstract = {We present a dependent type system for enforcing array-size consistency in an ML-style functional array language. Our goal is to enforce shape-consistency at compile time and allow nontrivial transformations on array shapes, without the complexity such features tend to introduce in dependently typed languages. Sizes can be arbitrary expressions and size equality is purely syntactical, which fits naturally within a scheme that interprets size-polymorphic functions as having implicit arguments. When non-syntactical equalities are needed, we provide dynamic checking. In contrast to other dependently typed languages, we automate the book-keeping involved in tracking existential sizes, such as when filtering arrays. We formalise a large subset of the presented type system and prove it sound. We also discuss how to adapt the type system for a real implementation, including type inference, within the Futhark programming language.},
+booktitle = {Proceedings of the 11th ACM SIGPLAN International Workshop on Functional High-Performance and Numerical Computing},
+pages = {29–41},
+numpages = {13},
+keywords = {type systems, parallel programming, functional programming},
+location = {Seattle, WA, USA},
+series = {FHPNC 2023}
+}

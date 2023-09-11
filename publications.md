@@ -8,6 +8,11 @@ chronological order.
 
 # Papers on language design and implementation
 
+- **Shape-Constrained Array Programming with Size-Dependent Types**.
+  Lubin Bailly, Troels Henriksen, Martin Elsman.  [FHPNC
+  23](https://icfp23.sigplan.org/home/FHPNC-2023)
+  ([pdf](publications/fhpnc23.pdf), [bib](publications/fhpnc23.bib)).
+
 - **Compiling a Functional Array Language with Non-Semantic Memory Information**. Philip Munksgaard, Cosmin Oancea, Troels Henriksen. [IFL 22](https://ifl22.github.io/) ([pdf](publications/ifl22.pdf), [bib](publications/ifl22.bib)).
 
 - **Memory Optimizations in an Array Language**. Philip Munksgaard, Troels Henriksen, Ponnuswamy Sadayappan, Cosmin Oancea.  [SC 22](https://sc22.supercomputing.org/) ([pdf](publications/sc22-mem.pdf), [bib](publications/sc22-mem.bib), [artifact](https://github.com/diku-dk/futhark-mem-sc22), [blog (1)](/blog/2022-11-03-short-circuiting.html), [blog (2)](/blog/2022-12-06-in-place-map.html))
