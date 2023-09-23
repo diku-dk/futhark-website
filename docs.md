@@ -33,7 +33,7 @@ programs written in other languages to conveniently call this code.
     backend](https://futhark.readthedocs.io/en/stable/man/futhark-pyopencl.html),
     which is slower but more convenient)
 -   **Rust**: [genfut](https://github.com/Erk-/genfut), [futhark-bindgen](https://github.com/zshipko/futhark-bindgen), [cargo-futhark](https://github.com/luleyleo/cargo-futhark)
--   **Standard ML**: [futhark-server-sml](https://github.com/diku-dk/futhark-server-sml)
+-   **Standard ML**: [futhark-server-sml](https://github.com/diku-dk/futhark-server-sml), [smlfut](https://github.com/diku-dk/smlfut)
 -   **OCaml**: [futhark-bindgen](https://github.com/zshipko/futhark-bindgen)
 
 # Tools
