@@ -8,6 +8,11 @@ chronological order.
 
 # Papers on language design and implementation
 
+- **Static and Dynamic Analyses for Efficient GPU Execution**.
+Philip Munksgaard.  PhD thesis, 2023.
+([pdf](publications/Philip_Munksgaard_Thesis.pdf),
+[bib](publications/Philip_Munksgaard_Thesis.bib)).
+
 - **Shape-Constrained Array Programming with Size-Dependent Types**.
   Lubin Bailly, Troels Henriksen, Martin Elsman.  [FHPNC
   23](https://icfp23.sigplan.org/home/FHPNC-2023)
@@ -262,7 +267,7 @@ in Futhark**, BSc thesis, DIKU, June 2023
 -   Æmilie Cholewa-Madsen, Anders Lietzen Holst: **Teaching the
     Futhark compiler block and register tiled matrix multiplication**.
     BSc thesis.  Computer Science, University of Copenhagen. June
-    2020.
+    2020. ([pdf](student-projects/aemilie-anders-bsc-thesis.pdf))
 -   Robert Schenck: **Sum types in Futhark**. MSc thesis. Computer
     Science, University of Copenhagen. December 2019.
     ([pdf](student-projects/robert-msc-thesis.pdf))
