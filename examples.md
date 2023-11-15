@@ -57,6 +57,7 @@ for plotting or rendering graphics.
 -   [Merge sort](examples/merge-sort.html)
 -   [Removing duplicates](examples/removing-duplicates.html)
 -   [Abstract data types](examples/abstract-data-types.html)
+-   [Complex numbers](examples/complex-numbers.html)
 -   [Testing for associativity](examples/testing-associativity.html)
 -   [Reducing or scanning without a neutral
     element](examples/no-neutral-element.html)
