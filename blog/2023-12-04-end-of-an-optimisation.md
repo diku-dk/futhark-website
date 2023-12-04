@@ -154,7 +154,7 @@ realised it was a somewhat limited implementation of a general idea:
 avoiding copies by constructing values *in-place*. A mere seven years
 later, [Philip Munksgaard](https://munksgaard.me/) finished his PhD on
 (among other things) [array short
-circuiting](https://futhark-lang.org/blog/2022-11-03-short-circuiting.html),
+circuiting](2022-11-03-short-circuiting.html),
 which is exactly a general implementation of that idea. And only a
 year after Philip finished his work, I remembered that short
 circuiting in principle makes in-place lowering redundant, [and
@@ -166,7 +166,7 @@ lowering. When comparing the performance obtained when disabling the
 latter (which is what actually matters), it seems there is no real
 impact. And so, after over eight years of service, an optimisation I
 added in the first year [of my PhD
-studies](https://futhark-lang.org/blog/2017-12-27-reflections-on-a-phd-accidentally-spent-on-language-design.html)
+studies](2017-12-27-reflections-on-a-phd-accidentally-spent-on-language-design.html)
 is finally gone.
 
 Good riddance; I really disliked having to fix bugs in that pass.
