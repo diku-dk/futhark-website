@@ -33,7 +33,7 @@ there still is a [tiny Python
 program](https://github.com/athas/aoc22/blob/main/txt2fut.py) that
 prepends a header so that Futhark will be able to recognise a file as
 a byte array.  The input parsing was much less problematic than I
-expected, and for some problems were actual the only place where
+expected, and for some problems were actually the only place where
 parallelism was possible!  The main task is splitting the input into
 strings, and I just so happened to have [recently written a word
 splitter](https://futhark-lang.org/blog/2021-10-16-explicit-existentials.html#one-somewhat-interesting-usage-of-explicit-existential-quantification)
