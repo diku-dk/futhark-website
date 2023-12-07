@@ -13,7 +13,7 @@ colleagues, and most of the problems are simple and interesting enough
 that they don't take too long.  Futhark is not a good choice for
 solving these kinds of puzzles - there is no guarantee that any
 meaningful parallelism is present, and the dearth of libraries for
-basic data structures somethings make solutions more tedious than one
+basic data structures sometimes make solutions more tedious than one
 would prefer.  Still, I decided to give it a try.
 
 I [also did Advent of Code in Futhark in
