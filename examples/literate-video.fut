@@ -118,3 +118,8 @@ entry blob (width: i64) (height: i64) (td: f32) (t: f32): ([height][width]u32, f
 -- > :video (blob 640i64 480i64 0.0314f32, 0f32, 100i64);
 -- fps: 24
 -- format: gif
+
+-- # See also
+--
+-- [The other Literate Futhark
+-- examples.](http://localhost:8000/examples.html#literate-futhark)

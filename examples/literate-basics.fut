@@ -104,3 +104,8 @@ def plot3d n start end : ([]f64, []f64, []f64) =
 -- set palette rgbformulae 33,13,10
 -- set dgrid3d 100,100
 -- splot ourdata u 1:2:3 with pm3d notitle
+
+-- # See also
+--
+-- [The other Literate Futhark
+-- examples.](http://localhost:8000/examples.html#literate-futhark)

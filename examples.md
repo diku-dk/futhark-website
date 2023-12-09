@@ -84,6 +84,7 @@ for plotting or rendering graphics.
 
 -   [Basic use of literate Futhark](examples/literate-basics.html)
 -   [Generating videos with literate Futhark](examples/literate-video.html)
+-   [Reading and writing files in literate Futhark](examples/literate-files.html)
 
 # Examples from Dex
 
