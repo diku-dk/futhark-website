@@ -34,7 +34,7 @@ jobs:
 
     - uses: diku-dk/install-futhark@v1.1.0
       with:
-        version: 'latest'
+        version: 'nightly'
 
     - name: Build Haskell
       run: |
