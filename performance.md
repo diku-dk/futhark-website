@@ -26,9 +26,7 @@ runs. For reference, we also include the runtime for Futhark compiled to
 sequential CPU code. The benchmarking setup and code can be found
 [here](https://github.com/diku-dk/futhark-website/tree/master/benchmarks).
 There is also the [full Futhark benchmark
-suite](https://github.com/diku-dk/futhark-benchmarks) and its
-[dashboard](https://futhark-lang.org/benchmark-dashboard), which shows
-performance changes over time.
+suite](https://github.com/diku-dk/futhark-benchmarks).
 
 # Sum ([Futhark](benchmarks/programs/sum.fut), [Thrust](benchmarks/programs/sum.cu))
 
