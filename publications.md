@@ -130,6 +130,10 @@ to build or show something.
 
 # Selected Student Projects
 
+- Bjarke Pedersen, Oscar Nelin: **General Array Locality Optimization
+by Permutation (GALOP)**, MSc thesis, DIKU, January 2024
+([pdf](student-proejcts/pedersen-nelin-msc-thesis.pdf))
+
 - Nina Andrup Pedersen, Jakob Schneider Villumsen: **ZKBoo on the GPU:
 Better soundness errors for a little extra**, BSc thesis, AU, July
 2023 ([pdf](student-projects/zkboo-bsc-thesis.pdf)).
