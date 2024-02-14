@@ -155,7 +155,7 @@ tails.
 
 The reason this doesn't *actually* let us naively parallelise any
 sequential loop is that the result of function composition is really
-just the two functions concatenated.  The result actually performing
+just the two functions concatenated.  The result of actually performing
 such a reduction with composition is essentially just a big unrolled
 loop - the final function is as sequential and as costly as the
 original loop was.  *But* if we can come up with a different
