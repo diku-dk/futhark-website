@@ -29,13 +29,13 @@ type dir = #left | #right
 -- A common trick is to define a constructor payload as a
 -- [record](tuples-and-records.html) in order to imitate named fields.
 
-type point = #one_d {x: f32, y: f32}
-           | #two_d {x: f32, y: f32, z: f32}
+type point = #two_d {x: f32, y: f32}
+           | #three_d {x: f32, y: f32, z: f32}
 
 def scale (p: point) (d: f32) : point =
   match p
-  case #one_d {x,y}   -> #one_d {x=x*d, y=y*d}
-  case #two_d {x,y,z} -> #two_d {x=x*d, y=y*d, z=z*d}
+  case #two_d {x,y}   -> #two_d {x=x*d, y=y*d}
+  case #three_d {x,y,z} -> #three_d {x=x*d, y=y*d, z=z*d}
 
 -- Like all other types in Futhark, sum types are structurally typed.
 -- This means that naming with `type` is optional, and we can just
@@ -53,10 +53,10 @@ def is_fast = fast #hedgehog
 -- of possible types with the same constructor.  For example, to
 -- supplement `dir` from before, we can define the following:
 
-type dir_3d = #left | #right | #up | #down
+type dir_2d = #left | #right | #up | #down
 
 -- When the compiler encounters an expression `#left`, how is it
--- supposed to know whether it is of type `dir`, `dir_3d`, or some
+-- supposed to know whether it is of type `dir`, `dir_2d`, or some
 -- anonymous type that we have not even bothered naming?  The type
 -- checker will complain in these cases, and we can solve the problem
 -- by adding, for example, a return type annotation to the function.
