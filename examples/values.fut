@@ -16,8 +16,8 @@ def a_double : f64 = 2.0
 -- type, and decimal literals like `2.0` must be either `f32` or
 -- `f64`.
 
--- # See also
+-- ## See also
 --
--- [Arrays](arrays.html), [Tuples and records](tuples-and-records.html).
+-- [Arrays](arrays.html), [Tuples and records](tuples-and-records.html), [Mathematical functions](math-functions.html).
 --
 -- Reference manual: [Primitive types and values](https://futhark.readthedocs.io/en/stable/language-reference.html#primitive-types-and-values).
