@@ -3,7 +3,7 @@ title: "Why are sizes signed?"
 description: "Who knows, maybe there is a cool algebra where negative array sizes make sense."
 ---
 
-In Futhark, the arrays sizes have type `i64` - the type of
+In Futhark, array sizes have type `i64` - the type of
 signed 64-bit integers.  This is observable whenever we use a [size
 parameter](../examples/size-parameters.html) as a term-level variable:
 
@@ -46,7 +46,7 @@ in practice still a bit of an illusion.
 
 Another advantage is that we will know, inside functions, that
 variables corresponding to sizes are non-negative.  Well, *we* know
-anyway, but now we would know with *with types*!  In Idris this is
+anyway, but now we would know *with types*!  In Idris this is
 useful because Idris does not actually use "unsigned integers" in the
 machine sense of the word, but rather [inductively defined natural
 numbers](https://www.idris-lang.org/docs/current/base_doc/docs/Prelude.Nat.html#Prelude.Nat.Nat),
@@ -69,7 +69,7 @@ Another reason is that whenever we use explicit indexing instead of
 just `map`, it is invariably because we want to perform index
 *arithmetic*, and unsigned integers are just not very good at
 arithmetic.  For example, the subtraction `x-y` might not be
-representable as an unsigned integers, even if `x` and `y` are quite
+representable as an unsigned integer, even if `x` and `y` are quite
 small integers.  Overflow can of course also happen for signed
 numbers, but it tends only to happen for very large numbers (which are
 rare), while unsigned overflow can happen for numbers close to zero
