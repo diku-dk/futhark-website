@@ -132,7 +132,7 @@ to build or show something.
 
 - Bjarke Pedersen, Oscar Nelin: **General Array Locality Optimization
 by Permutation (GALOP)**, MSc thesis, DIKU, January 2024
-([pdf](student-proejcts/pedersen-nelin-msc-thesis.pdf))
+([pdf](student-projects/pedersen-nelin-msc-thesis.pdf))
 
 - Nina Andrup Pedersen, Jakob Schneider Villumsen: **ZKBoo on the GPU:
 Better soundness errors for a little extra**, BSc thesis, AU, July
