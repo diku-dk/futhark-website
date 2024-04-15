@@ -130,6 +130,10 @@ to build or show something.
 
 # Selected Student Projects
 
+- Christian Påbøl and Anders Holst: **Two optimizations to GPU code generation in the Futhark compiler**, MSc project, DIKU, February 2024 ([pdf](student-projects/christian-anders-scan-reduce-msc-project.pdf))
+
+- Christian Marslev and Jonas Grønborg: **Efficient Sequentialization of Parallelism**, MSc thesis, DIKU, February 2024 ([pdf](student-projects/jonas-christian-effseq-msc-thesis.pdf))
+
 - Bjarke Pedersen, Oscar Nelin: **General Array Locality Optimization
 by Permutation (GALOP)**, MSc thesis, DIKU, January 2024
 ([pdf](student-projects/pedersen-nelin-msc-thesis.pdf))
