@@ -5,7 +5,7 @@ description: A programmer complained about a source of bugs, and this is how I t
 
 While visiting [Chalmers](https://www.chalmers.se/en/) to give a guest
 lecture in their course on Parallel Functional Programming, I met the
-student [Samuel kyletoft](https://samuel.kyletoft.se/), who had
+student [Samuel Kyletoft](https://samuel.kyletoft.se/), who had
 implemented a ray tracer in Futhark. He mentioned that he'd had a
 bunch of bugs related to random number generation (RNG), which is
 admittedly a bit awkward in Futhark. The main challenge is that you
