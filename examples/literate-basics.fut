@@ -108,4 +108,4 @@ def plot3d n start end : ([]f64, []f64, []f64) =
 -- # See also
 --
 -- [The other Literate Futhark
--- examples.](http://localhost:8000/examples.html#literate-futhark)
+-- examples.](../examples.html#literate-futhark)

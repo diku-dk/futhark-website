@@ -28,4 +28,4 @@ def baz = [] : [0][10]f32
 -- # See also
 --
 -- [Converting a value to a different type](converting.html), [Shape
--- coercions](shape-coercions.html).
+-- coercions](size-coercions.html).

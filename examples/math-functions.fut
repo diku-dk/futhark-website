@@ -11,4 +11,4 @@ def hypo (x: f32) (y: f32) = f32.sqrt (x*x + y*y)
 --
 -- [The builtin mathematical modules.](../docs/prelude/doc/prelude/math.html)
 --
--- [Three-dimensional vectors](Three-dimensional vectors), [Complex numbers](complex-numbers.html).
+-- [Three-dimensional vectors](3d-vectors.html), [Complex numbers](complex-numbers.html).
