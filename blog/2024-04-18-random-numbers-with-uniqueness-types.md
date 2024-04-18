@@ -4,13 +4,13 @@ description: A programmer complained about a source of bugs, and this is how I t
 ---
 
 While visiting [Chalmers](https://www.chalmers.se/en/) to give a guest
-lecture in their course on Parallel Functional Programming, I met a
-student who had implemented a ray tracer in Futhark (I didn't catch
-the name, please write me if you are that student and I'll put it
-here). He mentioned that he'd had a bunch of bugs related to random
-number generation (RNG), which is admittedly a bit awkward in Futhark.
-The main challenge is that you manually need to maintain the RNG
-*state*, since Futhark does not allow side effects.
+lecture in their course on Parallel Functional Programming, I met the
+student [Samuel kyletoft](https://samuel.kyletoft.se/), who had
+implemented a ray tracer in Futhark. He mentioned that he'd had a
+bunch of bugs related to random number generation (RNG), which is
+admittedly a bit awkward in Futhark. The main challenge is that you
+manually need to maintain the RNG *state*, since Futhark does not
+allow side effects.
 
 To illustrate the problem, let us define a small set of functions for
 generating random numbers. First, we define a type for storing the RNG
