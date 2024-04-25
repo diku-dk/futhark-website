@@ -65,13 +65,13 @@ module triangular : triangular = {
 
 -- First thing, we define our representation of triangular arrays.
 -- What we *need* is a one-dimensional array to store the elements
--- (the `data` array).  However, whenever we have a type with a size
+-- (the `data` array). However, whenever we have a type with a size
 -- parameter (the `[n]`), then we *must* also have an array of that
--- size in the definition of type type.  The `data` array will not
--- have the right size, so we add an `n`-by-zero array of empty
--- tuples.  In effect, the `size` field acts acts as a "witness" for
--- the size parameter.  By making the inner dimension empty, we ensure
--- that the memory usage of this array will be just its size.
+-- size in the definition of type type. The `data` array will not have
+-- the right size, so we add an `n`-by-zero array of empty tuples. In
+-- effect, the `size` field acts acts as a "witness" for the size
+-- parameter. By making the inner dimension have size zero, we ensure
+-- that the memory usage of this array will be constant.
 
   type~ triangular [n] 'a =
     { size: [n][0](),
