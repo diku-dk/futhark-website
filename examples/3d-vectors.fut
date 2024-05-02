@@ -146,7 +146,7 @@ module f64_3d = mk_vspace_3d f64
 -- {x = -3.0f64, y = 6.0f64, z = -3.0f64}
 -- ```
 
--- # See also
+-- ## See also
 --
 -- [Dex: Multi-step ray tracer](dex-raytrace.html)
 --

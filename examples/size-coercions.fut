@@ -19,4 +19,4 @@ def B = [1,2,3] ++ [4,5,6] :> [6]i32
 
 -- # See also
 --
--- [Complex ranges](complex-ranges.html)
+-- [Complex ranges](complex-ranges.html), [Comparing arrays for equality](array-equality.html).
