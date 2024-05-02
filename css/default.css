@@ -238,12 +238,15 @@ a:visited {
     max-width: 80%;
 }
 
-img, video {
+img, video, table {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    border: 1px solid grey;
     max-width: 80%;
+}
+
+img, video {
+    border: 1px solid grey;
 }
 
 figcaption {
