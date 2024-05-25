@@ -172,26 +172,37 @@ in Futhark**, BSc thesis, DIKU, June 2023
 - Caroline Amalie Kierkegaard and Mikkel Willen: **Parallel Implementation of the SPAI algorithm**, BSc thesis, DIKU, June 2023.  ([pdf](student-projects/Caroline-Mikkel-BSc-SPAI.pdf))
 
 - Peter Kanstrup Larsen: **Benchmarking Futhark-AD using MINPACK-2**,
-  7.5 ECTS Project, DIKU, University of Copenhagen, January 2023. ([pdf](student-projects/peter-msc-project.pdf))
+  7.5 ECTS Project, DIKU, University of Copenhagen, January 2023.
+  ([pdf](student-projects/peter-msc-project.pdf))
+
 - Søren Brix: **Reverse mode automatic differentiation of histograms
-  in Futhark**, MSc thesis, DIKU, University of Copenhagen, July 2022. ([pdf](student-projects/søren-msc-thesis.pdf))
+  in Futhark**, MSc thesis, DIKU, University of Copenhagen, July 2022.
+  ([pdf](student-projects/søren-msc-thesis.pdf))
+
 - Gilli Reynstind Fjallstein: **Extending automatic differentiation
   for an array language with nested parallelism**, Msc thesis, DIKU,
-  University of Copenhagen, July 2022. ([pdf](student-projects/gilli-msc-thesis.pdf))
+  University of Copenhagen, July 2022.
+  ([pdf](student-projects/gilli-msc-thesis.pdf))
+
 - Lotte Bruun and Ulrik Larsen: **Reverse Automatic Differentiation in
-  Futhark**, MSc thesis, DIKU, University of Copenhagen, July 2022. ([pdf](student-projects/lotte-ulrik-msc-thesis.pdf))
--   Philip Jon Børgesen: **Reducing Synchronous GPU Memory
-    Transfers**.  MSc thesis.  Department of Computer Science,
-    University of Copenhagen.
-    July 2022. ([pdf](student-projects/philip-børgesen-msc-thesis.pdf))
--   W. Pema N. H. Malling, Louis Marott Normann, Oliver
-    B. K. Petersen, Kristoffer A. Kortbæk: **Extending Futhark’s
-    multicore C backend to utilize SIMD using ISPC**.  BSc thesis.  Department of
-    Computer Science, University of Copenhagen.
-    June 2022. ([pdf](student-projects/ispc-bsc-thesis.pdf))
--   Aleksander Junge: **Reactive Benchmarks**.  BSc thesis.
-    Department of Computer Science, University of Copenhagen.
-    June 2022. ([pdf](student-projects/aleksander-bsc-thesis.pdf))
+  Futhark**, MSc thesis, DIKU, University of Copenhagen, July 2022.
+  ([pdf](student-projects/lotte-ulrik-msc-thesis.pdf))
+
+- Philip Jon Børgesen: **Reducing Synchronous GPU Memory Transfers**.
+  MSc thesis. Department of Computer Science, University of
+  Copenhagen. July 2022.
+  ([pdf](student-projects/philip-børgesen-msc-thesis.pdf))
+
+- W. Pema N. H. Malling, Louis Marott Normann, Oliver B. K. Petersen,
+  Kristoffer A. Kortbæk: **Extending Futhark’s multicore C backend to
+  utilize SIMD using ISPC**. BSc thesis. Department of Computer
+  Science, University of Copenhagen. June 2022.
+  ([pdf](student-projects/ispc-bsc-thesis.pdf))
+
+- Aleksander Junge: **Reactive Benchmarking**. BSc thesis. Department
+  of Computer Science, University of Copenhagen. June 2022.
+  ([pdf](student-projects/aleksander-bsc-thesis.pdf))
+
 -   Amar Topalovic, Walter Restelli-Nielsen, Kristian Olesen:
     **Multiple-precision Integer Arithmetic**.
     [DPP](https://github.com/diku-dk/dpp-e2021-pub) final project.
