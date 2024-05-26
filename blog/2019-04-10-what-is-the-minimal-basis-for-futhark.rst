@@ -81,14 +81,15 @@ but for an interesting reason:
 
 Futhark has special syntax for ranges, but this feels a bit like
 cheating - ``iota`` is the primitive, and this syntax is just sugar.
-Can we express ``iota`` in any other way?  Sort of.  It is possible to
+Can we express ``iota`` in any other way? Sort of. It is possible to
 express ``iota`` as a `prefix sum
-<https://en.wikipedia.org/wiki/Prefix_sum>`_ on a replicated array:
+<https://en.wikipedia.org/wiki/Prefix_sum>`_ on a replicated array
+(with a ``map`` to adjust it so the array begins at zero):
 
 .. code-block:: Futhark
 
    let iota (n: i64): [n]i64 =
-     scan (+) 0 (replicate n 1)
+     map (\x -> x - 1) (scan (+) 0 (replicate n 1))
 
 In some parallel languages (`NESL
 <http://www.cs.cmu.edu/~scandal/nesl.html>`_), the prefix sum ``scan
