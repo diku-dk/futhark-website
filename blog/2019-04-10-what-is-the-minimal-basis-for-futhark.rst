@@ -13,7 +13,7 @@ the definition of ``reduce`` in the Futhark basis library:
 
 .. code-block:: Futhark
 
-   let reduce 'a (op: a -> a -> a) (ne: a) (as: []a): a =
+   def reduce 'a (op: a -> a -> a) (ne: a) (as: []a): a =
      intrinsics.reduce (op, ne, as)
 
 The reason is that the compiler has baked-in knowledge about the
@@ -43,7 +43,7 @@ example, consider this non-intrinsic replacement for ``reduce``:
 
 .. code-block:: Futhark
 
-   let reduce 'a (op: a -> a -> a) (ne: a) (as: []a): a =
+   def reduce 'a (op: a -> a -> a) (ne: a) (as: []a): a =
      loop x = ne for a in as do x `op` a
 
 This function is completely sequential and therefore has work *O(n)*
@@ -66,7 +66,7 @@ arrays into a single array of pairs:
 
 .. code-block:: Futhark
 
-   let zip [n] 'a 'b (as: [n]a) (bs: [n]b): [n](a,b) =
+   def zip [n] 'a 'b (as: [n]a) (bs: [n]b): [n](a,b) =
       map (\i -> (as[i], bs[i])) (iota n)
 
 Okay, this works, but what is that ``iota``?  This is the function for
@@ -76,7 +76,7 @@ but for an interesting reason:
 
 .. code-block:: Futhark
 
-   let iota (n: i64): [n]i64 =
+   def iota (n: i64): [n]i64 =
      0..1..<n
 
 Futhark has special syntax for ranges, but this feels a bit like
@@ -88,7 +88,7 @@ express ``iota`` as a `prefix sum
 
 .. code-block:: Futhark
 
-   let iota (n: i64): [n]i64 =
+   def iota (n: i64): [n]i64 =
      map (\x -> x - 1) (scan (+) 0 (replicate n 1))
 
 In some parallel languages (`NESL
@@ -108,14 +108,14 @@ like ``replicate``:
 
 .. code-block:: Futhark
 
-   let replicate 'a (n: i64) (x: a): [n]a =
+   def replicate 'a (n: i64) (x: a): [n]a =
      map (\_ -> x) (iota n)
 
 Or ``concat``:
 
 .. code-block:: Futhark
 
-   let concat 't (xs: []t) (ys: []t): []t =
+   def concat 't (xs: []t) (ys: []t): []t =
      map (\i -> if i < length xs
                 then xs[i]
                 else ys[i - length xs])
@@ -125,7 +125,7 @@ Or ``rotate``:
 
 .. code-block:: Futhark
 
-   let rotate 't (r: i64) (xs: []t): []t =
+   def rotate 't (r: i64) (xs: []t): []t =
      map (\i -> xs[(i+r) % length xs])
          (iota (length xs))
 
@@ -153,7 +153,7 @@ substituting the provided neutral element:
 
 .. code-block:: Futhark
 
-   let reduce_tree 'a (op: a -> a -> a) (ne: a) (as: []a): a =
+   def reduce_tree 'a (op: a -> a -> a) (ne: a) (as: []a): a =
      let as' = loop as while length as > 1 do
                  map (\i ->
                         let x = if i*2 >= length as
@@ -203,9 +203,9 @@ on the idea, but we can also try to express it in Futhark:
 
 .. code-block:: Futhark
 
-   let num_threads : i64 = 128 * 256
+   def num_threads : i64 = 128 * 256
 
-   let reduce [n] 'a (op: a -> a -> a) (ne: a) (as: []a): a =
+   def reduce [n] 'a (op: a -> a -> a) (ne: a) (as: []a): a =
      let chunk_size = n `div_rounding_up` num_threads
      let partial_results =
        map (\t -> loop x = ne for i < chunk_size do
@@ -277,7 +277,7 @@ Guy Steele:
 
 .. code-block:: Futhark
 
-   let scan [n] 'a (op: a -> a -> a) (_ne: a) (as: [n]a): [n]a =
+   def scan [n] 'a (op: a -> a -> a) (_ne: a) (as: [n]a): [n]a =
      let iters = i64.f32 (f32.ceil (f32.log2 (f32.i64 n)))
      in loop as for i < iters do
           map (\j -> if j < 2**i
@@ -332,7 +332,7 @@ expressed with a combination of ``scan`` and ``scatter``:
 
 .. code-block:: Futhark
 
-   let filter 'a (p: a -> bool) (as: []a): []a =
+   def filter 'a (p: a -> bool) (as: []a): []a =
      let keep = map (\a -> if p a then 1 else 0) as
      let offsets = scan (+) 0 keep
      let num_to_keep = reduce (+) 0 keep
@@ -361,10 +361,10 @@ semantics are quite simple:
 
 .. code-block:: Futhark
 
-   let stream_map 'a 'b [n] (f: (c: i64) -> [c]a -> [c]b) (as: [n]a): [n]b =
+   def stream_map 'a 'b [n] (f: (c: i64) -> [c]a -> [c]b) (as: [n]a): [n]b =
      f n as
 
-   let stream_red 'a 'b [n] (op: b -> b -> b) (f: (c: i64) -> [c]a -> b) (as: [n]a): b =
+   def stream_red 'a 'b [n] (op: b -> b -> b) (f: (c: i64) -> [c]a -> b) (as: [n]a): b =
      f n as
 
 But this is too simple - the point of these combinators is permitting
@@ -377,10 +377,10 @@ the input arrays into size-1 chunks, and apply ``f`` to each of these:
 
 .. code-block:: Futhark
 
-   let stream_map 'a 'b (f: (c: i64) -> [c]a -> [c]b) (as: []a): []b =
+   def stream_map 'a 'b (f: (c: i64) -> [c]a -> [c]b) (as: []a): []b =
      as |> unflatten (length as) 1 |> map (f 1) |> flatten
 
-   let stream_red 'a 'b (op: b -> b -> b) (f: (c: i64) -> [c]a -> b) (as: []a): b =
+   def stream_red 'a 'b (op: b -> b -> b) (f: (c: i64) -> [c]a -> b) (as: []a): b =
      as |> unflatten (length as) 1 |> map (f 1) |> reduce op (f 0 [])
 
 A *good* implementation, and what the compiler does, is more like our
@@ -395,7 +395,7 @@ using these constructs:
 
 .. code-block:: Futhark
 
-   let dotprod [n] (xs: [n]i32) (ys: [n]i32): i32 =
+   def dotprod [n] (xs: [n]i32) (ys: [n]i32): i32 =
      reduce (+) 0 (map (\(x, y) -> x*y) (zip xs ys))
 
 And running it on the RTX 2080 Ti for various values of *n*:
