@@ -130,6 +130,13 @@ to build or show something.
 
 # Selected Student Projects
 
+- Sebastian Paarmann: **A WebGPU backend for Futhark**, MSc thesis,
+  DIKU, June 2024 ([pdf](student-projects/sebastian-msc-thesis.pdf))
+
+- Victor Alexander Schmidt: **Data-parallel Construction of Interval
+  Trees and Range Trees**, BSc thesis, DIKU, June 2024
+  ([pdf](student-projects/victor-bsc-thesis.pdf))
+
 - Christian Påbøl and Anders Holst: **Two optimizations to GPU code generation in the Futhark compiler**, MSc project, DIKU, February 2024 ([pdf](student-projects/christian-anders-scan-reduce-msc-project.pdf))
 
 - Christian Marslev and Jonas Grønborg: **Efficient Sequentialization of Parallelism**, MSc thesis, DIKU, February 2024 ([pdf](student-projects/jonas-christian-effseq-msc-thesis.pdf))
