@@ -32,6 +32,7 @@ for plotting or rendering graphics.
 -   [Ranges](examples/ranges.html)
 -   [Scans and reductions](examples/scan-reduce.html)
 -   [Parametric polymorphism](examples/parametric-polymorphism.html)
+-   [Exclusive scans](examples/exclusive-scan.html)
 -   [Gather and scatter](examples/gather-and-scatter.html)
 -   [Pipe operators](examples/piping.html)
 -   [Complex ranges](examples/complex-ranges.html)
@@ -76,6 +77,7 @@ for plotting or rendering graphics.
 -   [AD with dual numbers](examples/dual-numbers.html)
 -   [Variance](examples/variance.html)
 -   [Matching parentheses](examples/parens.html)
+-   [Evaluating polynomials](examples/polynomials.html)
 
 # Automatic differentiation
 
