@@ -19,4 +19,4 @@ def plot k n : ([]i64,[]i32) =
 --
 -- [Gnuplots built-in support for histograms](http://gnuplot.info/docs_6.1/loc5256.html).
 --
--- [Generalised histograms.](histogram.html).
+-- [Generalised histograms](histograms.html).
