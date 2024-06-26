@@ -89,6 +89,14 @@ for plotting or rendering graphics.
 -   [Generating videos with literate Futhark](examples/literate-video.html)
 -   [Reading and writing files in literate Futhark](examples/literate-files.html)
 
+# Plotting
+
+Literate Futhark allows direct use of
+[gnuplot](http://www.gnuplot.info/). These examples show simple and
+common cases.
+
+- [Plotting a histogram](examples/plot-histogram.html)
+
 # Examples from Dex
 
 The following examples are ported from
