@@ -54,7 +54,7 @@ properly.
 
 So why do people want to embed these array literals, rather than
 storing them in [some more convenient
-format](https://futhark.readthedocs.io/en/latest/binary-data-format.html))
+format](https://futhark.readthedocs.io/en/latest/binary-data-format.html)
 next to the program, and loading them at runtime? The main reason is
 convenience: it's lovely for a program to be completely
 self-contained, while it's annoying to load data at runtime and ferry
