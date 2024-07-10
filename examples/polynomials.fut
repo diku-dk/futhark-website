@@ -3,7 +3,7 @@
 -- A polynomial of the *n*th degree comprises *n* coefficients and can
 -- be evaluated at a specific value *x* as follows:
 
-entry poly as x =
+def poly as x =
   f64.sum (map2 (*) as (map (x**) (map f64.i64 (indices as))))
 
 -- [Horner's method](https://en.wikipedia.org/wiki/Horner%27s_method)
@@ -15,7 +15,7 @@ entry poly as x =
 
 import "exclusive-scan"
 
-entry horner as x =
+def horner as x =
   f64.sum (map2 (*) as (exscan (*) 1 (map (const x) as)))
 
 -- In most cases, the additional overhead of manifesting the result of
