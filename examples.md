@@ -78,6 +78,7 @@ for plotting or rendering graphics.
 -   [Variance](examples/variance.html)
 -   [Matching parentheses](examples/parens.html)
 -   [Evaluating polynomials](examples/polynomials.html)
+-   [Line fitting](examples/line-fitting.html)
 
 # Automatic differentiation
 
