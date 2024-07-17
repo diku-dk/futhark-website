@@ -19,7 +19,7 @@ graphics programming exist, including OpenGL, DirectX, and Vulkan.
 While these APIs do have some support for general-purpose computing
 ([GPGPU](https://en.wikipedia.org/wiki/General-purpose_computing_on_graphics_processing_units)),
 it is somewhat awkward and limited. Instead, GPGPU applications may
-use compute-oriented GPUs such as CUDA, OpenCL, and HIP.
+use compute-oriented APIs such as CUDA, OpenCL, and HIP.
 
 CUDA was released by NVIDIA in 2007 as a proprietary API and library
 for NVIDIA GPUs. It has since become the most popular API for GPGPU,
