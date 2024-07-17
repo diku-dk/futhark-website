@@ -3,9 +3,9 @@ title: Comparing the performance of OpenCL, CUDA, and HIP
 description: A performance comparison of Futhark's three GPU backends, including the reasons for the differences.
 ---
 
-The Futhark compiler supports GPU backends that are equivalent in
-functionality and (in principle) also in performance. In this post I
-will investigate to which extent this is true. The results here are
+The Futhark compiler supports three GPU backends that are equivalent
+in functionality and (in principle) also in performance. In this post
+I will investigate to which extent this is true. The results here are
 based on work I will be presenting at [FPROPER
 '24](https://icfp24.sigplan.org/home/fproper-2024) in September.
 
