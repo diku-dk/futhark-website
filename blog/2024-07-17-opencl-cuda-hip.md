@@ -186,7 +186,12 @@ suite](https://github.com/diku-dk/futhark-benchmarks), ported from
 [PBBS](https://cmuparlay.github.io/pbbsbench/benchmarks/index.html).
 Some of these are variants of the same algorithm, e.g., there are five
 different implementations of breadth-first search. I used an NVIDIA
-A100 GPU and an AMD MI100 GPU.
+A100 GPU and an AMD MI100 GPU. This is certainly an experiment that
+focuses on *breadth* rather than *depth*. I am not familiar with any
+benchmark suite that has so many equivalent programs written using
+different GPU APIs. Certainly, a human programmer would never do
+anything this tedious, although on the other hand a human programmer
+would probably take better advantage of the peculiarities of each API.
 
 Most of the benchmarks contain multiple *workloads* of varying sizes.
 Each workload is executed at least ten times, and possibly more in
