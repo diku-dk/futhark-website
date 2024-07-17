@@ -84,6 +84,7 @@ main = do
     match "blog/*.md" blogCompiler
     match "blog/*.fut" static
     match "blog/*-img/*" static
+    match "blog/*/*" static
 
     -- Post list
     create ["blog.html"] $ do
