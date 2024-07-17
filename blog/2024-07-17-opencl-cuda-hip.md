@@ -493,6 +493,7 @@ analytical models and assumptions.
 
 One common suspicion I can definitely *reject* is that NVIDIA does not
 seem to arbitrarily sabotage OpenCL on their hardware. While NVIDIA
-clearly doesn't main OpenCL to nearly the same level as CUDA (frankly,
-*neither does AMD these days*), this manifests itself as OpenCL not
-growing any new features, rather than the code generation being poor.
+clearly doesn't maintain OpenCL to nearly the same level as CUDA
+(frankly, *neither does AMD these days*), this manifests itself as
+OpenCL not growing any new features, rather than the code generation
+being poor.
