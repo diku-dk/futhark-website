@@ -248,7 +248,7 @@ managed to isolate most causes of performance differences.
 ### Cause: Defaults for numerical operations
 
 OpenCL is significantly faster on some benchmarks, such as
-*mandelbrot* on MI100, where it outperforms CUDA by 1.71x. The reason
+*mandelbrot* on MI100, where it outperforms HIP by 1.71x. The reason
 for this is that OpenCL by default allows a less numerically precise
 (but faster) implementation of single-precision division and square
 roots. This is presumably for backwards compatibility with code
