@@ -60,3 +60,7 @@ type dir_2d = #left | #right | #up | #down
 -- anonymous type that we have not even bothered naming?  The type
 -- checker will complain in these cases, and we can solve the problem
 -- by adding, for example, a return type annotation to the function.
+
+-- ## See also
+--
+-- [Option types](opt.fut).

@@ -52,6 +52,7 @@ for plotting or rendering graphics.
 -   [Outer product](examples/outer-product.html)
 -   [Comparing arrays for equality](examples/array-equality.html)
 -   [Searching](examples/searching.html)
+-   [Option type](examples/option.html)
 -   [Computing histograms](examples/histograms.html)
 -   [Moving average](examples/moving-average.html)
 -   [Means](examples/means.html)
@@ -79,6 +80,7 @@ for plotting or rendering graphics.
 -   [Matching parentheses](examples/parens.html)
 -   [Evaluating polynomials](examples/polynomials.html)
 -   [Line fitting](examples/line-fitting.html)
+-   [Decoding MNIST data files](examples/mnist.html)
 
 # Automatic differentiation
 
