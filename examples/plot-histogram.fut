@@ -9,11 +9,13 @@ def plot k n : ([]i64,[]i32) =
   in (iota k,
       hist (+) 0 k vs (replicate n 1))
 
--- > :gnuplot {data=plot 100 10000};
--- set xrange [0:100];
+-- > :gnuplot {data=plot 10 10000};
 -- set style fill solid 1.0
 -- plot data with boxes
 
+-- > :gnuplot {data=plot 100 10000};
+-- set style fill solid 1.0
+-- plot data with boxes
 
 -- ## See also
 --
