@@ -8,7 +8,7 @@ chronological order.
 
 # Papers on language design and implementation
 
--- **A Comparison of OpenCL, CUDA, and HIP as Compilation Targets for a Functional Array Language**. Troels Henriksen. [FProPer 2024](https://icfp24.sigplan.org/home/fproper-2024) ([pdf](publications/fproper24.pdf))
+- **A Comparison of OpenCL, CUDA, and HIP as Compilation Targets for a Functional Array Language**. Troels Henriksen. [FProPer 2024](https://icfp24.sigplan.org/home/fproper-2024) ([pdf](publications/fproper24.pdf))
 
 - **Static and Dynamic Analyses for Efficient GPU Execution**.
 Philip Munksgaard.  PhD thesis, 2023.
