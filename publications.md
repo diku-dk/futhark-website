@@ -8,7 +8,11 @@ chronological order.
 
 # Papers on language design and implementation
 
-- **A Comparison of OpenCL, CUDA, and HIP as Compilation Targets for a Functional Array Language**. Troels Henriksen. [FProPer 2024](https://icfp24.sigplan.org/home/fproper-2024) ([pdf](publications/fproper24.pdf))
+- **AUTOMAP: Inferring Rank-Polymorphic Function Applications with Integer
+  Linear Programming**. Robert Schenck, Nikolaj Hey Hinnerskov, Troels
+  Henriksen, Magnus Madsen, Martin Elsman. [OOPSLA 24](https://2024.splashcon.org/track/splash-2024-oopsla) ([blog](/blog/2024-06-17-automap.html), [pdf](publications/oopsla24.pdf)).
+
+- **A Comparison of OpenCL, CUDA, and HIP as Compilation Targets for a Functional Array Language**. Troels Henriksen. [FProPer 2024](https://icfp24.sigplan.org/home/fproper-2024) ([pdf](publications/fproper24.pdf)).
 
 - **Static and Dynamic Analyses for Efficient GPU Execution**.
 Philip Munksgaard.  PhD thesis, 2023.
