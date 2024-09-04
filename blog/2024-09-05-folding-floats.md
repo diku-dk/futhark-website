@@ -20,7 +20,7 @@ loop p = init for i < n do
   p + x
 ```
 
-turns into `init + n * x`. This is not done by a advanced dataflow
+turns into `init + n * x`. This is not done by advanced dataflow
 analysis, but [a rather simple simplification
 rule](https://github.com/diku-dk/futhark/blob/534577205dd3ecce1bffd81f94c496c839da35d8/src/Futhark/Optimise/Simplify/Rules/ClosedForm.hs)
 that is really just fancy pattern matching. These optimisations were
