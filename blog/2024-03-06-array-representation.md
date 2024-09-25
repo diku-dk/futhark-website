@@ -27,8 +27,8 @@ themselves, yielding multidimensional arrays, and if we want to get
 *really* fancy, we can allow each of those subarrays to be of a
 different size. But now we have gotten too fancy, so let us dial back
 the discussion to be about multidimensional *regular* arrays
-(sometimes also called *rectangular*), where all elements have their
-own size. In fact, we will only consider multidimensional arrays of
+(sometimes also called *rectangular*), where all elements have the
+same size. In fact, we will only consider multidimensional arrays of
 primitive types, as arrays of records and other such compound types
 can be [transformed
 away](2021-08-02-value-representation.html#array-types).
