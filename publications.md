@@ -136,6 +136,11 @@ to build or show something.
 
 # Selected Student Projects
 
+- Marcus Jensen: **Not-Quite-Supersonic AD: Implementing forward and
+  reverse mode automatic differentiation in the Futhark interpreter**,
+  BSc thesis, DIKU, August 2024
+  ([pdf](student-projects/marcus-bsc-thesis.pdf))
+
 - Sebastian Paarmann: **A WebGPU backend for Futhark**, MSc thesis,
   DIKU, June 2024 ([pdf](student-projects/sebastian-msc-thesis.pdf))
 
