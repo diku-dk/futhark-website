@@ -12,6 +12,12 @@ chronological order.
   Linear Programming**. Robert Schenck, Nikolaj Hey Hinnerskov, Troels
   Henriksen, Magnus Madsen, Martin Elsman. [OOPSLA 24](https://2024.splashcon.org/track/splash-2024-oopsla) ([pdf](publications/oopsla24.pdf), [blog](blog/2024-06-17-automap.html)).
 
+- **Reverse-Mode AD of Multi-Reduce and Scan in Futhark**. Lotte M.
+  Bruun, Ulrik S. Larsen, Nikolaj H. Hinnerskov and Cosmin E. Oancea.
+  [IFL 23](https://ifl23.github.io/) 
+  ([publication rights licensed to ACM, doi](https://dl.acm.org/doi/10.1145/3652561.3652575), 
+  [author pdf copy](publications/ifl23-ad.pdf), [bib](publications/ifl23-ad.bib))
+
 - **A Comparison of OpenCL, CUDA, and HIP as Compilation Targets for a Functional Array Language**. Troels Henriksen. [FProPer 2024](https://icfp24.sigplan.org/home/fproper-2024) ([pdf](publications/fproper24.pdf), [blog](blog/2024-07-17-opencl-cuda-hip.html)).
 
 - **Static and Dynamic Analyses for Efficient GPU Execution**.

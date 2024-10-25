@@ -1,0 +1,16 @@
+@inproceedings{10.1145/3652561.3652575,
+author = {Bruun, Lotte Maria and Larsen, Ulrik Stuhr and Hinnerskov, Nikolaj Hey and Oancea, Cosmin Eugen},
+title = {Reverse-Mode AD of Multi-Reduce and Scan in Futhark},
+year = {2024},
+isbn = {9798400716317},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3652561.3652575},
+doi = {10.1145/3652561.3652575},
+abstract = {We present and evaluate the Futhark implementation of reverse-mode automatic differentiation (AD) for the basic blocks of parallel programming: reduce, prefix sum (scan), and reduce-by-index (multi-reduce). We present derivations of general-case algorithms, and then discuss several specializations that result in efficient differentiation of most cases of practical interest. We report an experiment that evaluates the GPU performance of the differentiated code and highlights the impact of the proposed specializations as well as the strengths and weaknesses of differentiating at high level bulk-parallel operators vs “differentiating the memory”, i.e., low-level implementations that access/update individual array elements.},
+booktitle = {Proceedings of the 35th Symposium on Implementation and Application of Functional Languages},
+articleno = {14},
+numpages = {14},
+location = {Braga, Portugal},
+series = {IFL '23}
+}
