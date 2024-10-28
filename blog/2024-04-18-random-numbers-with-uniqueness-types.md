@@ -33,8 +33,8 @@ def mk_rng (seed: i32) : rng =
   in x
 ```
 
-For the random number generation itself, for simplicity we will just
-do a basic [linear congruential
+For the random number generation itself, we will just do a basic
+[linear congruential
 generator](https://en.wikipedia.org/wiki/Linear_congruential_generator):
 
 ```Futhark
@@ -72,23 +72,23 @@ Note how I typed `rng` instead of `rng'` in the last call to `rand`.
 In this case the compiler will complain about `rng'` being unused, but
 it's not hard to imagine a larger program where `rng'` is indeed used
 for something else later. Especially when refactoring, it is easy to
-accidentally reuse the same RNG state twice, which will lead to
-randomly numbers being correlated. For a ray tracer, this can result
-in fun visual artefacts, but for other programs it may just result in
-a number being wrong, which is both boring and tedious to debug.
+accidentally reuse the same RNG state twice, which will lead to random
+numbers being correlated. For a ray tracer, this can result in fun
+visual artefacts, but for other programs it may just result in a
+number being wrong, which is both boring and tedious to debug.
 
 In an imperative language, generating a random number mutates the
-state, so it cannot be reused. In languages Haskell, you can use a
-state monad to simulate the same thing, and similarly avoid reuse. In
-Futhark, it turns out you can imitate a form of *affine types* using
-Futhark's [slightly obscure support for uniqueness
-types](2022-06-13-uniqueness-types.html). Affine type allows you to
-express that a value can be used *at most once* (whereas linear types
-allow you to require *exactly once*, which is why they are useful for
-resource management, as then the last use must be a cleanup function).
-By constructing an RNG library such that number generation *consumes*
-a state and *produces* a new one, we can ensure that each state is
-used at most once.
+state, so it cannot be reused. In languages such as Haskell, you can
+use a state monad to simulate the same thing. In Futhark, it turns out
+you can imitate a form of *affine types* using Futhark's [slightly
+obscure support for uniqueness
+types](2022-06-13-uniqueness-types.html). Affine types allow you to
+express that a value can be used *at most once*. A related notion is
+*linear types*, where a value must be used *exactly once*, which is
+why linear types are useful for resource management, as then the last
+use must be a cleanup function. By constructing an RNG library such
+that number generation *consumes* a state and *produces* a new one, we
+can ensure that each state is used at most once.
 
 Although uniqueness types are really designed for dealing with arrays,
 they can also be used for abstract types via [the module
@@ -130,7 +130,7 @@ module rand : rand = {
 
 We can only access the functions through the types defined in the
 module type, which means `rand` will consume its `rng` argument,
-despite the actual function not doing anything odd. Code like this
+despite the actual function not doing anything special. Code like this
 will now work:
 
 ```Futhark
