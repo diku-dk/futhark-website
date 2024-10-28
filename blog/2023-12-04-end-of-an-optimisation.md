@@ -56,7 +56,7 @@ let B = loop B = B_initial for i < n do
 This makes use of [in-place updates through uniqueness
 types](2022-06-13-uniqueness-types.html) to express the sequentialised
 code efficiently. (In fact, the *actual* compiler representation does
-not use `replicate`, which requires initialising every element,, but a
+not use `replicate`, which requires initialising every element, but a
 special `scratch` construct that creates an array with unspecified
 contents, by allocating memory without initialising it.)
 
