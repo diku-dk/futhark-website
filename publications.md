@@ -125,6 +125,11 @@ Cosmin Oancea.  [FHPC '13](http://hiperfit.dk/fhpc13.html)
 These papers are not about Futhark as a language or compiler, but use it
 to build or show something.
 
+-   Gusten Isfeldt, Fredrik Lundell, Jakob Wohlert: **Interaction of
+    complex particles: A framework for the rapid and accurate
+    approximation of pair potentials using neural networks**. Physical
+    Review E 110, 2024. ([pdf](publications/physreve24.pdf),
+    [bib](publications/physreve24.bib))
 -   Wojciech Michal Pawlak: **Accelerated Financial Algorithms
     Derivative Pricing and Risk Management Applications**.  PhD
     thesis.  May 2021 ([pdf](publications/wmp-phd-thesis.pdf),
