@@ -147,6 +147,10 @@ to build or show something.
 
 # Selected Student Projects
 
+- Therese Lyngby, William Henrich Due: **The Worlds Best Futhark
+  Formatter**, MSc project, DIKU, November 2024.
+  ([pdf](student-projects/therese-william-project.pdf))
+
 - Marcus Jensen: **Not-Quite-Supersonic AD: Implementing forward and
   reverse mode automatic differentiation in the Futhark interpreter**,
   BSc thesis, DIKU, August 2024
