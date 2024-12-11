@@ -52,7 +52,7 @@ for plotting or rendering graphics.
 -   [Outer product](examples/outer-product.html)
 -   [Comparing arrays for equality](examples/array-equality.html)
 -   [Searching](examples/searching.html)
--   [Option type](examples/option.html)
+-   [Option type](examples/opt.html)
 -   [Computing histograms](examples/histograms.html)
 -   [Moving average](examples/moving-average.html)
 -   [Means](examples/means.html)
