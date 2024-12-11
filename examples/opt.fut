@@ -1,6 +1,6 @@
 -- # Option types
 --
--- Futhark does not predefine an option type, but we can define on
+-- Futhark does not predefine an option type, but we can define one
 -- ourselves.
 
 type opt 'a = #some a | #none
