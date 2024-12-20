@@ -147,6 +147,10 @@ to build or show something.
 
 # Selected Student Projects
 
+- Kristoffer August Kortbæk and Rune Ejnar Bang Lejbølle: 
+  **Utilizing Tensor Cores in Futhark**, MSc thesis, DIKU, January 2025.
+  ([pdf](student-projects/kristoffer-rune-tensorcores-msc-thesis.pdf))
+
 - Therese Lyngby, William Henrich Due: **The Worlds Best Futhark
   Formatter**, MSc project, DIKU, November 2024.
   ([pdf](student-projects/therese-william-project.pdf))
