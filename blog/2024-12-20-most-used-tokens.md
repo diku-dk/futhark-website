@@ -128,9 +128,9 @@ where I am again supposing that this is not because of its use as a
 variable name.
 
 We can also answer more exotic questions. For example, the longest
-variable name at 49 letters is
+variable name at 37 letters is
 [`flux_contribution_nb_density_energy_z`](https://github.com/diku-dk/futhark-benchmarks/blob/7d97653fae46657406b686092545240d6bf58910/rodinia/cfd/cfd.fut#L162).
-The average length of a variable name is 16, and the median is 15. A
+The average length of a variable name is 4, and the median is 3. A
 total of 13151 number literals are used, but only 963 distinct ones
 (ignoring syntactic differences), with the five most common being `0`,
 `1`, `2`, `1.0`, and `0.0`. The constant `255` is also pretty common,
