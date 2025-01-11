@@ -1,0 +1,30 @@
+-- # Minimum and maximum
+--
+-- To find the minimum or maximum of two primitive values, use the
+-- `min` or `max` function from the module corresponding to the type
+-- of the value.
+--
+-- ```
+-- > f32.min 2.483 3.147
+-- 2.483
+-- > i32.max 42 1337
+-- 1337
+-- ```
+--
+-- To find the minimum or maximum of an *array* of values, use the
+-- `minimum` or `maximum` functions.
+--
+--
+-- ```
+-- > f32.minimum [0.9, 2.1, 8.2]
+-- 0.9
+-- > u8.maximum [0, 128, 255]
+-- 255
+-- ```
+--
+-- ## See also
+--
+-- [The prelude file defining these
+-- modules](https://futhark-lang.org/docs/prelude/doc/prelude/math.html).
+--
+-- [Backtick operators](backticks.html)

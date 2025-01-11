@@ -1,0 +1,14 @@
+-- # Backtick operators
+--
+-- Any identifier can be turned into an infix operator by enclosing it
+-- in backticks.
+--
+-- ```
+-- > 2.483 `f32.min` 3.147
+-- 2.483
+-- > 2.483 `f32.min` 3.147 `f32.min` 4.131
+-- 2.483
+-- ```
+--
+-- Such operators are left-associative and have lower precedence than
+-- all other infix operators.

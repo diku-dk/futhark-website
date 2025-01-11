@@ -2,13 +2,13 @@
 --
 -- To convert a value of type `i64` to `f32`, use the function `f32.i64`:
 
-let x : i64 = 2
-let y : f32 = f32.i64 x
+def x : i64 = 2
+def y : f32 = f32.i64 x
 
 -- Generally, to convert a value of builtin type `F` to builtin type
 -- `T`, use the function `T.F`:
 
-let z : bool = bool.i64 x
+def z : bool = bool.i64 x
 
 -- This is not special syntax, but simply calling the function `i64`
 -- in module `bool`.  It just so happens that the prelude has modules
@@ -30,3 +30,5 @@ let z : bool = bool.i64 x
 -- [The prelude file defining these
 -- modules](https://futhark-lang.org/docs/prelude/doc/prelude/math.html),
 -- specifically the `from_prim` module type.
+--
+-- [Minimum and maximum](minmax.html).
