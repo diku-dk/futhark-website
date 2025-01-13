@@ -40,6 +40,7 @@ for plotting or rendering graphics.
 -   [Complex ranges](examples/complex-ranges.html)
 -   [Sum types and pattern matching](examples/sum-types.html)
 -   [Loops](examples/loops.html)
+-   [Flattening and unflattening arrays](examples/flatten-unflatten.html)
 
 # Programming techniques
 

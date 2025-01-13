@@ -4,13 +4,13 @@
 -- very conservative in how it tracks the sizes of arrays.  For
 -- example:
 
-def A = [1,2,3] ++ [4,5,6]
+def A = [1, 2, 3] ++ [4, 5, 6]
 
 -- As far as the type checker is concerned, `A` has a completely
 -- unknown size.  Using a *size coercion* we can change the size to be
 -- what we expect:
 
-def B = [1,2,3] ++ [4,5,6] :> [6]i32
+def B = [1, 2, 3] ++ [4, 5, 6] :> [6]i32
 
 -- Size coercions are checked dynamically, and the program will fail
 -- at run-time if the actual size does not match the expected size.
@@ -19,4 +19,6 @@ def B = [1,2,3] ++ [4,5,6] :> [6]i32
 
 -- # See also
 --
--- [Complex ranges](complex-ranges.html), [Comparing arrays for equality](array-equality.html).
+-- [Complex ranges](complex-ranges.html), [Comparing arrays for
+-- equality](array-equality.html), [Flattening and unflattening
+-- arrays](flatten-unflatten.html).

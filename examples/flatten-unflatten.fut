@@ -1,0 +1,62 @@
+-- # Flattening and unflattening arrays
+--
+-- To flatten a two-dimensional array into a one-dimensional array,
+-- use the prelude function `flatten`, which has the following type:
+--
+-- ```
+-- > :t flatten
+-- (xs: [n₀][m₁]t₂) -> [n₀ * m₁]t₂
+-- ```
+--
+-- ```
+-- > :t flatten [[1,2,3],[4,5,6]]
+-- [2 * 3]i32
+-- > flatten [[1,2,3],[4,5,6]]
+-- [1, 2, 3, 4, 5, 6]
+-- ```
+--
+-- To unflatten, use the function `unflatten`.
+--
+-- ```
+-- > :t unflatten
+-- (xs: [n₁ * m₂]t₀) -> [n₁][m₂]t₀
+-- ```
+--
+-- One curious aspect of `unflatten` is that it requires the size of
+-- the array to *syntactically* be of the form `n*m`, for some known
+-- `n` and `m`. This means we cannot simply unflatten an array of some
+-- known integral size:
+--
+-- ```
+-- > unflatten (iota 9)
+-- Cannot apply "unflatten" to "(iota 9)" (invalid type).
+-- Expected: [n₁ * m₂]t₀
+-- Actual:   [9]i64
+--
+-- Sizes "n₁ * m₂" and "9" do not match.
+-- ```
+--
+-- Instead we can use a [size coercion](size-coercions.html) to
+-- instruct the language on the desired structure of the dimension:
+--
+-- ```
+-- > unflatten (iota 9 :> [3*3]i64)
+-- [[0, 1, 2],
+--  [3, 4, 5],
+--  [6, 7, 8]]
+-- ```
+--
+-- In many cases, a Futhark program can be written to propagate the
+-- intended structure, and then such coercions are not necessary.
+--
+-- Since size coercions can be a bit verbose when used frequently, it
+-- can be valuable to define an `unflatten_to` function:
+
+def unflatten_to 't [k] (n: i64) (m: i64) (A: [k]t) : [n][m]t =
+  unflatten (A :> [n * m]t)
+
+-- ```
+-- > unflatten_to 2 3 [1,2,3,4,5,6]
+-- [[1, 2, 3],
+--  [4, 5, 6]]
+-- ```
