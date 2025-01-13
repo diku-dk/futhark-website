@@ -47,7 +47,14 @@
 -- ```
 --
 -- In many cases, a Futhark program can be written to propagate the
--- intended structure, and then such coercions are not necessary.
+-- intended structure, and then such coercions are not necessary:
+--
+-- ```
+-- > unflatten (iota (3*3))
+-- [[0, 1, 2],
+--  [3, 4, 5],
+--  [6, 7, 8]]
+-- ```
 --
 -- Since size coercions can be a bit verbose when used frequently, it
 -- can be valuable to define an `unflatten_to` function:
