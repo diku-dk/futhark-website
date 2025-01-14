@@ -41,6 +41,7 @@ for plotting or rendering graphics.
 -   [Sum types and pattern matching](examples/sum-types.html)
 -   [Loops](examples/loops.html)
 -   [Flattening and unflattening arrays](examples/flatten-unflatten.html)
+-   [In-place updates](examples/inplace.html)
 
 # Programming techniques
 
@@ -59,6 +60,7 @@ for plotting or rendering graphics.
 -   [Computing histograms](examples/histograms.html)
 -   [Moving average](examples/moving-average.html)
 -   [Means](examples/means.html)
+-   [Swapping two elements of an array](examples/swap.html)
 -   [Integer logarithm](examples/integer-logarithm.html)
 -   [Radix sort](examples/radix-sort.html)
 -   [Radix sort by key](examples/radix-sort-key.html)
