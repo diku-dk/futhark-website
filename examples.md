@@ -48,6 +48,7 @@ for plotting or rendering graphics.
 -   [Benchmarking](examples/benchmarking.html)
 -   [Counting elements that satisfy
     property](examples/filter-length.html)
+-   [Index of smallest element (argmin)](examples/argmin.html)
 -   [Reducing the result of a filter](examples/filter-reduce.html)
 -   [Scattering the result of a filter](examples/filter-scatter.html)
 -   [Size parameters](examples/size-parameters.html)
