@@ -9,7 +9,7 @@ chronological order.
 # Papers on language design and implementation
 
 - **Two Things I Did**.
-  Robert Schenck. PhD thesis, 2024. ([pdf](publications/,~ -things-robert-did.pdf), [bib](publications/two-things-robert-did.bib)).
+  Robert Schenck. PhD thesis, 2024. ([pdf](publications/two-things-robert-did.pdf), [bib](publications/two-things-robert-did.bib)).
 
 - **AUTOMAP: Inferring Rank-Polymorphic Function Applications with Integer
   Linear Programming**. Robert Schenck, Nikolaj Hey Hinnerskov, Troels
