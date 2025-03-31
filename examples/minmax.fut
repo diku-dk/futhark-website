@@ -27,4 +27,4 @@
 -- [The prelude file defining these
 -- modules](https://futhark-lang.org/docs/prelude/doc/prelude/math.html).
 --
--- [Backtick operators](backticks.html)
+-- [Backtick operators](backticks.html), [Index of smallest element (argmin)](argmin.html)

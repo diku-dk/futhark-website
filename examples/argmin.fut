@@ -17,3 +17,5 @@ def argmin [n] (xs: []f64) : (f64, i64) =
 -- The operator is carefully written to be commutative, specifically
 -- by picking the element with the lowest index in case of a tie,
 -- which allows slightly more efficient code generation.
+
+-- > argmin [1, 0, 1, 0]
