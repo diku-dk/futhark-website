@@ -211,7 +211,7 @@ as far as integration with the compiler is concerned.
 To actually hook up a pipeline with an action and produce something
 that can be invoked by the command line, you need to write a largely
 boilerplate `main` definition, like [this one for `futhark
-Haskell`](https://github.com/diku-dk/futhark/blob/master/src/Futhark/CLI/C.hs):
+c`](https://github.com/diku-dk/futhark/blob/master/src/Futhark/CLI/C.hs):
 
 ```c
 main :: String -> [String] -> IO ()
