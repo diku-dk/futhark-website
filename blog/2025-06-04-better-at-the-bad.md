@@ -7,7 +7,7 @@ While Futhark is mostly known for its GPU support, it is in fact a high level
 and hardware-agnostic functional array language, where the available programming
 constructs are largely unconstrained by the particularities of any specific
 processor. This is unproblematic when you implement an interpreter for your
-language ([as you should](2025-05-07-implement-your-language-twice.md)), but
+language ([as you should](2025-05-07-implement-your-language-twice.html)), but
 despite its principles, Futhark *is intended* for compilation to high
 performance code running on potentially restricted machines, and does [come with
 many limitations](2016-09-03-language-design.html)
