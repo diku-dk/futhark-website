@@ -10,11 +10,11 @@ processor. This is unproblematic when you implement an interpreter for your
 language ([as you should](2025-05-07-implement-your-language-twice.md)), but
 despite its principles, Futhark *is intended* for compilation to high
 performance code running on potentially restricted machines, and does [come with
-many limitations](https://futhark-lang.org/blog/2016-09-03-language-design.html)
+many limitations](2016-09-03-language-design.html)
 as a result. However, these restrictions are phrased in terms of syntax and type
 rules, without reference to ad-hoc hardware limitations ([with a few exceptions
 that we hope to address
-eventually](https://futhark-lang.org/blog/2018-12-08-why-futhark-sometimes-goes-wrong.html)),
+eventually](2018-12-08-why-futhark-sometimes-goes-wrong.html)),
 and so users are still insulated from having to worry about specific hardware
 details.
 
@@ -22,7 +22,7 @@ Unfortunately, Futhark has to ultimately run on real hardware, and some of the
 things you are allowed to do in Futhark are not directly supported by e.g. GPUs,
 meaning the compiler has make up for the differences. Some of these are truly
 interesting, and lead to program transformations such as [incremental
-flattening](https://futhark-lang.org/blog/2019-02-18-futhark-at-ppopp.html),
+flattening](2019-02-18-futhark-at-ppopp.html),
 which address the lack of (efficient) support for nested parallelism in
 massively parallel hardware. This is a feature that is a core part of not just
 Futhark as a research project, but also the vision of allowing high-level,
@@ -44,7 +44,7 @@ problems, including:
 
 2. Limited support for working with pointers as values, which prevents not just
    some [interesting memory-reuse
-   optimisations](https://futhark-lang.org/blog/2022-11-03-short-circuiting.html),
+   optimisations](2022-11-03-short-circuiting.html),
    but also double buffering by pointer swapping inside GPU kernels.
 
 3. Harsh restrictions on uniform control flow.
@@ -132,7 +132,7 @@ reduce_by_index.fut:sum_i32 (no tuning file):
 I think it's a reasonable question. However, I do enjoy the dream that Futhark
 will *just work*, no matter what hardware you have, although we're still some
 way away from that (and [Futhark will not do everything for
-you](https://futhark-lang.org/blog/2022-04-04-futhark-is-a-low-level-language.html)).
+you](2022-04-04-futhark-is-a-low-level-language.html)).
 There are also some cases where the need for weird atomics arise due to code
 that is written in what I would consider "good style"; in particular they can
 arise from [reverse-mode automatic
