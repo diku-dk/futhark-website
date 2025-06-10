@@ -34,6 +34,7 @@ for plotting or rendering graphics.
 -   [Backtick operators](examples/backticks.html)
 -   [Scans and reductions](examples/scan-reduce.html)
 -   [Parametric polymorphism](examples/parametric-polymorphism.html)
+-   [Polymorphic minimum and maximum](examples/polyminmax.html)
 -   [Exclusive scans](examples/exclusive-scan.html)
 -   [Gather and scatter](examples/gather-and-scatter.html)
 -   [Pipe operators](examples/piping.html)
