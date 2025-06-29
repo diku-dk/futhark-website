@@ -150,6 +150,16 @@ to build or show something.
 
 # Selected Student Projects
 
+- Aske N. Raahauge, Martin B. Marchioro and Marc I. Løvenskjold:
+  **Efficient GPU Implementation of Multi-Precision Integer Division**, 
+  MSc thesis, DIKU, June 2025.
+  ([pdf](student-projects/MSc-Bigint-Div-Aske-Mark-Martin.pdf))
+
+- Emil Vilandt Rasmussen and Jóhann Utne:
+  **Optimizing Convolutions for GPU Execution in Futhark**, 
+  MSc thesis, DIKU, June 2025.
+  ([pdf](student-projects/MSc-Convolutions-Emil-Johann.pdf))
+
 - Kristoffer August Kortbæk and Rune Ejnar Bang Lejbølle:
   **Utilizing Tensor Cores in Futhark**, MSc thesis, DIKU, January 2025.
   ([pdf](student-projects/kristoffer-rune-tensorcores-msc-thesis.pdf))
