@@ -150,6 +150,10 @@ to build or show something.
 
 # Selected Student Projects
 
+- Jacob Aleksandar Siegumfeldt, Laust Kjæp Dengsøe: **Optimizing Futhark's Type
+  Checker**, BSc thesis, DIKU, June 2025.
+  ([pdf](student-projects/akob-laust-bsc-thesis.pdf))
+
 - Aske N. Raahauge, Martin B. Marchioro and Marc I. Løvenskjold:
   **Efficient GPU Implementation of Multi-Precision Integer Division**, 
   MSc thesis, DIKU, June 2025.
