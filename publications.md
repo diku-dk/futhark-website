@@ -148,6 +148,9 @@ to build or show something.
     Option Pricing**. IFL'19. ([pdf](publications/ifl19.pdf), [bib](publications/ifl19.bib))
 
 # Selected Student Projects
+- Caleb Andreasen: **Pushing the Boulder: Addressing key limitations of the
+Futhark WebGPU backend**, BSc thesis, DIKU, June 2025.
+([pdf](student-projects/caleb-bsc-thesis.pdf))
 
 - Jacob Aleksandar Siegumfeldt, Laust Kjæp Dengsøe: **Optimizing Futhark's Type
   Checker**, BSc thesis, DIKU, June 2025.
