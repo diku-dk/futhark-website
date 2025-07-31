@@ -49,7 +49,7 @@ map_transpose_4b                                 127      10655.74μs         83
 ------------------------------------------------------------------------------------------------------------------------------------
 ```
 
-Now a user may reasonable object: *"Hold on! I don't remember [my
+Now a user may reasonably object: *"Hold on! I don't remember [my
 program](https://github.com/diku-dk/futhark-benchmarks/blob/master/finpar/LocVolCalib.fut)
 containing anything called `main.segmap_23494`!"* And indeed, these cost centres
 refer to compiler-generated names. You can squint to get *some* meaning out of
