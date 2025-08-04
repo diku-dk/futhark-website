@@ -148,6 +148,11 @@ to build or show something.
     Option Pricing**. IFL'19. ([pdf](publications/ifl19.pdf), [bib](publications/ifl19.bib))
 
 # Selected Student Projects
+
+- Shatin Nguyen, Theis Aggerholm Bernhart Baasch, Oliver Fontaine Raaschou:
+  **Empirically comparing high level and low level AD**, BSc thesis, DIKU,
+  June 2025. [pdf](nguyen-baasch-raaschou-bsc-thesis.pdf)
+
 - Caleb Andreasen: **Pushing the Boulder: Addressing key limitations of the
 Futhark WebGPU backend**, BSc thesis, DIKU, June 2025.
 ([pdf](student-projects/caleb-bsc-thesis.pdf))
