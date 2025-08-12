@@ -151,7 +151,7 @@ to build or show something.
 
 - Shatin Nguyen, Theis Aggerholm Bernhart Baasch, Oliver Fontaine Raaschou:
   **Empirically comparing high level and low level AD**, BSc thesis, DIKU,
-  June 2025. [pdf](student-projects/nguyen-baasch-raaschou-bsc-thesis.pdf)
+  June 2025. ([pdf](student-projects/nguyen-baasch-raaschou-bsc-thesis.pdf))
 
 - Caleb Andreasen: **Pushing the Boulder: Addressing key limitations of the
 Futhark WebGPU backend**, BSc thesis, DIKU, June 2025.
