@@ -121,5 +121,4 @@ entry blob (width: i64) (height: i64) (td: f32) (t: f32): ([height][width]u32, f
 
 -- # See also
 --
--- [The other Literate Futhark
--- examples.](http://localhost:8000/examples.html#literate-futhark)
+-- [The other Literate Futhark examples.](/examples.html#literate-futhark)
