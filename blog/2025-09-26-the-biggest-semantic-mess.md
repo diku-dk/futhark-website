@@ -36,7 +36,7 @@ size:
 
 ```Futhark
 def dotprod [n] (x: [n]f64) (y: [n]f64) : f64 =
-  f64.sum (map2 (+) x y)
+  f64.sum (map2 (*) x y)
 ```
 
 Here `n` is a size parameter that is implicitly instantiated whenever the
