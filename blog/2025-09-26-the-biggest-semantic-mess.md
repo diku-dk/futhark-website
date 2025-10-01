@@ -205,9 +205,9 @@ We have had many bugs related to sizes in the interpreter
 [2222](https://github.com/diku-dk/futhark/issues/2222),
 [2219](https://github.com/diku-dk/futhark/issues/2219),
 [2209](https://github.com/diku-dk/futhark/issues/2209)), including other tricky
-cases did not have the heart to discuss in detail. It is by far the part of the
-language that has resulted in the most bugs. While we have formalised part of
-the size-based type system and shown it sound, we have *not* treated its
+cases I did not have the heart to discuss in detail. It is by far the part of
+the language that has resulted in the most bugs. While we have formalised part
+of the size-based type system and shown it sound, we have *not* treated its
 interaction with the module system - and the theoretical formulations are
 generally based on syntactic substitutions, rather than environments. I *hope*
 that the current implementation, which is heavily environment-based, is
