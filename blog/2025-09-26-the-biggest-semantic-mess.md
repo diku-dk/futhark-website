@@ -219,10 +219,11 @@ no bugs left.
 *Written after the original post.*
 
 Some commenters have asked why size parameters are not always passed explicitly
-by the caller, but sometimes have to be fished out of values. That is a good
-question, and the problem arises only because of language features I did not
-cover in the above. The root problem is that modules allow sizes to be hidden
-from the caller. Consider:
+by the caller, but sometimes have to be fished out of values. Or putting it
+another way, *why not do it like you'd normally implement dependnet types*. That
+is a good question, and the problem arises only because of language features I
+did not cover in the above. The root problem is that modules allow sizes to be
+hidden from the caller. Consider:
 
 ```Futhark
 module M : {
