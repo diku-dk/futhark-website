@@ -213,3 +213,62 @@ generally based on syntactic substitutions, rather than environments. I *hope*
 that the current implementation, which is heavily environment-based, is
 fundamentally the right approach, although I have no real belief that there are
 no bugs left.
+
+## Addendum
+
+*Written after the original post.*
+
+Some commenters have asked why size parameters are not always passed explicitly
+by the caller, but sometimes have to be fished out of values. That is a good
+question, and the problem arises only because of language features I did not
+cover in the above. The root problem is that modules allow sizes to be hidden
+from the caller. Consider:
+
+```Futhark
+module M : {
+  type~ arr
+  val mk : i32 -> arr
+  val len : arr -> i64
+} = {
+    type~ arr = ?[n].[n]i32
+
+    def mk (x: i32) : arr = [x,x,x]
+
+    def unmk [n] (a: [n]i32) = n
+}
+```
+
+The `?[n].[n]i32` looks like a dependent pair, but it really isn't - there is no
+box that contains the `n` except for the array itself, and the `?[n]` part is
+just a type-level quantifier. Inside the module, arr really is just `[n]i32`,
+with a fresh but flexible `n` whenever it is instantiated, and there is little
+difference to just using `type arr [n] = [n]i32`. In particular, the run-time
+representation is identical. But to users of the module, the size is hidden:
+there is just a type M.arr. So if we do an application such as `M.unmk (M.mk
+123)`, at no point does the caller know that `unmk` actually has some size
+parameters that must be instantiated. Well, to be precise, during type checking
+the caller does not know (because `M.arr` is abstract), during evaluation we of
+course know concretely what `M` is, but we want to avoid re-doing any kind of
+type- or size-inference during evaluation, and instead stick to the annotations
+left by the type checker. In this case there are none, and hence there are two
+ways for size parameters to receive their values:
+
+1. They are fished out of values that actually contain things of the
+   corresponding size. This is how I usually explain the model, because it
+   resembles how you program in language that don't have size types, and it's
+   fairly clear why it works.
+
+2. They are passed by the caller of the function
+
+If we did not have ways to hide sizes across function calls, then option 2 would
+always work. But, well, unfortunately we do. (There are also ways that do not
+involve modules, but those examples are even more convoluted.)
+
+This also would not happen if we used conventional dependent products to
+represent types such as `?[n].[n]i32` as a special kind of *value*, as in
+dependently typed languages. This was a choice we made when we designed the size
+type system - in some sense, the compiler automatically wraps and unwraps
+dependent products, to provide a programming experience similar to a
+conventional language. Perhaps we got this one right - that really depends on
+whether the semantic mess ever becomes something that bothers the Futhark
+programmers.
