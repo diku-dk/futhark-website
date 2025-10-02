@@ -229,7 +229,7 @@ hidden from the caller. Consider:
 module M : {
   type~ arr
   val mk : i32 -> arr
-  val len : arr -> i64
+  val unmk : arr -> i64
 } = {
     type~ arr = ?[n].[n]i32
 
