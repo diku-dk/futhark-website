@@ -110,7 +110,7 @@ a function to an array literal) from `x[i]` (indexing an array). [The
 solution we decided
 upon](https://futhark-lang.org/blog/2016-12-09-two-syntax-design-problems.html#array-indexing)
 is for the lexer to produce a different token, `INDEXING` when a `[`
-follos an identifier. And indeed, we find 3626 occurrences of
+follows an identifier. And indeed, we find 3626 occurrences of
 `INDEXING` in the token list. This still doesn't quite add up, but we
 also use a similar trick to detect `#[` (for
 [attributes](https://futhark-lang.org/blog/2020-06-28-attributes-in-futhark.html)),
