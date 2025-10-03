@@ -220,7 +220,7 @@ no bugs left.
 
 Some commenters have asked why size parameters are not always passed explicitly
 by the caller, but sometimes have to be fished out of values. Or putting it
-another way, *why not do it like you'd normally implement dependnet types*. That
+another way, *why not do it like you'd normally implement dependent types*. That
 is a good question, and the problem arises only because of language features I
 did not cover in the above. The root problem is that modules allow sizes to be
 hidden from the caller. Consider:
