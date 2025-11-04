@@ -80,7 +80,7 @@ functions entirely, and replace them with monomorphic versions in the
 per-type modules, as well as succinctly named top-level functions for
 the most common conversions.  Thus, to convert from, say, ``u8`` to
 ``i16``, you would now call the function ``u8`` in the ``i16`` module:
-``u16.u8``.  The Futhark basis library prelude (which is implicitly
+``i16.u8``.  The Futhark basis library prelude (which is implicitly
 imported by every Futhark program) was augmented with the following
 function definitions::
 
