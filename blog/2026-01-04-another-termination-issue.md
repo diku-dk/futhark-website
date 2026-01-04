@@ -1,5 +1,5 @@
 ---
-title: Another Termination Issue
+title: Another termination issue
 author: Troels Henriksen
 description: This time it is the interpreter that is doing something unexpected.
 ---
