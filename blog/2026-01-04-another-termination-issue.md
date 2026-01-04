@@ -6,7 +6,7 @@ description: This time it is the interpreter that is doing something unexpected.
 
 Futhark has a rather aggressively optimising compiler, and one of the things it
 will do most eagerly is remove code that it determines is not necessary, and
-move code that it things can benefit from being moved. This can result in
+move code that it thinks can benefit from being moved. This can result in
 unusual situations such as infinite loops becoming finite, or a program with
 out-of-bounds accesses or division-by-zero not failing at run-time. A couple of
 years ago [I wrote a blog post about the
