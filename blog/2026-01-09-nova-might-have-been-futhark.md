@@ -54,7 +54,7 @@ perspective. NOVA is benchmarked against hand-written CUDA programs and the
 the first Futhark papers. There is basically no difference between what NOVA
 tried to do (and largely achieved) and what Futhark did, but the NOVA paper was
 published a year before Futhark had its first embryonic GPU code generator. So
-why didn't we just ditch what we were doing and jump what we were doing? At the
+why didn't we just ditch what we were doing and build on Nova instead? At the
 time, we really didn't care about the language as such, only compiler
 optimisations - NOVA was published before Futhark was even named. The answers
 are a bit murky, ten years later, but I will try to give an answer based on my
