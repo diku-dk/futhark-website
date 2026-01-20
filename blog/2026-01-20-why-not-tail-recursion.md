@@ -4,6 +4,9 @@ author: Troels Henriksen
 description: Futhark has an unusual restriction on functions, but there is a good reason for it.
 ---
 
+*This post was inspired by [this discussion on
+/r/ProgrammingLanguages](https://www.reddit.com/r/ProgrammingLanguages/comments/1qgbq1i/why_not_tail_recursion/).*
+
 Futhark is unusual among functional programming languages in not allowing
 functions to be recursive. This is to some extent justified by Futhark being a
 parallel language, and recursive looping being an intrinsically sequential
