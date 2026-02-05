@@ -93,7 +93,7 @@ def or_scatter [n] (xs: [n]bool) =
 
 By Futhark's cost model, this function has *O(n)* work, but only *O(1)* span,
 meaning it should in some sense be faster, or at least scale better. Yet I am
-*deeply* suspicious of this, as it is essential a many-to-one communication,
+*deeply* suspicious of this, as it is essentially a many-to-one communication,
 which does not intuitively seem like it should be constant to be. Also, the GPU
 code that comes out of this will consist of many threads writing to the exact
 same spot in memory. This will work, because they all write the same `true`
@@ -125,7 +125,7 @@ account for a very rare worst case where you have a huge but very sparse
 histogram where all inputs update the same bin. Our students always end up
 hyperfixating on this because it messes up the complexity of their programs that
 use histograms, despite the students actually writing a [work-efficient
-logarithmic span implementation of generalised histogram as pair of their first
+logarithmic span implementation of generalised histogram as part of their first
 assignment](https://github.com/diku-dk/dpp-e2025-pub/blob/main/weekly-1/1.pdf)
 (but which we do not use in the compiler because its constant factors are much
 worse in all non-pathological cases).
