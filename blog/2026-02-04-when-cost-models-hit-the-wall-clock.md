@@ -1,7 +1,7 @@
 ---
 title: When cost models hit the wall clock
 author: Troels Henriksen
-description: A long time since I wrote one of these.
+description: A comparison between the theroetical performance of a program and the achieved performance.
 ---
 
 When analysing algorithms, we use a cost model that assigns an abstract "cost".
@@ -87,7 +87,7 @@ writes that would be out-of-bounds. The trick is to scatter into a
 *single-element array*, and turn non-true values into invalid indexes:
 
 ```Futhark
-entry or_scatter [n] (xs: [n]bool) =
+def or_scatter [n] (xs: [n]bool) =
   head (scatter [false] (map (\x -> if x then 0 else 1) xs) xs)
 ```
 
