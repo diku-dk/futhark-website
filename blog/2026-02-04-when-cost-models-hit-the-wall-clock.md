@@ -1,7 +1,7 @@
 ---
 title: When cost models hit the wall clock
 author: Troels Henriksen
-description: A comparison between the theroetical performance of a program and the achieved performance.
+description: A comparison between the theoretical performance of a program and the achieved performance.
 ---
 
 When analysing algorithms, we use a cost model that assigns an abstract "cost".
