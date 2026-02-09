@@ -112,6 +112,15 @@ symbolise a language that is fast but perhaps also a little crude, it also makes
 it inviting for people of *varying* artistic talent to make their own
 contributions.
 
+One way we exploit this bounty of hedgehogs is that we put it on mugs and award
+them to do students who do projects for us, give them to people who visit us, or
+put them in the kitchens of other universities when we visit them:
+
+![Desirable trophies](/images/mugs.png)
+
+I think more people drink from our mugs than read our papers. This is called
+impact hacking.
+
 I feel I should also make clear, once and for all, that I am not actually
 particularly fond of Sonic. While I have played the games a bit, I do not think
 they are particularly good. I didn't even have a Sega console as a child, but
