@@ -2,9 +2,10 @@
 title: Gallery of Hedgehogs
 ---
 
-Any image of a blue hedgehog is a Futhark logo, but other colours are welcome
-too. Some of the ones below we stole from cyberspace, but most have been donated
-by various talented artists. We welcome further contributions!
+[Any image of a blue hedgehog is a Futhark
+logo](/blog/2026-02-09-hedgehogs.html), but other colours are welcome too. Some
+of the ones below we stole from cyberspace, but most have been donated by
+various talented artists. We welcome further contributions!
 
 ## Stolen from cyberspace
 
