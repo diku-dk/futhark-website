@@ -33,6 +33,8 @@ main = do
   hakyllWith config $ do
     match "images/*" static
 
+    match "agitprop/*" static
+
     match "skylighting/*" static
 
     match "robots.txt" static
@@ -58,7 +60,8 @@ main = do
             "index.md",
             "examples.md",
             "license.md",
-            "acknowledgements.md"
+            "acknowledgements.md",
+            "hedgehogs.md"
           ]
       )
       $ do

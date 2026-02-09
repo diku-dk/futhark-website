@@ -37,6 +37,8 @@ getting involved:
     Github](https://github.com/diku-dk/futhark-website) and probably has
     room for improvement.
 
+-   **Draw a hedgehog!** [We like hedgehogs.](/hedgehogs.html)
+
 Furthermore, there is a `#futhark` IRC channel on
 [Libera](https://libera.chat/), and
 [/r/futhark](https://www.reddit.com/r/futhark/) on Reddit, and a
