@@ -96,7 +96,7 @@ it and polish it up.
 
 After this, Futhark started getting a bit of recognition, and we regularly used
 pictures of Sonic in presentations and teaching and such. [I characterised
-Futhark as a grumpy desert hedgehog in on of my favourite blog
+Futhark as a grumpy desert hedgehog in one of my favourite blog
 posts.](2018-06-18-designing-a-programming-language-for-the-desert.html)
 The students in our [course on Data Parallel
 Programming](https://github.com/diku-dk/dpp-e2025-pub) are encouraged to draw
