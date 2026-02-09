@@ -41,3 +41,6 @@ Furthermore, there is a `#futhark` IRC channel on
 [Libera](https://libera.chat/), and
 [/r/futhark](https://www.reddit.com/r/futhark/) on Reddit, and a
 [channel on gitter.im](https://gitter.im/futhark-lang/Lobby).
+
+If you are a large funding organisation, then you may also want to [give us
+funding](acknowledgements.html).
