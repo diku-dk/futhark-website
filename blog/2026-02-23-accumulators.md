@@ -131,7 +131,7 @@ values of `is`. As with scalars, the cotangents of an array `xs` is represented
 by an array `xs_ct`, and similarly for `ys`/`ys_ct`. We need to update the
 elements of `xs_ct` based on the values of `ys_ct`, but also while taking into
 account which elements of `xs` contributed to each value of `ys`. Supposing `is`
-is of length `n`, then in in imperative notation it is not so difficult to
+is of length `n`, then in imperative notation it is not so difficult to
 express this:
 
 ```
