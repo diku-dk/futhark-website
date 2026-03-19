@@ -72,7 +72,7 @@ is some input where `b=0, d!=0`?  Then the non-optimised program will
 perform a catastrophic division by zero, while the optimised program
 will terminate successfully.  This is a deviation from our core
 principle that optimisation should not change the program result.  Yet
-is awfully inconvenient for the compiler to preserve all
+it is awfully inconvenient for the compiler to preserve all
 nontermination, since it can lurk behind any function call.  Also, if
 we care to preserve nontermination, we may also desire to preserve the
 *kind* of nontermination - an infinite loop is distinct from an
@@ -88,7 +88,7 @@ valid optimisation to state that *if* `p(x)` terminates with some
 value `v`, then `p_opt(x)` must terminate with that same value `v`.
 If `p(x)` does not terminate, then `p_opt(x)` may or may not terminate
 with a value.  In truth, I would prefer a slightly stronger statement
-that constraints the values that `p_opt(x)` may produce - after all,
+that constrains the values that `p_opt(x)` may produce - after all,
 it is not allowed to do *anything*.  We do not wish to join the
 wild ride of C-style undefined behaviour.  So far it is not yet clear
 to how to succinctly and precisely constrain the behaviour of
