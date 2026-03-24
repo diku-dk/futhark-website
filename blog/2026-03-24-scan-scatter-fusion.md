@@ -51,7 +51,7 @@ into a single parallel operation. For example,
 
 ```Futhark
 (map (\x -> x + 2) xs,
- map (\s -> x * 2) xs)
+ map (\x -> x * 2) xs)
 ```
 
 could be turned into
@@ -154,10 +154,10 @@ for j < n:
 
 That is, `scatter xs is vs` is a kind of parallel [in-place
 update](2022-06-13-uniqueness-types.html): we update the array `xs` at the
-positions stored in `is` with the values in `vs` and return the updated aray. As
-a convenient special case, out-of-bounds writes are ignored. This is just what
-we need for filtering! Based on the arrays computed above, we can produce the
-final result as follows:
+positions stored in `is` with the values in `vs` and return the updated array.
+As a convenient special case, out-of-bounds writes are ignored. This is just
+what we need for filtering! Based on the arrays computed above, we can produce
+the final result as follows:
 
 ```Futhark
 scatter (replicate (last offsets1) 0)
@@ -194,7 +194,9 @@ The central technique is using `scan` to compute some indexes that are then
 passed to a `scatter`. This is a pattern that occurs in many similar functions,
 such as `partition` and `filter`. And more generally, it occurs when
 implementing complicated parallel algorithms, either directly or as a result of
-[flattening](https://en.wikipedia.org/wiki/Flattening_transformation).
+[flattening](https://en.wikipedia.org/wiki/Flattening_transformation). Therefore
+we want to handle it efficiently, in particular, we want to avoid intermediate
+results through fusion.
 
 ## Fusion in filter
 
@@ -207,8 +209,9 @@ tricky, as `keep` is used both as the input to `scatter` (after the first step
 of fusion, anyway) but also as input to the `scan`, and the result of the `scan`
 is used to compute `num_to_keep` which is a [control
 dependency](https://en.wikipedia.org/wiki/Control_dependency) on the `scatter`.
-That is, we need the result of the `scan` before we even know whether to run the
-`scatter`. We also use `last offsets1` to compute the target array.
+Essentially, we need the result of the `scan` before we even know whether to run
+the `scatter` at all, which prevents the two from ever being fused. We also use
+`last offsets1` to compute the target array.
 
 Accessing intermediate results in the way we do in `filter` is called a fusion
 "hindrance", and is something to be avoided. We can write the function in a
@@ -234,11 +237,11 @@ def filter [n] 'a (p: a -> bool) (as: [n]a) : []a =
 
 Now we over-allocate the scratch array for the result by copying the input,
 meaning we don't need to look at `offsets1` before the very end, in order to
-figure out how many elements of the result we actually want. One problem is that
-we have to make all of `offsets1` available just so that `last` can read the
-final element, which we will return to. But let us ignore that problem for now
-by considering a slightly simpler function where we return the full `res` array,
-rather than just the prefix with the filtered elements:
+figure out how many elements of the result (`filter_size`) we actually want. One
+problem is that we have to make all of `offsets1` available just so that `last`
+can read the final element. We will return to this issue, but let us ignore it
+for now. To focus on one subproblem at a time, we define `semifilter`, which
+elides the computation of `filter_size` and merely returns the full `res` array:
 
 ```Futhark
 def semifilter [n] 'a (p: a -> bool) (as: [n]a) : []a =
@@ -450,8 +453,8 @@ community, and so their (e.g., *my*) opinion carries weight.
 
 The whole point of this exercise was performance, so let us talk performance.
 First a disclaimer: at the time this blog post is written, the implementation is
-not unfinished, and performance has unsurprisingly turned out to depend heavily
-on how certain parameters related to efficient sequentialisation are configured.
+not finished, and performance has unsurprisingly turned out to depend heavily on
+how certain parameters related to efficient sequentialisation are configured.
 Ultimately these must be tuned (preferably
 [automatically](https://github.com/diku-dk/futhark/issues/2402)) for the
 hardware and program. I have not done so here because I am ~~lazy~~ concerned
@@ -481,3 +484,21 @@ of these cases must be investigated. In particular, [incremental
 flattening](2019-02-18-futhark-at-ppopp.html) is always a bountiful source of
 dubious heuristics that [needed at least one workaround in a
 benchmark](https://github.com/diku-dk/futhark-benchmarks/commit/f85c110601055b7c0a8fd143d9c490cb8fc6e5c8).
+
+## Conclusions
+
+Fusing `scan` and `scatter` is a useful thing to do for a data parallel language
+that wants to efficiently run programs that perform partitioning or filtering of
+arrays. For Futhark we found an approach that was not particularly invasive, as
+it can be subsumed into `map` fusion with accumulators. We can only fuse
+"chains" of operations that contain a single `scan` - this is not a fundamental
+algorithmic restriction, and to my knowledge the
+[Accelerate](http://acceleratehs.org/) folks are working on a representation
+that can handle any sequence of `scan`s and `scatter`s (with some restrictions).
+The question is which problems exist that contain such patterns, and whether
+they are worth the implementation complexity. I have actually become quite
+interested in performing a study of how data parallel operations are composed in
+real programs, in order to motivate new directions for fusion. It would be
+*particularly* interesting to do this in a polyglot setting, to study the
+differences between how programmers express algorithms in different data
+parallel languages.
