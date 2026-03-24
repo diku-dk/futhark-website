@@ -64,7 +64,7 @@ which means we have to read `xs` only once instead of twice. This example is
 cluttered by the need for `unzip` - in the actual Futhark compiler, we use a
 slightly different representation where operations such as `map` can take an
 arbitrary number of inputs, and where the result is implicitly `unzip`ed, to
-simply internal bookkeeping.
+simplify internal bookkeeping.
 
 There is also a combination of the two called *diagonal fusion*, but it requires
 explaining fusion in terms of dataflow graphs, and is not necessary to
@@ -311,7 +311,8 @@ something to the result of a `scan` before writing the result array.
 The `scan-map` case was simple enough - we just tacked a final lambda on to our
 internal representation of scans, which starts out as identity. While the
 internal representation cannot be exactly be represented in the source language,
-it semantically resembles this function:
+we can define a function `maposcanomap` that resembles the the internal
+construct well enough to explain the idea:
 
 ```Futhark
 def maposcanomap [n] 'a 'b 'c 'd
@@ -486,6 +487,10 @@ of these cases must be investigated. In particular, [incremental
 flattening](2019-02-18-futhark-at-ppopp.html) is always a bountiful source of
 dubious heuristics that [needed at least one workaround in a
 benchmark](https://github.com/diku-dk/futhark-benchmarks/commit/f85c110601055b7c0a8fd143d9c490cb8fc6e5c8).
+
+While I am mostly concerned with parallel performance, I will note that the
+fused `filter` is compiled to a single loop when using the sequential `c`
+backend, quite similar to what you might write by hand.
 
 ## Conclusions
 
