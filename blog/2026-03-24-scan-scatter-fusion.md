@@ -96,7 +96,7 @@ One of the most important data parallel operations is
 [`scan`](../examples/scan-reduce.html). It computes the reductions of all
 prefixes of an array:
 
-```
+```Futhark
     scan (+) 0 [1, 2, 3, 4]
  == [reduce (+) 0 [1],
      reduce (+) 0 [1,2],
@@ -172,7 +172,7 @@ the indexes for the elements we wish to discard to `-1`. We can turn it into a
 generic function that is polymorphic in the predicate and element type, and
 which also handles empty arrays:
 
-```
+```Futhark
 def filter [n] 'a (p: a -> bool) (as: [n]a) : []a =
   let keep = map (\a -> if p a then 1 else 0) as
   let offsets1 = scan (+) 0 keep
@@ -423,7 +423,7 @@ another `scatter` that produces a single element array containing the equivalent
 of `last offsets1`, which we then retrieve. Specifically, I now compute
 `filter_size` like so:
 
-```
+```Futhark
   let filter_size =
     (scatter [0]
              (tabulate n (\j -> if j == n - 1 then 0 else -1))
@@ -431,19 +431,21 @@ of `last offsets1`, which we then retrieve. Specifically, I now compute
 ```
 
 The trick is that we write to index `-1` for all elements except the one that
-corresponds to `last offsets1`, which is written to index 0. This `scatter`
-fuses horizontally and vertically with the others that share the same input
-array (`offsets1`).
+corresponds to `last offsets1`, which is written to index 0. We then retrieve
+this element by indexing. The `scatter` fuses horizontally and vertically with
+the others that share the same input array (`offsets1`), ultimately producing
+two arrays: the size-`n` `res` array, and the size-1 array containing
+`filter_size`.
 
-I was a bit unsure at first of whether this was merely a hack that exploited
-internal compiler details. Most people I showed it to initially thought it was
-ugly. But I eventually convinced myself that they are all wrong. While this *is*
-indisputably very subtle and tricky code, it does not rely on arbitrary
-implementation choices, but falls out quite naturally from the fusion algebra.
-The main thing to keep in mind when writing fusible code is to avoid using
-intermediate results in a scalar way (such as by indexing), and to ensure that
-all input arrays have the same size. This code merely follows these rules. The
-downside of working with an obscure programming paradigm ([higher order data
+I was a bit unsure at first of whether this approach was merely a hack that
+exploited internal compiler details. Most people I showed it to initially
+thought it was ugly. But I eventually convinced myself that they are all wrong.
+While this *is* indisputably very subtle and tricky code, it does not rely on
+arbitrary implementation choices, but falls out quite naturally from the fusion
+algebra. The main thing to keep in mind when writing fusible code is to avoid
+using intermediate results in a scalar way (such as by indexing), and to ensure
+that all input arrays have the same size. This code merely follows these rules.
+The downside of working with an obscure programming paradigm ([higher order data
 parallel programming](2020-05-03-higher-order-parallel-programming.html)) is
 that there are not many yardsticks for what good code looks like. The upside is
 that any programmer in the community constitutes a significant fraction of the
