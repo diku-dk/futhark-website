@@ -342,13 +342,13 @@ end before writing the results. Extending the fusion algebra was easy, as it
 just involves appending things to the `g` function - very similar to `map-map`
 fusion.
 
-The trouble arose when trying to extend this to also handling the `scatter`
-case. In the Futhark source language, `scatter` is a primitive ([in some sense
-it has to be](2019-04-10-what-is-the-minimal-basis-for-futhark.html)), and in
-the IR it was sort of tacked onto our representation for `map` in a way that was
-difficult to extend to `scan`. For prototyping, we simply invented an ad-hoc IR
-construct for "scan fused with `scatter`", but I was very concerned about
-bolting it onto our general representation for fused operations.
+The trouble arose when trying to extend this to also handle the `scatter` case.
+In the Futhark source language, `scatter` is a primitive ([in some sense it has
+to be](2019-04-10-what-is-the-minimal-basis-for-futhark.html)), and in the IR it
+was sort of tacked onto our representation for `map` in a way that was difficult
+to extend to `scan`. For prototyping, we simply invented an ad-hoc IR construct
+for "scan fused with `scatter`", but I was very concerned about bolting it onto
+our general representation for fused operations.
 
 Fortunately, Cosmin Oancea made a crucial observation: why do we even have
 `scatter` in the IR at all? Why not simply express it in terms of
