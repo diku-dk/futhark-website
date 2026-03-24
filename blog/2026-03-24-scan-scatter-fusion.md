@@ -489,6 +489,14 @@ flattening](2019-02-18-futhark-at-ppopp.html) is always a bountiful source of
 dubious heuristics that [needed at least one workaround in a
 benchmark](https://github.com/diku-dk/futhark-benchmarks/commit/f85c110601055b7c0a8fd143d9c490cb8fc6e5c8).
 
+Also, I should note that we have still not reached *quite* the performance of
+some CUDA implementations filtering we wrote by hand. We are still investigating
+the cause, but it seems related to low level issues related to register usage
+and efficiently passing values from the first function to the second function
+(the `c` type in `maposcanomap`). Hopefully we can address this, but I am OK
+with postponing it until later, as the issue is unrelated to IR design and
+fusion rules.
+
 While I am mostly concerned with parallel performance, I will note that the
 fused `filter` is compiled to a single loop when using the sequential `c`
 backend, quite similar to what you might write by hand.
