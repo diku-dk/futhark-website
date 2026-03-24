@@ -446,6 +446,7 @@ arbitrary implementation choices, but falls out quite naturally from the fusion
 algebra. The main thing to keep in mind when writing fusible code is to avoid
 using intermediate results in a scalar way (such as by indexing), and to ensure
 that all input arrays have the same size. This code merely follows these rules.
+
 The downside of working with an obscure programming paradigm ([higher order data
 parallel programming](2020-05-03-higher-order-parallel-programming.html)) is
 that there are not many yardsticks for what good code looks like. The upside is
@@ -502,6 +503,7 @@ it can be subsumed into `map` fusion with accumulators. We can only fuse
 algorithmic restriction, and to my knowledge the
 [Accelerate](http://acceleratehs.org/) folks are working on a representation
 that can handle any sequence of `scan`s and `scatter`s (with some restrictions).
+
 The question is which problems exist that contain such patterns, and whether
 they are worth the implementation complexity. I have actually become quite
 interested in performing a study of how data parallel operations are composed in
