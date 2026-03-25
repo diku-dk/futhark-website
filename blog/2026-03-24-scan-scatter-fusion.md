@@ -509,7 +509,7 @@ arrays. For Futhark we found an approach that was not particularly invasive, as
 it can be subsumed into `map` fusion with accumulators. We can only fuse
 "chains" of operations that contain a single `scan` - this is not a fundamental
 algorithmic restriction, and to my knowledge the
-[Accelerate](http://acceleratehs.org/) folks are working on a representation
+[Accelerate](http://www.acceleratehs.org/) folks are working on a representation
 that can handle any sequence of `scan`s and `scatter`s (with some restrictions).
 
 The question is which problems exist that contain such patterns, and whether
