@@ -81,7 +81,7 @@ should treat as such? Some options:
    entry prop_rev_rev = ...
    ```
 
-5. A magical comment somewhere in the file indicating properties.
+5. A magical comment somewhere in the file listing all properties.
 
 I dislike option 1 because it is too implicit, and option 2 because I like
 Futhark program files to be self-containing and do the right thing by default.
