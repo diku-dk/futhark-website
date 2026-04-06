@@ -149,6 +149,9 @@ to build or show something.
 
 # Selected Student Projects
 
+- Aziz Rmadi: **Unifying Paths for Updates and Sections in Futhark**, MSc
+  project, DIKU, March 2025. ([pdf](student-projects/rmadi-pocs.pdf))
+
 - Shatin Nguyen, Theis Aggerholm Bernhart Baasch, Oliver Fontaine Raaschou:
   **Empirically comparing high level and low level AD**, BSc thesis, DIKU,
   June 2025. ([pdf](student-projects/nguyen-baasch-raaschou-bsc-thesis.pdf))
