@@ -37,4 +37,4 @@ def xs = scatter (replicate 7 0) [0, 2, 4, 6] [1, 2, 3, 4]
 --
 -- # See also
 --
--- [Scattering the result of a filter](filter-scatter.html).
+-- [In-place updates](inplace.html), [Scattering the result of a filter](filter-scatter.html).
