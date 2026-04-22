@@ -27,11 +27,11 @@ somewhat fuzzily defined discipline of programming with things such as:
 
 Not all languages commonly called "functional" have all these features, and not
 all of them are completely strict about it - many ostensibly functional
-languages do not actually restrict side effect, and some do not have static type
-systems, and that is *fine*. This is not the thing I want to quibble over. No,
-it is actually the last point that distinguishes value-oriented from functional
-programming. Functional programming originally (and to an extent, still)
-emphasises the use of functions as *data*.
+languages do not actually restrict side effects, and some do not have static
+type systems, and that is *fine*. This is not the thing I want to quibble over.
+No, it is actually the last point that distinguishes value-oriented from
+functional programming: functional programming originally (and to an extent,
+still) emphasises the use of functions as *data*.
 
 One of the earliest papers comparing Haskell against other languages, the
 evocatively named [Haskell vs. Ada vs. C++ vs. Awk
@@ -55,8 +55,8 @@ also comes with limitations. For example, when taking the union of two areas
 represented as functions, we cannot efficiently check if one area is entirely
 contained in the other, and not construct a new closure in that case. But worse,
 we also cannot (usually) *print* the function to look at and understand its
-structure. I am a *big* fan of having a language for looking at the state of a
-computation, and the *ideal* language for doing so is the language that the
+structure. I am a *big* fan of having a notation for looking at the state of a
+computation, and the *ideal* notation for doing so is the language that the
 original program was written in. I think there is great value in being able to
 (at least conceptually) interrupt a program at any time, point to any variable
 in scope, and print out its value in the same notation that you might enter into
@@ -64,20 +64,20 @@ a file or a REPL. (There's some fine print about opaque representations and
 constructors that I'll ignore - this is a conceptual discussion.)
 
 What does this capability require? Well, the main thing is that all values must
-have an externally comprehensible notation. For (good) technical reasons, functions
-usually do not have that capability in most languages, although exceptions
-exist. Another tricky thing to handle is *references* - once these exist, a
-value is not completely self-sufficient, but is only meaningful in relation to
-some context from which the value cannot be removed. Mutability is not
-*necessarily* a problem, e.g., a mutable array is harmless, but if widely shared
-in a mutable way, simply looking at the *values* without also considering
+have an externally comprehensible notation. For (good) technical reasons,
+functions usually do not have that capability in most languages, although
+exceptions exist. Another tricky thing to handle is *references* - once these
+exist, a value is not completely self-contained, but is only meaningful in
+relation to some context from which the value cannot be removed. Mutability is
+not *necessarily* a problem, e.g., a mutable array is harmless, but if widely
+shared in a mutable way, simply looking at the *values* without also considering
 *object identity* may give a misleading view of the state of a computation.
 *Aliasing* of mutable values is what really adds the complexity here.
 
 To me that is the essence of value-oriented programming: structuring programs as
 functions that accept plain values and produce plain values, such that the
 behaviour of the program can be understood simply by looking at how the values
-float about. It's not a critical problem if some functions are impure, or there
+float around. It's not a critical problem if some functions are impure, or there
 is some global state somewhere, but it should be minimised. My experience is
 that most of the benefit of functional programming comes from *this* style of
 programming, rather than the more fancy uses of functions. Indeed, I think it is
@@ -105,7 +105,8 @@ Compare with APL:
 ```
 
 It is perhaps a minor difference, but a man is entitled to his idiosyncratic pet
-peeves.
+peeves. We can be friends until the revolution, and after that it gets
+difficult.
 
 ## In Futhark
 
