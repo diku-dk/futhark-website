@@ -12,9 +12,9 @@ course, [Fritz Henglein](https://hjemmesider.diku.dk/~henglein/), and [it's one
 of those terms that just kept bouncing around in my head over the
 years](2026-01-16-are-arrays-functions.html). In this post I will try to write
 down my thoughts on what distinguishes value-oriented programming from
-functional programming, why Futhark is really a value-oriented programming, why
-that is useful both for debugging and for explaining programs, and what a dead
-Dutch computer scientist might think about it all.
+functional programming, why Futhark is really a value-oriented programming
+language, why that is useful both for debugging and for explaining programs, and
+what a dead and Dutch computer scientist might think about it all.
 
 For the purpose of this post, let us understand functional programming as the
 somewhat fuzzily defined discipline of programming with things such as:
