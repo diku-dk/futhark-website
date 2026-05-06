@@ -1,5 +1,5 @@
 -- ---
--- title: Count trailing zeroes
+-- title: Count trailing zeros
 -- description: A fun little parallel programming problem, complete with property-based testing.
 -- ---
 --
