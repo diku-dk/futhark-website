@@ -84,7 +84,9 @@ def combine (a: result) (b: result) : result =
   then { len = a.len + b.len
        , trailing = a.trailing + b.trailing
        }
-  else b
+  else { len = a.len + b.len
+       , trailing = b.trailing
+       }
 ```
 
 This function is actually associative, and has `empty` as its neutral
