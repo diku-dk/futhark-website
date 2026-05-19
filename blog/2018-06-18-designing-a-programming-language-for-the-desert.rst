@@ -181,4 +181,4 @@ the world.  Rather, Futhark is a grumpy `desert hedgehog
 <https://en.wikipedia.org/wiki/Desert_hedgehog>`_, bristling with
 spikes, thriving even under the limitations of its harsh environment,
 and spending its nights `hunting scorpions
-<https://www.youtube.com/watch?v=tEznitJXiM0>`_.
+<https://www.youtube.com/watch?v=Mg9cSjD9vGY>`_.
