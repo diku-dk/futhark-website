@@ -241,6 +241,8 @@ But the `data.in.summary` file does produce a table that tells us 50% of the
 run-time is spent in a cost centre labeled `copy_host_to_dev`, executed 20
 times, which is somewhat unexpected, as this is the name of the cost centre that
 copies CPU arrays to the GPU. That probably merits further investigation.
+(Update: [this turned out to be an error in the benchmarking
+tool](https://github.com/diku-dk/futhark/issues/2464).)
 
 ## Not using `futhark bench`
 
