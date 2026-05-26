@@ -1,10 +1,10 @@
--- # Evaluating polynomials
+-- # Evaluating polynomials with Horner's Method
 --
 -- A polynomial of the *n*th degree comprises *n* coefficients and can
 -- be evaluated at a specific value *x* as follows:
 
 def poly as x =
-  f64.sum (map2 (*) as (map (x**) (map f64.i64 (indices as))))
+  f64.sum (map2 (*) as (map (x **) (map f64.i64 (indices as))))
 
 -- [Horner's method](https://en.wikipedia.org/wiki/Horner%27s_method)
 -- is a well-known technique for evaluating polynomials using fewer

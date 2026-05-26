@@ -86,7 +86,7 @@ for plotting or rendering graphics.
 -   [AD with dual numbers](examples/dual-numbers.html)
 -   [Variance](examples/variance.html)
 -   [Matching parentheses](examples/parens.html)
--   [Evaluating polynomials](examples/polynomials.html)
+-   [Evaluating polynomials with Horner's Method](examples/polynomials.html)
 -   [Line fitting](examples/line-fitting.html)
 -   [Decoding MNIST data files](examples/mnist.html)
 
