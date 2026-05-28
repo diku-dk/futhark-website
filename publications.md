@@ -8,6 +8,11 @@ chronological order.
 
 # Papers on language design and implementation
 
+- **Verifying Array Properties in Pure Data-Parallel Programs**. Nikolaj Hey
+  Hinnerskov, Robert Schenck, Cosmin E. Oancea. [PLDI
+  26](https://pldi26.sigplan.org/) ([pdf](publications/pldi26.pdf),
+  [appendix](publications/pldi26-appendix.pdf)).
+
 - **Two Things I Did**.
   Robert Schenck. PhD thesis, 2024. ([pdf](publications/two-things-robert-did.pdf), [bib](publications/two-things-robert-did.bib)).
 
