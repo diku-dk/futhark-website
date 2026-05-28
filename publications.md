@@ -10,122 +10,151 @@ chronological order.
 
 - **Verifying Array Properties in Pure Data-Parallel Programs**. Nikolaj Hey
   Hinnerskov, Robert Schenck, Cosmin E. Oancea. [PLDI
-  26](https://pldi26.sigplan.org/) ([pdf](publications/pldi26.pdf),
+  '26](https://pldi26.sigplan.org/) ([pdf](publications/pldi26.pdf),
   [appendix](publications/pldi26-appendix.pdf)).
 
-- **Two Things I Did**.
-  Robert Schenck. PhD thesis, 2024. ([pdf](publications/two-things-robert-did.pdf), [bib](publications/two-things-robert-did.bib)).
+- **Two Things I Did**.  Robert Schenck. PhD
+  thesis, 2024. ([pdf](publications/two-things-robert-did.pdf),
+  [bib](publications/two-things-robert-did.bib)).
 
 - **AUTOMAP: Inferring Rank-Polymorphic Function Applications with Integer
   Linear Programming**. Robert Schenck, Nikolaj Hey Hinnerskov, Troels
-  Henriksen, Magnus Madsen, Martin Elsman. [OOPSLA 24](https://2024.splashcon.org/track/splash-2024-oopsla) ([pdf](publications/oopsla24.pdf), [bib](publications/oopsla24.bib), [blog](blog/2024-06-17-automap.html)).
+  Henriksen, Magnus Madsen, Martin Elsman. [OOPSLA
+  '24](https://2024.splashcon.org/track/splash-2024-oopsla)
+  ([pdf](publications/oopsla24.pdf), [bib](publications/oopsla24.bib),
+  [blog](blog/2024-06-17-automap.html)).
 
 - **Reverse-Mode AD of Multi-Reduce and Scan in Futhark**. Lotte M. Bruun, Ulrik
   S. Larsen, Nikolaj H. Hinnerskov and Cosmin E. Oancea. [IFL
-  23](https://ifl23.github.io/) ([pdf](publications/ifl23-ad.pdf),
+  '23](https://ifl23.github.io/) ([pdf](publications/ifl23-ad.pdf),
   [bib](publications/ifl23-ad.bib))
 
-- **A Comparison of OpenCL, CUDA, and HIP as Compilation Targets for a Functional Array Language**. Troels Henriksen. [FProPer 2024](https://icfp24.sigplan.org/home/fproper-2024) ([pdf](publications/fproper24.pdf), [bib](publications/fproper24.bib), [blog](blog/2024-07-17-opencl-cuda-hip.html)).
+- **A Comparison of OpenCL, CUDA, and HIP as Compilation Targets for a
+  Functional Array Language**. Troels Henriksen. [FProPer
+  '24](https://icfp24.sigplan.org/home/fproper-2024)
+  ([pdf](publications/fproper24.pdf), [bib](publications/fproper24.bib),
+  [blog](blog/2024-07-17-opencl-cuda-hip.html)).
 
-- **Static and Dynamic Analyses for Efficient GPU Execution**.
-Philip Munksgaard.  PhD thesis, 2023.
-([pdf](publications/Philip_Munksgaard_Thesis.pdf),
-[bib](publications/Philip_Munksgaard_Thesis.bib)).
+- **Static and Dynamic Analyses for Efficient GPU Execution**.  Philip
+  Munksgaard.  PhD thesis, 2023.
+  ([pdf](publications/Philip_Munksgaard_Thesis.pdf),
+  [bib](publications/Philip_Munksgaard_Thesis.bib)).
 
-- **Shape-Constrained Array Programming with Size-Dependent Types**.
-  Lubin Bailly, Troels Henriksen, Martin Elsman.  [FHPNC
-  23](https://icfp23.sigplan.org/home/FHPNC-2023)
+- **Shape-Constrained Array Programming with Size-Dependent Types**.  Lubin
+  Bailly, Troels Henriksen, Martin Elsman. [FHPNC
+  '23](https://icfp23.sigplan.org/home/FHPNC-2023)
   ([pdf](publications/fhpnc23.pdf), [bib](publications/fhpnc23.bib)).
 
-- **Compiling a Functional Array Language with Non-Semantic Memory Information**. Philip Munksgaard, Cosmin Oancea, Troels Henriksen. [IFL 22](https://ifl22.github.io/) ([pdf](publications/ifl22.pdf), [bib](publications/ifl22.bib)).
+- **Compiling a Functional Array Language with Non-Semantic Memory
+  Information**. Philip Munksgaard, Cosmin Oancea, Troels Henriksen. [IFL
+  '22](https://ifl22.github.io/) ([pdf](publications/ifl22.pdf),
+  [bib](publications/ifl22.bib)).
 
-- **Memory Optimizations in an Array Language**. Philip Munksgaard, Troels Henriksen, Ponnuswamy Sadayappan, Cosmin Oancea.  [SC 22](https://sc22.supercomputing.org/) ([pdf](publications/sc22-mem.pdf), [bib](publications/sc22-mem.bib), [artifact](https://github.com/diku-dk/futhark-mem-sc22), [blog (1)](/blog/2022-11-03-short-circuiting.html), [blog (2)](/blog/2022-12-06-in-place-map.html))
+- **Memory Optimizations in an Array Language**. Philip Munksgaard, Troels
+  Henriksen, Ponnuswamy Sadayappan, Cosmin Oancea.  [SC
+  '22](https://sc22.supercomputing.org/) ([pdf](publications/sc22-mem.pdf),
+  [bib](publications/sc22-mem.bib),
+  [artifact](https://github.com/diku-dk/futhark-mem-sc22), [blog
+  (1)](/blog/2022-11-03-short-circuiting.html), [blog
+  (2)](/blog/2022-12-06-in-place-map.html))
 
-- **AD for an Array Language with Nested Parallelism**. Robert Schenck, Ola Rønning, Troels Henriksen, Cosmin Oancea.  [SC 22](https://sc22.supercomputing.org/) ([pdf](publications/sc22-ad.pdf), [bib](publications/sc22-ad.bib), [artifact](https://github.com/diku-dk/futhark-ad-sc22))
+- **AD for an Array Language with Nested Parallelism**. Robert Schenck, Ola
+  Rønning, Troels Henriksen, Cosmin Oancea.  [SC
+  '22](https://sc22.supercomputing.org/) ([pdf](publications/sc22-ad.pdf),
+  [bib](publications/sc22-ad.bib),
+  [artifact](https://github.com/diku-dk/futhark-ad-sc22))
 
 - **Dataset Sensitive Autotuning of Multi-Versioned Code based on Monotonic
   Properties**. Philip Munksgaard, Svend Lund Breddam, Troels Henriksen, Fabian
   Cristian Gieseke, Cosmin Oancea.  [TFP '21](http://tfp2021.org/)
-  ([pdf](publications/tfp21.pdf), [bib](publications/tfp21.bib), best paper award).
+  ([pdf](publications/tfp21.pdf), [bib](publications/tfp21.bib), best paper
+  award).
 
-- **Towards Size-Dependent Types for Array programming**. Troels
-  Henriksen, Martin Elsman.  [ARRAY
-  '21](https://pldi21.sigplan.org/home/ARRAY-2021)
+- **Towards Size-Dependent Types for Array programming**. Troels Henriksen,
+  Martin Elsman.  [ARRAY '21](https://pldi21.sigplan.org/home/ARRAY-2021)
   ([pdf](publications/array21.pdf), [bib](publications/array21.bib)).
 
 - **Compiling Generalized Histograms for GPU**. Troels Henriksen, Sune
   Hellfritzsch, Ponnuswamy Sadayappan, Cosmin Oancea.  [SC
-  '20](https://sc20.supercomputing.org/)
-  ([pdf](publications/sc20.pdf), [bib](publications/sc20.bib),
+  '20](https://sc20.supercomputing.org/) ([pdf](publications/sc20.pdf),
+  [bib](publications/sc20.bib),
   [artifact](https://github.com/diku-dk/futhark-sc20)).
 
 - **Bounds Checking on GPU**. Troels Henriksen.  [HLPP
-  '20](https://hlpp2020.dcc.fc.up.pt/)
-  ([pdf](publications/hlpp20.pdf), [bib](publications/hlpp20.bib)).
+  '20](https://hlpp2020.dcc.fc.up.pt/) ([pdf](publications/hlpp20.pdf),
+  [bib](publications/hlpp20.bib)).
 
-- **Compositional Deep Learning in Futhark**. Duc Minh Tran, Troels Henriksen, Martin Elsman. [FHPNC '19](https://icfp19.sigplan.org/home/FHPNC-2019)
-([pdf](publications/fhpnc19.pdf), [bib](publications/fhpnc19.bib), [code](https://github.com/HnimNart/deeplearning)).
+- **Compositional Deep Learning in Futhark**. Duc Minh Tran, Troels Henriksen,
+Martin Elsman. [FHPNC '19](https://icfp19.sigplan.org/home/FHPNC-2019)
+([pdf](publications/fhpnc19.pdf), [bib](publications/fhpnc19.bib),
+[code](https://github.com/HnimNart/deeplearning)).
 
-- **Data-Parallel Flattening by Expansion**. Martin Elsman, Troels Henriksen, Niels G. W. Serup.  [ARRAY '19](https://pldi19.sigplan.org/home/ARRAY-2019)
+- **Data-Parallel Flattening by Expansion**. Martin Elsman, Troels Henriksen,
+Niels G. W. Serup.  [ARRAY '19](https://pldi19.sigplan.org/home/ARRAY-2019)
 ([pdf](publications/array19.pdf), [bib](publications/array19.bib)).
 
-- **Incremental Flattening for Nested Data Parallelism**. Troels Henriksen, Frederik Thorøe, Martin Elsman, Cosmin Oancea. [PPOPP '19](https://ppopp19.sigplan.org/)
-([pdf](publications/ppopp19.pdf), [bib](publications/ppopp19.bib), [artifact](https://github.com/diku-dk/futhark-ppopp19), [blog](/blog/2019-02-18-futhark-at-ppopp.html)).
+- **Incremental Flattening for Nested Data Parallelism**. Troels Henriksen,
+Frederik Thorøe, Martin Elsman, Cosmin Oancea. [PPOPP
+'19](https://ppopp19.sigplan.org/) ([pdf](publications/ppopp19.pdf),
+[bib](publications/ppopp19.bib),
+[artifact](https://github.com/diku-dk/futhark-ppopp19),
+[blog](/blog/2019-02-18-futhark-at-ppopp.html)).
 
-- **High-Performance Defunctionalisation in Futhark**. Anders Kiel Hovgaard, Troels Henriksen, Martin Elsman. [TFP '18](http://www.cse.chalmers.se/~myreen/tfp2018/)
+- **High-Performance Defunctionalisation in Futhark**. Anders Kiel Hovgaard,
+Troels Henriksen, Martin Elsman. [TFP
+'18](http://www.cse.chalmers.se/~myreen/tfp2018/)
 ([pdf](publications/tfp18.pdf), [bib](publications/tfp18.bib))
 
-- **Static Interpretation of Higher-Order Modules in Futhark**. Martin Elsman, Troels Henriksen, Danil Annenkov, Cosmin Oancea. [ICFP '18](https://conf.researchr.org/home/icfp-2018)
-([pdf](publications/icfp18.pdf), [bib](publications/icfp18.bib))
+- **Static Interpretation of Higher-Order Modules in Futhark**. Martin Elsman,
+Troels Henriksen, Danil Annenkov, Cosmin Oancea. [ICFP
+'18](https://conf.researchr.org/home/icfp-2018) ([pdf](publications/icfp18.pdf),
+[bib](publications/icfp18.bib))
 
 - **Modular Acceleration: Tricky Cases of Functional High-Performance
 Computing**. Troels Henriksen, Martin Elsman, Cosmin Oancea. [FHPC
 '18](https://icfp18.sigplan.org/track/FHPC-2018-papers)
 ([pdf](publications/fhpc18.pdf), [bib](publications/fhpc18.bib)).
 
-- **Design and Implementation of the Futhark Programming Language**.
-Troels Henriksen.  PhD thesis
-([pdf](publications/troels-henriksen-phd-thesis.pdf),
+- **Design and Implementation of the Futhark Programming Language**.  Troels
+Henriksen.  PhD thesis ([pdf](publications/troels-henriksen-phd-thesis.pdf),
 [bib](publications/troels-henriksen-phd-thesis.bib)).
 
-- **Strategies for Regular Segmented Reductions on GPU**. Rasmus
-Wriedt Larsen, Troels Henriksen. [FHPC
+- **Strategies for Regular Segmented Reductions on GPU**. Rasmus Wriedt Larsen,
+Troels Henriksen. [FHPC
 '17](http://conf.researchr.org/track/FHPC-2017/FHPC-2017-papers)
 ([pdf](publications/fhpc17.pdf), [bib](publications/fhpc17.bib)).
 
-- **Futhark: Purely Functional GPU-Programming with Nested Parallelism
-and In-Place Array Updates**. Troels Henriksen, Niels G. W Serup,
-Martin Elsman, Fritz Henglein, Cosmin Oancea.  [PLDI
-'17](http://pldi17.sigplan.org/home) ([pdf](publications/pldi17.pdf),
-[bib](publications/pldi17.bib),
+- **Futhark: Purely Functional GPU-Programming with Nested Parallelism and
+In-Place Array Updates**. Troels Henriksen, Niels G. W Serup, Martin Elsman,
+Fritz Henglein, Cosmin Oancea.  [PLDI '17](http://pldi17.sigplan.org/home)
+([pdf](publications/pldi17.pdf), [bib](publications/pldi17.bib),
 [artifact](https://github.com/diku-dk/futhark-pldi17)).
 
 - **APL on GPUs - A TAIL from the Past, Scribbled in Futhark**. Troels
-Henriksen, Martin Dybdal, Henrik Urms, Anna Sofie Kiehn, Danil Gavin,
-Hjalte Abelskov, Martin Elsman, Cosmin Oancea.  [FHPC
+Henriksen, Martin Dybdal, Henrik Urms, Anna Sofie Kiehn, Danil Gavin, Hjalte
+Abelskov, Martin Elsman, Cosmin Oancea.  [FHPC
 '16](https://sites.google.com/site/fhpcworkshops/fhpc-2016)
 ([pdf](publications/fhpc16.pdf), [bib](publications/fhpc16.bib),
 [artifact](https://github.com/diku-dk/futhark-fhpc16)).
 
-- **Design and GPGPU Performance of Futhark's Redomap
-Construct**. Troels Henriksen, Ken Friis Larsen, Cosmin Oancea.
-[ARRAY '16](http://conf.researchr.org/track/pldi-2016/ARRAY-2016)
+- **Design and GPGPU Performance of Futhark's Redomap Construct**. Troels
+Henriksen, Ken Friis Larsen, Cosmin Oancea.  [ARRAY
+'16](http://conf.researchr.org/track/pldi-2016/ARRAY-2016)
 ([pdf](publications/array16.pdf), [bib](publications/array16.bib),
 [artifact](https://github.com/diku-dk/futhark-array16))
 
-- **Size Slicing - A Hybrid Approach to Size Inference in
-Futhark**. Troels Henriksen, Martin Elsman, Cosmin Oancea.  [FHPC
+- **Size Slicing - A Hybrid Approach to Size Inference in Futhark**. Troels
+Henriksen, Martin Elsman, Cosmin Oancea.  [FHPC
 '14](https://sites.google.com/site/fhpcworkshops/fhpc-2014)
 ([pdf](publications/fhpc14.pdf), [bib](publications/fhpc14.bib)).
 
-- **Bounds Checking: An Instance of Hybrid Analysis**. Troels
-Henriksen, Cosmin Oancea. [ARRAY
-'14](http://www.sable.mcgill.ca/array/2014/)
+- **Bounds Checking: An Instance of Hybrid Analysis**. Troels Henriksen, Cosmin
+Oancea. [ARRAY '14](http://www.sable.mcgill.ca/array/2014/)
 ([pdf](publications/array14.pdf), [bib](publications/array14.bib))
 
-- **A T2 Graph-Reduction Approach To Fusion**. Troels Henriksen,
-Cosmin Oancea.  [FHPC '13](http://hiperfit.dk/fhpc13.html)
-([pdf](publications/fhpc13.pdf), [bib](publications/fhpc13.bib))
+- **A T2 Graph-Reduction Approach To Fusion**. Troels Henriksen, Cosmin Oancea.
+[FHPC '13](http://hiperfit.dk/fhpc13.html) ([pdf](publications/fhpc13.pdf),
+[bib](publications/fhpc13.bib))
 
 # Application Papers
 
