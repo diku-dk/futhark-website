@@ -17,7 +17,7 @@ def minimum_i32 = minimum (i32.<=)
 
 -- > minimum_i32 [1,2,3,-4,5]
 
--- The functions above are not perfect, as they require the element to be
+-- The functions above are not perfect, as they require the input to be
 -- non-empty. One could conceive of variants that use [option types](opt.html)
 -- to handle empty arrays. However, it is most efficient if we can provide a
 -- sensible neutral/dummy element for the reduction.
