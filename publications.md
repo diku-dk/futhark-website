@@ -13,6 +13,10 @@ chronological order.
   '26](https://pldi26.sigplan.org/) ([pdf](publications/pldi26.pdf),
   [appendix](publications/pldi26-appendix.pdf)).
 
+- **Gate Fusion Is Map Fusion**. Martin Elsman, Troels Henriksen. [ARRAY
+  '25](https://pldi25.sigplan.org/home/ARRAY-2025)
+  ([pdf](publications/array25.pdf))
+
 - **Two Things I Did**.  Robert Schenck. PhD
   thesis, 2024. ([pdf](publications/two-things-robert-did.pdf),
   [bib](publications/two-things-robert-did.bib)).
