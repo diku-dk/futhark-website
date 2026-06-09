@@ -11,7 +11,7 @@ chronological order.
 - **Verifying Array Properties in Pure Data-Parallel Programs**. Nikolaj Hey
   Hinnerskov, Robert Schenck, Cosmin E. Oancea. [PLDI
   '26](https://pldi26.sigplan.org/) ([pdf](publications/pldi26.pdf),
-  [appendix](publications/pldi26-appendix.pdf)).
+  [appendix](publications/pldi26-appendix.pdf), [bib](publications/pldi26.bib)).
 
 - **Gate Fusion Is Map Fusion**. Martin Elsman, Troels Henriksen. [ARRAY
   '25](https://pldi25.sigplan.org/home/ARRAY-2025)
