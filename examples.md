@@ -58,6 +58,7 @@ for plotting or rendering graphics.
 -   [Pairwise L₁ distances](examples/pairwise-l1.html)
 -   [Outer product](examples/outer-product.html)
 -   [Comparing arrays for equality](examples/array-equality.html)
+-   [Comparing floats for equality](examples/float-equality.html)
 -   [Searching](examples/searching.html)
 -   [Option type](examples/opt.html)
 -   [Computing histograms](examples/histograms.html)

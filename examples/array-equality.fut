@@ -31,4 +31,4 @@ def eq_arr_2d 'a [n1] [n2] [m1] [m2]
 
 -- ## See also
 --
--- [Searching](searching.html).
+-- [Searching](searching.html), [comparing floats for equality](float-equality.html).
