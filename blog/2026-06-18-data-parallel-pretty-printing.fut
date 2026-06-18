@@ -400,14 +400,16 @@ def print_euler [n] (E: [n]expr) =
 -- Overall, I am quite pleased with this result. It was a fun challenge - enough
 -- to require thought, but not so hard to be frustrating, and the code is
 -- actually quite nice (once you adjust your expectations to the standards of a
--- language like Futhark). The use of Euler tours is inspired by work by [Martin
--- Elsman](https://elsman.com/) and [William Henrich
--- Due](https://williamdue.github.io/) who read about them in Guy Blelloch's
--- work on data parallel algorithms, and pushed further along by Aziz Rmadi,
--- Elias Smedegaard, and Thomas Bonde Hansen, who worked on them in our [course
--- on Data Parallel Programming](https://github.com/diku-dk/dpp-e2025-pub) last
--- year (and in particular implemented the crucial conversion from parent vector
--- to Euler tour).
+-- language like Futhark). The first pretty-printer is based on work by Teodor
+-- Stadler as part of his BSc project at [DIKU](https://diku.dk). The use of
+-- Euler tours is inspired by work by [Martin Elsman](https://elsman.com/) and
+-- [William Henrich Due](https://williamdue.github.io/) who read about them in
+-- Guy Blelloch's work on data parallel algorithms, and pushed further along by
+-- Aziz Rmadi, Elias Smedegaard, and Thomas Bonde Hansen, who worked on them in
+-- our [course on Data Parallel
+-- Programming](https://github.com/diku-dk/dpp-e2025-pub) last year (and in
+-- particular implemented the crucial conversion from parent vector to Euler
+-- tour).
 --
 -- This pretty-printer is obviously quite limited, and I think I will spend some
 -- time trying to address the remaining limitations:
