@@ -212,7 +212,9 @@ def print [n] (es: [n]expr) : []char =
 -- For our example, we can represent this as the following tree:
 --
 -- ![A tree rendition of our example expression. Each node has been labeled with
---  the index of the node in the array.](../tikz/arithmetic-tree.svg)
+--  the index of the node in the array. Each inner node shows separately the
+--  prefix, infix, and suffix strings. For the leaves, we can assume that they
+--  have only a prefix string.](../tikz/arithmetic-tree.svg)
 --
 -- We can imagine that printing is done by walking this tree using a [pre-order
 -- traversal](https://en.wikipedia.org/wiki/Tree_traversal#Pre-order,_NLR):
