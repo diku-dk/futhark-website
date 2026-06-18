@@ -37,4 +37,5 @@ def incexscan [n] 't (op: t -> t -> t) (ne: t) (xs: [n]t) : [n](t, t) =
 -- ## See also
 --
 -- [Exclusive prefix sum](exclusive-prefix-sum.html), [Evaluating
--- polynomials](polynomials.html), [No neutral element](no-neutral-element.html)
+-- polynomials](polynomials.html), [No neutral
+-- element](no-neutral-element.html).
