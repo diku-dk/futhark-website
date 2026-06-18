@@ -187,8 +187,24 @@ to build or show something.
 
 # Selected Student Projects
 
+- Tjørn Lynghus: **Data Parallel Rigid Body Dynamics**, MSc thesis, DIKU,
+  June 2026. ([pdf](student-projects/tjorn-msc-thesis.pdf))
+
+- Matin Nafar, Simon August Mørk: **Implementing Property-Based Testing for
+  Futhark**, MSc thesis, DIKU, June 2026.
+  ([pdf](student-projects/simon-matin-msc-thesis.pdf))
+
+- Shamim Siddique: **Tile-based software rasterization in Futhark**, BSc thesis,
+  DIKU, June 2026. ([pdf](student-projects/shamim-bsc-thesis.pdf))
+
+- Elias Fontain Smedegaard: **Sparse Jacobian Computation in Futhark**, BSc
+  thesis, DIKU, June 2026. ([pdf](student-projects/elias-bsc-thesis.pdf))
+
+- Svante Geisshirt: **Scientific Simulation in Futhark**, MSc thesis, DIKU,
+  June 2026. ([pdf](student-projects/svante-msc-thesis.pdf))
+
 - Aziz Rmadi: **Unifying Paths for Updates and Sections in Futhark**, MSc
-  project, DIKU, March 2025. ([pdf](student-projects/rmadi-pocs.pdf))
+  project, DIKU, March 2026. ([pdf](student-projects/rmadi-pocs.pdf))
 
 - Shatin Nguyen, Theis Aggerholm Bernhart Baasch, Oliver Fontaine Raaschou:
   **Empirically comparing high level and low level AD**, BSc thesis, DIKU,
@@ -397,10 +413,12 @@ in Futhark**, BSc thesis, DIKU, June 2023
     Generation of L-Systems**. BSc thesis. Computer Science, University
     of Copenhagen. June 2020.
     ([pdf](student-projects/lotte-ulrik-bsc-thesis.pdf))
--   Æmilie Cholewa-Madsen, Anders Lietzen Holst: **Teaching the
-    Futhark compiler block and register tiled matrix multiplication**.
-    BSc thesis.  Computer Science, University of Copenhagen. June
-    2020. ([pdf](student-projects/aemilie-anders-bsc-thesis.pdf))
+
+-   Æmilie Cholewa-Madsen, Anders Lietzen Holst: **Teaching the Futhark compiler
+    block and register tiled matrix multiplication**. BSc thesis. Computer
+    Science, University of Copenhagen. June 2020.
+    ([pdf](student-projects/aemilie-anders-bsc-thesis.pdf))
+
 -   Robert Schenck: **Sum types in Futhark**. MSc thesis. Computer
     Science, University of Copenhagen. December 2019.
     ([pdf](student-projects/robert-msc-thesis.pdf))
