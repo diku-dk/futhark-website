@@ -345,7 +345,7 @@ def infix_get (e: expr) (_i: i64) : char =
 
 -- We also need to have a way of determining whether a `#leave` edge should
 -- print the infix of the parent of its origin - which is exactly when it is not
--- the first child, and also not the parent.
+-- the first child, and also not the root.
 
 def is_first_child [n] (E: [n]expr) (P: [n]ptr) (p: ptr) =
   match E[P[p]]
