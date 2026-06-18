@@ -17,9 +17,18 @@ def exscan [n] 'a (op: a -> a -> a) (ne: a) (as: [n]a) : *[n]a =
 -- returning an array of pairs where the first component is the inclusive scan
 -- and the second is the exclusive scan:
 
+import "no-neutral-element"
+
+def exclusive_op 't (op: t -> t -> t) (a1: t, _: t) (a2: t, b2: t) : (t, t) =
+  (a1 `op` a2, a1 `op` b2)
+
 def incexscan [n] 't (op: t -> t -> t) (ne: t) (xs: [n]t) : [n](t, t) =
-  map (\x -> (x, ne)) xs
-  |> scan (\(a1, _) (a2, b2) -> (a1 `op` a2, a1 `op` b2)) (ne, ne)
+  map (\x -> #val (x, ne)) xs
+  |> scan (f_with_neutral (exclusive_op op)) #neutral
+  |> map (\t ->
+            match t
+            case #neutral -> (ne, ne)
+            case (#val r) -> r)
 
 -- This avoids the `scatter` at the cost of a more complex operator passed to
 -- `scan`, and it allows the compiler to fuse the scan with a subsequent
@@ -28,4 +37,5 @@ def incexscan [n] 't (op: t -> t -> t) (ne: t) (xs: [n]t) : [n](t, t) =
 -- ## See also
 --
 -- [Exclusive prefix sum](exclusive-prefix-sum.html), [Evaluating
--- polynomials](polynomials.html).
+-- polynomials](polynomials.html), [No neutral
+-- element](no-neutral-element.html).
