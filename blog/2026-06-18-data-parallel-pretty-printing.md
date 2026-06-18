@@ -471,4 +471,4 @@ Overall, I think the algorithmic issues are largely solved (except item 1
 above), and the main question is now how to expose pretty-printing as a
 reusable library - a problem that was solved decades ago in other languages,
 but the field of data paralellism is a wonderful place to be if you enjoy
-turning easy problems into hard problems.
+turning easy problems into hard problems...
