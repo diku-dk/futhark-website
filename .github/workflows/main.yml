@@ -30,7 +30,7 @@ jobs:
     - name: Install Debian dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y gnuplot imagemagick ffmpeg
+        sudo apt-get install -y gnuplot imagemagick ffmpeg pdf2svg texlive-full
 
     - uses: diku-dk/install-futhark@v1.1.0
       with:

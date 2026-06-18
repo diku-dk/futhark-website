@@ -1,0 +1,4 @@
+require {
+  github.com/diku-dk/segmented 0.5.3 #c96450f95a1e43e0906366a1dab45cb18220a643
+  github.com/diku-dk/containers 0.10.10 #e2496f7aae25efc7be3507c7f1fbc6ec1b9963d0
+}
