@@ -31,9 +31,10 @@ various talented artists. We welcome further contributions!
 
 ![By Nikolaj Hey Hinnerskov](/agitprop/sonec.svg)
 
-![By Shamim Siddique](/agitprop/shamim.jpg)
+![By Shamim Siddique - [*Also available in three
+dimensions!*](/agitprop/shamim.obj)](/agitprop/shamim.jpg)
 
-[*Also available in three dimensions!*](/agitprop/shamim.obj)
+
 
 ## The Filippa Biil collection
 
