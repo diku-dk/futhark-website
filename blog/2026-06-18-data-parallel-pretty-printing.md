@@ -246,7 +246,7 @@ tour](https://en.wikipedia.org/wiki/Euler_tour_technique), a technique
 developed (as far as I know) by Tarjan and Vishkin, and which applies to a
 great many parallel algorithms. An Euler tour describes the order in which
 each node of a tree is first and last encountered during a pre-order
-traversal of the tree. This diagram illustrated the Euler tour for our
+traversal of the tree. This diagram illustrates the Euler tour for our
 example:
 
 ![The previous tree now annotated with the Euler tour. Descending edges are
