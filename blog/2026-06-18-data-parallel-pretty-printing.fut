@@ -92,7 +92,7 @@ def ith_digit (x: i32) (i: i64) : char =
 -- arithmetic trees. A normal algorithm is based on recursively pretty-printing
 -- the sub-trees of a node, then concatenating them (perhaps by using a clever
 -- implementation of concatenation), but recursion is not an option in Futhark.
--- Instead, our solution is inspired by term rewriting: starting an array
+-- Instead, our solution is inspired by term rewriting: starting with an array
 -- containing just the root expression, we keep replacing expressions by their
 -- "expansion" into a sequence of expressions and characters, which we call
 -- *tokens* (not a great word; it is unrelated to lexical tokens). A token is
