@@ -8,9 +8,10 @@
        pkgs.git
        pkgs.cabal-install
        pkgs.ghc
-       pkgs.pkgconfig
+       pkgs.pkg-config
        pkgs.zlib
        pkgs.zlib.out
+       pkgs.pdf2svg
      ];
    }
 

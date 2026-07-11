@@ -27,6 +27,7 @@ The Futhark compiler can generate C or Python code. A bridge allows
 programs written in other languages to conveniently call this code.
 
 -   **Haskell**: [Futhask](https://gitlab.com/Gusten_Isfeldt/futhask)
+-   **J**: [Futhark-J Bridge](https://web.liminal.cafe/~byakuren/j/futhark/)
 -   **Python**:
     [futhark-pycffi](https://github.com/pepijndevos/futhark-pycffi/) (or
     the compiler\'s [builtin Python

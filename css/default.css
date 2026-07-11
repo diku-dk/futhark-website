@@ -175,6 +175,7 @@ a:visited {
         display:block;
         padding-top:2em;
         text-align:center;
+        white-space: nowrap;
     }
     #menu li {
         margin:0;
