@@ -150,6 +150,21 @@ to build or show something.
 
 # Selected Student Projects
 
+- Jonas Lau Kristensen and Daniel Nicholas Mølhave:
+  **GPU Implementations of KD-Tree Assisted Approximate Nearest Neighbour Algorithms**, 
+  BSc thesis, DIKU, June 2026.
+  ([pdf](student-projects/BSc-ANNF-Kristensen-Molhave.pdf))
+
+- Nikolaj Ingemann Gade and Tudor-Ovidiu Pal:
+  **Static Verification of Array Properties for Segmented Arrays**, 
+  MSc thesis, DIKU, June 2026.
+  ([pdf](student-projects/MSc-Array-Props-Pal-Gade.pdf))
+
+- Christian Bendix Fjordstrøm:
+  **Parallel Sparse Approximate Inverse in CUDA**, 
+  MSc thesis, DIKU, June 2026.
+  ([pdf](student-projects/MSc-SPAI-Fjordstrom.pdf))
+
 - Aske N. Raahauge, Martin B. Marchioro and Marc I. Løvenskjold:
   **Efficient GPU Implementation of Multi-Precision Integer Division**, 
   MSc thesis, DIKU, June 2025.
