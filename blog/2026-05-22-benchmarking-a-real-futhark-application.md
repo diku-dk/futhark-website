@@ -7,7 +7,7 @@ Since Futhark was [originally](2021-12-19-past-and-present.html) designed to
 conduct research in compiler optimisations, it should come as no great surprise
 that it has good built-in tools for benchmarking programs. However, these tools
 were largely built with the assumption that you were benchmarking programs
-specifically written to *be* benchmarks, with a single entry point functions and
+specifically written to *be* benchmarks, with a single entry point function and
 cleanly defined inputs stored in a file on disk. Real uses of Futhark involve
 multiple entry points, and the data may be derived from weird sources, or
 generated on the fly by non-Futhark code. In this post I will talk about how
