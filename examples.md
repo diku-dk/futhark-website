@@ -83,16 +83,22 @@ for plotting or rendering graphics.
 -   [Three-dimensional vectors](examples/3d-vectors.html)
 -   [Faking nominal types](examples/nominal-types.html)
 -   [Triangular matrices](examples/triangular.html)
--   [Segmented scan](examples/segscan.html)
--   [Segmented reduction](examples/segreduce.html)
--   [Segmented iota](examples/segiota.html)
 -   [Binary search](examples/binary-search.html)
 -   [AD with dual numbers](examples/dual-numbers.html)
 -   [Variance](examples/variance.html)
+-   [Decoding MNIST data files](examples/mnist.html)
+
+# Parallel algorithms
+
 -   [Matching parentheses](examples/parens.html)
 -   [Evaluating polynomials with Horner's Method](examples/polynomials.html)
 -   [Line fitting](examples/line-fitting.html)
--   [Decoding MNIST data files](examples/mnist.html)
+
+# Irregular arrays
+
+-   [Segmented scan](examples/segscan.html)
+-   [Segmented reduction](examples/segreduce.html)
+-   [Segmented iota](examples/segiota.html)
 
 # Automatic differentiation
 
