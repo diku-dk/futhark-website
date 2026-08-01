@@ -636,7 +636,7 @@ Do we *really* want to apply the `if` flattening rule to this, which involves
 relatively expensive filtering and moving stuff around in memory? No, that would
 [go insufficiently fast](../hedgehogs.html).
 
-Inspired by DPP, our flattening transformation categorises each statement by
+Inspired by DPH, our flattening transformation categorises each statement by
 whether it is "scalar", meaning it exhibits no meaningful parallelism, *and* any
 arrays it uses are *uniform*. Uniformity here (and in the next section) means
 that the size of an array is invariant to the map nest in which it occurs. This
