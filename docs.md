@@ -1,6 +1,4 @@
----
-title: Docs
----
+# Docs
 
 The Futhark documentation is divided into several parts. The in-progress
 book [Parallel Programming in

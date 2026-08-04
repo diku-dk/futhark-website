@@ -1,6 +1,4 @@
----
-title: Gotta Go Fast!
----
+# Gotta Go Fast!
 
 There is no good way to define what it means for a language to be
 *fast*. While some benchmark suites exist, such as the [benchmarks

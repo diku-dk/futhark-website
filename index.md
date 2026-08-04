@@ -1,6 +1,4 @@
----
-title: Why Futhark?
----
+# Why Futhark?
 
 ::: {.container .tagline}
 Because it\'s nicer than writing CUDA or OpenCL by hand!

@@ -1,6 +1,4 @@
----
-title: Futhark by Example
----
+# Futhark by Example
 
 The following is a hands-on introduction to Futhark through a
 collection of commented programs, listed in roughly increasing order

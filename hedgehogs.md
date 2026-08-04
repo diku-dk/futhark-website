@@ -1,6 +1,4 @@
----
-title: Gallery of Hedgehogs
----
+# Gallery of Hedgehogs
 
 [Any image of a blue hedgehog is a Futhark
 logo](/blog/2026-02-09-hedgehogs.html), but other colours are welcome too. Some

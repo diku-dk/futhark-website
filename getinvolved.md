@@ -1,6 +1,4 @@
----
-title: Getting involved with Futhark
----
+# Getting involved with Futhark
 
 Futhark is both a research- and an open source project. Everything we
 implement is released under a free software license, and we do all our

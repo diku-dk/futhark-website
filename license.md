@@ -1,6 +1,4 @@
----
-title: License
----
+# License
 
 The content on this website is copyright the University of Copenhagen
 and other contributors as noted.

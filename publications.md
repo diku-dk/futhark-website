@@ -1,6 +1,4 @@
----
-title: Publications
----
+# Publications
 
 We have published a number of research papers on Futhark, and hopefully
 more will follow in the future. They are presented below in reverse

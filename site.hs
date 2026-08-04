@@ -15,6 +15,7 @@ import System.FilePath
 import System.IO.Temp (withSystemTempDirectory)
 import System.Process (readProcessWithExitCode)
 import Text.Pandoc
+import Text.Pandoc.Shared (stringify)
 import Text.Pandoc.Walk
 
 postCtx :: Context String
@@ -70,10 +71,10 @@ main = do
       $ do
         route $ setExtension "html"
         compile $ do
-          menu <- contentContext
-          pandocFutCompiler futhark_syntax
-            >>= loadAndApplyTemplate "templates/withtitle.html" menu
-            >>= loadAndApplyTemplate "templates/default.html" menu
+          (title, body) <- pandocFutCompiler futhark_syntax
+          ctx <- contentContext title
+          loadAndApplyTemplate "templates/withtitle.html" ctx body
+            >>= loadAndApplyTemplate "templates/default.html" ctx
             >>= relativizeUrls
 
     -- Tikz documents
@@ -84,9 +85,9 @@ main = do
     let blogCompiler = do
           route $ setExtension "html"
           compile $ do
-            postCtx' <- postContext
-            pandocFutCompiler futhark_syntax
-              >>= loadAndApplyTemplate "templates/post.html" postCtx'
+            (title, body) <- pandocFutCompiler futhark_syntax
+            postCtx' <- postContext title
+            loadAndApplyTemplate "templates/post.html" postCtx' body
               >>= saveSnapshot "content"
               >>= loadAndApplyTemplate "templates/withtitle.html" postCtx'
               >>= loadAndApplyTemplate "templates/default.html" postCtx'
@@ -131,19 +132,21 @@ main = do
     match "examples/*.fut" $ do
       route $ setExtension "html"
       compile $ do
-        menu <- contentContext
-        futCompiler futhark_syntax
-          >>= loadAndApplyTemplate "templates/default.html" menu
+        (title, body) <- futCompiler futhark_syntax
+        ctx <- contentContext title
+        loadAndApplyTemplate "templates/default.html" ctx body
           >>= relativizeUrls
 
     match "templates/*" $ compile templateCompiler
 
-contentContext :: Compiler (Context String)
-contentContext = do
+contentContext :: Maybe String -> Compiler (Context String)
+contentContext title = do
   menu <- getMenu
   return $
-    defaultContext
-      `mappend` constField "menu" menu
+    metadataField
+      <> maybe mempty (constField "title") title
+      <> defaultContext
+      <> constField "menu" menu
 
 getMenu :: Compiler String
 getMenu = do
@@ -172,9 +175,9 @@ showMenu this items = "<ul id=\"menu\">" ++ concatMap li items ++ "</ul>"
     isThis item = dropExtension item `isPrefixOf` dropExtension this
 
 --------------------------------------------------------------------------------
-postContext :: Compiler (Context String)
-postContext = do
-  ctx <- contentContext
+postContext :: Maybe String -> Compiler (Context String)
+postContext title = do
+  ctx <- contentContext title
   return $ dateField "date" "%B %e, %Y" `mappend` ctx
 
 --------------------------------------------------------------------------------
@@ -189,6 +192,19 @@ shiftHeaderUp h@(Header n a b)
   | n < 6 = Header (n + 1) a b
   | otherwise = h
 shiftHeaderUp x = x
+
+-- | The title of a document, if it begins with a top level header. We look only
+-- at the very first block; a header anywhere else is a section heading, not the
+-- title of the page.
+docHeading :: Pandoc -> Maybe String
+docHeading (Pandoc _ (Header 1 _ inlines : _)) = Just $ T.unpack $ stringify inlines
+docHeading _ = Nothing
+
+-- | Remove the header extracted by 'docHeading', for pages where the template
+-- renders the title itself.
+dropHeading :: Pandoc -> Pandoc
+dropHeading (Pandoc meta (Header 1 _ _ : blocks)) = Pandoc meta blocks
+dropHeading doc = doc
 
 -- | All headers should be links to themselves.
 selfLinkHeader :: Block -> Block
@@ -208,14 +224,23 @@ pandocOptions futhark_syntax =
       M.insert "Futhark" futhark_syntax $
         writerSyntaxMap defaultHakyllWriterOptions
 
-pandocFutCompiler :: Syntax -> Compiler (Item String)
-pandocFutCompiler futhark_syntax =
-  pandocCompilerWithTransform ropts wopts $
-    walk (selfLinkHeader . shiftHeaderUp)
+-- | Also returns the title extracted from the content, which is removed from
+-- the body, as the template renders it separately.
+pandocFutCompiler :: Syntax -> Compiler (Maybe String, Item String)
+pandocFutCompiler futhark_syntax = do
+  doc <- readPandocWith ropts =<< getResourceBody
+  pure
+    ( docHeading $ itemBody doc,
+      writePandocWith wopts $
+        walk (selfLinkHeader . shiftHeaderUp) . dropHeading <$> doc
+    )
   where
     (ropts, wopts) = pandocOptions futhark_syntax
 
-futCompiler :: Syntax -> Compiler (Item String)
+-- | Unlike 'pandocFutCompiler', the title is left in the body, as these pages
+-- do not go through @withtitle.html@.  We extract it only so it can be used for
+-- the HTML @title@ element.
+futCompiler :: Syntax -> Compiler (Maybe String, Item String)
 futCompiler futhark_syntax = do
   source <- getResourceFilePath
   void $ unixFilter "futhark" ["literate", "-v", source] mempty
@@ -223,13 +248,11 @@ futCompiler futhark_syntax = do
   item <- makeItem =<< unsafeCompiler (readFile mdfile)
   let oldident = itemIdentifier item
   unsafeCompiler $ removeFile mdfile
-  item' <-
-    renderPandocWithTransform
-      ropts
-      wopts
-      (addSourceLink source . walk selfLinkHeader)
-      item {itemIdentifier = fromFilePath mdfile}
-  pure item' {itemIdentifier = oldident}
+  doc <- readPandocWith ropts item {itemIdentifier = fromFilePath mdfile}
+  let item' =
+        writePandocWith wopts $
+          addSourceLink source . walk selfLinkHeader <$> doc
+  pure (docHeading $ itemBody doc, item' {itemIdentifier = oldident})
   where
     (ropts, wopts) = pandocOptions futhark_syntax
 

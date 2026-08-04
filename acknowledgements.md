@@ -1,6 +1,4 @@
----
-title: Acknowledgements
----
+# Acknowledgements
 
 Futhark has received contributions in terms of code, testing, or feedback from
 many individual programmers, for which we are very grateful.
