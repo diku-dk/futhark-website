@@ -280,7 +280,7 @@ classic functional languages that allow for more fine-grained liveness tracking.
 I am slightly worried that future Futhark programmers will tend to reach for
 recursion even in cases where it is not the best tool for the job.
 
-As of this writing, Futhark is not enabled in Futhark's `master` branch (nor in
+As of this writing, recursion is not enabled in Futhark's `master` branch (nor in
 any release), but the [pull request that adds recursive
 functions](https://github.com/diku-dk/futhark/pull/2505) merely removes the
 check that disables it, so all of the supporting code is already merged and
