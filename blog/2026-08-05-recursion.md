@@ -24,7 +24,7 @@ functions](2018-04-10-futhark-0.4.0-released.html), and [size
 types](2019-08-03-towards-size-types.html). Further, they never worked all that
 well, and would crash the compiler if you used recursion in the wrong place.
 
-## Why not recursion
+## The trouble with recursion
 
 The reason we do not currently have recursive functions is fairly simple: they
 do not work well in GPU kernels, for multiple reasons. The most immediate one is
