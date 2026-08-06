@@ -172,7 +172,7 @@ The most subtle problem we had to address turned out to involve
 defunctionalisation. As a reminder to those readers who do not maintain
 encyclopedic mental notes of Futhark implementation details, Futhark implements
 higher-order functions via defunctionalisation, where any use of a higher-order
-function is turned into a higher-order function by specialising at compile-time
+function is turned into a first-order function by specialising at compile-time
 based on the higher-order arguments provided. As an example, if we have
 
 ```Futhark
