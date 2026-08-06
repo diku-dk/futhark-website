@@ -61,7 +61,7 @@ array language like Futhark. Since the core datatype (arrays) is not inductive,
 there is not that much to recurse over, and Futhark provides [loop
 syntax](../examples/loops.html) for expressing certain kinds of tail recursion
 (although we do not plan to support actual tail call optimisation for reasons
-[previously explained](2026-01-20-why-not-tail-recursion.md)).
+[previously explained](2026-01-20-why-not-tail-recursion.html)).
 
 Still, there are some cases where recursion is the natural way to solve
 problems, mainly recursive divide-and-conquer. Many of the algorithms in [A
