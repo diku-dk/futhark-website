@@ -158,8 +158,10 @@ module triangular : triangular = {
 -- Finally, defining `map` is very simple, as it doesn't have to care
 -- about the sizes at all.
 
+  def array_map = map
+
   def map f {size, data} =
-    {size, data = map f data}
+    {size, data = array_map f data}
 
 -- And we're done!
 
