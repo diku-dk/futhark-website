@@ -4,14 +4,15 @@
 Because it\'s nicer than writing CUDA or OpenCL by hand!
 :::
 
-Futhark is a small programming language designed to be compiled to
-efficient parallel code. It is a **statically typed, data-parallel, and
-purely functional array language** in the ML family, and comes with a
-**heavily optimising ahead-of-time compiler** that presently generates
-either GPU code via [CUDA](https://developer.nvidia.com/about-cuda) and
-[OpenCL](https://en.wikipedia.org/wiki/OpenCL), or multi-threaded CPU
-code. As a simple example, this function computes the average of an
-array of 64-bit floating-point numbers:
+Futhark is a small programming language designed to be compiled to efficient
+parallel code. It is a **statically typed, data-parallel, and purely functional
+array language** in the ML family, and comes with a **heavily optimising
+ahead-of-time compiler** that presently generates either GPU code via
+[CUDA](https://developer.nvidia.com/about-cuda),
+[HIP](https://rocm.docs.amd.com/projects/HIP/), or
+[OpenCL](https://en.wikipedia.org/wiki/OpenCL), or multi-threaded CPU code. As a
+simple example, this function computes the average of an array of 64-bit
+floating-point numbers:
 
 ```Futhark
 def average (xs: []f64) = reduce (+) 0 xs / f64.i64 (length xs)
