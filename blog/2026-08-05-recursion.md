@@ -179,7 +179,7 @@ based on the higher-order arguments provided. As an example, if we have
 def apply (f: i32 -> i32) (x: i32) = f x
 ```
 
-then an application `f (\x -> x + 1) 2` will result in a specialised function
+then an application `apply (\x -> x + 1) 2` will result in a specialised function
 
 ```Futhark
 def apply_specialised (x: i32) = (\x -> x + 1) x
