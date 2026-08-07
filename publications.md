@@ -189,20 +189,16 @@ to build or show something.
 Compiler**, MSc thesis, DTU and Aalto University, August 2026
 ([pdf](student-projects/amir-msc-thesis.pdf))
 
-- Jonas Lau Kristensen and Daniel Nicholas Mølhave:
-  **GPU Implementations of KD-Tree Assisted Approximate Nearest Neighbour Algorithms**, 
-  BSc thesis, DIKU, June 2026.
-  ([pdf](student-projects/BSc-ANNF-Kristensen-Molhave.pdf))
+- Jonas Lau Kristensen and Daniel Nicholas Mølhave: **GPU Implementations of
+  KD-Tree Assisted Approximate Nearest Neighbour Algorithms**, BSc thesis, DIKU,
+  June 2026. ([pdf](student-projects/BSc-ANNF-Kristensen-Molhave.pdf))
 
-- Nikolaj Ingemann Gade and Tudor-Ovidiu Pal:
-  **Static Verification of Array Properties for Segmented Arrays**, 
-  MSc thesis, DIKU, June 2026.
+- Nikolaj Ingemann Gade and Tudor-Ovidiu Pal: **Static Verification of Array
+  Properties for Segmented Arrays**, MSc thesis, DIKU, June 2026.
   ([pdf](student-projects/MSc-Array-Props-Pal-Gade.pdf))
 
-- Christian Bendix Fjordstrøm:
-  **Parallel Sparse Approximate Inverse in CUDA**, 
-  MSc thesis, DIKU, June 2026.
-  ([pdf](student-projects/MSc-SPAI-Fjordstrom.pdf))
+- Christian Bendix Fjordstrøm: **Parallel Sparse Approximate Inverse in CUDA**,
+  MSc thesis, DIKU, June 2026. ([pdf](student-projects/MSc-SPAI-Fjordstrom.pdf))
 
 - Tjørn Lynghus: **Data Parallel Rigid Body Dynamics**, MSc thesis, DIKU,
   June 2026. ([pdf](student-projects/tjorn-msc-thesis.pdf))
@@ -235,14 +231,12 @@ Futhark WebGPU backend**, BSc thesis, DIKU, June 2025.
   Checker**, BSc thesis, DIKU, June 2025.
   ([pdf](student-projects/jakob-laust-bsc-thesis.pdf))
 
-- Aske N. Raahauge, Martin B. Marchioro and Marc I. Løvenskjold:
-  **Efficient GPU Implementation of Multi-Precision Integer Division**, 
-  MSc thesis, DIKU, June 2025.
-  ([pdf](student-projects/MSc-Bigint-Div-Aske-Mark-Martin.pdf))
+- Aske N. Raahauge, Martin B. Marchioro and Marc I. Løvenskjold: **Efficient GPU
+  Implementation of Multi-Precision Integer Division**, MSc thesis, DIKU,
+  June 2025. ([pdf](student-projects/MSc-Bigint-Div-Aske-Mark-Martin.pdf))
 
-- Emil Vilandt Rasmussen and Jóhann Utne:
-  **Optimizing Convolutions for GPU Execution in Futhark**, 
-  MSc thesis, DIKU, June 2025.
+- Emil Vilandt Rasmussen and Jóhann Utne: **Optimizing Convolutions for GPU
+  Execution in Futhark**, MSc thesis, DIKU, June 2025.
   ([pdf](student-projects/MSc-Convolutions-Emil-Johann.pdf))
 
 - Kristoffer August Kortbæk and Rune Ejnar Bang Lejbølle:
@@ -285,217 +279,246 @@ Futhark WebGPU backend**, BSc thesis, DIKU, June 2025.
 by Permutation (GALOP)**, MSc thesis, DIKU, January 2024
 ([pdf](student-projects/pedersen-nelin-msc-thesis.pdf))
 
-- Nina Andrup Pedersen, Jakob Schneider Villumsen: **ZKBoo on the GPU:
-Better soundness errors for a little extra**, BSc thesis, AU, July
-2023 ([pdf](student-projects/zkboo-bsc-thesis.pdf)).
+- Nina Andrup Pedersen, Jakob Schneider Villumsen: **ZKBoo on the GPU: Better
+soundness errors for a little extra**, BSc thesis, AU, July 2023
+([pdf](student-projects/zkboo-bsc-thesis.pdf)).
 
-- Lars Jensen, Chris Oliver Paulsen, Julian Jørgensen Teule:
-  **Translating Concepts of the Futhark Programming Language into an
-  Extended π-Calculus**, MSc thesis, AAU, June 2023.
-  ([pdf](student-projects/pi-msc-thesis.pdf))
+- Lars Jensen, Chris Oliver Paulsen, Julian Jørgensen Teule: **Translating
+  Concepts of the Futhark Programming Language into an Extended π-Calculus**,
+  MSc thesis, AAU, June 2023. ([pdf](student-projects/pi-msc-thesis.pdf))
 
-- William Henrich Due: **Parallel Parsing using Futhark**, BSc thesis,
-DIKU, June 2023 ([pdf](student-projects/william-bsc-thesis.pdf))
+- William Henrich Due: **Parallel Parsing using Futhark**, BSc thesis, DIKU,
+June 2023 ([pdf](student-projects/william-bsc-thesis.pdf))
 
-- Rune Nielsen: **Implementation of Graph Algorithms in Futhark**, BSc
-thesis, DIKU, June 2023 ([pdf](student-projects/rune-bsc-thesis.pdf))
+- Rune Nielsen: **Implementation of Graph Algorithms in Futhark**, BSc thesis,
+DIKU, June 2023 ([pdf](student-projects/rune-bsc-thesis.pdf))
 
-- Cornelius Sevald-Krause: **Flattening Irregular Nested Parallelism
-in Futhark**, BSc thesis, DIKU, June 2023
+- Cornelius Sevald-Krause: **Flattening Irregular Nested Parallelism in
+Futhark**, BSc thesis, DIKU, June 2023
 ([pdf](student-projects/cornelius-bsc-thesis.pdf))
 
-- Kasper Unn Weihe: **Convex Optimization and Parallel Computing for
-  Portfolio Optimization**, MSc thesis, DIKU,
-  June 2023. ([pdf](student-projects/kasper-msc-thesis.pdf))
+- Kasper Unn Weihe: **Convex Optimization and Parallel Computing for Portfolio
+  Optimization**, MSc thesis, DIKU, June 2023.
+  ([pdf](student-projects/kasper-msc-thesis.pdf))
 
-- Tjørn Lynghus: **Data-parallel Implementation of Randomized Approximate Nearest Neighbours**, BSc thesis, DIKU, June 2023. ([pdf](student-projects/Tjorn-BSc-Approx-kNN.pdf))
+- Tjørn Lynghus: **Data-parallel Implementation of Randomized Approximate
+  Nearest Neighbours**, BSc thesis, DIKU, June 2023.
+  ([pdf](student-projects/Tjorn-BSc-Approx-kNN.pdf))
 
-- Jóhann Utne and Henriette Naledi Winther Hansen: **Solving TSP on the GPU based on heuristic algorithms**, BSc thesis, DIKU, June 2023.  ([pdf](student-projects/BSc-Henriette-Johann-TSP.pdf))
+- Jóhann Utne and Henriette Naledi Winther Hansen: **Solving TSP on the GPU
+  based on heuristic algorithms**, BSc thesis, DIKU, June 2023.
+  ([pdf](student-projects/BSc-Henriette-Johann-TSP.pdf))
 
-- Peter Kanstrup Larsen:  **Application of Probabilistic Machine Learning Methods for Protein Generation**, MSc thesis, DIKU, June 2023.  ([pdf](student-projects/peter-larsen-msc-var-enc.pdf))
+- Peter Kanstrup Larsen: **Application of Probabilistic Machine Learning Methods
+  for Protein Generation**, MSc thesis, DIKU, June 2023.
+  ([pdf](student-projects/peter-larsen-msc-var-enc.pdf))
 
-- Emil Vilandt Rasmussen: **Sparse Approximate Inverse - A Massively Parallel Implementation**, BSc thesis, DIKU, June 2023. ([pdf](student-projects/Emil-Rasmussen-BSc-SPAI.pdf))
+- Emil Vilandt Rasmussen: **Sparse Approximate Inverse - A Massively Parallel
+  Implementation**, BSc thesis, DIKU, June 2023.
+  ([pdf](student-projects/Emil-Rasmussen-BSc-SPAI.pdf))
 
-- Caroline Amalie Kierkegaard and Mikkel Willen: **Parallel Implementation of the SPAI algorithm**, BSc thesis, DIKU, June 2023.  ([pdf](student-projects/Caroline-Mikkel-BSc-SPAI.pdf))
+- Caroline Amalie Kierkegaard and Mikkel Willen: **Parallel Implementation of
+  the SPAI algorithm**, BSc thesis, DIKU, June 2023.
+  ([pdf](student-projects/Caroline-Mikkel-BSc-SPAI.pdf))
 
-- Peter Kanstrup Larsen: **Benchmarking Futhark-AD using MINPACK-2**,
-  7.5 ECTS Project, DIKU, University of Copenhagen, January 2023.
+- Peter Kanstrup Larsen: **Benchmarking Futhark-AD using MINPACK-2**, 7.5 ECTS
+  Project, DIKU, University of Copenhagen, January 2023.
   ([pdf](student-projects/peter-msc-project.pdf))
 
-- Søren Brix: **Reverse mode automatic differentiation of histograms
-  in Futhark**, MSc thesis, DIKU, University of Copenhagen, July 2022.
+- Søren Brix: **Reverse mode automatic differentiation of histograms in
+  Futhark**, MSc thesis, DIKU, University of Copenhagen, July 2022.
   ([pdf](student-projects/søren-msc-thesis.pdf))
 
-- Gilli Reynstind Fjallstein: **Extending automatic differentiation
-  for an array language with nested parallelism**, Msc thesis, DIKU,
-  University of Copenhagen, July 2022.
-  ([pdf](student-projects/gilli-msc-thesis.pdf))
+- Gilli Reynstind Fjallstein: **Extending automatic differentiation for an array
+  language with nested parallelism**, Msc thesis, DIKU, University of
+  Copenhagen, July 2022. ([pdf](student-projects/gilli-msc-thesis.pdf))
 
 - Lotte Bruun and Ulrik Larsen: **Reverse Automatic Differentiation in
   Futhark**, MSc thesis, DIKU, University of Copenhagen, July 2022.
   ([pdf](student-projects/lotte-ulrik-msc-thesis.pdf))
 
-- Philip Jon Børgesen: **Reducing Synchronous GPU Memory Transfers**.
-  MSc thesis. Department of Computer Science, University of
-  Copenhagen. July 2022.
+- Philip Jon Børgesen: **Reducing Synchronous GPU Memory Transfers**. MSc
+  thesis. Department of Computer Science, University of Copenhagen. July 2022.
   ([pdf](student-projects/philip-børgesen-msc-thesis.pdf))
 
-- W. Pema N. H. Malling, Louis Marott Normann, Oliver B. K. Petersen,
-  Kristoffer A. Kortbæk: **Extending Futhark’s multicore C backend to
-  utilize SIMD using ISPC**. BSc thesis. Department of Computer
-  Science, University of Copenhagen. June 2022.
-  ([pdf](student-projects/ispc-bsc-thesis.pdf))
+- W. Pema N. H. Malling, Louis Marott Normann, Oliver B. K. Petersen, Kristoffer
+  A. Kortbæk: **Extending Futhark’s multicore C backend to utilize SIMD using
+  ISPC**. BSc thesis. Department of Computer Science, University of Copenhagen.
+  June 2022. ([pdf](student-projects/ispc-bsc-thesis.pdf))
 
-- Aleksander Junge: **Reactive Benchmarking**. BSc thesis. Department
-  of Computer Science, University of Copenhagen. June 2022.
+- Aleksander Junge: **Reactive Benchmarking**. BSc thesis. Department of
+  Computer Science, University of Copenhagen. June 2022.
   ([pdf](student-projects/aleksander-bsc-thesis.pdf))
 
 -   Amar Topalovic, Walter Restelli-Nielsen, Kristian Olesen:
     **Multiple-precision Integer Arithmetic**.
-    [DPP](https://github.com/diku-dk/dpp-e2021-pub) final project.
-    January 2022. ([pdf](student-projects/dpp21-mpint.pdf))
--   Andreas Nicolaisen: **Using Automatic Differentiation to Find
-    Gradients for Recurrent Neural Networks in Futhark**.  MSc thesis.
-    Department of Computer Science, University of Copenhagen.
-    January 2022. ([pdf](student-projects/andreas-msc-thesis.pdf))
--   Kristian Knudsen Olesen: **Extracting Certified Futhark Code from
-    Coq**.  BSc thesis.  Department of Computer Science, University of
-    Copenhagen. November 2021. ([pdf](student-projects/kristian-bsc-thesis.pdf))
--   Till Severin Grenzdörffer: **Unsupervised Clustering of Sparse
-    Data in Futhark**. MSc thesis.  Department of Computer Science,
-    University of
+    [DPP](https://github.com/diku-dk/dpp-e2021-pub) final project. January 2022.
+    ([pdf](student-projects/dpp21-mpint.pdf))
+
+-   Andreas Nicolaisen: **Using Automatic Differentiation to Find Gradients for
+    Recurrent Neural Networks in Futhark**. MSc thesis. Department of Computer
+    Science, University of Copenhagen. January 2022.
+    ([pdf](student-projects/andreas-msc-thesis.pdf))
+
+-   Kristian Knudsen Olesen: **Extracting Certified Futhark Code from Coq**. BSc
+    thesis. Department of Computer Science, University of Copenhagen.
+    November 2021. ([pdf](student-projects/kristian-bsc-thesis.pdf))
+
+-   Till Severin Grenzdörffer: **Unsupervised Clustering of Sparse Data in
+    Futhark**. MSc thesis. Department of Computer Science, University of
     Copenhagen. September 2021. ([pdf](student-projects/till-msc-thesis.pdf))
--   Baptiste Coudray: **MPI-Futhark: Distributed High-Performance
-    Computing For People**. BSc thesis. HEPIA.
-    August 2021. ([pdf](student-projects/coudray-bsc-thesis.pdf))
--   Philip Rajani Lassen: **WebAssembly Backends for Futhark**.  MSc
-    thesis. Department of Computer Science, University of
-    Copenhagen. July 2021. ([pdf](student-projects/philip-msc-thesis.pdf))
--   Nikolaj Hey Hinnerskov: **Massively Parallel Selection of Stable
-    History Period in Change Detection for Time Series Data with
-    Missing Values**.  BSc thesis.  Department of Computer Science,
-    University of
-    Copenhagen. June 2021. ([pdf](student-projects/nikolaj-bsc-thesis.pdf))
--   Kristian Bøjer Andreasen: **Data-Parallel Coherency Sensitive
-    Hashing for Approximate Nearest Neighbour Fields**.  MSc thesis.
-    Department of Computer Science, University of
-    Copenhagen. June 2021. ([pdf](student-projects/kristian-bøjer-andreasen-msc-thesis.pdf))
--   Christian Charlie Virt, Jonathan Wraa-Hansen: **Optimisation and
-    GPU code generation of Stencils for Futhark**.  June 2021.
+
+-   Baptiste Coudray: **MPI-Futhark: Distributed High-Performance Computing For
+    People**. BSc thesis. HEPIA. August 2021.
+    ([pdf](student-projects/coudray-bsc-thesis.pdf))
+
+-   Philip Rajani Lassen: **WebAssembly Backends for Futhark**. MSc thesis.
+    Department of Computer Science, University of Copenhagen. July 2021.
+    ([pdf](student-projects/philip-msc-thesis.pdf))
+
+-   Nikolaj Hey Hinnerskov: **Massively Parallel Selection of Stable History
+    Period in Change Detection for Time Series Data with Missing Values**. BSc
+    thesis. Department of Computer Science, University of Copenhagen. June 2021.
+    ([pdf](student-projects/nikolaj-bsc-thesis.pdf))
+
+-   Kristian Bøjer Andreasen: **Data-Parallel Coherency Sensitive Hashing for
+    Approximate Nearest Neighbour Fields**. MSc thesis. Department of Computer
+    Science, University of Copenhagen. June 2021.
+    ([pdf](student-projects/kristian-bøjer-andreasen-msc-thesis.pdf))
+
+-   Christian Charlie Virt, Jonathan Wraa-Hansen: **Optimisation and GPU code
+    generation of Stencils for Futhark**. June 2021.
     ([pdf](student-projects/christian-jonathan-msc-thesis.pdf)).
--   Maya Saietz: **Code Generation for Stencils in Futhark**.  June 2021.
+
+-   Maya Saietz: **Code Generation for Stencils in Futhark**. June 2021.
     ([pdf](student-projects/maya-msc-thesis.pdf)).
--   Morten Tychsen Clausen: **Regular Segmented Single-pass Scan in
-    Futhark**.  June 2021. ([pdf](student-projects/morten-msc-thesis.pdf))
--   Kasper Unn Weihe, Kristian Quirin Hansen, Peter Kanstrup Larsen:
-    **Linear Algebra in Futhark**.  Department of Computer Science,
-    University of Copenhagen. February 2021.
+
+-   Morten Tychsen Clausen: **Regular Segmented Single-pass Scan in Futhark**.
+    June 2021. ([pdf](student-projects/morten-msc-thesis.pdf))
+
+-   Kasper Unn Weihe, Kristian Quirin Hansen, Peter Kanstrup Larsen: **Linear
+    Algebra in Futhark**. Department of Computer Science, University of
+    Copenhagen. February 2021.
     ([pdf](student-projects/kristian-kasper-peter-project.pdf))
+
 -   Till Severin Grenzdörffer: **Accelerating Ocean Modelling: Adressing
-    performance bottlenecks of the ocean modelling framework Veros**.
-    MSc project, Department of Computer Science, University of
-    Copenhagen. January 2021.
-    ([pdf](student-projects/till-msc-project.pdf))
--   Kristian Høi: **Parallel implementations of machine learning
-    algorithms: Gradient boosted decision trees**. MSc Thesis,
-    Department of Computer Science, University of Copenhagen.
-    January 2021. ([pdf](student-projects/kristian-msc-thesis.pdf))
--   Andreas Nicolaisen, Marco Aslak Persson: **Implementing Single-Pass
-    Scan in the Futhark Compiler**. MSc project. Department of Computer
-    Science, University of Copenhagen. November 2020.
+    performance bottlenecks of the ocean modelling framework Veros**. MSc
+    project, Department of Computer Science, University of Copenhagen.
+    January 2021. ([pdf](student-projects/till-msc-project.pdf))
+
+-   Kristian Høi: **Parallel implementations of machine learning algorithms:
+    Gradient boosted decision trees**. MSc Thesis, Department of Computer
+    Science, University of Copenhagen. January 2021.
+    ([pdf](student-projects/kristian-msc-thesis.pdf))
+
+-   Andreas Nicolaisen, Marco Aslak Persson: **Implementing Single-Pass Scan in
+    the Futhark Compiler**. MSc project. Department of Computer Science,
+    University of Copenhagen. November 2020.
     ([pdf](student-projects/marco-andreas-scan.pdf))
--   Duc Minh Tran: **Multicore backend for Futhark**. MSc Thesis.
-    Department of Computer Science, University of Copenhagen.
-    September 2020. ([pdf](student-projects/duc-msc-thesis.pdf))
--   Emil Un Weihe: **Support Vector Machines in Futhark**. MSc thesis.
+
+-   Duc Minh Tran: **Multicore backend for Futhark**. MSc Thesis. Department of
     Computer Science, University of Copenhagen. September 2020.
+    ([pdf](student-projects/duc-msc-thesis.pdf))
+
+-   Emil Un Weihe: **Support Vector Machines in Futhark**. MSc thesis. Computer
+    Science, University of Copenhagen. September 2020.
     ([pdf](student-projects/emil-msc-thesis.pdf))
--   Michaël El Kharroubi: **Highly parallel algorithms on GPU with
-    Futhark: Practical case with block ciphers**. BSc thesis. HEPIA.
-    August 2020. ([pdf](student-projects/michael-bsc-thesis.pdf))
--   Johan Johansson, Ari von Nordenskjöld: **Ray Tracing for Sensor
-    Simulation using Parallel Functional Programming**. MSc thesis.
-    Chalmers University of Technology. June 2020.
-    ([pdf](student-projects/johan-ari-msc-thesis.pdf))
--   Ulrik Elmelund Petersen: **Optimizing the kNN algorithm for GPGPUs
-    in Futhark**. BSc thesis. Computer Science, University of
-    Copenhagen. June 2020.
-    ([pdf](student-projects/ulrik-bsc-thesis.pdf))
--   Mathias Friis Rasmussen, Jonas Kristensen, Jens Nissen-Juul
-    Sørensen, Christian Dybdahl Troelsen: **FutSpace - A Parallelizable
-    Implementation of the Voxel Space Rendering Algorithm**. BSc thesis.
-    Computer Science, University of Copenhagen. June 2020.
+
+-   Michaël El Kharroubi: **Highly parallel algorithms on GPU with Futhark:
+    Practical case with block ciphers**. BSc thesis. HEPIA. August 2020.
+    ([pdf](student-projects/michael-bsc-thesis.pdf))
+
+-   Johan Johansson, Ari von Nordenskjöld: **Ray Tracing for Sensor Simulation
+    using Parallel Functional Programming**. MSc thesis. Chalmers University of
+    Technology. June 2020. ([pdf](student-projects/johan-ari-msc-thesis.pdf))
+
+-   Ulrik Elmelund Petersen: **Optimizing the kNN algorithm for GPGPUs in
+    Futhark**. BSc thesis. Computer Science, University of Copenhagen.
+    June 2020. ([pdf](student-projects/ulrik-bsc-thesis.pdf))
+
+-   Mathias Friis Rasmussen, Jonas Kristensen, Jens Nissen-Juul Sørensen,
+    Christian Dybdahl Troelsen: **FutSpace - A Parallelizable Implementation of
+    the Voxel Space Rendering Algorithm**. BSc thesis. Computer Science,
+    University of Copenhagen. June 2020.
     ([pdf](student-projects/futspace-bsc-thesis.pdf))
--   Ulrik Stuhr Larsen, Lotte Maria Bruun: **A Language for Parallel
-    Generation of L-Systems**. BSc thesis. Computer Science, University
-    of Copenhagen. June 2020.
-    ([pdf](student-projects/lotte-ulrik-bsc-thesis.pdf))
+
+-   Ulrik Stuhr Larsen, Lotte Maria Bruun: **A Language for Parallel Generation
+    of L-Systems**. BSc thesis. Computer Science, University of Copenhagen.
+    June 2020. ([pdf](student-projects/lotte-ulrik-bsc-thesis.pdf))
 
 -   Æmilie Cholewa-Madsen, Anders Lietzen Holst: **Teaching the Futhark compiler
     block and register tiled matrix multiplication**. BSc thesis. Computer
     Science, University of Copenhagen. June 2020.
     ([pdf](student-projects/aemilie-anders-bsc-thesis.pdf))
 
--   Robert Schenck: **Sum types in Futhark**. MSc thesis. Computer
-    Science, University of Copenhagen. December 2019.
+-   Robert Schenck: **Sum types in Futhark**. MSc thesis. Computer Science,
+    University of Copenhagen. December 2019.
     ([pdf](student-projects/robert-msc-thesis.pdf))
--   Henrik Urms, Anna Sofie Kiehn: **Refinement types in Futhark**. MSc
-    thesis. Computer Science, University of Copenhagen. September 2019.
+
+-   Henrik Urms, Anna Sofie Kiehn: **Refinement types in Futhark**. MSc thesis.
+    Computer Science, University of Copenhagen. September 2019.
     ([pdf](student-projects/kiehn-urms-msc-thesis.pdf))
--   Steffen Holst Larsen: **Multi-GPU Futhark Using Parallel Streams**.
-    MSc thesis. Department of Computer Science, University of
-    Copenhagen. September 2019.
-    ([pdf](student-projects/steffen-msc-thesis.pdf))
--   Svend Lund Breddam: **Futhark Autotuners for Incremental
-    Flattening**. MSc thesis. Department of Computer Science, University
-    of Copenhagen. September 2019.
-    ([pdf](student-projects/svend-msc-thesis.pdf))
--   Steffen Holst Larsen: **Futhark Vulkan Backend**. MSc project.
-    Department of Computer Science, University of Copenhagen.
-    January 2019. ([pdf](student-projects/steffen-msc-project.pdf))
--   Jakob Stokholm Bertelsen: **Implementing a CUDA Backend for
-    Futhark**. BSc thesis. Department of Computer Science, University of
-    Copenhagen. January 2019.
-    ([pdf](student-projects/jakob-bsc-thesis.pdf))
--   Sune Hellfritzsch: **Efficient Histogram Computation on GPGPUs**.
-    MSc thesis. Department of Computer Science, University of
-    Copenhagen. October 2018.
-    ([pdf](student-projects/hellfritzsch-msc-thesis.pdf))
--   Duc Minh Tran: **Implementation of a deep learning library in
-    Futhark**. BSc Thesis. Department of Computer Science, University of
-    Copenhagen. August 2018.
-    ([pdf](student-projects/duc-bsc-thesis.pdf))
--   Mikkel Storgaard Knudsen: **FShark: Futhark programming in FSharp**.
-    MSc thesis. Department of Computer Science, University of
-    Copenhagen. August 2018.
-    ([pdf](student-projects/mikkel-msc-thesis.pdf))
--   Marek Hlava and Martin Metaksov: **Accelerated Interest Rate Option
-    Pricing using Trinomial Trees**. MSc thesis. Department of Computer
-    Science, University of Copenhagen. August 2018.
+
+-   Steffen Holst Larsen: **Multi-GPU Futhark Using Parallel Streams**. MSc
+    thesis. Department of Computer Science, University of Copenhagen.
+    September 2019. ([pdf](student-projects/steffen-msc-thesis.pdf))
+
+-   Svend Lund Breddam: **Futhark Autotuners for Incremental Flattening**. MSc
+    thesis. Department of Computer Science, University of Copenhagen.
+    September 2019. ([pdf](student-projects/svend-msc-thesis.pdf))
+
+-   Steffen Holst Larsen: **Futhark Vulkan Backend**. MSc project. Department of
+    Computer Science, University of Copenhagen. January 2019.
+    ([pdf](student-projects/steffen-msc-project.pdf))
+
+-   Jakob Stokholm Bertelsen: **Implementing a CUDA Backend for Futhark**. BSc
+    thesis. Department of Computer Science, University of Copenhagen.
+    January 2019. ([pdf](student-projects/jakob-bsc-thesis.pdf))
+
+-   Sune Hellfritzsch: **Efficient Histogram Computation on GPGPUs**. MSc
+    thesis. Department of Computer Science, University of Copenhagen.
+    October 2018. ([pdf](student-projects/hellfritzsch-msc-thesis.pdf))
+
+-   Duc Minh Tran: **Implementation of a deep learning library in Futhark**. BSc
+    Thesis. Department of Computer Science, University of Copenhagen.
+    August 2018. ([pdf](student-projects/duc-bsc-thesis.pdf))
+
+-   Mikkel Storgaard Knudsen: **FShark: Futhark programming in FSharp**. MSc
+    thesis. Department of Computer Science, University of Copenhagen.
+    August 2018. ([pdf](student-projects/mikkel-msc-thesis.pdf))
+
+-   Marek Hlava and Martin Metaksov: **Accelerated Interest Rate Option Pricing
+    using Trinomial Trees**. MSc thesis. Department of Computer Science,
+    University of Copenhagen. August 2018.
     ([pdf](student-projects/marek-martin-msc-thesis.pdf))
--   Kasper Abildtrup Hansen: **FFT Generator in Futhark: A prototype
-    Futhark library using FFTW technniques**. MSc project. Department of
-    Computer Science, University of Copenhagen. June 2018.
+
+-   Kasper Abildtrup Hansen: **FFT Generator in Futhark: A prototype Futhark
+    library using FFTW technniques**. MSc project. Department of Computer
+    Science, University of Copenhagen. June 2018.
     ([pdf](student-projects/kasper-hansen-genfft.pdf))
--   Frederik Thorøe: **Auto-tuning of threshold-parameters in Futhark**.
-    BSc thesis. Department of Computer Science, University of
-    Copenhagen. June 2018.
+
+-   Frederik Thorøe: **Auto-tuning of threshold-parameters in Futhark**. BSc
+    thesis. Department of Computer Science, University of Copenhagen. June 2018.
     ([pdf](student-projects/frederik-thoroe-bsc-thesis.pdf))
--   Mette Marie Kowalski: **Designing and Accelerating a Generic FFT
-    Library in Futhark**. BSc thesis. Department of Computer Science,
-    University of Copenhagen. June 2018.
+
+-   Mette Marie Kowalski: **Designing and Accelerating a Generic FFT Library in
+    Futhark**. BSc thesis. Department of Computer Science, University of
+    Copenhagen. June 2018.
     ([pdf](student-projects/mette-kowalski-bsc-thesis.pdf))
--   Anders Kiel Hovgaard: **Higher-order functions for a
-    high-performance programming language for GPUs**. MSc project.
-    Department of Computer Science, University of Copenhagen. May 2018.
+
+-   Anders Kiel Hovgaard: **Higher-order functions for a high-performance
+    programming language for GPUs**. MSc project. Department of Computer
+    Science, University of Copenhagen. May 2018.
     ([pdf](student-projects/hovgaard-msc-thesis.pdf))
+
 -   Niels G. W. Serup: **Memory Block Merging in Futhark**. MSc thesis.
-    Department of Computer Science, University of Copenhagen.
-    November 2017. ([pdf](student-projects/niels-msc-thesis.pdf))
--   Rasmus Wriedt Larsen: **Generating Efficient Code for Futhark's
-    Segmented Redomap**. MSc thesis. Department of Computer Science,
-    University of Copenhagen. March 2017.
-    ([pdf](student-projects/rasmus-msc-thesis.pdf))
+    Department of Computer Science, University of Copenhagen. November 2017.
+    ([pdf](student-projects/niels-msc-thesis.pdf))
+
+-   Rasmus Wriedt Larsen: **Generating Efficient Code for Futhark's Segmented
+    Redomap**. MSc thesis. Department of Computer Science, University of
+    Copenhagen. March 2017. ([pdf](student-projects/rasmus-msc-thesis.pdf))
+
 -   Niels G. W. Serup: **Extending Futhark with a write construct**. MSc
     project. Department of Computer Science, University of Copenhagen.
     June 2016. ([pdf](student-projects/niels-write-construct.pdf)).
