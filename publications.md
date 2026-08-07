@@ -185,6 +185,10 @@ to build or show something.
 
 # Selected Student Projects
 
+- Amirreza Hashemi: **Full Flattening of Nested Data Parallelism in the Futhark
+Compiler**, MSc thesis, DTU and Aalto University, August 2026
+([pdf](student-projects/amir-msc-thesis.pdf))
+
 - Jonas Lau Kristensen and Daniel Nicholas Mølhave:
   **GPU Implementations of KD-Tree Assisted Approximate Nearest Neighbour Algorithms**, 
   BSc thesis, DIKU, June 2026.
