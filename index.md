@@ -33,7 +33,7 @@ def average (xs: []f64) = reduce (+) 0 xs / f64.i64 (length xs)
 
 Futhark is not designed for graphics programming, but can instead use
 the compute power of the GPU to accelerate data-parallel array
-computations. The language supports **regular nested
+computations. The language supports **nested
 data-parallelism** and **automatic differentiation**, as well as a
 form of imperative-style in-place modification of arrays, while still
 preserving the purity of the language via the use of a **uniqueness
