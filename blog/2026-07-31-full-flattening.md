@@ -15,8 +15,8 @@ operations, to *flat parallelism*. This challenge arises because much
 interesting hardware (such as GPUs) does not efficiently support nested
 parallelism, and even on CPUs, arbitrary nesting may have significant run-time
 costs. Futhark has for a long time supported flattening only a limited (although
-important) subset of programs, called *regular nested parallelism* (as opposed
-to *irregular*), which meant that there were programs that we were unable to
+important) subset of programs, called *uniform nested parallelism* (as opposed
+to *nonuniform*), which meant that there were programs that we were unable to
 compile to GPU code. In 2022 I began an [experimental implementation of "full
 flattening"](https://github.com/diku-dk/futhark/pull/1740), which as of this
 writing is the longest open pull request on the Futhark repository. I got far
@@ -48,7 +48,7 @@ I should mention up front what the goal is of this work: the new flattening
 transformation should not reduce performance for programs that already worked
 with the old implementation, but we are less concerned with the performance of
 programs that did not work before. As we shall see, achieving *truly* good
-performance on arbitrarily irregular nested parallelism is a major research
+performance on arbitrarily nonuniform nested parallelism is a major research
 problem in itself, and one that we intend to address incrementally in the time
 to come.
 
@@ -208,8 +208,8 @@ let ys =
 
 Notice the question marks in the type of the `xss` binding - what size should we
 put there? Intuitively, the operation `map (\n -> iota n) ns` produces an
-irregular array, where the rows have different sizes, depending on the values of
-the input array `ns`. One might expect that `map (\n -> iota n) [1,2,3]`
+*irregular* array, where the rows have different sizes, depending on the values
+of the input array `ns`. One might expect that `map (\n -> iota n) [1,2,3]`
 produces the array `[[0],[0,1],[0,1,2]]`, but unfortunately, Futhark does not
 allow irregular arrays; neither in the source language nor in our IR. The
 reasons are motivated by performance, as once you have irregular arrays, you
@@ -219,7 +219,7 @@ means we don't want to allow irregular arrays in the source language, nor in the
 IR.
 
 This issue is the root of the limitation on our original flattening
-transformation, which is that it cannot handle *irregular nested parallelism*,
+transformation, which is that it cannot handle *nonuniform nested parallelism*,
 meaning parallelism of a size that varies between iterations of outer parallel
 dimensions. In the example above, `m` is local to the outermost `map`, so the
 `iota` and `reduce` (both of which have a parallel width of `m`) are irregular.
@@ -236,7 +236,7 @@ requirements and organise intermediate results in memory. This can be done
 but it is a best-effort kind of thing, and it does not bring back parallelism.
 
 Anyway, the ability to handle irregular arrays is clearly crucial to the general
-goal of handling irregular nested parallelism. The solution is to figure out a
+goal of handling nonuniform nested parallelism. The solution is to figure out a
 representation of irregular arrays as flat (one-dimensional arrays), which still
 allow the parallel execution of the operations we need. The central building
 block is an encoding of a two-dimensional irregular array as a *data vector* and
@@ -675,7 +675,7 @@ the source language and the IR, and which allow program transformations to
 reason about the symbolic shapes of arrays.
 
 In the case of flattening, shape information allows us to distinguish nesting
-from *guaranteed regular* to *possibly irregular*. As a reminder, regular nested
+from *guaranteed uniform* to *possibly nonuniform*. As a reminder, uniform nested
 parallelism is when the parallel dimensions are uniform in the map nest, meaning
 invariant to the outer parallel dimensions. When this is the case, we do not
 need to represent arrays using the segmented representation, but can use normal
@@ -684,7 +684,7 @@ metadata arrays such as the flag vector, this also results in code that is much
 easier for subsequent compiler passes to analyse. While we have little hope for
 analysing the result of full flattening (which tends to just be a soup of
 segmented scans), the Futhark compiler has passes that are able to perform
-optimisations such as loop tiling on regularly flattened code, but only if it
+optimisations such as loop tiling on uniformly flattened code, but only if it
 can figure out the looping structure.
 
 The uniform case also allows for much simpler flattening rules. The general
@@ -718,7 +718,7 @@ the Futhark compiler already tracked all this information precisely. I remember
 hearing about other implementations of flattening that got stuck on having to
 come up with all this size analysis on their own, on an IR that was not designed
 for it. As of this writing, all [Futhark benchmark
-programs](https://github.com/diku-dk/futhark-benchmarks) exhibit only regular
+programs](https://github.com/diku-dk/futhark-benchmarks) exhibit only uniform
 nested parallelism (because that's all that used to work!), so handling this
 efficiently was critical, and I am very pleased that Amirreza (who implemented
 this part) managed to get it to work as well as I had hoped for. It's quite the
@@ -739,7 +739,7 @@ level of each `map` nest is present in both a sequentialised and flattened
 version, and at run-time we pick the version that is parallel enough to saturate
 the hardware, but no more. This is based on the idea that parallelism beyond
 what the machine can exploit is simply overhead - for example, applying the
-costly irregular `if` flattening rule is often not worth the gain of
+costly nonuniform `if` flattening rule is often not worth the gain of
 parallelism. Further, sequential code is often subject to locality
 optimisations, such as loop tiling. Which version is "best" depends on both the
 program, the workload, and the hardware, and in practice must be determined
@@ -748,7 +748,7 @@ paper](https://futhark-lang.org/publications/tfp21.pdf).
 
 Amirreza managed to re-implement incremental flattening using the same technique
 (and to a degree, the same code) as in our previous work, and it generates all
-the same versions as before - plus a few more, as we now also treat irregular
+the same versions as before - plus a few more, as we now also treat nonuniform
 nesting as parallel (this also causes trouble, more on that below).
 
 Incremental flattening not only discriminates based on how much parallelism is
@@ -774,7 +774,7 @@ one, I realised it was impossible for the change to have zero impact, but
 overall the vast majority of our benchmarks see no change in performance.
 
 Initially we did encounter regressions in many programs. The source of this
-turned out to be irregular nested parallelism that the old flattener would
+turned out to be nonuniform nested parallelism that the old flattener would
 silently treat as sequential, and where treating it as sequential really is the
 optimal strategy. As an example, consider the following function from the
 benchmark program
@@ -864,7 +864,7 @@ def f [m] (ns: [m]i64) =
   map (\n -> i64.sum (iota n)) ns
 ```
 
-This function contains irregular nested parallelism, as the size `n` is
+This function contains nonuniform nested parallelism, as the size `n` is
 nonuniform in the `map` nest. After flattening it will look like this:
 
 ```
@@ -940,15 +940,15 @@ fun
 ```
 
 Instead of using `map` and `scan`, the IR has dedicated constructs such as
-`segscan` and `segmap`, that can represent multidimensional *regular* segmented
-operations. Since this program is irregular, all of these are one-dimensional
+`segscan` and `segmap`, that can represent multidimensional *uniform* segmented
+operations. Since this program is nonuniform, all of these are one-dimensional
 (`(gtid_7809 < m_7572)`), and encode the structure using flag arrays. The
 program first does a segmented iota through a call to a builtin function
 `builtin/segiota`, then performs a segmented scan, and finally extracts the last
 element of each segment. Note that `builtin/segiota` returns not just the data
 and flag vectors of the segmented representation, but also an offset vector that
 denotes the start offset of each segment. This is used in the final `segmap`.
-Generally the builtin irregular segmented operations return more than the
+Generally the builtin nonuniform segmented operations return more than the
 minimum auxiliary information, because the additional arrays often turn out to
 be necessary, and usually have to be computed internally anyway.
 
@@ -961,7 +961,7 @@ future.
 
 In NESL (and DPH), flattening was used to support irregular arrays as a
 programming construct in the source language. In Futhark, our goals are more
-modest: we want to support irregular nested parallelism, but we have no plans
+modest: we want to support nonuniform nested parallelism, but we have no plans
 for adding irregular arrays to the source language or to the IR. Flattening
 handles irregular intermediate arrays using a bespoke representation that is
 internal to the flattening pass itself. I am not opposed to irregular arrays in
