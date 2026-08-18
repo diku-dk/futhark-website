@@ -32,7 +32,7 @@ various talented artists. We welcome further contributions!
 ![By Shamim Siddique - [*Also available in three
 dimensions!*](/agitprop/shamim.obj)](/agitprop/shamim.jpg)
 
-
+![By Amirreza Hashemi](/agitprop/flattening.jpg)
 
 ## The Filippa Biil collection
 
