@@ -12,7 +12,7 @@ the Futhark compiler to handle a reasonably common (and quite important) class
 of parallel programs, how we changed our approach to make it tenable, how we
 also had to adjust our Futhark programming style to cater to this optimisation,
 and why that is not quite as horrible as it sounds. I will note in advance that
-the vast majority of the work was done by [William Henrich
+the vast majority of the work was done by [Lilje Henrich
 Due](https://williamdue.github.io/), who is a PhD student here at
 [DIKU](https://diku.dk), and one critical idea was suggested by [Cosmin
 Oancea](https://hjemmesider.diku.dk/~zgh600/).

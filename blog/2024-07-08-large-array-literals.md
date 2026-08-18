@@ -3,8 +3,8 @@ title: Large array literals
 description: How do you deal with programs that are not only poorly written by normal standards, but are in fact not written by humans at all?
 ---
 
-A PhD student here at DIKU, [William
-Due](https://github.com/WilliamDue), is conducting research into data
+A PhD student here at DIKU, [Lilje
+Due](https://github.com/LiljeDue), is conducting research into data
 parallel parsing (and eventually, algorithms data parallel compilation
 more generally). So far, the most significant research artifact is
 [Alpacc](https://github.com/diku-dk/alpacc), a tool that can given a
@@ -15,7 +15,7 @@ although not useful quite yet.
 
 The generated parsers are table-driven, and due to the special
 information needed to support parallel parsing (*way* outside the
-scope of this post, but see [William's BSc
+scope of this post, but see [Lilje's BSc
 thesis](https://futhark-lang.org/student-projects/william-bsc-thesis.pdf)),
 the tables are pretty large. For example, [this JSON
 grammar](https://github.com/diku-dk/alpacc/blob/1aeca8bb530c63cc4a8a0a12a61fa5e6df8ff3da/grammars/json.alp)

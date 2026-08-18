@@ -243,9 +243,9 @@ Futhark WebGPU backend**, BSc thesis, DIKU, June 2025.
   **Utilizing Tensor Cores in Futhark**, MSc thesis, DIKU, January 2025.
   ([pdf](student-projects/kristoffer-rune-tensorcores-msc-thesis.pdf))
 
-- Therese Lyngby, William Henrich Due: **The Worlds Best Futhark
+- Therese Lyngby, Lilje Henrich Due: **The Worlds Best Futhark
   Formatter**, MSc project, DIKU, November 2024.
-  ([pdf](student-projects/therese-william-project.pdf))
+  ([pdf](student-projects/therese-lilje-project.pdf))
 
 - Marcus Jensen: **Not-Quite-Supersonic AD: Implementing forward and
   reverse mode automatic differentiation in the Futhark interpreter**,
@@ -287,8 +287,8 @@ soundness errors for a little extra**, BSc thesis, AU, July 2023
   Concepts of the Futhark Programming Language into an Extended π-Calculus**,
   MSc thesis, AAU, June 2023. ([pdf](student-projects/pi-msc-thesis.pdf))
 
-- William Henrich Due: **Parallel Parsing using Futhark**, BSc thesis, DIKU,
-June 2023 ([pdf](student-projects/william-bsc-thesis.pdf))
+- Lilje Henrich Due: **Parallel Parsing using Futhark**, BSc thesis, DIKU,
+June 2023 ([pdf](student-projects/lilje-bsc-thesis.pdf))
 
 - Rune Nielsen: **Implementation of Graph Algorithms in Futhark**, BSc thesis,
 DIKU, June 2023 ([pdf](student-projects/rune-bsc-thesis.pdf))

@@ -93,7 +93,7 @@ affects the formatting.
 
 I've long wanted a similar automatic formatter for Futhark, one that
 behaves much like Ormolu, and fortunately two students at
-[DIKU](https://diku.dk) - Therese Lyngby and William Due -
+[DIKU](https://diku.dk) - Therese Lyngby and Lilje Due -
 [volunteered](2024-02-03-quantifying-student-projects.html) to spend a
 half-semester implementing one. The result is [`futhark
 fmt`](https://futhark.readthedocs.io/en/latest/man/futhark-fmt.html),
