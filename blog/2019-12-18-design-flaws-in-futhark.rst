@@ -125,7 +125,7 @@ between this and a conventional module system is that beyond simple
 name-spacing, ML-style module systems also support *parametric
 modules*, by which modules can be parameterised over the concrete
 implementation of some other module.  This allows us to program
-against interfaces that than implementations, and provides a powerful
+against interfaces rather than implementations, and provides a powerful
 mechanism for generic programming.
 
 .. code-block:: Futhark
