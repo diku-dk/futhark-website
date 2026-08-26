@@ -190,7 +190,7 @@ Consider this program:
 map (\m -> let xs : [m]i64 = iota m
            let y : i64 = reduce (+) 0 xs
            in y)
-    ns
+    ms
 ```
 
 Recall that `iota m` produces an array `[0, ..., m-1]` of size `m`. This program
@@ -199,8 +199,8 @@ nested. So let us try to fission (fise?) the `map`:
 
 ```Futhark
 let xss : [n][???]i64 =
-  map (\n -> iota n)
-      ns
+  map (\m -> iota m)
+      ms
 let ys =
   map (\xs -> reduce (+) 0 xs)
       xss
