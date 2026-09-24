@@ -185,6 +185,9 @@ to build or show something.
 
 # Selected Student Projects
 
+- Alex Meislich: **3D Gaussian Splatting with Futhark**, MSc thesis, DIKU,
+  September 2026 ([pdf](student-projects/alex_msc_thesis.pdf))
+
 - Amirreza Hashemi: **Full Flattening of Nested Data Parallelism in the Futhark
 Compiler**, MSc thesis, DTU and Aalto University, August 2026
 ([pdf](student-projects/amir-msc-thesis.pdf))
