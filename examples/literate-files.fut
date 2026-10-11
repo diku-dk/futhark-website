@@ -8,10 +8,10 @@
 
 def rev_first_n (n: i64) (s: []u8) = reverse (take n s)
 
--- Reading a file is done with the `$loadbytes` builtin, which is only
--- valid in FutharkScript.
+-- Reading a file is done with the `io.loadbytes` builtin, which is only
+-- valid in interpreted Futhark.
 
--- > rev_first_n 10 ($loadbytes "literate-files.fut")
+-- > rev_first_n 10 (io.loadbytes "literate-files.fut")
 
 -- # See also
 --

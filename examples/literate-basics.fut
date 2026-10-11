@@ -10,7 +10,7 @@
 -- spaced vector:
 
 def linspace (n: i64) (start: f64) (end: f64) : [n]f64 =
-  tabulate n (\i -> start + f64.i64 i * ((end-start)/f64.i64 n))
+  tabulate n (\i -> start + f64.i64 i * ((end - start) / f64.i64 n))
 
 -- With an evaluation directive, we can show what it evaluates to:
 
@@ -22,24 +22,20 @@ def linspace (n: i64) (start: f64) (end: f64) : [n]f64 =
 -- that that the results are not part of what I wrote.  Those are
 -- automatically inserted by ``futhark literate``.
 --
--- The expressions in the directives are not full Futhark expressions.
--- Rather, they are written in a tiny subset called FutharkScript,
--- which supports little besides calling top-level functions in the
--- literate file.  An important restriction is that all numeric literals
--- must have a type suffix, as above.  When we write literate files, we
--- must put all nontrivial code in ordinary Futhark definitions, which
--- support the full language.  The Futhark part of a a literate Futhark program is
--- compiled like an ordinary Futhark program.
+-- The expressions in the directives are run by the Futhark interpreter (meaning
+-- they are slow), but any references to entry points (functions declared with
+-- `entry`) invoke compiled code. The Futhark part of a a literate Futhark
+-- program is compiled like an ordinary Futhark program, but only explicitly
+-- indicated entry points run fast.
 --
 -- Some values are boring when viewed as arrays of numbers.
 
-def linspace_2d n start end : [n][n](f64,f64) =
-  map (\x -> map (\y -> (x,y)) (linspace n start end))
+def linspace_2d n start end : [n][n](f64, f64) =
+  map (\x -> map (\y -> (x, y)) (linspace n start end))
       (linspace n start end)
 
-def spirals n v : [n][n]f64 =
-  let f (x, y) =
-    f64.sgn (f64.cos (f64.sqrt (x**2+y**2)))
+entry spirals n v : [n][n]f64 =
+  let f (x, y) = f64.sgn (f64.cos (f64.sqrt (x ** 2 + y ** 2)))
   in map (map f) (linspace_2d n (-v) v)
 
 -- For expressions with an appropriate type, ``futhark literate`` can
@@ -51,11 +47,11 @@ def spirals n v : [n][n]f64 =
 -- two-dimensional array of 32-bit integers is interpreted in RGB
 -- format.
 
-def colours n v : [n][n]u32 =
+entry colours n v : [n][n]u32 =
   let f (x, y) =
-    (u32.f64 (x*y) & 0xFF) << 16 |
-    (u32.f64 (x+y) & 0xFF) << 8 |
-    (u32.f64 (f64.cos x-f64.sin y) & 0xFF)
+    (u32.f64 (x * y) & 0xFF) << 16
+    | (u32.f64 (x + y) & 0xFF) << 8
+    | (u32.f64 (f64.cos x - f64.sin y) & 0xFF)
   in map (map f) (linspace_2d n (-v) v)
 
 -- This is more colourful.
@@ -69,10 +65,10 @@ def colours n v : [n][n]u32 =
 def xys f n start end : ([n]f64, [n]f64) =
   unzip (map (\x -> (x, f x)) (linspace n start end))
 
-def plot_sqrt = xys f64.sqrt
-def plot_sin = xys f64.sin
-def plot_cos = xys f64.cos
-def plot_inv = xys (1/)
+entry plot_sqrt = xys f64.sqrt
+entry plot_sin = xys f64.sin
+entry plot_cos = xys f64.cos
+entry plot_inv = xys (1 /)
 
 -- The `:plot2d` directive lets us to a quick plot of pairs of *x* and
 -- *y* value arrays.
@@ -91,9 +87,9 @@ def plot_inv = xys (1/)
 -- [Gnuplot](http://www.gnuplot.info/).  For advanced needs, such as
 -- 3D plotting, we can write the Gnuplot commands ourselves.
 
-def plot3d n start end : ([]f64, []f64, []f64) =
+entry plot3d n start end : ([]f64, []f64, []f64) =
   let f (x, y) =
-    let z = f64.sin(5*x) *f64.cos(5*y)/5
+    let z = f64.sin (5 * x) * f64.cos (5 * y) / 5
     in (x, y, z)
   in unzip3 (flatten (map (map f) (linspace_2d n start end)))
 
