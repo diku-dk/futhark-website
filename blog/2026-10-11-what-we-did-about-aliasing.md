@@ -163,7 +163,7 @@ small model language, including its dynamic and static semantics ("type rules"),
 a soundness theorem for what must hold for well-typed programs, and have an
 agent construct a Rocq proof. I don't have to understand how the proof works, as
 long as I understand the theorem that it proves and the language and semantics
-that it provies it for (which I do, because I defined them).
+that it proves it for (which I do, because I defined them).
 
 So that is what I did. I will not go into detail on the formalisation, although
 it has some interesting parts, but it is basically a *tiny* subset of Futhark
