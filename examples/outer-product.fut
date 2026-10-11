@@ -9,7 +9,7 @@ def outer_prod op A B =
 -- This definition is parameterised over the multiplication operator.
 -- This allows us to obtain the "standard" outer product:
 
-let std_outer_prod = outer_prod (f64.*)
+def std_outer_prod = outer_prod (f64.*)
 
 -- > std_outer_prod [1.0,2.0,3.0] [4.0,5.0,6.0]
 

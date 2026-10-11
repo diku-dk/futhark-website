@@ -16,11 +16,12 @@
 
 def binary_search [n] 't (lte: t -> t -> bool) (xs: [n]t) (x: t) : i64 =
   let (l, _) =
-    loop (l, r) = (0, n-1) while l < r do
-    let t = l + (r - l) / 2
-    in if x `lte` xs[t]
-       then (l, t)
-       else (t+1, r)
+    loop (l, r) = (0, n - 1)
+    while l < r do
+      let t = l + (r - l) / 2
+      in if x `lte` xs[t]
+         then (l, t)
+         else (t + 1, r)
   in l
 
 -- This function returns the index where the `x` element would occur
@@ -98,10 +99,10 @@ def log2 x = 63 - i64.clz x
 -- Then we can define `eytzinger_index` itself:
 
 def eytzinger_index (n: i64) (i: i64) =
-  let lvl = log2 (i+1)
-  let offset = i64.i32 (1<<(log2 n-lvl))
-  let k = i64.i32 ((1<<lvl)-1)
-  in offset + (i-k) * offset * 2 - 1
+  let lvl = log2 (i + 1)
+  let offset = i64.i32 (1 << (log2 n - lvl))
+  let k = i64.i32 ((1 << lvl) - 1)
+  in offset + (i - k) * offset * 2 - 1
 
 -- Finally, the `eytzinger` function applies `eytzinger_index` on
 -- every integer from *0* to *n-1*, and reads the corresponding
@@ -124,11 +125,12 @@ def ffs x = i64.ctz x + 1
 
 def eytzinger_search [n] 't (lte: t -> t -> bool) (xs: [n]t) (x: t) : i64 =
   let k =
-    loop k = 1 while k <= n do
-      if x `lte` xs[k-1]
-      then 2*k
-      else 2*k+1
-  in (k >> i64.i32 (ffs (!k)))-1
+    loop k = 1
+    while k <= n do
+      if x `lte` xs[k - 1]
+      then 2 * k
+      else 2 * k + 1
+  in (k >> i64.i32 (ffs (!k))) - 1
 
 -- Alright, let's benchmark this.  Unfortunately, while Futhark's
 -- [benchmarking

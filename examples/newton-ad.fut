@@ -10,7 +10,7 @@ def newton (tol: f64) (f: f64 -> f64) (x0: f64) =
   let iteration (_, x, i) =
     let (y, dy) = jvp2 f x 1
     let x' = x - y / dy
-    in (f64.abs (x - x') < tol, x', i+1)
+    in (f64.abs (x - x') < tol, x', i + 1)
   let (_, x, steps) = iterate_until (.0) iteration (false, x0, 0)
   in (x, steps)
 

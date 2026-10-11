@@ -25,10 +25,10 @@ module type field = {
   -- | Constructing an element from a float.
   val f64 : f64 -> t
 
-  val + : t -> t -> t
-  val - : t -> t -> t
-  val * : t -> t -> t
-  val / : t -> t -> t
+  val (+) : t -> t -> t
+  val (-) : t -> t -> t
+  val (*) : t -> t -> t
+  val (/) : t -> t -> t
 
   -- | Additive identity.
   val zero : t
@@ -50,12 +50,12 @@ module type field = {
 module type ordered_field = {
   include field
 
-  val ==: t -> t -> bool
-  val <: t -> t -> bool
-  val >: t -> t -> bool
-  val <=: t -> t -> bool
-  val >=: t -> t -> bool
-  val !=: t -> t -> bool
+  val (==) : t -> t -> bool
+  val (<) : t -> t -> bool
+  val (>) : t -> t -> bool
+  val (<=) : t -> t -> bool
+  val (>=) : t -> t -> bool
+  val (!=) : t -> t -> bool
 }
 
 -- We can define modules that implement `ordered_field` from scratch,
@@ -100,8 +100,6 @@ module type dual_field = {
   -- dual numbers).
   type underlying
 
-  -- | We include all the operations required by ordered fields.  The
-  -- 't' will be a dual number.
   include ordered_field
 
   -- | The primal of a dual number if the normal result.
@@ -125,50 +123,50 @@ module type dual_field = {
 module mk_dual (F: ordered_field) : (dual_field with underlying = F.t) = {
   type underlying = F.t
 
--- We represent a dual number as a pair of the "primal" and "tangent"
--- parts.
+  -- We represent a dual number as a pair of the "primal" and "tangent"
+  -- parts.
 
   type t = (underlying, underlying)
-  def primal ((x, _) : t) = x
-  def tangent ((_, x') : t) = x'
+  def primal ((x, _): t) = x
+  def tangent ((_, x'): t) = x'
   def dual0 x : t = (x, F.f64 0)
   def dual1 x : t = (x, F.f64 1)
 
--- A constant has tangent zero.
+  -- A constant has tangent zero.
 
   def f64 x = dual0 (F.f64 x)
   def zero = f64 0
   def one = f64 1
 
--- Negation is defined in the obvious way.
+  -- Negation is defined in the obvious way.
 
-  def neg (x,x') = (F.neg x, F.neg x')
+  def neg (x, x') = (F.neg x, F.neg x')
 
--- The reciprocal is a little more tricky, but you can look up the
--- reciprocal rule in a calculus textbook (or more realistically, on
--- Wikipedia).
+  -- The reciprocal is a little more tricky, but you can look up the
+  -- reciprocal rule in a calculus textbook (or more realistically, on
+  -- Wikipedia).
 
-  def recip (x,x') = (F.recip x, F.(neg (x'/(x*x))))
+  def recip (x, x') = (F.recip x, F.(neg (x' / (x * x))))
 
--- Then we get to the actual arithmetic operations.  These are also
--- as you'd expect to find in a textbook.  We define subtraction and
--- division via the inverse elements, so we have fewer things
--- written from scratch.
+  -- Then we get to the actual arithmetic operations.  These are also
+  -- as you'd expect to find in a textbook.  We define subtraction and
+  -- division via the inverse elements, so we have fewer things
+  -- written from scratch.
 
-  def (x,x') + (y,y') = F.((x + y, x' + y'))
-  def (x,x') * (y,y') = F.((x * y, x' * y + x * y'))
-  def x - y = x + neg y
-  def x / y = x * recip y
+  def (+) (x, x') (y, y') = F.((x + y, x' + y'))
+  def (*) (x, x') (y, y') = F.((x * y, x' * y + x * y'))
+  def (-) x y = x + neg y
+  def (/) x y = x * recip y
 
--- Comparisons are straightforward and use only the primal parts.
--- Since we produce booleans here, the result has no tangent.
+  -- Comparisons are straightforward and use only the primal parts.
+  -- Since we produce booleans here, the result has no tangent.
 
-  def (x,_) == (y,_) = F.(x == y)
-  def (x,_) < (y,_) = F.(x < y)
-  def (x,_) > (y,_) = F.(x > y)
-  def (x,_) <= (y,_) = F.(x <= y)
-  def (x,_) >= (y,_) = F.(x >= y)
-  def (x,_) != (y,_) = F.(x != y)
+  def (==) (x, _) (y, _) = F.(x == y)
+  def (<) (x, _) (y, _) = F.(x < y)
+  def (>) (x, _) (y, _) = F.(x > y)
+  def (<=) (x, _) (y, _) = F.(x <= y)
+  def (>=) (x, _) (y, _) = F.(x >= y)
+  def (!=) (x, _) (y, _) = F.(x != y)
 }
 
 -- We instantiate it with the `f64_field` module defined above:
@@ -184,7 +182,7 @@ module dual_f64 = mk_dual f64_field
 
 module mk_test (F: ordered_field) = {
   def test (x: F.t) (y: F.t) =
-    F.((x*x) + (x*y))
+    F.((x * x) + (x * y))
 }
 
 -- We can instantiate this module using both ordinary numbers and dual
@@ -224,7 +222,6 @@ module test_dual = mk_test dual_f64
 -- not numerically stable):
 
 module mk_sqrt (F: ordered_field) = {
-
   def abs (x: F.t) =
     if F.(x < f64 0)
     then F.neg x
@@ -233,8 +230,8 @@ module mk_sqrt (F: ordered_field) = {
   def sqrt (x: F.t) =
     let difference = F.f64 0.001
     in loop guess = F.f64 1
-       while F.(abs(guess * guess - x) >= difference) do
-         F.((x/guess + guess)/(f64 2))
+       while F.(abs (guess * guess - x) >= difference) do
+         F.((x / guess + guess) / (f64 2))
 }
 
 module sqrt_dual = mk_sqrt dual_f64

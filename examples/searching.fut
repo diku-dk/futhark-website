@@ -12,12 +12,14 @@
 -- `reduce_comm` to tell it explicitly.  This permits slightly more
 -- efficient code generation for the reduction.
 
-def find_index 'a [n] (p: a -> bool) (as: [n]a): i64 =
+def find_index 'a [n] (p: a -> bool) (as: [n]a) : i64 =
   let op (x, i) (y, j) =
-    if x && y then if i < j
-                   then (x, i)
-                   else (y, j)
-    else if y then (y, j)
+    if x && y
+    then if i < j
+         then (x, i)
+         else (y, j)
+    else if y
+    then (y, j)
     else (x, i)
   in (reduce_comm op (false, -1) (zip (map p as) (iota n))).1
 
@@ -30,10 +32,10 @@ type found 'a = #found a | #not_found
 def find_elem 'a [n] (p: a -> bool) (as: [n]a) : found a =
   let tag x = if p x then #found x else #not_found
   let op x y =
-    match (x,y)
+    match (x, y)
     case (#found _, _) -> x
     case (_, #found _) -> y
-    case _             -> x
+    case _ -> x
   in reduce_comm op #not_found (map tag as)
 
 -- Both of these solutions share a potential problem: they will always
@@ -47,7 +49,7 @@ def find_elem_seq 'a [n] (p: a -> bool) (as: [n]a) : found a =
    while i < n do
      if p as[i]
      then (#found as[i], n)
-     else (#not_found, i+1)).0
+     else (#not_found, i + 1)).0
 
 -- No parallelism here.  We can combine the sequential and the
 -- parallel approaches by writing a function that sequentially
@@ -57,9 +59,9 @@ def find_elem_seq 'a [n] (p: a -> bool) (as: [n]a) : found a =
 def find_elem_chunked 'a [n] (k: i64) (p: a -> bool) (as: [n]a) : found a =
   (loop (_res, chunk_offset) = (#not_found, 0)
    while chunk_offset < n do
-     match find_elem p as[chunk_offset: i64.min n (chunk_offset+k)]
+     match find_elem p as[chunk_offset:i64.min n (chunk_offset + k)]
      case #found x -> (#found x, n)
-     case #not_found -> (#not_found, chunk_offset+k)).0
+     case #not_found -> (#not_found, chunk_offset + k)).0
 
 -- In most cases, the original `find_index` and `find_elem` will be
 -- fast enough, as these simple `map`-`reduce` compositions are quite

@@ -22,7 +22,7 @@ def scatter_some 'a (dest: *[]a) (p: a -> bool) (pairs: [](i64, a)) =
 -- index, such as -1:
 
 def scatter_some_better 'a (dest: *[]a) (p: a -> bool) (pairs: [](i64, a)) =
-  let (is, vs) = unzip (map (\(i, v) -> if p v then (i,v) else (-1,v)) pairs)
+  let (is, vs) = unzip (map (\(i, v) -> if p v then (i, v) else (-1, v)) pairs)
   in scatter dest is vs
 
 -- # See also

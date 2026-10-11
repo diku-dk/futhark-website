@@ -4,7 +4,7 @@
 -- some array.  We might write the following:
 
 def number_pos (xs: []i32) =
-  length (filter (>0) xs)
+  length (filter (> 0) xs)
 
 -- This is inefficient, because the program will manifest the result
 -- of the filter in memory.  A better solution is to rewrite this as a
@@ -21,7 +21,7 @@ def number_pos_better (xs: []i32) =
 -- convert booleans to integers:
 
 def number_pos_best (xs: []i32) =
-  i64.sum (map ((>0) >-> i64.bool) xs)
+  i64.sum (map ((> 0) >-> i64.bool) xs)
 
 -- And of course, we can factor all of this into a handy function:
 
@@ -31,7 +31,7 @@ def count p xs =
 -- And now we can define our original function as follows:
 
 def count_number_pos (xs: []i32) =
-  count (>0) xs
+  count (> 0) xs
 
 -- # See also
 --

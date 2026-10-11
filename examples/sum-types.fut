@@ -11,10 +11,10 @@ def an_int : int_or_float = #int 2
 -- Given a value of a sum type, we use a `match` expression to handle
 -- each possible case.
 
-def increment (v: int_or_float): int_or_float =
+def increment (v: int_or_float) : int_or_float =
   match v
-  case #int x -> #int (x+1)
-  case #float x -> #float (x+1)
+  case #int x -> #int (x + 1)
+  case #float x -> #float (x + 1)
 
 -- There must be a `case` for each possible constructor.
 --
@@ -29,13 +29,14 @@ type dir = #left | #right
 -- A common trick is to define a constructor payload as a
 -- [record](tuples-and-records.html) in order to imitate named fields.
 
-type point = #two_d {x: f32, y: f32}
-           | #three_d {x: f32, y: f32, z: f32}
+type point =
+    #two_d {x: f32, y: f32}
+  | #three_d {x: f32, y: f32, z: f32}
 
 def scale (p: point) (d: f32) : point =
   match p
-  case #two_d {x,y}   -> #two_d {x=x*d, y=y*d}
-  case #three_d {x,y,z} -> #three_d {x=x*d, y=y*d, z=z*d}
+  case #two_d {x, y} -> #two_d {x = x * d, y = y * d}
+  case #three_d {x, y, z} -> #three_d {x = x * d, y = y * d, z = z * d}
 
 -- Like all other types in Futhark, sum types are structurally typed.
 -- This means that naming with `type` is optional, and we can just

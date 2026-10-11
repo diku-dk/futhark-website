@@ -8,7 +8,7 @@
 -- fall into each bin (discarding invalid bins).  In Futhark,
 -- histogram-like computations can be done with `hist`:
 
-def histogram [n] (k: i64) (is: [n]i64): [k]i32 =
+def histogram [n] (k: i64) (is: [n]i64) : [k]i32 =
   hist (+) 0 k is (replicate n 1)
 
 -- For example, `histogram 3 [0, 1, 3, 2, 1, 0, 0, 1]` produces
@@ -37,4 +37,3 @@ def histogram [n] (k: i64) (is: [n]i64): [k]i32 =
 -- ## See also
 --
 -- [Removing duplicates](removing-duplicates.html)
-

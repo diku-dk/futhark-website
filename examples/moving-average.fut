@@ -20,8 +20,8 @@ def avg [n] (xs: [n]f64) : f64 =
 
 def movavg [n] (m: i64) (xs: [n]f64) : [n]f64 =
   tabulate n (\i ->
-                let start = i64.max 0 (i-m)
-                let end = i64.min n (i+m+1)
+                let start = i64.max 0 (i - m)
+                let end = i64.min n (i + m + 1)
                 let window = xs[start:end]
                 in avg window)
 
@@ -34,14 +34,16 @@ def movavg [n] (m: i64) (xs: [n]f64) : [n]f64 =
 -- nested parallelism:
 
 def movavg_regular [n] (m: i64) (xs: [n]f64) : [n]f64 =
-  let full_wsize = 2*m+1
+  let full_wsize = 2 * m + 1
   let in_bounds i = i >= 0 && i < n
   in tabulate n (\i ->
-                   let indices = tabulate full_wsize (\j -> i+j-m)
+                   let indices = tabulate full_wsize (\j -> i + j - m)
                    let indices_in_bounds = map in_bounds indices
                    let wsize = i64.sum (map i64.bool indices_in_bounds)
-                   let window = map2 (\j b -> if b then xs[j] else 0)
-                                     indices indices_in_bounds
+                   let window =
+                     map2 (\j b -> if b then xs[j] else 0)
+                          indices
+                          indices_in_bounds
                    in f64.sum window / f64.i64 wsize)
 
 -- The idea is to *always* compute a window array of `full_wsize`

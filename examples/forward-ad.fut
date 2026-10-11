@@ -6,7 +6,7 @@
 -- of a function at some point.  This can be used to compute
 -- derivatives of functions.
 
-def f x = f64.sqrt(x) * f64.sin(x)
+def f x = f64.sqrt (x) * f64.sin (x)
 
 def f' x = jvp f x 1
 
@@ -19,9 +19,9 @@ def f' x = jvp f x 1
 -- applications of `f'` to compute the full derivative, each with a
 -- [one-hot](https://en.wikipedia.org/wiki/One-hot) seed vector:
 
-def g (x,y) = f64.cos(x) * f64.sin(y)
+def g (x, y) = f64.cos (x) * f64.sin (y)
 
-def g' x y = (jvp g (x,y) (1,0), jvp g (x,y) (0,1))
+def g' x y = (jvp g (x, y) (1, 0), jvp g (x, y) (0, 1))
 
 -- > g' 1f64 2f64
 

@@ -29,7 +29,7 @@ def four = on_i32 (\x -> x + 2) 2
 -- A shortcut notation, called *operator sections*, allows partial
 -- application of infix operators:
 
-def another_four = on_i32 (+2) 2
+def another_four = on_i32 (+ 2) 2
 
 -- By enclosing an operator in parentheses we can treat it like any
 -- variable name:

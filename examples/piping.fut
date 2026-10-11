@@ -5,7 +5,7 @@
 -- the sum of square roots of all positive numbers in an array:
 
 def square_pos xs =
-  f64.sum (map f64.sqrt (filter (>0) xs))
+  f64.sum (map f64.sqrt (filter (> 0) xs))
 
 -- Note that [this is not the best way to write this
 -- function](filter-reduce.html).  Also, These chains can become
@@ -14,7 +14,7 @@ def square_pos xs =
 -- forward operator* `|>` lets us write it like this instead:
 
 def square_pos_pipe xs =
-  xs |> filter (>0) |> map f64.sqrt |> f64.sum
+  xs |> filter (> 0) |> map f64.sqrt |> f64.sum
 
 -- Now the dataflow is purely left-to-right and we can easily add more
 -- links in the processing chain.

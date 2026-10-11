@@ -13,16 +13,20 @@
 -- to write a test program that looks for a counterexample to
 -- associativity by brute force.
 
-def testassoc 'a [n] (eq: a -> a -> bool)
-                     (op: a -> a -> a)
-                     (ne: a)
-                     (arr: [n]a) =
+def testassoc 'a [n]
+              (eq: a -> a -> bool)
+              (op: a -> a -> a)
+              (ne: a)
+              (arr: [n]a) =
   let hom xs = reduce op ne xs
   let golden = hom arr
-  in (.1) <| loop (ok, i) = (true, 0) while ok && i < n do
-    let (bef, aft) = (take i arr, drop i arr)
-    in if hom bef `op` hom aft `eq` golden
-       then (ok, i + 1) else (false, i)
+  in (.1)
+     <| loop (ok, i) = (true, 0)
+        while ok && i < n do
+          let (bef, aft) = (take i arr, drop i arr)
+          in if hom bef `op` hom aft `eq` golden
+             then (ok, i + 1)
+             else (false, i)
 
 -- It works by splitting the input `arr` at every possible point,
 -- reducing the two parts separately, combining these partial results

@@ -12,7 +12,7 @@ def mean [n] (vs: [n]f64) =
 -- The geometric mean is likewise simple:
 
 def gmean [n] (xs: [n]f64) =
-  f64.product xs ** (1/f64.i64 n)
+  f64.product xs ** (1 / f64.i64 n)
 
 -- > gmean [1.0,2.0,3.0,4.0]
 

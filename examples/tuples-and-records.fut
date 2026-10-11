@@ -12,7 +12,7 @@ def projection =
   a_tuple.0
 
 def patmatch =
-  let (a,b) = a_tuple
+  let (a, b) = a_tuple
   in a
 
 -- Pattern bindings are not allowed in top-level `let` declarations,

@@ -24,16 +24,18 @@
 -- `[rows][cols]f32` each.  The result is that we have one array for
 -- each of the three colour channels:
 --
-def split_channels [rows][cols]
-                   (image: [rows][cols][3]u8): ([rows][cols]f32,
-                                                [rows][cols]f32,
-                                                [rows][cols]f32) =
+def split_channels [rows] [cols]
+                   (image: [rows][cols][3]u8) : ( [rows][cols]f32
+                                                , [rows][cols]f32
+                                                , [rows][cols]f32
+                                                ) =
   unzip3 (map (\row ->
-                unzip3 (map (\pixel ->
-                              (f32.u8 pixel[0] / 255,
-                               f32.u8 pixel[1] / 255,
-                               f32.u8 pixel[2] / 255))
-                            row))
+                 unzip3 (map (\pixel ->
+                                ( f32.u8 pixel[0] / 255
+                                , f32.u8 pixel[1] / 255
+                                , f32.u8 pixel[2] / 255
+                                ))
+                             row))
               image)
 
 -- The `[rows][cols]` notation preceding the `image` parameter is not
@@ -59,29 +61,38 @@ def split_channels [rows][cols]
 -- We will also need to re-combine the colour channel arrays into a
 -- single array.  That function looks like this:
 
-def combine_channels [rows][cols]
+def combine_channels [rows] [cols]
                      (rs: [rows][cols]f32)
                      (gs: [rows][cols]f32)
-                     (bs: [rows][cols]f32): [rows][cols][3]u8 =
+                     (bs: [rows][cols]f32) : [rows][cols][3]u8 =
   map3 (\rs_row gs_row bs_row ->
-         map3 (\r g b ->
-                [u8.f32 (r * 255),
-                 u8.f32 (g * 255),
-                 u8.f32 (b * 255)])
-              rs_row gs_row bs_row)
-       rs gs bs
+          map3 (\r g b ->
+                  [ u8.f32 (r * 255)
+                  , u8.f32 (g * 255)
+                  , u8.f32 (b * 255)
+                  ])
+               rs_row
+               gs_row
+               bs_row)
+       rs
+       gs
+       bs
 
 -- Another thing we will need is the actual stencil function.  That is,
 -- the function we wish to apply to every pixel in the image.  For
 -- blurring, we will take the average value of the pixel itself plus each
 -- of its eight neighbors (nine values in total):
 
-def new_value [rows][cols]
-             (image: [rows][cols]f32) (row: i64) (col: i64): f32 =
+def new_value [rows] [cols]
+              (image: [rows][cols]f32) (row: i64) (col: i64) : f32 =
   let sum =
-    image[row-1,col-1] + image[row-1,col] + image[row-1,col+1] +
-    image[row,  col-1] + image[row,  col] + image[row,  col+1] +
-    image[row+1,col-1] + image[row+1,col] + image[row+1,col+1]
+    image[row - 1, col - 1] + image[row - 1, col] + image[row - 1, col + 1]
+    + image[row, col - 1]
+    + image[row, col]
+    + image[row, col + 1]
+    + image[row + 1, col - 1]
+    + image[row + 1, col]
+    + image[row + 1, col + 1]
   in sum / 9
 
 -- The function call `new_value(image, row, col)` computes the new value
@@ -97,13 +108,13 @@ def new_value [rows][cols]
 -- ranging from *0* to the provided argument (the latter not inclusive).
 -- The edges are left unchanged:
 
-def blur [rows][cols]
-         (channel: [rows][cols]f32): [rows][cols]f32 =
+def blur [rows] [cols]
+         (channel: [rows][cols]f32) : [rows][cols]f32 =
   map (\row ->
-         map(\col ->
-               if row > 0 && row < rows-1 && col > 0 && col < cols-1
-               then new_value channel row col
-               else channel[row,col])
+         map (\col ->
+                if row > 0 && row < rows - 1 && col > 0 && col < cols - 1
+                then new_value channel row col
+                else channel[row, col])
              (iota cols))
       (iota rows)
 
@@ -119,14 +130,15 @@ def blur [rows][cols]
 -- will apply the blurring transformation a user-defined number of times.
 -- The more iterations we run, the more blurred the image will become:
 
-def main [rows][cols]
-         (iterations: i32) (image: [rows][cols][3]u8): [rows][cols][3]u8 =
+def main [rows] [cols]
+         (iterations: i32) (image: [rows][cols][3]u8) : [rows][cols][3]u8 =
   let (rs, gs, bs) = split_channels image
-  let (rs, gs, bs) = loop (rs, gs, bs) for _i < iterations do
-    let rs = blur rs
-    let gs = blur gs
-    let bs = blur bs
-    in (rs, gs, bs)
+  let (rs, gs, bs) =
+    loop (rs, gs, bs) for _i < iterations do
+      let rs = blur rs
+      let gs = blur gs
+      let bs = blur bs
+      in (rs, gs, bs)
   in combine_channels rs gs bs
 
 -- Our `main` function is quite simple.  We split the input image into

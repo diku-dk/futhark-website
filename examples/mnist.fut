@@ -22,13 +22,13 @@ def decode_u32_be (w: [4]u8) =
 entry decode_label_file (s: []u8) : []i8 =
   let magic = decode_u32_be (take 4 s)
   let n = i64.u32 (decode_u32_be (take 4 (drop 4 s)))
-  in assert (magic==2049)
-            (map i8.u8 (take n (drop 8 s)))
+  in assert (magic == 2049)
+     (map i8.u8 (take n (drop 8 s)))
 
 entry decode_image_file (s: []u8) : [][][]u8 =
   let magic = decode_u32_be (take 4 s)
   let n = i64.u32 (decode_u32_be (take 4 (drop 4 s)))
   let rows = i64.u32 (decode_u32_be (take 4 (drop 8 s)))
   let columns = i64.u32 (decode_u32_be (take 4 (drop 12 s)))
-  let get_img i = unflatten (take (rows*columns) (drop (16+i*rows*columns) s))
-  in assert (magic==2051) (tabulate n get_img)
+  let get_img i = unflatten (take (rows * columns) (drop (16 + i * rows * columns) s))
+  in assert (magic == 2051) (tabulate n get_img)

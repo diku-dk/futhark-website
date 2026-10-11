@@ -3,7 +3,7 @@
 -- Suppose we wish to sum all the positive values of some array.  The
 -- obvious way to write it is as follows:
 
-def sum_pos (xs: []i32) = reduce (+) 0 (filter (>0) xs)
+def sum_pos (xs: []i32) = reduce (+) 0 (filter (> 0) xs)
 
 -- This gives the right result, but it is not optimal.  Since `filter`
 -- is a reasonably expensive operation, it is better to implement this
@@ -24,7 +24,7 @@ def reduce_some 'a (op: a -> a -> a) (ne: a) (p: a -> bool) (xs: []a) : a =
 -- Then we can define our function as simply:
 
 def sum_pos_best (xs: []i32) =
-  reduce_some (+) 0 (>0) xs
+  reduce_some (+) 0 (> 0) xs
 
 -- # See also
 --

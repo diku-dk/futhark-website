@@ -14,7 +14,7 @@ def L1 [n] (xs: [n]f64) (ys: [n]f64) : f64 =
 -- we `map` over the rows twice, then compute the distances between
 -- two rows:
 
-def pairwise_L1 [n][m] (xss: [n][m]f64) : [n][n]f64 =
+def pairwise_L1 [n] [m] (xss: [n][m]f64) : [n][n]f64 =
   map (\a -> map (\b -> L1 a b) xss) xss
 
 -- This pattern is very similar to matrix multiplication.

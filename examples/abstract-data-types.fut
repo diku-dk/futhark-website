@@ -33,35 +33,33 @@ module type normvec = {
 -- like this:
 
 module normvec : normvec = {
-
--- Note that module names and module type names live in different
--- namespaces, and there is no requirement that the name of a module
--- must match the module type it is implementing.
---
--- We first define the `vec` type, as a record.
+  -- Note that module names and module type names live in different
+  -- namespaces, and there is no requirement that the name of a module
+  -- must match the module type it is implementing.
+  --
+  -- We first define the `vec` type, as a record.
 
   type vec = {x: f64, y: f64}
 
--- The definition of `vec` is visible inside the module itself, but
--- outside users are only able to use it through the operations
--- specified by the `normvec` module type.
+  -- The definition of `vec` is visible inside the module itself, but
+  -- outside users are only able to use it through the operations
+  -- specified by the `normvec` module type.
 
--- The `mk` function normalises the given coordinates.
+  -- The `mk` function normalises the given coordinates.
 
   def mk {x, y} : vec =
-    let norm = f64.sqrt (x**2+y**2)
+    let norm = f64.sqrt (x ** 2 + y ** 2)
     in {x = x / norm, y = y / norm}
 
--- The `unmk` function just returns the coordinates.
+  -- The `unmk` function just returns the coordinates.
 
   def unmk {x, y} = {x, y}
 
--- Finally, the `add` function adds the components, then re-normalises
--- the vector.
+  -- Finally, the `add` function adds the components, then re-normalises
+  -- the vector.
 
   def add (a: vec) (b: vec) : vec =
-    {x = (a.x+b.x)/2, y = (a.y+b.y)/2}
-
+    {x = (a.x + b.x) / 2, y = (a.y + b.y) / 2}
 }
 
 -- Now we can use the module as e.g:

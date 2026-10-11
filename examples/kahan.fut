@@ -9,10 +9,12 @@
 
 type kahan = (f64, f64)
 
-def kahan_add ((s1, c1) : kahan) ((s2, c2) : kahan) : kahan =
+def kahan_add ((s1, c1): kahan) ((s2, c2): kahan) : kahan =
   let s = s1 + s2
-  let d  = if f64.abs s1 >= f64.abs s2 then (s1 - s) + s2
-           else (s2 - s) + s1
+  let d =
+    if f64.abs s1 >= f64.abs s2
+    then (s1 - s) + s2
+    else (s2 - s) + s1
   let c = (c1 + c2) + d
   in (s, c)
 
@@ -23,7 +25,7 @@ def kahan_add ((s1, c1) : kahan) ((s2, c2) : kahan) : kahan =
 -- composition for summing an entire array.
 
 def kahan_sum (xs: []f64) : f64 =
-  let (s,c) = reduce kahan_add (0,0) (map (\x -> (x,0)) xs)
+  let (s, c) = reduce kahan_add (0, 0) (map (\x -> (x, 0)) xs)
   in s + c
 
 -- And it really is more accurate than normal summation, as easily

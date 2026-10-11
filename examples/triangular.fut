@@ -15,157 +15,155 @@
 -- interface for lower triangular matrices.
 
 module type triangular = {
-
--- The type of triangular matrices is parameterised by the edge length
--- and the element type.
+  -- The type of triangular matrices is parameterised by the edge length
+  -- and the element type.
 
   type~ triangular [n] 'a
 
---  We define a *size-lifted type* with `type~` for technical reasons, as our
--- implementation will eventually contain an array whose size is not
--- literally `n`.  The Futhark type checker is very rigid, and does
--- not allow us to "hide" arrays of sizes that are not present in the
--- type.
+  --  We define a *size-lifted type* with `type~` for technical reasons, as our
+  -- implementation will eventually contain an array whose size is not
+  -- literally `n`.  The Futhark type checker is very rigid, and does
+  -- not allow us to "hide" arrays of sizes that are not present in the
+  -- type.
 
   val get [n] 'a :
-    a -> (i64,i64) -> triangular [n] a -> a
+    a -> (i64, i64) -> triangular [n] a -> a
 
--- `get zero (i,j) m` should produce the element at logical position
--- `(i,j)` in the triangular matrix `m`, returning `zero` whenever we
--- are above the diagonal.  The explicit `zero` is needed because our
--- type is fully polymorphic - we have no idea what `a` this is.
+  -- `get zero (i,j) m` should produce the element at logical position
+  -- `(i,j)` in the triangular matrix `m`, returning `zero` whenever we
+  -- are above the diagonal.  The explicit `zero` is needed because our
+  -- type is fully polymorphic - we have no idea what `a` this is.
 
   val from_array [n] 'a :
     [n][n]a -> triangular [n] a
 
--- The `from_array` function constructs a triangular matrix from a
--- dense array.  All elements above the diagonal are ignored.
---
--- We also provide a way to convert a triangular matrix back into a
--- dense array.  The caller must provide a zero value, for the same
--- reason as with `get` above:
+  -- The `from_array` function constructs a triangular matrix from a
+  -- dense array.  All elements above the diagonal are ignored.
+  --
+  -- We also provide a way to convert a triangular matrix back into a
+  -- dense array.  The caller must provide a zero value, for the same
+  -- reason as with `get` above:
 
   val to_array [n] 'a :
     a -> triangular [n] a -> [n][n]a
 
--- Finally, as an example of a higher-order operation, we provide a
--- `map` function for triangular matrices:
+  -- Finally, as an example of a higher-order operation, we provide a
+  -- `map` function for triangular matrices:
 
   val map [n] 'a 'b :
     (a -> b) -> triangular [n] a -> triangular [n] b
+}
 
 -- This is a very sparse interface, and would probably need to be
 -- extended if we wanted to use it in real applications.
 
-}
-
 -- Now let's implement that module type.
 
 module triangular : triangular = {
-
--- First thing, we define our representation of triangular arrays.
--- What we *need* is a one-dimensional array to store the elements
--- (the `data` array). However, whenever we have a type with a size
--- parameter (the `[n]`), then we *must* also have an array of that
--- size in the definition of type type. The `data` array will not have
--- the right size, so we add an `n`-by-zero array of empty tuples. In
--- effect, the `size` field acts acts as a "witness" for the size
--- parameter. By making the inner dimension have size zero, we ensure
--- that the memory usage of this array will be constant.
+  -- First thing, we define our representation of triangular arrays.
+  -- What we *need* is a one-dimensional array to store the elements
+  -- (the `data` array). However, whenever we have a type with a size
+  -- parameter (the `[n]`), then we *must* also have an array of that
+  -- size in the definition of type type. The `data` array will not have
+  -- the right size, so we add an `n`-by-zero array of empty tuples. In
+  -- effect, the `size` field acts acts as a "witness" for the size
+  -- parameter. By making the inner dimension have size zero, we ensure
+  -- that the memory usage of this array will be constant.
 
   type~ triangular [n] 'a =
-    { size: [n][0](),
-      data: []a
+    { size: [n][0]()
+    , data: []a
     }
 
--- The size of the `data` array given `n` is given by this formula:
+  -- The size of the `data` array given `n` is given by this formula:
 
   def elements (n: i64) =
-    (n * (1+n))/2
+    (n * (1 + n)) / 2
 
--- We now define a handful of utility functions for converting between
--- *flat* indexes into the `data` array and the two-dimensional
--- indexes that we use for ordinary arrays.  For *n=4*, the indexes of
--- the elements are as follows:
---
--- ```
--- 0
--- 1 2
--- 3 4 5
--- 6 7 8 9
--- ```
---
--- First a function that determines which row a *flat* index into the
--- `data` array conceptually belongs to.  Don't worry about the opaque
--- formula - it's essentially just a solution to a certain
--- second-degree equation (I'll admit it's a bit odd to see square
--- roots in index calculations).
+  -- We now define a handful of utility functions for converting between
+  -- *flat* indexes into the `data` array and the two-dimensional
+  -- indexes that we use for ordinary arrays.  For *n=4*, the indexes of
+  -- the elements are as follows:
+  --
+  -- ```
+  -- 0
+  -- 1 2
+  -- 3 4 5
+  -- 6 7 8 9
+  -- ```
+  --
+  -- First a function that determines which row a *flat* index into the
+  -- `data` array conceptually belongs to.  Don't worry about the opaque
+  -- formula - it's essentially just a solution to a certain
+  -- second-degree equation (I'll admit it's a bit odd to see square
+  -- roots in index calculations).
 
   def row (i: i64) =
-    i64.f64 (f64.ceil ((f64.sqrt(f64.i64(9+8*i))-1)/2))-1
+    i64.f64 (f64.ceil ((f64.sqrt (f64.i64 (9 + 8 * i)) - 1) / 2)) - 1
 
--- It behaves like this:
---
--- ```
--- > row 0
--- 0i64
--- > row 1
--- 1i64
--- > row 2
--- 1i64
--- > row 3
--- 2i64
--- ```
+  -- It behaves like this:
+  --
+  -- ```
+  -- > row 0
+  -- 0i64
+  -- > row 1
+  -- 1i64
+  -- > row 2
+  -- 1i64
+  -- > row 3
+  -- 2i64
+  -- ```
 
--- Now can define *ranking*, which turns a two-dimensional index
--- *(i,j)* into a flat index:
+  -- Now can define *ranking*, which turns a two-dimensional index
+  -- *(i,j)* into a flat index:
 
   def rank i j =
     elements i + j
 
--- And the other way around:
+  -- And the other way around:
 
   def unrank (p: i64) =
     let i = row p
     let j = p - elements i
-    in (i,j)
+    in (i, j)
 
--- Finally we can define the API functions, which are mostly
--- straightforward.  First `get`, where we manually check whether we
--- are trying to index above the diagonal, and return the zero value
--- if so:
+  -- Finally we can define the API functions, which are mostly
+  -- straightforward.  First `get`, where we manually check whether we
+  -- are trying to index above the diagonal, and return the zero value
+  -- if so:
 
-  def get [n] 'a zero (i,j) (tri: triangular [n] a) =
+  def get [n] 'a zero (i, j) (tri: triangular [n] a) =
     if j > i then zero else tri.data[rank i j]
 
--- Converting between ordinary arrays and triangular arrays is also
--- straightforward.
+  -- Converting between ordinary arrays and triangular arrays is also
+  -- straightforward.
 
   def from_array arr =
-    { size = map (const []) arr,
-      data = map (\p -> let (i,j) = unrank p
-                        in arr[i,j])
-                 (iota (elements (length arr)))
+    { size = map (const []) arr
+    , data =
+        map (\p ->
+               let (i, j) = unrank p
+               in arr[i, j])
+            (iota (elements (length arr)))
     }
 
   def to_array [n] 'a zero (tri: triangular [n] a) =
-    tabulate_2d n n (\i j -> get zero (i,j) tri)
+    tabulate_2d n n (\i j -> get zero (i, j) tri)
 
--- In fact, `to_array` does not have to be part of the module, as it
--- is defined in terms of the standard prelude function `tabulate_2d`,
--- and the exposed `get` function.
---
--- Finally, defining `map` is very simple, as it doesn't have to care
--- about the sizes at all.
+  -- In fact, `to_array` does not have to be part of the module, as it
+  -- is defined in terms of the standard prelude function `tabulate_2d`,
+  -- and the exposed `get` function.
+  --
+  -- Finally, defining `map` is very simple, as it doesn't have to care
+  -- about the sizes at all.
 
   def array_map = map
 
   def map f {size, data} =
     {size, data = array_map f data}
+}
 
 -- And we're done!
-
-}
 
 -- This module is probably too small to be useful.  In practice, I'd
 -- expect we'd also need `zip` functions as a minimum, and some kind

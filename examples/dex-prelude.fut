@@ -16,15 +16,16 @@ def std [n] (xs: [n]f64) =
   f64.sqrt (mean (map sq xs) - sq (mean xs))
 
 def linspace (n: i64) (start: f64) (end: f64) : [n]f64 =
-  tabulate n (\i -> start + f64.i64 i * ((end-start)/f64.i64 n))
+  tabulate n (\i -> start + f64.i64 i * ((end - start) / f64.i64 n))
 
 -- Some Dex programs use this sequential scan.
 
 def scan' n x0 f =
-  (.0) <|
-  loop (arr, acc) = (replicate n x0, x0) for i < n do
-    let acc' = f i acc
-    in (arr with [i] = acc', acc')
+  (.0)
+  <| loop (arr, acc) = (replicate n x0, x0)
+     for i < n do
+       let acc' = f i acc
+       in (arr with [i] = acc', acc')
 
 -- # Random numbers
 --
@@ -40,8 +41,9 @@ def scan' n x0 f =
 
 type Key = #Key u32
 
-def hash (k : Key)  (y: i32): Key =
-  match k case #Key x ->
+def hash (k: Key) (y: i32) : Key =
+  match k
+  case #Key x ->
     let x = x ^ u32.i32 y
     let x = ((x >> 16) ^ x) * 0x45d9f3b
     let x = ((x >> 16) ^ x) * 0x45d9f3b
@@ -54,16 +56,20 @@ def splitKey k = (hash k 1, hash k 2)
 def splitKey3 k =
   let (a, k') = splitKey k
   let (b, c) = splitKey k'
-  in (a,b,c)
+  in (a, b, c)
 
 def many '^a (f: Key -> a) (k: Key) (i: i64) = f (hash k (i32.i64 i))
 
 def ixkey (k: Key) (i: i64) : Key = hash k (i32.i64 i)
+
 def ixkey2 (k: Key) (i: i64) (j: i64) : Key =
   hash (hash k (i32.i64 i)) (i32.i64 j)
+
 def rand (k: Key) : f64 =
-  match k case #Key x ->
+  match k
+  case #Key x ->
     f64.u32 x / f64.u32 u32.highest
+
 def randVec 'a (n: i64) (f: Key -> a) (k: Key) : [n]a =
   tabulate n (\i -> f (ixkey k i))
 

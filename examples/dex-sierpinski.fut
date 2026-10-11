@@ -8,7 +8,7 @@ import "dex-prelude"
 
 type Point = (f64, f64)
 
-def update [n] (points: [n]Point) (key: Key) ((x,y): Point) : Point =
+def update [n] (points: [n]Point) (key: Key) ((x, y): Point) : Point =
   let (x', y') = points[randIdx n key]
   in (0.5 * (x + x'), 0.5 * (y + y'))
 

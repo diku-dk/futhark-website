@@ -4,7 +4,8 @@
 -- provides syntax for expressing sequential loops.
 
 def x =
-  loop acc = 0 for i < 10 do
+  loop acc = 0
+  for i < 10 do
     acc * 2 + i
 
 -- In this loop, `acc` is the *loop parameter*, which is initialised
@@ -16,26 +17,30 @@ def x =
 -- The loop parameter can be any pattern:
 
 def xy =
-  loop (x, y) = (1,1) for i < 10 do
+  loop (x, y) = (1, 1)
+  for i < 10 do
     (y, x + y)
 
 -- The result of this loop is a pair.  We could also have written it
 -- as follows:
 
 def xy' =
-  loop p = (1,1) for i < 10 do
+  loop p = (1, 1)
+  for i < 10 do
     (p.1, p.0 + p.1)
 
 -- Apart from `for` loops, Futhark also supports `for-in` loops:
 
 def max =
-  loop cur = 0 for x in [4,7,4,8,2,6,4,5] do
+  loop cur = 0
+  for x in [4, 7, 4, 8, 2, 6, 4, 5] do
     if x > cur then x else cur
 
 -- And `while` loops:
 
 def res =
-  loop (i, acc) = (0, 53) while acc > 0 do
+  loop (i, acc) = (0, 53)
+  while acc > 0 do
     (i + 1, acc / 2)
 
 -- `loop` results in entirely sequential execution.  In most cases

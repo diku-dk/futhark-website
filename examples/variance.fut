@@ -10,7 +10,7 @@ def mean [n] (vs: [n]f64) =
 
 def variance [n] (vs: [n]f64) =
   let m = mean vs
-  let xs = map (\x -> (x-m)*(x-m)) vs
+  let xs = map (\x -> (x - m) * (x - m)) vs
   in f64.sum xs / (f64.i64 n)
 
 -- Unfortunately, sums of squares can lead to numerical instability.
@@ -30,7 +30,8 @@ def variance [n] (vs: [n]f64) =
 
 def red_op (n_a, m_a, m2_a) (n_b, m_b, m2_b) =
   let n_ab = n_a + n_b
-  in if n_ab == 0 then (0, 0, 0)
+  in if n_ab == 0
+     then (0, 0, 0)
      else let f_a = f64.from_fraction n_a n_ab
           let f_b = f64.from_fraction n_b n_ab
           let f_ab = f64.from_fraction (n_a * n_b) n_ab
@@ -43,10 +44,10 @@ def red_op (n_a, m_a, m2_a) (n_b, m_b, m2_b) =
 -- zero to avoid division by zero.  We can now define a numerically
 -- stable function for computing variance.
 
-def variance_stable [n] (X:[n]f64) =
+def variance_stable [n] (X: [n]f64) =
   let (_, _, m2) =
     reduce_comm red_op (0, 0, 0) (map (\a -> (1, a, 0)) X)
-  in (m2/f64.i64 n)
+  in (m2 / f64.i64 n)
 
 -- Note also that this function is a single-pass algorithm.
 --

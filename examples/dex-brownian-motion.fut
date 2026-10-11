@@ -8,8 +8,7 @@ import "dex-prelude"
 
 type UnitInterval = f64
 
-def bmIter ((key, y, sigma, t): (Key, f64, f64, UnitInterval))
-         : (Key, f64, f64, UnitInterval) =
+def bmIter ((key, y, sigma, t): (Key, f64, f64, UnitInterval)) : (Key, f64, f64, UnitInterval) =
   let (kDraw, kL, kR) = splitKey3 key
   let t' = f64.abs (t - 0.5)
   let y' = sigma * randn kDraw * (0.5 - t')

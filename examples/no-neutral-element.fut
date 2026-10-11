@@ -16,10 +16,10 @@ type with_neutral 't = #neutral | #val t
 
 -- The operator must also be augmented to handle the neutral element:
 
-def f_with_neutral 't (f: t -> t -> t)
-                      (x: with_neutral t)
-                      (y: with_neutral t)
-                      : with_neutral t =
+def f_with_neutral 't
+                   (f: t -> t -> t)
+                   (x: with_neutral t)
+                   (y: with_neutral t) : with_neutral t =
   match (x, y)
   case (#val x, #val y) -> #val (f x y)
   case (#neutral, _) -> y

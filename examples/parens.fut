@@ -42,7 +42,7 @@ def permute xs is = scatter (copy xs) is xs
 def match_parens [n] (s: [n]u8) =
   let depth = depths s
   let rnk = grade depth
-  let ret = tabulate n (\i -> if i % 2 == 0 then rnk[i+1] else rnk[i-1])
+  let ret = tabulate n (\i -> if i % 2 == 0 then rnk[i + 1] else rnk[i - 1])
   in permute ret rnk
 
 -- The function returns, for each parenthesis in the input string, the

@@ -29,29 +29,32 @@ def ilog2 (n: i64) : i64 = i64.i32 (63 - i64.clz n)
 def pad_to k x xs = sized k (xs ++ replicate (k - length xs) x)
 
 def padpow2 lte xs =
-  let d = ilog2 (length xs) in
-  if d < 0 || length xs == 2**d then (xs, d)
-  else (pad_to (2**(d+1)) (maximum lte xs) xs, d+1)
+  let d = ilog2 (length xs)
+  in if d < 0 || length xs == 2 ** d
+     then (xs, d)
+     else (pad_to (2 ** (d + 1)) (maximum lte xs) xs, d + 1)
 
 -- Now we can define the bitonic sort itself.  Read the reference
 -- above for details on *why* this algorithm works.
 
 def bitonic lte a p q =
-  let d = 1 << (p-q) in
+  let d = 1 << (p - q)
   let f i a_i =
     let up1 = ((i >> p) & 2) == 0
     in if (i & d) == 0
-       then let a_iord = a[i | d] in
-            if (a_iord `lte` a_i) == up1
-            then a_iord else a_i
-       else let a_ixord = a[i ^ d] in
-            if (a_i `lte` a_ixord) == up1
-            then a_ixord else a_i
+       then let a_iord = a[i | d]
+            in if (a_iord `lte` a_i) == up1
+               then a_iord
+               else a_i
+       else let a_ixord = a[i ^ d]
+            in if (a_i `lte` a_ixord) == up1
+               then a_ixord
+               else a_i
   in map2 f (indices a) a
 
-def sort [n] 't (lte: t -> t -> bool) (xs: [n]t): [n]t =
+def sort [n] 't (lte: t -> t -> bool) (xs: [n]t) : [n]t =
   let (xs', d) = padpow2 lte xs
-  in (loop xs' for i < d do loop xs' for j < i+1 do bitonic lte xs' i j)
+  in (loop xs' for i < d do loop xs' for j < i + 1 do bitonic lte xs' i j)
      |> take n
 
 -- Note how we preserve only the first `n` elements.  Since we padded

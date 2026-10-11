@@ -19,12 +19,12 @@ def newKey = random.lcg.init
 -- The rest of the definition is pretty much just like how Dex does
 -- it.
 
-def estimatePiArea (key:Key) : f64 =
+def estimatePiArea (key: Key) : f64 =
   let (key, x) = rand key
   let (_, y) = rand key
   in 4.0 * f64.bool (sq x + sq y < 1)
 
-def estimatePiAvgVal (key:Key) : f64 =
+def estimatePiAvgVal (key: Key) : f64 =
   let (_, x) = rand key
   in 4.0 * f64.sqrt (1.0 - sq x)
 

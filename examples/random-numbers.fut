@@ -13,31 +13,30 @@
 -- describing the interface of a random number generator.
 
 module type rand = {
-
--- It consists of a random number generator *state*:
+  -- It consists of a random number generator *state*:
 
   type rng
 
--- These states can be initialised from a *seed*:
+  -- These states can be initialised from a *seed*:
 
   val init : i32 -> rng
 
--- To generate a uniformly distributed random integer, we pass in an
--- RNG state, which will give us back an integer and a new state:
+  -- To generate a uniformly distributed random integer, we pass in an
+  -- RNG state, which will give us back an integer and a new state:
 
   val rand : rng -> (rng, i32)
 
--- It is the user's responsibility not to use the same state more than
--- once (unless that is what is desired).
---
--- We will sometimes need to use one seed to generate multiple random
--- streams.  The `split` function splits one RNG state
--- in twain:
+  -- It is the user's responsibility not to use the same state more than
+  -- once (unless that is what is desired).
+  --
+  -- We will sometimes need to use one seed to generate multiple random
+  -- streams.  The `split` function splits one RNG state
+  -- in twain:
 
   val split : rng -> (rng, rng)
 
--- And `split_n` splits it arbitrary many ways, which is useful
--- when we wish to compute many parallel streams in parallel:
+  -- And `split_n` splits it arbitrary many ways, which is useful
+  -- when we wish to compute many parallel streams in parallel:
 
   val split_n : (n: i64) -> rng -> [n]rng
 }
@@ -49,47 +48,47 @@ module type rand = {
 -- (LCG):
 
 module lcg : rand = {
-
--- The RNG state is just 32 bits.
+  -- The RNG state is just 32 bits.
 
   type rng = u32
 
--- An LCG is defined by the three constants *a*, *c*, and *m*.  We use
--- the following values, which are the same that are used by glibc:
+  -- An LCG is defined by the three constants *a*, *c*, and *m*.  We use
+  -- the following values, which are the same that are used by glibc:
 
   def a : u32 = 1103515245
   def c : u32 = 12345
-  def m : u32 = 1<<31
+  def m : u32 = 1 << 31
 
--- Note that with these constants, we will never generate a negative
--- random integer.
+  -- Note that with these constants, we will never generate a negative
+  -- random integer.
 
   def rand rng =
     let rng' = (a * rng + c) % m
     in (rng', i32.u32 rng')
 
--- Initialisation consists of a few rounds of a [hash function found
--- on
--- StackOverflow](https://stackoverflow.com/questions/664014/what-integer-hash-function-are-good-that-accepts-an-integer-hash-key/12996028#12996028),
--- as is tradition.
+  -- Initialisation consists of a few rounds of a [hash function found
+  -- on
+  -- StackOverflow](https://stackoverflow.com/questions/664014/what-integer-hash-function-are-good-that-accepts-an-integer-hash-key/12996028#12996028),
+  -- as is tradition.
 
-  def init (x: i32): u32 =
+  def init (x: i32) : u32 =
     let x = u32.i32 x
     let x = ((x >> 16) ^ x) * 0x45d9f3b
     let x = ((x >> 16) ^ x) * 0x45d9f3b
     let x = ((x >> 16) ^ x)
     in x
 
--- The main weakness of this initialisation is that a zero seed will
--- result in a zero state, which will be "stuck", producing only
--- zeroes.  So don't do that.
---
--- The splitting functions creates RNG states by slightly twiddling
--- the states.
+  -- The main weakness of this initialisation is that a zero seed will
+  -- result in a zero state, which will be "stuck", producing only
+  -- zeroes.  So don't do that.
+  --
+  -- The splitting functions creates RNG states by slightly twiddling
+  -- the states.
 
   def split (rng: rng) =
-    (init (i32.u32 (rand rng).0),
-     init (i32.u32 rng))
+    ( init (i32.u32 (rand rng).0)
+    , init (i32.u32 rng)
+    )
 
   def split_n n rng =
     tabulate n (\i -> init (i32.u32 rng ^ i32.i64 i))

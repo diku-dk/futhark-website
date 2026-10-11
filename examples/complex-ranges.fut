@@ -16,4 +16,4 @@ def ints5 = 0..2..<10
 -- create a range where the size is obvious to the type checker, and
 -- then massage it to the desired value using `map`:
 
-def ints5_alternative = map (*2) (0..<5)
+def ints5_alternative = map (* 2) (0..<5)

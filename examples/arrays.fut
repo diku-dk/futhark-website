@@ -2,12 +2,12 @@
 --
 -- Futhark arrays are written as values enclosed in square brackets.
 
-def arr = [1,2,3]
+def arr = [1, 2, 3]
 
 -- The type of `arr` is `[]i32` (or `[3]i32` to be pedantic).  The
 -- element type of an array can be another array:
 
-def marr = [[1,2,3], [4,5,6]]
+def marr = [[1, 2, 3], [4, 5, 6]]
 
 -- The type of `marr` is `[][]i32`.  Arrays must be *regular*, meaning
 -- that all elements must have the same shape.  An array such as
@@ -23,7 +23,7 @@ def tail = arr[1:]
 
 -- We can even slice or index only some dimensions:
 
-def innermost = marr[:,1:2]
+def innermost = marr[:, 1:2]
 
 -- This produces `[[2], [5]]`.  Slices are inclusive in the starting
 -- position and exclusive in the ending position [as Dijkstra wills

@@ -15,7 +15,8 @@ def neq lte x y = if x `lte` y then !(y `lte` x) else true
 
 def pack lte xs =
   zip3 (indices xs) xs (rotate (-1) xs)
-  |> filter (\(i,x,y) -> i == 0 || neq lte x y) |> map (.1)
+  |> filter (\(i, x, y) -> i == 0 || neq lte x y)
+  |> map (.1)
 
 def pack_i32 = pack (i32.<=)
 
@@ -37,9 +38,9 @@ def dedup_sort_i32 = dedup_sort (i32.<=)
 
 def nub lte xs =
   zip xs (indices xs)
-  |> merge.sort (\(a,_) (b,_) -> a `lte` b)
-  |> pack (\(a,_) (b,_) -> a `lte` b)
-  |> merge.sort (\(_,i) (_,j) -> i <= j)
+  |> merge.sort (\(a, _) (b, _) -> a `lte` b)
+  |> pack (\(a, _) (b, _) -> a `lte` b)
+  |> merge.sort (\(_, i) (_, j) -> i <= j)
   |> map (.0)
 
 def nub_i32 = nub (i32.<=)
