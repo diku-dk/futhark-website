@@ -3,6 +3,9 @@ title: Uniqueness Types and In-Place Updates
 description: An apologia for one of Futhark's more exotic features.
 ---
 
+**Note from the future:** *since this post was written, we no longer use the
+"uniqueness type" nomenclature, although the technical details remain the same.*
+
 I recently wrote about how Futhark had been [relieved of its last
 design defect and was now perfect](2022-04-12-the-final-problem.html).
 It turns out that wings made of wax melt quite easily.  While I am
