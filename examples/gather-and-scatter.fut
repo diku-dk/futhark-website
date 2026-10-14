@@ -17,10 +17,10 @@ def gather 'a (xs: []a) (is: []i32) =
 -- val scatter 'a : (dest: *[]a) -> (is: []i32) -> (vs: []a) -> *[]a
 -- ```
 --
--- The `*` before on the destination and return type is a *uniqueness
--- annotation*.  We can ignore it if the destination array we pass to
--- `scatter` is always a fresh array created with `replicate` or
--- `copy`:
+-- The `*` before on the destination type is a *consumption marker* and on the
+-- return type it indicates the result is *fresh*. We can ignore this if the
+-- destination array we pass to `scatter` is always a fresh array created with
+-- `replicate` or `copy`:
 
 def xs = scatter (replicate 7 0) [0, 2, 4, 6] [1, 2, 3, 4]
 

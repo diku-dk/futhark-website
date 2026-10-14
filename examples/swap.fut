@@ -8,9 +8,9 @@ def swap 't (i: i64) (j: i64) (A: *[]t) =
   let A[i] = tmp
   in A
 
--- This uses [in-place updates](inplace.html), which interacts with
--- the [uniqueness type
--- system](https://futhark.readthedocs.io/en/latest/language-reference.html#in-place-updates), which is why the `A` parameter has the `*` annotation.
+-- This uses [in-place
+--  updates](inplace.html)(https://futhark.readthedocs.io/en/latest/language-reference.html#in-place-updates),
+--  which is why the `A` parameter has the `*` annotation.
 --
 -- ## See also
 --

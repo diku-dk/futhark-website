@@ -11,7 +11,7 @@ def update (A: *[]i32) (i: i32) (v: i32) =
 -- The `*` annotation for the `A` parameter indicates that the
 -- `update` function *consumes* the array, meaning the argument value
 -- may not be used again by the caller. This is checked through
--- Futhark's [uniqueness type
+-- Futhark's [in-place update
 -- system](https://futhark.readthedocs.io/en/latest/language-reference.html#in-place-updates).
 --
 -- We can also create a variant of `update` that does not consume the
