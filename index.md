@@ -30,6 +30,7 @@ def average (xs: []f64) = reduce (+) 0 xs / f64.i64 (length xs)
     reference](https://futhark.readthedocs.io/en/stable/language-reference.html)
 -   [Prelude](https://futhark-lang.org/docs/prelude)
 -   [More packages](https://futhark-lang.org/pkgs/)
+-   [Compiler architecture](https://futhark-lang.org/haddock/Futhark.html)
 :::
 
 Futhark is not designed for graphics programming, but can instead use
