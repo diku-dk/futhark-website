@@ -123,5 +123,5 @@ handled from within the program, it is technically not a breaking change if we
 one day make these operations fully defined, and hence I am willing to wait and
 see if the idea continues to seem compelling, and whether my courage grows
 sufficiently. It may also be that we decide that uniformity of this kind serves
-no purpose, and I think Ralph Emerson once said something about consistency and
-brain leprechauns...
+no purpose, and I think Ralph Emerson once said something about foolish
+consistency and brain leprechauns...
