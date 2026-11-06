@@ -129,7 +129,7 @@ programmers. The reason we do not check for associativity is that [it is
 impossible](https://en.wikipedia.org/wiki/Rice%27s_theorem), and even when it is
 possible it remains hard - well beyond what a practical type checker is capable
 of. It is not too hard to [empirically test
-associativity](testing-associativity.html) and other properties, and so it seems
+associativity](../examples/testing-associativity.html) and other properties, and so it seems
 that this source of nondeterminism is not so problematic in practice.
 
 That actually concludes the list of "true" nondeterminism in Futhark, and in
