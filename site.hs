@@ -143,10 +143,18 @@ contentContext :: Maybe String -> Compiler (Context String)
 contentContext title = do
   menu <- getMenu
   return $
-    metadataField
+    escapedMetadataField "description"
+      <> metadataField
       <> maybe mempty (constField "title") title
       <> defaultContext
       <> constField "menu" menu
+
+-- | Like 'metadataField', but for a single field, and with the value escaped
+-- such that it is valid inside an HTML attribute.
+escapedMetadataField :: String -> Context String
+escapedMetadataField k = field k $ \item -> do
+  v <- getMetadataField (itemIdentifier item) k
+  maybe (noResult $ "no " <> k <> " metadata") (pure . escapeHtml) v
 
 getMenu :: Compiler String
 getMenu = do

@@ -7,7 +7,11 @@
     <link rel="stylesheet" type="text/css" href="/css/syntax.css" />
     <link rel="stylesheet" type="text/css" href="/css/forkme.css" />
     <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+    $if(description)$
+    <meta name="description" content="$description$">
+    $else$
     <meta name="description" content="A high-performance and high-level purely functional data-parallel array programming language that can execute on the GPU and CPU.">
+    $endif$
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
