@@ -20,16 +20,16 @@ loop x = 0 for i < m do
 ```
 
 The binding of `inv` is totally invariant to the loop, yet moving it outside of
-the loop is potentially dangerous, as when `m==0` (and the loop never runs), we
-perform a [division by zero](2026-10-14-defining-division.html). Thus, we need
-to be careful about how we move code out of loops and similar control
-structures. In Futhark I recently [found a
-bug](https://github.com/diku-dk/futhark/issues/2612) related to improper
-handling of this situation, and I figured I'd write a post not just about how
-this comes about, but also a nifty trick that Futhark uses to *actually* hoist
-such potentially explosive code without changing the behaviour of the program.
-(As always, it would be much easier to write compilers if programmers were not
-so particular about what their programs actually do.)
+the loop is potentially dangerous, as when `n==0` but `m==0` (and hence the loop
+never runs), we would still perform a [division by
+zero](2026-10-14-defining-division.html). Thus, we need to be careful about how
+we move code out of loops and similar control structures. In Futhark I recently
+[found a bug](https://github.com/diku-dk/futhark/issues/2612) related to
+improper handling of this situation, and I figured I'd write a post not just
+about how this comes about, but also a nifty trick that Futhark uses to
+*actually* hoist such potentially explosive code without changing the behaviour
+of the program. (As always, it would be much easier to write compilers if
+programmers were not so particular about what their programs actually do.)
 
 ## How Futhark does safety checks
 
