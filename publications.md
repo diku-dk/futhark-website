@@ -13,7 +13,7 @@ chronological order.
 
 - **Gate Fusion Is Map Fusion**. Martin Elsman, Troels Henriksen. [ARRAY
   '25](https://pldi25.sigplan.org/home/ARRAY-2025)
-  ([pdf](publications/array25.pdf))
+  ([pdf](publications/array25.pdf), [bib](publications/array25.bib))
 
 - **Two Things I Did**.  Robert Schenck. PhD
   thesis, 2024. ([pdf](publications/two-things-robert-did.pdf),
